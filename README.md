@@ -1,2 +1,2 @@
 # site
-Repositório disponibiliza o site instituncional da Orderize
+Repository provides Orderize's institutional website
