@@ -1,0 +1,27 @@
+.container-navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+
+    background: #EAE5DE;
+
+    width: 200px;
+    height: 100vh;
+}
+
+.ordenation-navbar a {
+    color: black;
+}
+
+.ordenation-navbar > li {
+    margin: 40px 0;
+}
+
+.ordenation-navbar > li > ul {
+    width: 90%;
+}
+
+.buttonTest {
+    padding: 10px 30px;
+}
