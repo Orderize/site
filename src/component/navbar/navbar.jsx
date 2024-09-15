@@ -5,7 +5,7 @@ import Option from "./option/option";
 import "./navbar.css";
 
 function navbar() {
-    const [actualButton, setActualButton] = useState("Novo Pedido");
+    const [actualButton, setActualButton] = useState("Pedido");
 
     return (
         <>
@@ -13,19 +13,20 @@ function navbar() {
                 <img className="logo" src="public\image\logo.png" alt="imagem logo orderize" />
                 <ul className="ordenation-navbar">
                     <ButtonNavbar
+                        classx={"main"}
                         event={ setActualButton }
                         icon={ <Pizza size={37}/> }
-                        isActive={actualButton === "Novo Pedido"}
+                        isActive={actualButton === "Pedido"}
                         link="/"
-                        text="Novo Pedido"
-                    />
+                        text="Pedido"
+                        />
                     <ButtonNavbar
                         event={ setActualButton }
                         icon={ <ListMagnifyingGlass size={37}/>}
                         isActive={actualButton === "Opções"}
                         link="/"
                         text="Opções"
-                    />
+                        />
                     {
                         actualButton === "Opções" ? 
                             <Option />

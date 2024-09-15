@@ -1,0 +1,8 @@
+.container-order {
+    background-color: #F3EFE9;
+    width: 85%;
+    min-height: 100vh;
+
+    position: relative;
+    left: 15%;
+}
