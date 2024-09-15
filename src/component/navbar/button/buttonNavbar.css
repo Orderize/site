@@ -1,3 +1,7 @@
+.container-buttonNavbar a {
+    text-decoration: none;
+}
+
 @media screen and (max-width: 1200px) {
     
     .container-buttonNavbar {
@@ -25,14 +29,11 @@
     }
     
     .container-buttonNavbar.active {
-        text-align: center;
-        background-color: #656D4A;
-        
+        background-color: #656D4A;        
     }
     
     .container-buttonNavbar > a {
         display: flex;
-        align-items: center;
         
         color: #3A3C16;
         font-size: 18px;
@@ -62,6 +63,7 @@
 
 @media screen and (min-width: 1200px) {
     .container-buttonNavbar {
+        display: block;
         width: 90%;
     
         margin: 25px 0;
@@ -75,7 +77,6 @@
     
     .container-buttonNavbar.active {
         background-color: #656D4A;
-        
     }
     
     .container-buttonNavbar > a {
@@ -95,6 +96,7 @@
     }
     
     a.active {
+        justify-content: flex-start;
         color: #EAE5DE;
     }
     
@@ -103,3 +105,4 @@
         width: 40px;
     }
 }
+

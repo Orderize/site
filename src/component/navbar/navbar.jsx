@@ -5,7 +5,7 @@ import Option from "./option/option";
 import "./navbar.css";
 
 function navbar() {
-    const [actualButton, setActualButton] = useState("Pedido");
+    const [actualButton, setActualButton] = useState("Pedidos");
 
     return (
         <>
@@ -16,9 +16,9 @@ function navbar() {
                         classx={"main"}
                         event={ setActualButton }
                         icon={ <Pizza size={37}/> }
-                        isActive={actualButton === "Pedido"}
-                        link="/"
-                        text="Pedido"
+                        isActive={actualButton === "Pedidos"}
+                        link="/pizzas"
+                        text="Pedidos"
                         />
                     <ButtonNavbar
                         event={ setActualButton }

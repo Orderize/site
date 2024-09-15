@@ -28,30 +28,35 @@
     animation: closeComponent 3s normal;
 }
 
-.container-option {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+
+
+/* @media screen and (min-width: 1200px) { */
+
+    .container-option {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        
+        border-left: 3px solid #656D4A;
+        
+        width: 80%;
+        margin-top: -2vh;
     
-    border-left: 3px solid #656D4A;
+        animation: openComponent 4s normal;
+    }
     
-    width: 80%;
-    margin-top: -20px;
-
-    animation: openComponent 4s normal;
-}
-
-.container-option > li {
-    margin: 20px 0;
-    animation: openComponent 3s normal;
-}
-
-.container-option > li.active {
-    background-color: #FFFFFF;
-    margin: 20px 0;
+    .container-option > li {
+        margin: 10px 0;
+        animation: openComponent 3s normal;
+    }
     
-}
+    .container-option > li.active {
+        background-color: #FFFFFF;        
+    }
+    
+    .container-option > li > a {
+        color: #3A3C16;
+    }
 
-.container-option > li > a {
-    color: #3A3C16;
-}
+/* } */
+

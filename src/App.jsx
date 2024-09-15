@@ -16,7 +16,7 @@ createRoot(document.getElementById('root')).render(
         ></Route>
         
         <Route
-          path='/opcoes'
+          path='/'
           element={ <Navbar /> }
         ></Route>
 
