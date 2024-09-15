@@ -5,7 +5,7 @@ import "./order.css"
 function order() {
     return (
         <>
-            <Navbar />
+            <Navbar activeButton={"Pedidos"} />
             <main className="container-order">
                 <h1>Novo Pedido</h1>
                 <section className="client-modal">

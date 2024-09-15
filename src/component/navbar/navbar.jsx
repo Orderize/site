@@ -4,8 +4,8 @@ import ButtonNavbar from './button/buttonNavbar';
 import Option from "./option/option";
 import "./navbar.css";
 
-function navbar() {
-    const [actualButton, setActualButton] = useState("Pedidos");
+function navbar({ activeButton }) {
+    const [actualButton, setActualButton] = useState(activeButton);
 
     return (
         <>
@@ -14,17 +14,15 @@ function navbar() {
                 <ul className="ordenation-navbar">
                     <ButtonNavbar
                         classx={"main"}
-                        event={ setActualButton }
                         icon={ <Pizza size={37}/> }
                         isActive={actualButton === "Pedidos"}
-                        link="/pizzas"
+                        link="/pedidos"
                         text="Pedidos"
-                        />
+                    />
                     <ButtonNavbar
-                        event={ setActualButton }
                         icon={ <ListMagnifyingGlass size={37}/>}
                         isActive={actualButton === "Opções"}
-                        link="/"
+                        link="/sabores"
                         text="Opções"
                         />
                     {
@@ -33,7 +31,6 @@ function navbar() {
                         : null
                     }
                     <ButtonNavbar
-                        event={ setActualButton }
                         icon={ <ClockClockwise size={37} /> }
                         isActive={actualButton === "Histórico"}
                         link="/"

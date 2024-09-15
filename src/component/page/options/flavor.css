@@ -1,0 +1,75 @@
+.container-flavor {
+    width: 82%;
+    height: 100vh;
+
+    background-color: #F3EFE9;
+    color: #3A3C16;
+    font-weight: 700;
+
+    position: absolute;
+    left: 18%;
+}
+
+.container-flavor > h1 {
+    width: 90%;
+    
+    margin: 3vh auto;
+}
+
+.container-flavor > nav {
+    margin-left: 10vh;
+}
+
+.container-flavor > .comp-search {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    width: 90%;
+    margin: 20px 5vh;
+}
+
+.container-flavor > .comp-search > label > .icon-search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 40px;
+    height: 40px;
+    
+    background-color: #3A3C16;
+    color: #FFFFFF;
+    
+    border: none;
+    border-radius: 50%;
+
+    cursor: pointer;
+}
+
+.container-flavor > .comp-search > .input-search {
+    margin-left: 10px;
+    padding: 15px 20px;
+    
+    color: #3A3C16;
+    font-weight: 600;
+    font-size: 12px;
+
+    background-color: #F3EFE9;
+    border: 1px solid #3A3C16;
+    border-radius: 10px;
+
+    outline: none;
+}
+
+.container-flavor > .client-modal {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+
+
+    margin: 15vh auto;
+    width: 50%;
+    height: 50%;
+    border: 2px solid violet;
+}

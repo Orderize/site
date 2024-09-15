@@ -16,7 +16,7 @@
     margin: 3vh auto;
 }
 
-.client-modal {
+.container-order > .client-modal {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -28,11 +28,11 @@
     border: 2px solid violet;
 }
 
-.client-modal > h2 {
+.container-order > .client-modal > h2 {
     /* color: #656D4A; */
 }
 
-.client-modal > .client-modal-card {
+.container-order > .client-modal > .client-modal-card {
     width: calc(100% - 60px);
     height: 50%;
     
@@ -44,11 +44,11 @@
     padding: 20px 30px;
 }
 
-.client-modal > .client-modal-card > h2 {
+.container-order > .client-modal > .client-modal-card > h2 {
     /* color: #656D4A; */
 }
 
-.client-modal > button {
+.container-order > .client-modal > button {
     width: 200px;
     height: 20px;
     background-color: #656D4A;
