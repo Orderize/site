@@ -1,18 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import "./buttonNavbar.css"
 
-function buttonNavbar({ link, icon, text, event }) {
+function buttonNavbar({ event, icon, isActive, link, text }) {
     const setLink = () => {
         event(text);
     }
+
     return (
         <>
             <li 
-                className="container-buttonNavbar"
+                className={ `container-buttonNavbar ${isActive ? "active" : ""}` }
                 onClick={setLink}
             >
-                <a href={link}>
-                    {icon}
+                <a 
+                    // href="" 
+                    className={ `${isActive ? "active" : ""}` }
+                >
+                    <i>
+                        {icon}
+                    </i>
                     {text}
                 </a>
             </li>

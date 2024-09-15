@@ -3,25 +3,33 @@
     align-items: center;
     justify-content: space-between;
     flex-direction: column;
-
+    
     background: #EAE5DE;
-
-    width: 200px;
+    
+    width: 240px;
     height: 100vh;
 }
 
-.ordenation-navbar a {
-    color: black;
+.logo {
+    margin-top: 20px;
+
+    cursor: pointer;
 }
 
-.ordenation-navbar > li {
-    margin: 40px 0;
+.ordenation-navbar {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    width: 100%;
+
 }
 
-.ordenation-navbar > li > ul {
-    width: 90%;
-}
-
-.buttonTest {
+.button-config {
     padding: 10px 30px;
+    margin-bottom: 40px;
+    font-weight: 600;
+
+
+    cursor: pointer;
 }

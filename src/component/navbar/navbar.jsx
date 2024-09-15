@@ -1,60 +1,45 @@
-import React, { useState } from 'react';
-import { Pizza, ListMagnifyingGlass } from "@phosphor-icons/react";
+import React, { act, useRef, useState } from 'react';
+import { Pizza, ListMagnifyingGlass, ClockClockwise } from "@phosphor-icons/react";
 import ButtonNavbar from './button/buttonNavbar';
+import Option from "./option/option";
 import "./navbar.css";
 
 function navbar() {
-    const [actualLink, setActualLink] = useState("/");
-
+    const [actualButton, setActualButton] = useState("Novo Pedido");
 
     return (
         <>
             <nav className="container-navbar">
-                <img src="public\image\logo.png" alt="imagem logo orderize" />
+                <img className="logo" src="public\image\logo.png" alt="imagem logo orderize" />
                 <ul className="ordenation-navbar">
                     <ButtonNavbar
+                        event={ setActualButton }
+                        icon={ <Pizza size={37}/> }
+                        isActive={actualButton === "Novo Pedido"}
                         link="/"
-                        icon={ <Pizza size={35} color="black"/> }
                         text="Novo Pedido"
-                        event={setActualLink}
-                        />
+                    />
                     <ButtonNavbar
+                        event={ setActualButton }
+                        icon={ <ListMagnifyingGlass size={37}/>}
+                        isActive={actualButton === "Opções"}
                         link="/"
-                        icon={ <ListMagnifyingGlass size={35}/>}
                         text="Opções"
-                        event={setActualLink}
                     />
                     {
-                        actualLink == "Opções" ? "SIIRRR" /* <Options /> */ : null
+                        actualButton === "Opções" ? 
+                            <Option />
+                        : null
                     }
-                    <li>
-                        <a href="/">
-                        <i>icone </i>Novo Pedido</a>
-                        <ul className='ordenation-order'>
-                            <ButtonNavbar
-                                link="/"
-                                icon="icone"
-                                text="Sabores"
-                            />
-                            <ButtonNavbar
-                                link="/"
-                                icon="icone"
-                                text="Bebidas"
-                            />
-                            <ButtonNavbar
-                                link="/"
-                                icon="icone"
-                                text="Promoções"
-                            />
-                        </ul>
-                    </li>
                     <ButtonNavbar
+                        event={ setActualButton }
+                        icon={ <ClockClockwise size={37} /> }
+                        isActive={actualButton === "Histórico"}
                         link="/"
-                        icon="icone"
-                        text="Histórico de pedidos"
+                        text="Histórico"
                     />
                 </ul>
-                <button className="buttonTest">Sair</button>
+                <button className="button-config">CONFIGURAÇÕES</button>
             </nav>
         </>
     )
