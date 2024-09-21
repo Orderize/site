@@ -1,0 +1,143 @@
+
+  .banner {
+    width: 80%;
+    max-width: 30%; 
+    height: 300px;
+    background-image: url('/src/assets/banner.png'); 
+    background-size: cover;
+    background-position: center;
+    margin-top: 10px; 
+    margin-bottom: 40px; 
+  }
+  
+
+  .container {
+    width: 100%; 
+    max-width: 700px;
+    height: 50vh;
+    background-color: #EAE5DE;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    box-sizing: border-box;
+    margin-top: -80px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+  }
+  
+
+  .container h1 {
+    font-size: 20px;
+    color: #000;
+    margin-bottom: 45px;
+    margin-top: 5%;
+    font-weight: 800;
+  }
+  
+
+  .input_field {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 30px auto;
+  }
+  
+  .input_field input {
+    width: 50%;
+    height: 22%;
+    background-color: #F3EFE9;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    font-size: 16px;
+    color: #000;
+    padding: 20px 30px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+  }
+  
+  .input_field input::placeholder {
+    color:#000;
+  }
+  
+
+  .recall-forget {
+    text-align: center;
+    font-size: 14.5px;
+    margin: -15px 0 15px;
+    margin-bottom: 7%;
+    margin-top: 2%;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+  }
+  
+  .recall-forget a {
+    color: #000;
+  }
+  
+  .recall-forget a:hover {
+    text-decoration: underline;
+  }
+  
+
+  button {
+    width: 25%;
+    height: 50px;
+    background-color: #B53627;
+    color: #fff;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    display: block;
+    margin: 20px auto 0 auto;
+  }
+  
+
+.recall-connect {
+  text-align: center;
+  font-size: 14.5px;
+  margin-top: 3%;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+}
+
+.recall-connect a {
+  color: #000;
+  text-decoration: none;  
+}
+
+.recall-connect a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 1117px) {
+  .banner {
+    max-width: 50%; 
+    height: 250px; 
+  }
+}
+
+@media (max-width: 562px) {
+  .banner {
+    max-width: 100%; 
+    height: 250px; 
+  }
+  button{
+    width: 100px;
+  }
+  .input_field input {
+    width: 70%;
+  }
+}
+
+
+@media (max-width: 800px) {
+  .container{
+    max-width: 70%;
+    height: 500px; 
+  }
+}
+
