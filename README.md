@@ -114,24 +114,6 @@ pizzaria-backoffice-frontend/
 
 ---
 
-## 🧪 Testes
-
-### Rodar Testes Unitários:
-
-O projeto utiliza **Jest** e **React Testing Library** para testes unitários e de componentes.
-
-1. **Executar testes:**
-   ```bash
-   npm test
-   ```
-
-2. **Cobertura de testes:**
-   ```bash
-   npm test -- --coverage
-   ```
-
----
-
 ## 🤝 Contribuições
 
 Contribuições são bem-vindas! Sinta-se à vontade para abrir **issues** ou enviar **pull requests**. Para maiores detalhes, siga o guia de contribuição.
@@ -141,12 +123,4 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir **issues** ou en
 ## 📝 Licença
 
 Este projeto é licenciado sob a licença MIT - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
----
-
-## 📞 Contato
-
-Para mais informações sobre o projeto, entre em contato:
-- **Email**: contato@pizzariabackoffice.com
-- **Website**: [www.pizzariabackoffice.com](https://www.pizzariabackoffice.com)
 
