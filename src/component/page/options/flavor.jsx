@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { MagnifyingGlass } from "@phosphor-icons/react";
-import Navbar from "../../navbar/navbar";
 import Breadcrumb from "../../breadcrumb/breadcrumb";
+import Item from "../../item/item";
+import Navbar from "../../navbar/navbar";
 import "./flavor.css"
 
 
@@ -12,6 +13,19 @@ function flavor() {
         console.log(valueSearch);
     }
 
+    const sabores = [
+        {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30", description: "dasdçlasmd"},
+        {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30"},
+        {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30", description: "dasdçlasmd"},
+        {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30"},
+        {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30", description: "dasdçlasmd"},
+        {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30"},
+        {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30", description: "dasdçlasmd"},
+        {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30"},
+        {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30", description: "dasdçlasmd"},
+        {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30"},
+    ]
+    
     return (
         <>
             <Navbar activeButton={"Opções"} />
@@ -34,12 +48,19 @@ function flavor() {
                         placeholder="Pesquisar"
                     />
                 </div>
-                <section className="client-modal">
-                    <h2>Selecione o cliente:</h2>
-                    <div className="client-modal-card">
-                        <h2>Cliente</h2>
-                    </div>
-                    <button>Proximo</button>
+                <section className="flavor-list">
+                    {
+                            sabores.map(sabor => {
+                            return <Item 
+                                type={sabor.type}
+                                cod={sabor.cod}
+                                key={sabor.cod}
+                                flavor={sabor.flavor}
+                                price={sabor.price}
+                                description={"dsaoidsahoidhsaoihdas"}
+                            />
+                        })
+                    }
                 </section>
             </main>
         </>

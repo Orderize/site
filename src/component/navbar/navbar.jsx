@@ -10,7 +10,7 @@ function navbar({ activeButton }) {
     return (
         <>
             <nav className="container-navbar">
-                <img className="logo" src="public\image\logo.png" alt="imagem logo orderize" />
+                <img className="logo" src="/image/logo.png" alt="imagem logo orderize" />
                 <ul className="ordenation-navbar">
                     <ButtonNavbar
                         classx={"main"}
@@ -37,7 +37,8 @@ function navbar({ activeButton }) {
                         text="Histórico"
                     />
                 </ul>
-                <button className="button-config">CONFIGURAÇÕES</button>
+                <button className="button-config">
+                    <a href='/login'>CONFIGURAÇÕES</a></button>
             </nav>
         </>
     )
