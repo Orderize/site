@@ -22,11 +22,11 @@ const PizzaComponent = () => {
   };
 
   return (
-    <div className="pizza-container">
-      <div className="pizza-options">
+    <div className="drink-container">
+      <div className="pizza-options-drink">
       </div>
 
-      <div className="pizza-menu">
+      <div className="menu-drinks">
         <div className="pizza-tabs">
           <button 
             className={`pizza-tab ${activeTab === 'Doces' ? 'active' : ''}`} 
@@ -56,7 +56,7 @@ const PizzaComponent = () => {
         </div>
       </div>
 
-      <div className="pizza-actions">
+      <div className="pizza-actions-drink">
         <button className="cancel-button">Cancelar</button>
         <button className="next-button">Próximo</button>
       </div>

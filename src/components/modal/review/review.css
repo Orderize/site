@@ -10,7 +10,7 @@
     align-items: center;
   }
   
-  .pizza-container {
+  .container-review {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -25,21 +25,21 @@
     height: auto;
   }
 
-  .pizza-container h2{
+  .container-review h2{
     color: #3A3C16;
     text-align: left;
     width: 100%;
     padding-bottom: 30px;
   }
   
-  .pizza-options {
+  .pizza-options-review {
     display: flex;
     justify-content: space-between;
     width: 100%;
     margin-bottom: 20px;
   }
   
-  .pizza-dropdown {
+  .pizza-dropdown-review {
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #3A3C16;
@@ -51,11 +51,11 @@
     margin-right: 10px;
   }
   
-  .pizza-dropdown:last-child {
+  .pizza-dropdown-review:last-child {
     margin-right: 0;
   }
   
-  .pizza-menu {
+  .pizza-menu-review {
     width: 100%;
     margin-bottom: 20px;
   }

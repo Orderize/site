@@ -23,22 +23,22 @@ const PizzaComponent = () => {
   };
 
   return (
-    <div className="pizza-container">
-      <div className="pizza-options">
-        <select className="pizza-dropdown">
+    <div className="container-flavor">
+      <div className="pizza-options-flavor">
+        <select className="pizza-dropdown-flavor">
           <option>Pequena</option>
           <option>Média</option>
           <option>Grande</option>
         </select>
-        <select className="pizza-dropdown">
+        <select className="pizza-dropdown-flavor">
           <option>Massa da pizza</option>
         </select>
-        <select className="pizza-dropdown">
+        <select className="pizza-dropdown-flavor">
           <option>Borda da pizza</option>
         </select>
       </div>
 
-      <div className="pizza-menu">
+      <div className="pizza-menu-flavor">
         <div className="pizza-tabs">
           <button 
             className={`pizza-tab ${activeTab === 'Salgadas' ? 'active' : ''}`} 
@@ -78,7 +78,7 @@ const PizzaComponent = () => {
         </div>
       </div>
 
-      <div className="pizza-actions">
+      <div className="pizza-actions-flavor">
         <button class="cancel-button" className="cancel-button">Cancelar</button>
         <button class="next-button" className="next-button">Próximo</button>
       </div>

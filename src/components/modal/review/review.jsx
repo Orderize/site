@@ -4,30 +4,30 @@ import './review.css';
 const PizzaModal = () => {
   return (
     <div className="modal-overlay">
-      <div className="pizza-container">
+      <div className="container-review">
         <h2>Revisão da pizza</h2>
 
-        <div className="pizza-options">
-          <select className="pizza-dropdown">
+        <div className="pizza-options-review">
+          <select className="pizza-dropdown-review">
             <option>Tamanho da pizza</option>
             <option>8 pedaços</option>
             <option>6 pedaços</option>
           </select>
 
-          <select className="pizza-dropdown">
+          <select className="pizza-dropdown-review">
             <option>Massa da pizza</option>
             <option>Massa fina</option>
             <option>Massa grossa</option>
           </select>
 
-          <select className="pizza-dropdown">
+          <select className="pizza-dropdown-review">
             <option>Borda da pizza</option>
             <option>Catupiry</option>
             <option>Sem borda</option>
           </select>
         </div>
 
-        <div className="pizza-menu">
+        <div className="pizza-menu-review">
           <div className="pizza-header">
             <span>100 | Calabresa</span>
           </div>
