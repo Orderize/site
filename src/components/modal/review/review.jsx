@@ -1,5 +1,5 @@
 import React from 'react';
-import './PizzaModal.css';
+import './review.css';
 
 const PizzaModal = () => {
   return (

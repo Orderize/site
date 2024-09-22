@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import './App.css';
+import './flavor.css';
 
 const PizzaComponent = () => {
   const [activeTab, setActiveTab] = useState('Salgadas');
