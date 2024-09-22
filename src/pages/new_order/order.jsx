@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "../../component/navbar/navbar";
+import Navbar from "../../components/navbar/navbar";
 import "./order.css"
 
 function order() {
