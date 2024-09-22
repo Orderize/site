@@ -1,10 +1,10 @@
 import React, { StrictMode } from 'react'
 import { Route, Routes, BrowserRouter } from 'react-router-dom'
 import { createRoot } from 'react-dom/client'
-import Login from './component/login/login'
-import Navbar from './component/navbar/navbar'
-import Flavor from './component/page/options/flavor'
-import Order from './component/page/new_order/order'
+import Login from './pages/login/login'
+import Flavor from './pages/options/flavor'
+import Navbar from './components/navbar/navbar'
+import Order from './pages/new_order/order'
 import './index.css'
 
 createRoot(document.getElementById('root')).render(
