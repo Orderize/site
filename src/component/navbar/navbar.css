@@ -1,6 +1,6 @@
 @media screen and (max-width: 1200px) { 
     /* Celular */
-
+    
     .container-navbar {
         display: flex;
         align-items: center;
@@ -38,9 +38,10 @@
 
 }
 
+
 @media screen and (min-width: 1200px) { 
     /* Computador */
-
+  
     .container-navbar {
         display: flex;
         align-items: center;
