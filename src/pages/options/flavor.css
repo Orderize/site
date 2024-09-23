@@ -83,7 +83,7 @@
 
     .container-flavor {
         width: 82%;
-        height: 100vh;
+        min-height: 100vh;
 
         background-color: #F3EFE9;
         color: #3A3C16;

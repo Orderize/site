@@ -23,7 +23,7 @@ const PizzaComponent = () => {
   };
 
   return (
-    <div className="container-flavor">
+    <div className="modal-container-flavor">
       <div className="pizza-options-flavor">
         <select className="pizza-dropdown-flavor">
           <option>Pequena</option>
