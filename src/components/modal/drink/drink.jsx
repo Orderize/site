@@ -38,7 +38,7 @@ const PizzaComponent = () => {
           </button>
         </div>
 
-        <div className="search-bar">
+        <div className="search-bar-drink">
           <input type="text" placeholder="Pesquise pelo nome da bebida" />
           <button className="search-button">🔍</button>
         </div>

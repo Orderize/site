@@ -57,19 +57,20 @@
 }
 
 
-.search-bar {
+.search-bar-drink {
   display: flex;
   align-items: center;
   width: 60%;
   margin-bottom: 20px; 
 }
 
-.search-bar input {
+.search-bar-drink input {
   width: 75%; 
   padding: 12px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
+  background-color: transparent;
 }
 
 .search-button {
@@ -91,7 +92,22 @@
   gap: 20px;
   max-height: 350px; 
   overflow-y: auto; 
-} 
+  scrollbar-width: thin; 
+}
+
+
+.pizza-list::-webkit-scrollbar {
+  width: 8px; 
+}
+
+.pizza-list::-webkit-scrollbar-thumb {
+  background: #C2C5AA; 
+  border-radius: 10px; 
+}
+
+.pizza-list::-webkit-scrollbar-track {
+  background: #F3EFE9;
+}
 
 .pizza-item {
   padding: 15px 30px; 
