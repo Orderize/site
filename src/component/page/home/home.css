@@ -1,0 +1,184 @@
+@font-face {
+  font-family: 'Lexend Medium';
+  src: url('fonts/Lexend-Medium.ttf') format('truetype'); 
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Lexend Light';
+  src: url('fonts/Lexend-Light.ttf') format('truetype'); 
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Lexend Bold';
+  src: url('fonts/Lexend-Bold.ttf') format('truetype'); 
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Lexend Regular';
+  src: url('fonts/Lexend-Regular.ttf') format('truetype'); 
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Lexend SemiBold';
+  src: url('fonts/Lexend-SemiBold.ttf') format('truetype'); 
+  font-weight: normal;
+  font-style: normal;
+}
+
+.body {
+  font-family: 'Lexend';
+  background-color: #f2f2f2;
+  width: 100vw;
+  height: 100%;
+  margin-top: 0;
+  display: flex;
+  text-align: left;
+  flex-direction: column;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  background-color: #FBD6D0;
+  margin: 20px;
+  padding: 20px 20px 0px 20px;
+  width: 780w;
+  height: 90vh;
+  border-radius: 20px;
+}
+
+.menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.menu-icon,
+.menu-icon-acessebility {
+  font-size: 30px;
+  cursor: pointer;
+  margin-right: 10px;
+  color: black;
+}
+
+.content h1 {
+  margin-top: 15px;
+  font-family: 'Lexend Medium';
+  font-size: 30px;
+  color: #A60F1B;
+}
+
+.content p {
+  font-family: 'Lexend Regular';
+  font-size: medium !important;
+  margin: 20px 0;
+  color: #4D4138;
+}
+
+.buttonImage {
+  flex-direction: row;
+}
+
+.button {
+  background-color: #A60F1B;
+  color: white;
+  margin: 0px;
+  padding: 10px 10px;
+  font-size: 15px;
+  font-weight: lighter;
+  cursor: pointer;
+  border-radius: 30px;
+  height: auto;
+}
+
+.pizzasBanner {
+  margin-top: 10px;
+  position: absolute;
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  width: 80%;
+}
+
+.funcionalidades {
+  margin-top: 40%;
+  display: flex;
+  flex-direction: column;
+  color: #4D4138;
+  text-align: center;
+  align-items: center;
+}
+
+.funcionalidades h1{
+  font-family: 'Lexend SemiBold';
+  font-size: 30px;
+}
+
+
+.beneficios {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15%;
+  color: #4D4138;
+  text-align: center;
+  align-items: center;
+}
+
+.beneficios h1{
+  font-family: 'Lexend SemiBold';
+  font-size: 30px;
+}
+
+.form{
+  display: flex;
+  flex-direction: column;
+  margin-top: 15%;
+  color: #4D4138;
+  text-align: center;
+  align-items: center;
+}
+
+.form h1{
+  font-family: 'Lexend SemiBold';
+  font-size: 30px;
+}
+
+.form p{
+  font-size: 15px;
+  font-family: 'Lexend Light';
+}
+
+.spanForm{
+  margin: 20px;
+  text-align: center;
+  color: #A60F1B;
+  font-family: 'Lexend Medium';
+}
+
+
+
+
+/* responsividade */
+@media (max-width: 1200px) {
+  header {
+    display: flex;
+    flex-direction: column;
+    background-color: #FBD6D0;
+    margin: 20px;
+    padding: 20px 20px 0px 20px;
+    width: 780w;
+    height: 90vh;
+    border-radius: 20px;
+  }
+
+  
+}

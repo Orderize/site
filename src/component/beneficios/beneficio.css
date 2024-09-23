@@ -1,0 +1,20 @@
+.beneficio{
+    display: flex;
+    flex-direction: row;
+    border: solid 2px #A60F1B;
+    margin: 20px;
+    width: 80vw;
+    height:20vh;
+}
+
+.beneficio img{
+    width: 30vw;
+}
+
+.beneficio h3 {
+    display: flex;
+    align-items: center;
+    color: #4D4138; 
+    font-size: 18px;
+    font-family: 'Lexend Light';
+}

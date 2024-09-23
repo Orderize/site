@@ -5,6 +5,7 @@ import Login from './component/Login/login'
 import Navbar from './component/navbar/navbar'
 import Flavor from './component/page/options/flavor'
 import Order from './component/page/new_order/order'
+import Home from './component/page/home/home';
 import './index.css'
 
 createRoot(document.getElementById('root')).render(
@@ -32,6 +33,10 @@ createRoot(document.getElementById('root')).render(
           element={ <Flavor /> }
         ></Route>
 
+        <Route 
+          path='/home' 
+          element={<Home />} 
+        ></Route>
         
 
       </Routes>

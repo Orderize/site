@@ -1,0 +1,25 @@
+.funcionalidades img {
+    margin-top: 30px;
+    width: 50%;
+  }
+  
+  .titlePlus {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .titlePlus p {
+    margin-top: 15px;
+    margin-bottom: 20px;
+    font-family: 'Lexend Medium';
+    font-size: medium;
+  }
+  
+  .iconPlus {
+    color: #A60F1B;
+    font-size: 25px;
+    cursor: pointer;
+
+  }
