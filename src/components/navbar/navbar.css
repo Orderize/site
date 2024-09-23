@@ -1,4 +1,5 @@
-@media screen and (max-width: 1200px) { // Celular
+@media screen and (max-width: 1200px) { 
+    /* Celular */
     
     .container-navbar {
         display: flex;
@@ -10,7 +11,7 @@
         width: 100%;
         height: 10%;
         
-        position: fixed;
+        z-index: 1;
     }
     
     .logo {
@@ -21,6 +22,10 @@
         display: flex;
         justify-content: center;
         width: 30%;
+    }
+
+    .ordenation-navbar > ul {
+        display: none;
     }
     
     .button-config {
@@ -33,8 +38,10 @@
 
 }
 
-@media screen and (min-width: 1200px) { // Computador
 
+@media screen and (min-width: 1200px) { 
+    /* Computador */
+  
     .container-navbar {
         display: flex;
         align-items: center;
@@ -50,7 +57,7 @@
     }
 
     .logo {
-        margin-top: 3vh;
+        margin-top: 5vh;
 
         cursor: pointer;
     }   

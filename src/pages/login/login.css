@@ -1,13 +1,15 @@
 
   .banner {
-    width: 80%;
-    max-width: 30%; 
-    height: 300px;
-    background-image: url('/src/assets/banner.png'); 
+    width: 100vw;
+    height: 100vh;
+
+    background-image: url('/image/banner.png'); 
     background-size: cover;
     background-position: center;
-    margin-top: 10px; 
-    margin-bottom: 40px; 
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
 
@@ -15,14 +17,14 @@
     width: 100%; 
     max-width: 700px;
     height: 50vh;
+
     background-color: #EAE5DE;
     backdrop-filter: blur(10px);
     border: 2px solid rgba(255, 255, 255, 0.2);
-    padding: 40px;
+    padding: 20px;
     border-radius: 20px;
+    
     text-align: center;
-    box-sizing: border-box;
-    margin-top: -80px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
   }
   
@@ -30,8 +32,7 @@
   .container h1 {
     font-size: 20px;
     color: #000;
-    margin-bottom: 45px;
-    margin-top: 5%;
+    margin: 20px 0;
     font-weight: 800;
   }
   
@@ -40,10 +41,10 @@
     position: relative;
     width: 100%;
     height: 50px;
-    margin: 30px auto;
+    margin: 20px auto;
   }
   
-  .input_field input {
+  .input_field > input {
     width: 50%;
     height: 22%;
     background-color: #F3EFE9;
@@ -55,7 +56,7 @@
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
   }
   
-  .input_field input::placeholder {
+  .input_field > input::placeholder {
     color:#000;
   }
   
@@ -63,23 +64,21 @@
   .recall-forget {
     text-align: center;
     font-size: 14.5px;
-    margin: -15px 0 15px;
-    margin-bottom: 7%;
-    margin-top: 2%;
+    margin: 2% 0;
     font-family: 'Roboto', sans-serif;
     font-weight: 100;
   }
   
-  .recall-forget a {
+  .recall-forget > a {
     color: #000;
   }
   
-  .recall-forget a:hover {
+  .recall-forget > a:hover {
     text-decoration: underline;
   }
   
 
-  button {
+  .container > form > button {
     width: 25%;
     height: 50px;
     background-color: #B53627;
@@ -92,7 +91,7 @@
     font-size: 16px;
     font-weight: 600;
     display: block;
-    margin: 20px auto 0 auto;
+    margin: auto;
   }
   
 
