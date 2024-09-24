@@ -56,9 +56,9 @@ const PizzaComponent = () => {
         </div>
       </div>
 
-      <div className="pizza-actions-drink">
-        <button className="cancel-button">Cancelar</button>
-        <button className="next-button">Próximo</button>
+      <div className="pizza-actions">
+        <button className="button back-btn">Cancelar</button>
+        <button className="button next-btn">Próximo</button>
       </div>
     </section>
   );

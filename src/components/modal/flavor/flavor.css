@@ -144,6 +144,19 @@
     transition: background-color 0.3s ease;
   }
 
+  .pizza-actions .button {
+    padding: 10px 20px;
+    background-color: #656D4A;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .pizza-actions .button:hover {
+    background-color: #5a7620;
+  }
+
   .cancel-button{
     color: #ffffff;
     background-color: #656D4A;
