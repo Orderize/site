@@ -23,7 +23,7 @@ const PizzaComponent = () => {
   };
 
   return (
-    <div className="modal-container-flavor">
+    <section className="modal-container-flavor">
       <div className="pizza-options-flavor">
         <select className="pizza-dropdown-flavor">
           <option>Pequena</option>
@@ -63,8 +63,6 @@ const PizzaComponent = () => {
           <button className="search-button">🔍</button>
         </div>
 
-        
-
         <div 
           className="pizza-list" 
           ref={pizzaListRef} 
@@ -79,10 +77,10 @@ const PizzaComponent = () => {
       </div>
 
       <div className="pizza-actions-flavor">
-        <button class="cancel-button" className="cancel-button">Cancelar</button>
-        <button class="next-button" className="next-button">Próximo</button>
+        <button className="cancel-button">Cancelar</button>
+        <button className="next-button">Próximo</button>
       </div>
-    </div>
+    </section>
   );
 };
 

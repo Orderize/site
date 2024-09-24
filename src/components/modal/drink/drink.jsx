@@ -22,7 +22,7 @@ const PizzaComponent = () => {
   };
 
   return (
-    <div className="drink-container">
+    <section className="drink-container">
       <div className="pizza-options-drink">
       </div>
 
@@ -60,7 +60,7 @@ const PizzaComponent = () => {
         <button className="cancel-button">Cancelar</button>
         <button className="next-button">Próximo</button>
       </div>
-    </div>
+    </section>
   );
 };
 
