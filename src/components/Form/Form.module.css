@@ -13,8 +13,12 @@
     width: 90vw;
     height: 6vh;
     font-family: 'Lexend Regular';
-    font-size: 14px;
-    
+    font-size: 14px;   
+    outline: none;
+}
+
+input:focus{
+    border: 2px solid #546E12;
 }
 
 .form textarea{
@@ -27,9 +31,14 @@
     height: 15vh;
     font-family: 'Lexend Regular';
     font-size: 13px;
+    outline: none;
 }
 
-.botoesForm{
+.form textarea:focus{
+    border: 2px solid #546E12;
+}
+
+.buttonsForm{
     display: flex;
     flex-direction: row;
     justify-content: space-between;

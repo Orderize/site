@@ -96,6 +96,7 @@ header {
   font-size: 15px;
   font-weight: lighter;
   cursor: pointer;
+  border: none;
   border-radius: 30px;
   height: auto;
 }
@@ -109,7 +110,7 @@ header {
   width: 80%;
 }
 
-.funcionalidades {
+.features {
   margin-top: 40%;
   display: flex;
   flex-direction: column;
@@ -118,13 +119,13 @@ header {
   align-items: center;
 }
 
-.funcionalidades h1{
+.features h1{
   font-family: 'Lexend SemiBold';
   font-size: 30px;
 }
 
 
-.beneficios {
+.benefits {
   display: flex;
   flex-direction: column;
   margin-top: 15%;
@@ -133,7 +134,7 @@ header {
   align-items: center;
 }
 
-.beneficios h1{
+.benefits h1{
   font-family: 'Lexend SemiBold';
   font-size: 30px;
 }
@@ -158,7 +159,7 @@ header {
 }
 
 .spanForm{
-  margin: 20px;
+  margin: 20px 2px 10px 0px;
   text-align: center;
   color: #A60F1B;
   font-family: 'Lexend Medium';
@@ -168,7 +169,7 @@ header {
 
 
 /* responsividade */
-@media (max-width: 1200px) {
+@media screen and (min-width: 1200px) {
   header {
     display: flex;
     flex-direction: column;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./buttonNavbar.css"
+import styles from "./ButtonNavbar.module.css";
 
 function buttonNavbar({ classx, event, icon, isActive, link, text }) {
     const setLink = () => {
@@ -9,7 +9,7 @@ function buttonNavbar({ classx, event, icon, isActive, link, text }) {
     return (
         <>
             <li 
-                className={ `container-buttonNavbar ${classx} ${isActive ? "active" : ""}` }
+                className={styles[`container-buttonNavbar ${classx} ${isActive ? "active" : ""}`]}
                 onClick={setLink}
             >
                 <a 

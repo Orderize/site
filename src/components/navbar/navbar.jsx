@@ -1,17 +1,21 @@
 import React, { act, useRef, useState } from 'react';
 import { Pizza, ListMagnifyingGlass, ClockClockwise } from "@phosphor-icons/react";
-import ButtonNavbar from './button/buttonNavbar';
-import Option from "./option/option";
-import "./navbar.css";
+
+import ButtonNavbar from './Button/ButtonNavbar';
+import Option from './Option/option';
+
+import imgLogo from "../../utils/assets/logo.png";
+
+import styles from "./NavBar.module.css";
 
 function navbar({ activeButton }) {
     const [actualButton, setActualButton] = useState(activeButton);
 
     return (
         <>
-            <nav className="container-navbar">
-                <img className="logo" src="/image/logo.png" alt="imagem logo orderize" />
-                <ul className="ordenation-navbar">
+            <nav className={styles["container-navbar"]}>
+                <img className={styles["logo"]} src={imgLogo} alt="imagem logo orderize" />
+                <ul className={styles["ordenation-navbar"]}>
                     <ButtonNavbar
                         classx={"main"}
                         icon={ <Pizza size={37}/> }
@@ -37,7 +41,7 @@ function navbar({ activeButton }) {
                         text="Histórico"
                     />
                 </ul>
-                <button className="button-config">
+                <button className={styles["button-config"]}>
                     <a href='/login'>CONFIGURAÇÕES</a></button>
             </nav>
         </>

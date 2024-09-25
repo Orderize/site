@@ -1,4 +1,4 @@
-.beneficio{
+.benefits{
     display: flex;
     flex-direction: row;
     border: solid 2px #A60F1B;
@@ -7,11 +7,11 @@
     height:20vh;
 }
 
-.beneficio img{
+.benefits img{
     width: 30vw;
 }
 
-.beneficio h3 {
+.benefits h3 {
     display: flex;
     align-items: center;
     color: #4D4138; 

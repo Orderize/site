@@ -1,9 +1,9 @@
 import React from "react";
-import "./form.css"
+import styles from "./Form.module.css"
 
-function Formulario() {
+function Form() {
     return (
-        <div className="form">
+        <div className={styles["form"]}>
             <div>
                 <input type="text" placeholder="Digite seu nome"/>  
             </div>
@@ -20,12 +20,12 @@ function Formulario() {
                 <textarea placeholder="Escreva sua mensagem..."/>  
             </div>
            
-            <div className="botoesForm">
-                <button type="button" className="buttonCancel"> Cancelar</button>
-                <button type="submit" className="buttonSubmit"> Enviar</button>
+            <div className={styles["buttonsForm"]}>
+                <button type="button" className={styles["buttonCancel"]}> Cancelar</button>
+                <button type="submit" className={styles["buttonSubmit"]}> Enviar</button>
             </div>
         </div>
     );
 }
 
-export default Formulario;
+export default Form;
