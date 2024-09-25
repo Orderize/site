@@ -1,0 +1,130 @@
+/* @media screen and (max-width: 1200px) { // Celular */
+    
+    .container-navbar {
+        display: flex;
+        align-items: center;
+        
+        background: var(--cor-fundo-sec);
+
+        width: 100vw;
+        height: 10vh;
+        
+        /* position: fixed; */
+    }
+    
+    .logo {
+        /* cursor: pointer; */
+        display: none;
+    }
+    
+    .ordenation-navbar {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+    }
+    
+    .button-config {
+        display: none;
+        /* padding: 10px 0px; */
+        font-weight: 600;
+    
+        width: 15%;
+        /* color: #EAE5DE; */
+    }
+
+    .button-navbar-text {
+        display: none;
+    }
+
+/* } */
+
+@media screen and (min-width: 768px){
+    .container-navbar {
+        display: flex;
+        align-items: center;
+        
+        background: var(--cor-fundo-sec);
+
+        width: 100vw;
+        height: 10vh;
+        
+        /* position: fixed; */
+    }
+    
+    .logo {
+        /* cursor: pointer; */
+        display: none;
+    }
+    
+    .ordenation-navbar {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+    }
+    
+    .button-config {
+        display: none;
+        /* padding: 10px 0px; */
+        font-weight: 600;
+    
+        width: 15%;
+        /* color: #EAE5DE; */
+    }
+
+    .button-navbar-text {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+
+    .container-navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: column;
+        
+        background: var(--cor-fundo-sec);
+        
+        /* width: 20vw; */
+        width: 20%;
+        height: 100vh;
+
+        position: absolute;
+    }
+
+    .logo {
+        display: block;
+        margin-top: 3vh;
+        cursor: pointer;
+    }   
+
+    .ordenation-navbar {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        width: 90%;
+    }
+
+    .ordenation-navbar > li {
+        margin: 2vh;
+    }
+
+    .button-config {
+        display: block;
+        padding: 10px 0px;
+        margin-bottom: 5vh;
+
+        font-family: var(--fonte);
+        font-weight: 600;
+
+        width: 80%;
+        color: #EAE5DE;
+
+        cursor: pointer;
+    }
+
+    .button-navbar-text {
+        display: block; 
+    }
+}

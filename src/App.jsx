@@ -1,11 +1,13 @@
 import React, { StrictMode } from 'react'
 import { Route, Routes, BrowserRouter } from 'react-router-dom'
 import { createRoot } from 'react-dom/client'
-import Login from './component/Login/login'
-import Navbar from './component/navbar/navbar'
-import Flavor from './component/page/options/flavor'
-import Order from './component/page/new_order/order'
+import Login from './components/Login/Login'
+import Navbar from './components/navbar/Navbar'
+import Flavor from './pages/Options/Flavor'
+import Client from './pages/Client/Client'
+import Order from './pages/Order/Order'
 import './index.css'
+import'./utils/globals.css'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -24,7 +26,12 @@ createRoot(document.getElementById('root')).render(
 
         <Route
           path='/pedidos'
-          element={ <Order /> }
+          element={ <Client /> }
+        ></Route>
+
+        <Route 
+          path='/pedidos/novo-pedido'
+          element={ <Order />}
         ></Route>
         
         <Route

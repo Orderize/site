@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { ForkKnife, Wine, Money } from "@phosphor-icons/react";
-import ButtonNavbar from '../button/buttonNavbar';
-import "./option.css"
+import ButtonNavbar from '../Button/ButtonNavbar';
+import "./Option.css"
 
-function option({ isActive }) {
+function Option({ isActive }) {
     const [actualButton, setActualButton] = useState("Sabores");
     
 
@@ -36,4 +36,4 @@ function option({ isActive }) {
     );
 }
 
-export default option;
+export default Option;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "./buttonNavbar.css"
+import "./ButtonNavbar.css"
 
-function buttonNavbar({ classx, event, icon, isActive, link, text }) {
+function ButtonNavbar({ classx, event, icon, isActive, link, text }) {
     const setLink = () => {
         event(text);
     }
@@ -19,11 +19,12 @@ function buttonNavbar({ classx, event, icon, isActive, link, text }) {
                     <i>
                         {icon}
                     </i>
-                    {text}
+                    <span className="button-navbar-text">{text}</span>
+                    {/* {text} */}
                 </a>
             </li>
         </>
     );
 }
 
-export default buttonNavbar;
+export default ButtonNavbar;

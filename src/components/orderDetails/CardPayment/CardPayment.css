@@ -1,0 +1,76 @@
+@media screen and (min-width: 768px) {
+    .container-payment {
+        background: var(--verde-claro);
+        width: 90%;
+        height: 14vh;
+        border-radius: 25px;
+        display: flex;
+        flex-direction: column;
+        /* gap: 20px; */
+        /* padding: 0 3vh; */
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .container-payment .titulo {
+        font-family: var(--fonte-titulo);
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--verde-escuro);
+        align-items: center;
+        text-align: center;
+        /* align-self: flex-start; */
+        /* padding: 3vh; */
+    }
+
+    .container-payment .botoes-payment {
+        width: 100%;
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .container-payment .botoes-payment button {
+        width: 35%;
+        height: 3vh;
+        background: #FFF;
+        border-radius: 5px;
+        color: var(--verde-escuro);
+        font-family: var(--fonte-titulo);
+        font-size: 16px;
+        margin: 0;
+        box-shadow: none;
+    }
+}
+
+@media screen and (min-width: 1200px){
+    .container-payment {
+        width: 85%;
+    }
+
+    .container-payment .titulo {
+        font-size: 18px;
+        align-self: center;
+    }
+
+    .container-payment .botoes-payment {
+        width: 80%;
+    }
+
+    .container-payment .botoes-payment button {
+        width: 40%;
+        height: 5vh;
+    }
+}
+
+@media screen and (min-width: 1900px) {
+    .container-payment .titulo {
+        font-size: 25px;
+    }
+
+    .container-payment .botoes-payment button {
+        font-size: 20px;
+    }   
+}

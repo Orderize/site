@@ -1,14 +1,25 @@
 .container-buttonNavbar a {
-    text-decoration: none;
+    text-decoration: none;   
+}
+
+.button-navbar-text {
+    display: none;
 }
 
 @media screen and (max-width: 1200px) {
+
+    .button-navbar-text {
+        display: block;
+        font-family: var(--fonte);
+    }
     
     .container-buttonNavbar {
-        display: none;
-        width: 90%;
+        /* display: none; */
+        /* width: 100%; */
+        display: flex;
+        justify-content: space-around;
     
-        margin: 25px 0;
+        /* margin: 25px 0; */
     
         text-decoration: none;
         list-style-type: none;
@@ -29,17 +40,23 @@
     }
     
     .container-buttonNavbar.active {
-        background-color: #656D4A;        
+        background-color: #656D4A;  
+        width: 18%;
+        display: flex;
+        justify-content: center;
+        align-items: center;      
     }
     
     .container-buttonNavbar > a {
         display: flex;
-        
-        color: #3A3C16;
-        font-size: 18px;
+        justify-content: center;
+        align-items: center;
+        color: var(--verde-escuro);
+        font-size: 20px;
         font-weight: 600;
+        font-family: var(--fonte);
         
-        padding: 2px 10px;
+        /* padding: 2px 10px; */
     }
     
     .container-buttonNavbar > a > i {
@@ -50,6 +67,8 @@
     a.active {
         display: flex;
         justify-content: center;
+        align-items: center;
+        text-align: center;
         color: #EAE5DE;
     }
     
@@ -62,6 +81,11 @@
 
 
 @media screen and (min-width: 1200px) {
+    .button-navbar-text {
+        display: block;
+        font-family: var(--fonte);
+    }
+
     .container-buttonNavbar {
         display: block;
         width: 90%;
@@ -77,15 +101,16 @@
     
     .container-buttonNavbar.active {
         background-color: #656D4A;
+        /* width: 70%; */
+        justify-content: flex-start;
     }
     
     .container-buttonNavbar > a {
         display: flex;
         align-items: center;
-        
-        color: #3A3C16;
+        color: var(--verde-escuro);
         font-size: 18px;
-        font-weight: 600;
+        /* font-weight: 600; */
         
         padding: 2px 10px;
     }
@@ -97,6 +122,8 @@
     
     a.active {
         justify-content: flex-start;
+        display: flex;
+        /* justify-content: center; */
         color: #EAE5DE;
     }
     

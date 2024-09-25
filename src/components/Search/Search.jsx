@@ -1,8 +1,8 @@
 import React from "react";
 import { MagnifyingGlass } from "@phosphor-icons/react";
-import "./search.css"
+import "./Search.css"
 
-function search() {
+function Search() {
     return (
         <>
             <div className="container-search">
@@ -17,4 +17,4 @@ function search() {
     )
 }
 
-export default search;
+export default Search;

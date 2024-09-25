@@ -1,16 +1,17 @@
 import React, { act, useRef, useState } from 'react';
 import { Pizza, ListMagnifyingGlass, ClockClockwise } from "@phosphor-icons/react";
-import ButtonNavbar from './button/buttonNavbar';
-import Option from "./option/option";
-import "./navbar.css";
+import ButtonNavbar from "./Button/ButtonNavbar";
+import Option from "./Option/Option";
+import logo from "../../../public/image/logo.png";
+import "./Navbar.css";
 
-function navbar({ activeButton }) {
+function Navbar({ activeButton }) {
     const [actualButton, setActualButton] = useState(activeButton);
 
     return (
         <>
             <nav className="container-navbar">
-                <img className="logo" src="public\image\logo.png" alt="imagem logo orderize" />
+                <img className="logo" src={logo} alt="imagem logo orderize" />
                 <ul className="ordenation-navbar">
                     <ButtonNavbar
                         classx={"main"}
@@ -43,4 +44,4 @@ function navbar({ activeButton }) {
     )
 }
 
-export default navbar;
+export default Navbar;

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { MagnifyingGlass } from "@phosphor-icons/react";
-import Navbar from "../../navbar/navbar";
-import Breadcrumb from "../../breadcrumb/breadcrumb";
-import "./flavor.css"
+import Navbar from "../../components/navbar/Navbar";
+import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
+import "./Flavor.css"
 
 
 function flavor() {
