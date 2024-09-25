@@ -8,6 +8,7 @@ import ModalFlavor from './components/modal/flavor/flavor';
 import ModalReview from './components/modal/review/review';
 import AddNewFlavor from './components/modal/new_flavor/add_new_flavor'
 import SelectPizzaType from './components/modal/select_pizza_type/select_pizza_type'
+import AddNewDrink from './components/modal/new_drink/AddNewDrink'
 import Navbar from './components/navbar/navbar'
 import Order from './pages/new_order/order'
 import './index.css'
@@ -61,6 +62,11 @@ createRoot(document.getElementById('root')).render(
         <Route 
           path='/modal/selectpizzatype'
           element={ <SelectPizzaType /> } 
+        ></Route>
+
+        <Route 
+          path='/modal/addnewdrink'
+          element={ <AddNewDrink /> } 
         ></Route>
 
       </Routes>

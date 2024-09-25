@@ -83,24 +83,7 @@
   background-color: #5a7620;
 }
 
-.progress-indicator {
-  display: flex;
-  justify-content: center;
-  margin-top: 15px; 
-}
 
-.dot {
-  width: 8px;
-  height: 8px;
-  margin: 0 4px;
-  background-color: #d1d1d1;
-  border-radius: 50%;
-  display: inline-block;
-}
-
-.dot.active {
-  background-color: #656D4A;
-}
 
 .button-back-add {
   position: absolute; 
@@ -113,9 +96,9 @@
   font-size: 15px;
   cursor: pointer;
   width: 5px;
-  height: 30px;
+  height: 35px;
   display: flex; 
-  justify-content: center; 
+  justify-content: center;
   align-items: center;
 }
 
