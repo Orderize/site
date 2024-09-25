@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './drink.css';
+import FooterModal from '../../footer_modal/FooterModal';
 
 const PizzaComponent = () => {
   const [activeTab, setActiveTab] = useState('Doces');
@@ -22,7 +23,8 @@ const PizzaComponent = () => {
   };
 
   return (
-    <section className="drink-container">
+    <section className="modal-wrapper-drink">
+      <div className='drink-container'>
       <div className="pizza-options-drink">
       </div>
 
@@ -56,10 +58,9 @@ const PizzaComponent = () => {
         </div>
       </div>
 
-      <div className="pizza-actions">
-        <button className="button back-btn">Cancelar</button>
-        <button className="button next-btn">Próximo</button>
-      </div>
+     <FooterModal/>
+
+     </div>
     </section>
   );
 };

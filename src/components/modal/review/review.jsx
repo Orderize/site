@@ -3,7 +3,7 @@ import './review.css';
 
 const PizzaModal = () => {
   return (
-    <section className="modal-overlay">
+    <section className="modal-overlay-review">
       <div className="container-review">
         <h2>Revisão da pizza</h2>
 

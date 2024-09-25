@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './flavor.css';
+import FooterModal from '../../footer_modal/FooterModal';
 
 const PizzaComponent = () => {
   const [activeTab, setActiveTab] = useState('Salgadas');
@@ -23,64 +24,63 @@ const PizzaComponent = () => {
   };
 
   return (
-    <section className="modal-container-flavor">
-      <div className="pizza-options-flavor">
-        <select className="pizza-dropdown-flavor">
-          <option>Pequena</option>
-          <option>Média</option>
-          <option>Grande</option>
-        </select>
-        <select className="pizza-dropdown-flavor">
-          <option>Massa da pizza</option>
-        </select>
-        <select className="pizza-dropdown-flavor">
-          <option>Borda da pizza</option>
-        </select>
-      </div>
-
-      <div className="pizza-menu-flavor">
-        <div className="pizza-tabs">
-          <button 
-            className={`pizza-tab ${activeTab === 'Salgadas' ? 'active' : ''}`} 
-            onClick={() => {
-              setActiveTab('Salgadas');
-              setVisibleItems(10); 
-            }}>
-            Salgadas
-          </button>
-          <button 
-            className={`pizza-tab ${activeTab === 'Doces' ? 'active' : ''}`} 
-            onClick={() => {
-              setActiveTab('Doces');
-              setVisibleItems(10); 
-            }}>
-            Doces
-          </button>
+    <div className="modal-wrapper-flavor">
+      <section className="modal-container-flavor">
+        <div className="pizza-options-flavor">
+          <select className="pizza-dropdown-flavor">
+            <option>Pequena</option>
+            <option>Média</option>
+            <option>Grande</option>
+          </select>
+          <select className="pizza-dropdown-flavor">
+            <option>Massa da pizza</option>
+          </select>
+          <select className="pizza-dropdown-flavor">
+            <option>Borda da pizza</option>
+          </select>
         </div>
 
-        <div className="search-bar">
-          <input type="text" placeholder="Pesquise pelo nome da bebida" />
-          <button className="search-button">🔍</button>
-        </div>
-
-        <div 
-          className="pizza-list" 
-          ref={pizzaListRef} 
-          onScroll={handleScroll}
-        >
-          {pizzaItems.slice(0, visibleItems).map((pizza, index) => (
-            <button key={index} className="pizza-item">
-              {index + 1} | {pizza}
+        <div className="pizza-menu-flavor">
+          <div className="pizza-tabs">
+            <button 
+              className={`pizza-tab ${activeTab === 'Salgadas' ? 'active' : ''}`} 
+              onClick={() => {
+                setActiveTab('Salgadas');
+                setVisibleItems(10); 
+              }}>
+              Salgadas
             </button>
-          ))}
-        </div>
-      </div>
+            <button 
+              className={`pizza-tab ${activeTab === 'Doces' ? 'active' : ''}`} 
+              onClick={() => {
+                setActiveTab('Doces');
+                setVisibleItems(10); 
+              }}>
+              Doces
+            </button>
+          </div>
 
-      <div className="pizza-actions">
-        <button className="button back-btn">Cancelar</button>
-        <button className="button next-btn">Próximo</button>
-      </div>
-    </section>
+          <div className="search-bar">
+            <input type="text" placeholder="Pesquise pelo nome da bebida" />
+            <button className="search-button">🔍</button>
+          </div>
+
+          <div 
+            className="pizza-list" 
+            ref={pizzaListRef} 
+            onScroll={handleScroll}
+          >
+            {pizzaItems.slice(0, visibleItems).map((pizza, index) => (
+              <button key={index} className="pizza-item">
+                {index + 1} | {pizza}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <FooterModal/>
+      </section>
+    </div>
   );
 };
 
