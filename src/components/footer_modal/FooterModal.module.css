@@ -5,7 +5,7 @@
   gap: 10px;  
 }
 
-button {
+.pizza-actions > button {
   padding: 10px 20px;
   background-color: #656D4A;
   color: white;
@@ -14,7 +14,7 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+.pizza-actions > button:hover {
   background-color: #5a7620;
 }
 

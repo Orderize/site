@@ -83,7 +83,7 @@
 
     .container-flavor {
         width: 82%;
-        min-height: 100vh;
+        height: 100vh;
 
         background-color: #F3EFE9;
         color: #3A3C16;
@@ -99,20 +99,35 @@
         margin: 3vh auto;
     }
 
-    .container-flavor > nav {
-        margin-left: 10vh;
+    .navAndSearch {
+        display: flex;
+        align-items: center;
+        
+        width: 90%;
+        
+        margin: auto;
+        margin-bottom: 30px;
     }
 
-    .container-flavor > .comp-search {
+    ::-webkit-scrollbar {
+        width: 3px;
+
+        background-color: #EAE5DE;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: #3A3C16;
+    }
+
+    .container-flavor > .navAndSearch > .comp-search {
         display: flex;
         justify-content: flex-end;
         align-items: center;
 
         width: 90%;
-        margin: 40px auto;
     }
 
-    .container-flavor > .comp-search > label > .icon-search {
+    .container-flavor > .navAndSearch > .comp-search > label > .icon-search {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -129,7 +144,7 @@
         cursor: pointer;
     }
 
-    .container-flavor > .comp-search > .input-search {
+    .container-flavor > .navAndSearch > .comp-search > .input-search {
         margin-left: 10px;
         padding: 15px 20px;
         
@@ -147,16 +162,20 @@
     .container-flavor > .flavor-list {
         display: flex;
         flex-wrap: wrap;
-        gap: 0px 15px;
-
         justify-content: flex-start;
         align-items: flex-start;
         
-
         margin: auto;
         max-width: 90%;
-        height: 65%;
+        height: 70%;
         overflow-y: scroll;
+    }
+
+    .container-flavor > .flavor-list > .component-item{
+        margin-right: 25px;
+        margin-bottom: 40px;
+        
+        z-index: 0;
     }
 
 }
