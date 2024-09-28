@@ -1,6 +1,12 @@
+.features{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .features img {
     margin-top: 30px;
-    width: 50%;
+    width: 80%;
   }
   
   .titlePlus {
@@ -19,6 +25,6 @@
   
   .iconPlus {
     color: #A60F1B;
-    font-size: 25px;
+    font-size: 30px;
     cursor: pointer;
   }
