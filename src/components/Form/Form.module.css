@@ -64,4 +64,5 @@ input:focus{
     background-color: #A60F1B;
     font-family: 'Lexend Bold';
     font-size: 13px;
+    border: none;
 }

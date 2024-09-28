@@ -60,6 +60,7 @@ const Home = () => {
 
       <div className={styles['benefits']}>
         <h1>Principais Benefícios</h1>
+
         <Beneficio
           icon={atendente} alt="atendente e um relógio"
           title="Agilidade no Atendimento"
