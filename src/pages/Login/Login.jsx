@@ -1,5 +1,5 @@
 import React,{ useEffect, useState } from 'react';
-import "./login.css";
+import style from "./Login.module.css" ;
 
 const Login = () => {
     const [username, setUsername] = useState("");
@@ -16,21 +16,20 @@ const Login = () => {
 
     return (
         <>
-            <main className='banner'>
-                <section className='container'> 
+            <main className={style['banner']}>
+                <section className={style['container']}> 
+                    <h1>nomeEmpresa | Login</h1>
                     <form onSubmit={handleSubmit}>
-                        <h1>Login | nomeEmpresa</h1>
-                        <div className="input_field">
+                        <div className={style["input_field"]}>
                             <input type="email" placeholder='E-mail' onChange={(e) => setUsername(e.target.value)} />
                         </div>
-                        <div className="input_field">
+                        <div className={style["input_field"]}>
                             <input type="password" placeholder='Senha' onChange={(e) => setPassword(e.target.value)} />
                         </div>
-                        <div className='recall-connect'>
-                            <input type="checkbox" id="manterConectado" /> 
-                            <label htmlFor="manterConectado"> Mantenha-me conectado</label>
+                        <div className={style['recall-connect']}>
+                            <a href='#'>Mantenha-me conectado</a>
                         </div>
-                        <div className='recall-forget'>
+                        <div className={style['recall-forget']}>
                             <a href='#'>Esqueceu a senha?</a>
                         </div>
                         <button>Entrar</button>

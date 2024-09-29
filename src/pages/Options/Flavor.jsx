@@ -22,8 +22,6 @@ function flavor() {
         {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30"},
         {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30", description: "dasdçlasmd"},
         {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30"},
-        {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30"},
-        {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30"},
         {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30", description: "dasdçlasmd"},
         {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30"},
     ]
@@ -33,24 +31,22 @@ function flavor() {
             <Navbar activeButton={"Opções"} />
             <main className="container-flavor">
                 <h1>Opções</h1>
-                <div className="navAndSearch">
-                    <Breadcrumb activeButton={"sabores"} />
-                    <div className="comp-search">
-                        <label htmlFor="search">
-                            <button onClick={enter} className="icon-search">
-                                <MagnifyingGlass size={25} weight="bold" />
-                            </button>
-                        </label>
-                        <input 
-                            id="search" 
-                            type="text" 
-                            value={valueSearch}
-                            onChange={e => {setValueSearch(e.target.value)}}
-                            onKeyDown={e => { e.key === "Enter" ? enter() : null}}
-                            className="input-search"
-                            placeholder="Pesquisar"
-                        />
-                    </div>
+                <Breadcrumb activeButton={"sabores"} />
+                <div className="comp-search">
+                    <label htmlFor="search">
+                        <button onClick={enter} className="icon-search">
+                            <MagnifyingGlass size={25} weight="bold" />
+                        </button>
+                    </label>
+                    <input 
+                        id="search" 
+                        type="text" 
+                        value={valueSearch}
+                        onChange={e => {setValueSearch(e.target.value)}}
+                        onKeyDown={e => { e.key === "Enter" ? enter() : null}}
+                        className="input-search"
+                        placeholder="Pesquisar"
+                    />
                 </div>
                 <section className="flavor-list">
                     {

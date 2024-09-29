@@ -1,5 +1,6 @@
 import React, { act, useRef, useState } from 'react';
 import { Pizza, ListMagnifyingGlass, ClockClockwise } from "@phosphor-icons/react";
+import { useNavigate } from 'react-router-dom';
 
 import ButtonNavbar from './Button/ButtonNavbar';
 import Option from './Option/option';
@@ -10,6 +11,12 @@ import styles from "./NavBar.module.css";
 
 function navbar({ activeButton }) {
     const [actualButton, setActualButton] = useState(activeButton);
+    const goTo = useNavigate();
+
+    const handleClick = (event) => {
+        console.log(event);
+        goTo("/login"); 
+    }
 
     return (
         <>
@@ -41,8 +48,11 @@ function navbar({ activeButton }) {
                         text="Histórico"
                     />
                 </ul>
-                <button className={styles["button-config"]}>
-                    <a href='/login'>CONFIGURAÇÕES</a></button>
+                <button 
+                    className="button-config"
+                    onClick={e => handleClick(e)}>
+                    CONFIGURAÇÕES
+                </button>
             </nav>
         </>
     )

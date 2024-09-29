@@ -1,20 +1,20 @@
 @keyframes openComponent {
-    from {
+    0% {
         opacity: 0;
         height: 0%;
     }
-    to {
+    50% {
         opacity: 1;
         height: 100%;
     }
 }
 
 @keyframes closeComponent {
-    from {
+    0% {
         opacity: 1;
         height: 100%;
     }
-    to {
+    50% {
         height: 0%;
         opacity: 0;
     }
@@ -42,7 +42,7 @@
         width: 80%;
         margin-top: -2vh;
     
-        animation: openComponent 2s normal;
+        animation: openComponent 4s normal;
     }
     
     .container-option > li {
