@@ -27,7 +27,8 @@ const Login = () => {
                             <input type="password" placeholder='Senha' onChange={(e) => setPassword(e.target.value)} />
                         </div>
                         <div className='recall-connect'>
-                            <a href='#'>Mantenha-me conectado</a>
+                            <input type="checkbox" id="manterConectado" /> 
+                            <label htmlFor="manterConectado"> Mantenha-me conectado</label>
                         </div>
                         <div className='recall-forget'>
                             <a href='#'>Esqueceu a senha?</a>

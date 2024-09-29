@@ -3,9 +3,16 @@ import { Pizza, ListMagnifyingGlass, ClockClockwise } from "@phosphor-icons/reac
 import ButtonNavbar from './button/buttonNavbar';
 import Option from "./option/option";
 import "./navbar.css";
+import { useNavigate } from 'react-router-dom';
 
 function navbar({ activeButton }) {
     const [actualButton, setActualButton] = useState(activeButton);
+    const goTo = useNavigate();
+
+    const handleClick = (event) => {
+        console.log(event);
+        goTo("/login"); 
+    }
 
     return (
         <>
@@ -37,8 +44,11 @@ function navbar({ activeButton }) {
                         text="Histórico"
                     />
                 </ul>
-                <button className="button-config">
-                    <a href='/login'>CONFIGURAÇÕES</a></button>
+                <button 
+                    className="button-config"
+                    onClick={e => handleClick(e)}>
+                    CONFIGURAÇÕES
+                </button>
             </nav>
         </>
     )
