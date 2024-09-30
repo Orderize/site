@@ -1,13 +1,9 @@
 import React, { act, useRef, useState } from 'react';
 import { Pizza, ListMagnifyingGlass, ClockClockwise } from "@phosphor-icons/react";
-import { useNavigate } from 'react-router-dom';
-
 import ButtonNavbar from './Button/ButtonNavbar';
-import Option from './Option/Option';
-
-import imgLogo from "../../utils/assets/logo.png";
-
-import styles from "./Navbar.module.css";
+import Option from "./Option/Option";
+import "./Navbar.css";
+import { useNavigate } from 'react-router-dom';
 
 function navbar({ activeButton }) {
     const [actualButton, setActualButton] = useState(activeButton);
@@ -20,9 +16,10 @@ function navbar({ activeButton }) {
 
     return (
         <>
-            <nav className={styles["container-navbar"]}>
-                <img className={styles["logo"]} src={imgLogo} alt="imagem logo orderize" />
-                <ul className={styles["ordenation-navbar"]}>
+            <nav className="container-navbar">
+
+                <img className="logo" src="/image/logo.png" alt="imagem logo orderize" onClick={e => { goTo("/home") }} />
+                <ul className="ordenation-navbar">
                     <ButtonNavbar
                         classx={"main"}
                         icon={ <Pizza size={37}/> }
@@ -49,7 +46,7 @@ function navbar({ activeButton }) {
                     />
                 </ul>
                 <button 
-                    className={styles["button-config"]}
+                    className="button-config"
                     onClick={e => handleClick(e)}>
                     CONFIGURAÇÕES
                 </button>

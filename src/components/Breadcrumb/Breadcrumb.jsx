@@ -1,6 +1,7 @@
 import React from "react";
-import "./breadcrumb.css"
-import ButtonNavbar from "../navbar/Button/ButtonNavbar";
+import { Link } from "react-router-dom";
+import "./Breadcrumb.css"
+// import ButtonNavbar from "../navbar/button/buttonNavbar";
 
 function breadcrumb({ activeButton }) {
     return (
@@ -8,22 +9,21 @@ function breadcrumb({ activeButton }) {
             <nav className="container-breadcrumb">
                 <ul className="organization">
                     <li>
-                        <a 
-                            href="/sabores"
-                            className={ activeButton === "sabores" ? "active": "" }
-                        >Sabores</a>
+                        <Link to={"/sabores"}
+                           className={ activeButton === "sabores" ? "active": "" }                     
+                        >Sabores</Link>
                     </li>
                     <li>
-                        <a 
-                            href=""
+                        <Link 
+                            to={""}
                             className={ activeButton === "bebidas" ? "active": "" }
-                        >Bebidas</a>
+                        >Bebidas</Link>
                     </li>
                     <li>
-                        <a 
-                            href=""                            
+                        <Link 
+                            to={""}                            
                             className={ activeButton === "brindes" ? "active": "" }
-                        >Brindes</a>
+                        >Brindes</Link>
                     </li>
                 </ul>
             </nav>

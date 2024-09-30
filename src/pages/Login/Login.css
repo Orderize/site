@@ -3,7 +3,7 @@
     width: 100vw;
     height: 100vh;
 
-    background-image: url('/src/utils/assets/banner.png'); 
+    background-image: url('/image/banner.png'); 
     background-size: cover;
     background-position: center;
 
@@ -14,13 +14,8 @@
   
 
   .container {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-
     width: 100%; 
     max-width: 700px;
-    height: 50vh;
 
     background-color: #EAE5DE;
     backdrop-filter: blur(10px);
@@ -31,10 +26,10 @@
     text-align: center;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
   }
-
+  
 
   .container h1 {
-    font-size: 24px;
+    font-size: 20px;
     color: #000;
     margin: 20px 0;
     font-weight: 800;
@@ -84,7 +79,7 @@
 
   .container > form > button {
     width: 25%;
-    height: 50px;
+    height: 35px;
     background-color: #B53627;
     color: #fff;
     border: none;
@@ -105,15 +100,7 @@
   margin-top: 3%;
   font-family: 'Roboto', sans-serif;
   font-weight: 100;
-}
-
-.recall-connect a {
   color: #000;
-  text-decoration: none;  
-}
-
-.recall-connect a:hover {
-  text-decoration: underline;
 }
 
 @media (max-width: 1117px) {

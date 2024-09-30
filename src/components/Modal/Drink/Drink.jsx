@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import './drink.css';
+import './Drink.css';
 import FooterModal from '../../footer_modal/FooterModal';
 
 const PizzaComponent = () => {

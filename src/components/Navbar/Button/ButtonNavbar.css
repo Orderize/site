@@ -1,4 +1,4 @@
-.container-buttonNavbar button {
+.container-buttonNavbar a {
     text-decoration: none;
 }
 
@@ -32,7 +32,7 @@
         background-color: #656D4A;        
     }
     
-    .container-buttonNavbar > button {
+    .container-buttonNavbar > a {
         display: flex;
         
         color: #3A3C16;
@@ -42,12 +42,12 @@
         padding: 2px 10px;
     }
     
-    .container-buttonNavbar > button > i {
+    .container-buttonNavbar > a > i {
         margin-right: 15px;
         height: 40px;
     }
     
-    button.active {
+    a.active {
         display: flex;
         justify-content: center;
         color: #EAE5DE;
@@ -79,7 +79,7 @@
         background-color: #656D4A;
     }
     
-    .container-buttonNavbar > button {
+    .container-buttonNavbar > a {
         display: flex;
         align-items: center;
         
@@ -90,12 +90,12 @@
         padding: 2px 10px;
     }
     
-    .container-buttonNavbar > button > i {
+    .container-buttonNavbar > a > i {
         margin-right: 15px;
         height: 40px;
     }
     
-    button.active {
+    a.active {
         justify-content: flex-start;
         color: #EAE5DE;
     }

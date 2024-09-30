@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { MagnifyingGlass } from "@phosphor-icons/react";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 import Item from "../../components/Item/Item";
-import Navbar from "../../components/navbar/Navbar";
-import styles from "./Flavor.module.css"
+import Navbar from "../../components/Navbar/Navbar";
+import "./Flavor.css"
 
 
 function flavor() {
@@ -22,6 +22,8 @@ function flavor() {
         {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30"},
         {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30", description: "dasdçlasmd"},
         {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30"},
+        {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30"},
+        {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30"},
         {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30", description: "dasdçlasmd"},
         {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30"},
     ]
@@ -29,13 +31,13 @@ function flavor() {
     return (
         <>
             <Navbar activeButton={"Opções"} />
-            <main className={styles["container-flavor"]}>
+            <main className="container-flavor">
                 <h1>Opções</h1>
-                <div className={ styles["breadcrumb-search"] }>
+                <div className="navAndSearch">
                     <Breadcrumb activeButton={"sabores"} />
-                    <div className={styles["comp-search"]}>
+                    <div className="comp-search">
                         <label htmlFor="search">
-                            <button onClick={enter} className={styles["icon-search"]}>
+                            <button onClick={enter} className="icon-search">
                                 <MagnifyingGlass size={25} weight="bold" />
                             </button>
                         </label>

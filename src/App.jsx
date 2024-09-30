@@ -3,25 +3,29 @@ import { Route, Routes, BrowserRouter } from 'react-router-dom'
 import { createRoot } from 'react-dom/client'
 
 
-import './index.css'
-import AddNewDrink from './components/modal/new_drink/AddNewDrink'
-import AddNewFlavor from './components/modal/new_flavor/add_new_flavor'
-import ModalDrink from './components/modal/drink/drink';
-import ModalFlavor from './components/modal/flavor/flavor';
-import ModalReview from './components/modal/review/review';
-import Navbar from './components/navbar/Navbar';
-import SelectPizzaType from './components/modal/select_pizza_type/select_pizza_type'
-import Flavor from './pages/Options/Flavor';
-import Home from './pages/Home/Home';
-import Login from './pages/Login/Login';
+import Home from './pages/Home/Home'
+import ModalDrink from './components/Modal/Drink/Drink';
+import ModalFlavor from './components/Modal/Flavor/Flavor';
+import ModalReview from './components/Modal/Review/Review';
+import AddNewFlavor from './components/Modal/New_flavor/Add_new_flavor'
+import SelectPizzaType from './components/Modal/Select_pizza_type/Select_pizza_type'
+import AddNewDrink from './components/Modal/New_drink/AddNewDrink'
+import Navbar from './components/Navbar/Navbar'
+import Login from './pages/Login/Login'
 import Order from './pages/New_order/Order'
-
+import Flavor from './pages/Options/Flavor'
+import './index.css'
 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
+        
+        <Route
+          path='/home'
+          element={ <Home /> }
+        ></Route>
         
         <Route
           path='/'
@@ -43,11 +47,6 @@ createRoot(document.getElementById('root')).render(
           element={ <Flavor /> }
         ></Route>
 
-        <Route 
-          path='/home' 
-          element={<Home />} 
-        ></Route>
-        
         <Route
           path='/modal/sabores'
           element={ <ModalFlavor /> }
