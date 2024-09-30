@@ -3,11 +3,11 @@ import { Pizza, ListMagnifyingGlass, ClockClockwise } from "@phosphor-icons/reac
 import { useNavigate } from 'react-router-dom';
 
 import ButtonNavbar from './Button/ButtonNavbar';
-import Option from './Option/option';
+import Option from './Option/Option';
 
 import imgLogo from "../../utils/assets/logo.png";
 
-import styles from "./NavBar.module.css";
+import styles from "./Navbar.module.css";
 
 function navbar({ activeButton }) {
     const [actualButton, setActualButton] = useState(activeButton);
@@ -49,7 +49,7 @@ function navbar({ activeButton }) {
                     />
                 </ul>
                 <button 
-                    className="button-config"
+                    className={styles["button-config"]}
                     onClick={e => handleClick(e)}>
                     CONFIGURAÇÕES
                 </button>
