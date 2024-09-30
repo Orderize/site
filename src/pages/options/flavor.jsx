@@ -28,7 +28,7 @@ function flavor() {
     
     return (
         <>
-            <Navbar activeButton={"Opções"} />
+            <Navbar role={"attendant"} activeButton={"Opções"} />
             <main className="container-flavor">
                 <h1>Opções</h1>
                 <Breadcrumb activeButton={"sabores"} />

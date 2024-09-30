@@ -1,11 +1,19 @@
-import React, { act, useRef, useState } from 'react';
-import { Pizza, ListMagnifyingGlass, ClockClockwise } from "@phosphor-icons/react";
+import React, { useRef, useState } from 'react';
+import { ChartDonut, ClockClockwise, ListMagnifyingGlass, Pizza } from "@phosphor-icons/react";
 import ButtonNavbar from './button/buttonNavbar';
 import Option from "./option/option";
 import "./navbar.css";
 
-function navbar({ activeButton }) {
+function navbar({ role, activeButton }) {
     const [actualButton, setActualButton] = useState(activeButton);
+
+    const mainButton = {
+        title: role === "admin" ? "Relatórios" : "Pedidos",  
+        icon: role === "admin" ? <ChartDonut size={37} /> : <Pizza size={37} />,
+        path: role === "admin" ? "/relatorios" : "/pedidos"
+    };
+    
+    const nameMiddleButton = role === "admin" ? "Gerenciamento" : "Opções";
 
     return (
         <>
@@ -13,17 +21,16 @@ function navbar({ activeButton }) {
                 <img className="logo" src="/image/logo.png" alt="imagem logo orderize" />
                 <ul className="ordenation-navbar">
                     <ButtonNavbar
-                        classx={"main"}
-                        icon={ <Pizza size={37}/> }
-                        isActive={actualButton === "Pedidos"}
-                        link="/pedidos"
-                        text="Pedidos"
-                    />
+                        icon={mainButton.icon}
+                        isActive={actualButton === mainButton.title}
+                        link={mainButton.path}
+                        text={mainButton.title}
+                        />
                     <ButtonNavbar
                         icon={ <ListMagnifyingGlass size={37}/>}
-                        isActive={actualButton === "Opções"}
+                        isActive={actualButton === nameMiddleButton}
                         link="/sabores"
-                        text="Opções"
+                        text={nameMiddleButton}
                         />
                     {
                         actualButton === "Opções" ? 

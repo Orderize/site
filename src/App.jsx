@@ -4,6 +4,7 @@ import { createRoot } from 'react-dom/client'
 import Login from './pages/login/login'
 import Flavor from './pages/options/flavor'
 import Navbar from './components/navbar/navbar'
+import Report from './pages/report/report'
 import Order from './pages/new_order/order'
 import './index.css'
 
@@ -14,7 +15,7 @@ createRoot(document.getElementById('root')).render(
         
         <Route
           path='/'
-          element={ <Navbar /> }
+          element={ <Navbar role={"admin"}/> }
         ></Route>
 
         <Route
@@ -31,7 +32,11 @@ createRoot(document.getElementById('root')).render(
           path='/sabores'
           element={ <Flavor /> }
         ></Route>
-
+        
+        <Route
+          path='/relatorios'
+          element={ <Report /> }
+        ></Route>
         
 
       </Routes>
