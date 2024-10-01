@@ -1,0 +1,57 @@
+.container-order {
+    min-width: 82%;
+    min-height: 100vh;
+
+    background-color: #F3EFE9;
+    color: #3A3C16;
+    font-weight: 700;
+
+    position: absolute;
+    left: 18%;
+}
+
+.container-order > h1 {
+    width: 90%;
+
+    margin: 3vh auto;
+}
+
+.container-order > .client-modal {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+
+    margin: 15vh auto;
+    width: 50%;
+    height: 50%;
+    border: 2px solid violet;
+}
+
+.container-order > .client-modal > h2 {
+    /* color: #656D4A; */
+}
+
+.container-order > .client-modal > .client-modal-card {
+    width: calc(100% - 60px);
+    height: 50%;
+    
+    background-color: #EAE5DE;
+
+    border: 2px solid #656D4A;
+    border-radius: 25px;
+
+    padding: 20px 30px;
+}
+
+.container-order > .client-modal > .client-modal-card > h2 {
+    /* color: #656D4A; */
+}
+
+.container-order > .client-modal > button {
+    width: 200px;
+    height: 20px;
+    background-color: #656D4A;
+    border-radius: 20px;
+    border: none;
+}
