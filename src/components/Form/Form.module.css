@@ -15,6 +15,7 @@
     font-family: 'Lexend Regular';
     font-size: 14px;   
     outline: none;
+    color: #000000;
 }
 
 input:focus{
@@ -22,6 +23,7 @@ input:focus{
 }
 
 .form textarea{
+    color: #000000;
     margin: 8px;
     padding: 5px;
     border: 1px solid #A60F1B;

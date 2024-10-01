@@ -16,7 +16,6 @@
   .container {
     width: 100%; 
     max-width: 700px;
-    height: 50vh;
 
     background-color: #EAE5DE;
     backdrop-filter: blur(10px);
@@ -80,7 +79,7 @@
 
   .container > form > button {
     width: 25%;
-    height: 50px;
+    height: 35px;
     background-color: #B53627;
     color: #fff;
     border: none;
@@ -101,15 +100,7 @@
   margin-top: 3%;
   font-family: 'Roboto', sans-serif;
   font-weight: 100;
-}
-
-.recall-connect a {
   color: #000;
-  text-decoration: none;  
-}
-
-.recall-connect a:hover {
-  text-decoration: underline;
 }
 
 @media (max-width: 1117px) {

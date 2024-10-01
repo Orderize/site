@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import styles from "./ButtonNavbar.module.css";
+import { Link } from "react-router-dom";
+import "./ButtonNavbar.css"
 
 function buttonNavbar({ classx, event, icon, isActive, link, text }) {
     const setLink = () => {
@@ -9,18 +10,18 @@ function buttonNavbar({ classx, event, icon, isActive, link, text }) {
     return (
         <>
             <li 
-                className={styles[`container-buttonNavbar ${classx} ${isActive ? "active" : ""}`]}
+                className={ `container-buttonNavbar ${classx} ${isActive ? "active" : ""}` }
                 onClick={setLink}
             >
-                <a 
-                    href={link} 
+                <Link 
+                    to={link} 
                     className={ `${isActive ? "active" : ""}` }
                 >
                     <i>
                         {icon}
                     </i>
                     {text}
-                </a>
+                </Link>
             </li>
         </>
     );

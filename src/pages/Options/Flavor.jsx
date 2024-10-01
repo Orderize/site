@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { MagnifyingGlass } from "@phosphor-icons/react";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 import Item from "../../components/Item/Item";
-import Navbar from "../../components/navbar/Navbar";
-import "./flavor.css"
+import Navbar from "../../components/Navbar/Navbar";
+import "./Flavor.css"
 
 
 function flavor() {
@@ -22,6 +22,8 @@ function flavor() {
         {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30"},
         {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30", description: "dasdçlasmd"},
         {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30"},
+        {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30"},
+        {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30"},
         {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30", description: "dasdçlasmd"},
         {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30"},
     ]
@@ -31,22 +33,24 @@ function flavor() {
             <Navbar activeButton={"Opções"} />
             <main className="container-flavor">
                 <h1>Opções</h1>
-                <Breadcrumb activeButton={"sabores"} />
-                <div className="comp-search">
-                    <label htmlFor="search">
-                        <button onClick={enter} className="icon-search">
-                            <MagnifyingGlass size={25} weight="bold" />
-                        </button>
-                    </label>
-                    <input 
-                        id="search" 
-                        type="text" 
-                        value={valueSearch}
-                        onChange={e => {setValueSearch(e.target.value)}}
-                        onKeyDown={e => { e.key === "Enter" ? enter() : null}}
-                        className="input-search"
-                        placeholder="Pesquisar"
-                    />
+                <div className="navAndSearch">
+                    <Breadcrumb activeButton={"sabores"} />
+                    <div className="comp-search">
+                        <label htmlFor="search">
+                            <button onClick={enter} className="icon-search">
+                                <MagnifyingGlass size={25} weight="bold" />
+                            </button>
+                        </label>
+                        <input 
+                            id="search" 
+                            type="text" 
+                            value={valueSearch}
+                            onChange={e => {setValueSearch(e.target.value)}}
+                            onKeyDown={e => { e.key === "Enter" ? enter() : null}}
+                            className="input-search"
+                            placeholder="Pesquisar"
+                        />
+                    </div>
                 </div>
                 <section className="flavor-list">
                     {
