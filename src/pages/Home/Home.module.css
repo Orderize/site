@@ -340,7 +340,7 @@ header {
   .features {
     display: flex;
     margin-right: auto;
-    border: 1px solid green;
+    /* border: 1px solid green; */
     text-align: left;
     margin-top: 5%;
     width: 100%;
