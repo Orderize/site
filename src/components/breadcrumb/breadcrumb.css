@@ -1,5 +1,5 @@
 .container-breadcrumb {
-    width: 55%;
+    width: 65%;
     border-bottom: 1px solid #656D4A;
 }
 
@@ -7,7 +7,7 @@
     display: flex;
     justify-content: space-between;
 
-    width: 50%;
+    width: 55%;
 }
 
 .container-breadcrumb > .organization > li {
@@ -23,6 +23,7 @@
 
     color: #656D4A;
     
+    font-size: 20px;
     font-weight: 600;
     
     text-decoration: none;

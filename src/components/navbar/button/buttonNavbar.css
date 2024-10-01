@@ -84,10 +84,10 @@
         align-items: center;
         
         color: #3A3C16;
-        font-size: 18px;
+        font-size: 20px;
         font-weight: 600;
         
-        padding: 2px 10px;
+        padding: 5px 10px;
     }
     
     .container-buttonNavbar > a > i {

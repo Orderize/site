@@ -1,79 +1,31 @@
 import React, { useEffect, useRef, useState } from "react";
+import { Bar, Doughnut, Line } from "react-chartjs-2";
+import 'chart.js/auto';
+
 import "./report.css";
 import Kpi from "./kpi/kpi";
-import { createDash } from "./script";
 import Navbar from "../../components/navbar/navbar";
+import useChartData from "../../services/ChartData/useChartData";
 
-function report() {
 
-    // faturamento semanal/mensal
-    // faturamento por salão e delivery
-    // faturamento do produto por hora
+function Report() {
 
+    // faturamento semanal/mensal x 
+    // faturamento por salão e delivery x
+    // lucro bruto
+    
+    // faturamento do produto por hora 
     // valor médio de cada pedido diario
 
-
-    // lucro bruto
-
-    const chartRefs = useRef([]);
-    const charts = useRef([]);
-
-    const data = {
-        labels: [
-            'Red',
-            'Blue',
-            'Yellow'
-        ],
-        datasets: [{
-            label: 'My First Dataset',
-            data: [300, 50, 100],
-            backgroundColor: [
-              'rgb(255, 99, 132)',
-              'rgb(54, 162, 235)',
-              'rgb(255, 205, 86)'
-            ],
-            hoverOffset: 4
-        }]
-    };
-
-    const options = {
-        plugins: {
-            legend: {
-                position: 'right', // Muda a posição da legenda para a esquerda
-                align: 'center',    // Alinhamento da legenda (opcional)
-                labels: {
-                    usePointStyle: true, // Altera a forma da legenda para círculo
-                    pointStyle: 'circle', // Define que o ponto deve ser um círculo
-                }
-            },
-            elements: {
-                point: {
-                    borderWidth: 0, // Remove bordas dos arcos
-                    radius: 10 // Define o raio das bordas
-                }
-            },
-        },
-        responsive: true,
-        maintainAspectRatio: false
-    }
+    // Adicionar controle para poder ver qual dos tipos de venda teve o maior pedido em dinheiro feito
 
 
-    useEffect(() => {
-        chartRefs.current.forEach(async (chartRef, idx) => {
-            if (chartRef && chartRef.getContext) {
-                const ctx = chartRef.getContext("2d");
-                const newChart = await createDash(ctx, "doughnut", data, options);
-                charts.current[idx] = newChart; 
-            }
-        });
-
-        return () => {
-            charts.current.forEach(chart => {
-                if (chart) chart.destroy(); 
-            });
-        };
-    }, []);
+    const { invoicingData, profitData, hourlyInvoicingData } = useChartData();
     
+
+    if (!invoicingData || !profitData || !hourlyInvoicingData) {
+        return <div>Carregando dados...</div>;
+    }
 
     return (
         <>
@@ -84,39 +36,51 @@ function report() {
                     <Kpi
                         background={"#EAE5DE"}
                         color={"#3A3C16"}
-                        title={"Pedidos no dia"}
-                        value={"00"}
-                        />
+                        title={"Renda Bruta"}
+                        value={"R$ 3.125,00"}
+                    />
                     <Kpi
                         background={"#656D4A"}
                         color={"#EAE5DE"}
-                        title={"Faturamento do dia"}
-                        value={"R$"}
-                        />
+                        title={"Rendimento/Hora"}
+                        value={"+120%"}
+                    />
                     <Kpi
                         background={"#7B806A"}
                         color={"#EAE5DE"}
-                        title={"Renda Bruta"}
-                        value={"R$"}
-                        />
+                        title={"Pedidos no dia"}
+                        value={"42"}
+                    />
                     <Kpi
                         background={"#B5B9A4"}
                         color={"#3A3C16"}
-                        title={"Renda Liquida"}
-                        value={"R$"}
+                        title={"Faturamento do dia"}
+                        value={"R$ 3.125,00"}
                     />
                 </section>
                 <section className="area-mini-charts">
-                    <div className="charts">
-                        <canvas ref={it => chartRefs.current[0] = it}></canvas>
+                    <div className="charts profit">
+                        <h3>Lucros por Período</h3>
+                        <Bar                             
+                            data={profitData.data}
+                            options={profitData.options}
+                        />
                     </div>
-                    <div>
-                        <canvas></canvas>
+                    <div className="charts">
+                        <h3>Faturamento R$ por Pedido</h3>
+                        <Doughnut 
+                            data={invoicingData.data}
+                            options={invoicingData.options}
+                        />
                     </div>
                 </section>
-                <section className="">
-                    <div>
-                        <canvas></canvas>
+                <section className="area-charts">
+                    <div className="charts profit">
+                        <h3>Faturamento por hora</h3>
+                        <Line                             
+                            data={hourlyInvoicingData.data}
+                            options={hourlyInvoicingData.options}
+                        />
                     </div>
                 </section>
             </main>
@@ -124,4 +88,4 @@ function report() {
     )
 }
 
-export default report;
+export default Report;
