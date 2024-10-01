@@ -74,7 +74,7 @@ header {
 .nav-links,
 .imageLogo,
 .icon-acessiblity,
-.desktop {
+.desktop, .pizzasBannerDesktop, .h1Desktop{
   display: none;
 }
 
@@ -335,6 +335,25 @@ header {
     justify-content: left;
     align-items: left;
     width: 90vh;
+  }
+
+  .features {
+    display: flex;
+    margin-right: auto;
+    border: 1px solid green;
+    text-align: left;
+    margin-top: 5%;
+    width: 100%;
+    flex-direction: column;
+    color: #4D4138;
+    
+  }
+  
+  .features .h1Desktop {
+    display: flex;
+    margin: 0% 5% 0% 5%;
+    font-family: 'Lexend SemiBold';
+    font-size: 50px;
   }
 
 }
