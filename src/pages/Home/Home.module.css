@@ -344,4 +344,33 @@ header {
     margin-left: 4.5vw;
   }
 
+  .benefits {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15%;
+    color: #4D4138;
+    text-align: center;
+    align-items: center;
+  }
+
+  .benefits h1 {
+    margin: 0% 5% 0% 5%;
+    font-family: 'Lexend SemiBold';
+    font-size: 30px;
+    text-align: left;
+    justify-content: left;
+  }
+
+  .benefitsDesktop{
+    display: flex;
+    flex-direction: row;
+  }
+
+  .benefits .h1DesktopBenfits{
+    display: flex;
+    margin: 0% 5% 0% 5%;
+    font-family: 'Lexend SemiBold';
+    font-size: 30px;
+}
+
 }

@@ -1,20 +1,46 @@
-.benefits{
+.benefits {
     display: flex;
     flex-direction: row;
     border: solid 2px #A60F1B;
     margin: 20px;
     width: 80vw;
-    height:20vh;
+    height: 20vh;
 }
 
-.benefits img{
+.benefits img {
     width: 30vw;
 }
 
 .benefits h3 {
     display: flex;
     align-items: center;
-    color: #4D4138; 
+    color: #4D4138;
     font-size: 18px;
     font-family: 'Lexend Light';
+}
+
+/* responsividade */
+@media (min-width: 761px) {
+    .benefits {
+        display: flex;
+        flex-direction: column;
+        border: solid 2px #A60F1B;
+        margin: 10px;
+        width: 50%;
+        height: 400px;
+    }
+
+    .benefits img {
+        width: 20vw;
+    }
+    
+    .benefits h3 {
+        display: flex;
+        align-items: center;
+        color: #4D4138;
+        font-size: 18px;
+        font-family: 'Lexend Light';
+    }
+
+
 }

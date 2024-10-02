@@ -76,15 +76,15 @@ const Home = () => {
         <p className={styles['paragrafoFeatures']}>Orderize transforma o atendimento das pizzarias, tornando-o mais eficiente, direto e claro. Isso garante uma jornada perfeita do início do pedido até a entrega, fortalecendo a satisfação e a lealdade dos clientes.</p>
 
         <Funcionalidade
-          icon={imgGestao}           
-          iconDesktop={imagem1}      
+          icon={imgGestao}
+          iconDesktop={imagem1}
           title="Gestão de Pedidos"
           texto="Nosso sistema unifica pedidos recebidos por telefone, aplicativo ou presencialmente em uma única plataforma, permitindo acompanhar todas as etapas, da preparação à entrega, com precisão e agilidade."
         />
 
         <Funcionalidade
           icon={imgAnalise}
-          iconDesktop={imagem2}    
+          iconDesktop={imagem2}
           title="Análise de Dados"
           texto="Você tem acesso a análises detalhadas e estatísticas abrangentes, desde pedidos populares até controle de estoque, fornecendo uma visão completa da sua pizzaria e ajudando a otimizar processos e tomar decisões estratégicas."
           fact1="Fato 1 - 88,9% dos sistemas de pizzarias não possuem informações detalhadas sobre as pizzas mais pedidas!"
@@ -93,31 +93,32 @@ const Home = () => {
 
         <Funcionalidade
           icon={<IoIosTabletPortrait className={styles["icon-sistDed"]} />}
-          iconDesktop={imagem3}    
+          iconDesktop={imagem3}
           title="Sistemas Dedicados"
           texto="O sistema Orderize facilita a gestão de mesas e pedidos pelos garçons, enquanto o pizzaiolo monitora atrasos para garantir agilidade. Isso assegura um atendimento eficiente e rápido, melhorando a satisfação dos clientes. O sistema também permite ajustes rápidos na cozinha para evitar congestionamentos."
         />
-
       </div>
 
       <div className={styles['benefits']}>
-        <h1>Principais Benefícios</h1>
+        <h1 className={styles['h1DesktopBenfits']}>Principais Benefícios</h1>
 
-        <Beneficio
-          icon={atendente} alt="atendente e um relógio"
-          title="Agilidade no Atendimento"
-        />
+        <div className={styles['benefitsDesktop']}>
+          <Beneficio
+            icon={atendente} alt="atendente e um relógio"
+            title="Agilidade no Atendimento"
+          />
 
-        <Beneficio
-          icon={quebraCabeca} alt="quebra-cabeça"
-          title="Infomação fluída entre as etapas"
-        />
+          <Beneficio
+            icon={quebraCabeca} alt="quebra-cabeça"
+            title="Infomação fluída entre as etapas"
+          />
 
-        <Beneficio
-          icon={insight} alt="lâmpada de idéias e gráfico"
-          title="Insights valiosos"
-        />
-
+          <Beneficio
+            icon={insight} alt="lâmpada de idéias e gráfico"
+            title="Insights valiosos"
+          />
+          
+        </div>
       </div>
 
       <div className={styles['form']}>
