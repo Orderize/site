@@ -60,7 +60,10 @@ const Home = () => {
           </div>
 
           <div className={styles['buttonImageMobile']}>
-            <button className={styles["button"]}>Saiba mais</button>
+            <div className={styles['buttonContainer']}>
+              <button className={styles["button"]}>Saiba mais</button>
+
+            </div>
             <img src={imgPizzasBanner} alt="Pizzas" className={styles["pizzasBanner"]} />
           </div>
 
@@ -122,30 +125,30 @@ const Home = () => {
         </div>
       </div>
 
-      
-        <div className={styles['form']}>
-          <div className={styles['mobile']}>
-            <h1>Conheça a Orderize!</h1>
-            <p><span className={styles['spanForm']}>
-              Sempre prontos para ouvir você!</span>Entre em contato conosco.</p>
-          </div>
 
-          <div className={styles['desktop']}>
-            <h1 className={styles['h1DesktopForm']}>Para conhecer mais sobre a Orderize!</h1>
-            <p className={styles['paragrafoForm']}>Sempre prontos para ouvir você! Tire suas dúvidas, envie feedbacks ou venha fazer parte da nossa família de clientes e tenha acesso a soluções exclusivas para sua pizzaria.</p>
-          </div>
+      <div className={styles['form']}>
+        <div className={styles['mobile']}>
+          <h1>Conheça a Orderize!</h1>
+          <p><span className={styles['spanForm']}>
+            Sempre prontos para ouvir você!</span>Entre em contato conosco.</p>
+        </div>
 
-          <div className={styles['formImage']}>
+        <div className={styles['desktop']}>
+          <h1 className={styles['h1DesktopForm']}>Para conhecer mais sobre a Orderize!</h1>
+          <p className={styles['paragrafoForm']}>Sempre prontos para ouvir você! Tire suas dúvidas, envie feedbacks ou venha fazer parte da nossa família de clientes e tenha acesso a soluções exclusivas para sua pizzaria.</p>
+        </div>
+
+        <div className={styles['formImage']}>
           <div className={styles['imageContainer']}>
             <img src={imgForm} alt="Descrição da imagem" />
           </div>
 
           <Formulario></Formulario>
         </div>
-        </div>
       </div>
+    </div>
 
-      );
+  );
 };
 
-      export default Home;
+export default Home;

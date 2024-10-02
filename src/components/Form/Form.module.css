@@ -75,6 +75,7 @@ input:focus {
     font-family: 'Lexend Bold';
     font-size: 13px;
     border: none;
+    color: white;
 }
 
 @media (min-width: 761px) {

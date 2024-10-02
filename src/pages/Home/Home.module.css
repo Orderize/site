@@ -34,26 +34,25 @@
 }
 
 .body {
+  display: flex;
+  text-align: left;
+  flex-direction: column;
+  gap: 50px;
   font-family: 'Lexend';
   background-color: #f2f2f2;
   width: 100vw;
   height: 100%;
   margin-top: 0;
-  display: flex;
-  text-align: left;
-  flex-direction: column;
   overflow-x: hidden;
 }
 
 header {
   display: flex;
   flex-direction: column;
-  width: 90vw;
-  height: 90vh;
   background-color: #FBD6D0;
   padding: 20px 10px 0px 20px;
   margin-top: 20px;
-  margin-left: 4.5vw;
+  margin: 2% 2% 0 2%;
   border-radius: 20px;
 }
 
@@ -67,6 +66,11 @@ header {
 
 /* responsividade */
 @media(max-width: 760px) {
+
+  header {
+    height: 90vh;
+    margin: 10px 10px 0 10px;
+  }
 
   .menu-icon,
   .menu-icon-acessebility {
@@ -100,33 +104,41 @@ header {
     color: #4D4138;
   }
 
+  .buttonContainer {
+    width: 100%;
+  }
+
   .buttonImageMobile {
-    flex-direction: row;
+    display: flex;
+    gap: 30px;
+    flex-direction: column;
+    align-items: center;
   }
 
   .buttonImageMobile .button {
     background-color: #A60F1B;
     color: white;
     margin: 0px;
-    padding: 10px 10px;
+    padding: 12px 28px;
     font-size: 15px;
     font-weight: lighter;
     cursor: pointer;
     border: none;
     border-radius: 30px;
     height: auto;
+    text-wrap: nowrap;
   }
 
   .buttonImageMobile .pizzasBanner {
     z-index: 999;
     display: flex;
-    justify-content: left;
+    justify-content: center;
     align-items: left;
-    width: 100%;
+    width: 80%;
   }
 
   .features {
-    margin-top: 40%;
+    margin-top: 30%;
     display: flex;
     flex-direction: column;
     color: #4D4138;
@@ -150,7 +162,6 @@ header {
   .benefits {
     display: flex;
     flex-direction: column;
-    margin-top: 15%;
     color: #4D4138;
     text-align: center;
     align-items: center;
@@ -165,7 +176,6 @@ header {
   .form {
     display: flex;
     flex-direction: column;
-    margin-top: 15%;
     color: #4D4138;
     text-align: center;
     align-items: center;
@@ -195,6 +205,10 @@ header {
 
 
 @media (min-width: 761px) {
+
+  header {
+    height: auto;
+  }
 
   .menu-icon,
   .menu-icon-acessebility,
@@ -268,7 +282,6 @@ header {
   }
 
   .desktop {
-    display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
@@ -326,7 +339,6 @@ header {
     margin-right: auto;
     /* border: 1px solid green; */
     text-align: left;
-    margin-top: 5%;
     width: 100%;
     flex-direction: column;
     color: #4D4138;
@@ -352,7 +364,6 @@ header {
   .benefits {
     display: flex;
     flex-direction: column;
-    margin-top: 15%;
     color: #4D4138;
     text-align: center;
     align-items: center;
@@ -412,6 +423,6 @@ header {
     text-align: left;
     width: 90vw;
     margin: 2% 5% 0% 5%;
-    
+
   }
 }
