@@ -4,6 +4,7 @@ import styles from "./Form.module.css"
 function Form() {
     return (
         <div className={styles["form"]}>
+            <h1>Envie uma mensagem!</h1>
             <div>
                 <input type="text" placeholder="Digite seu nome"/>  
             </div>

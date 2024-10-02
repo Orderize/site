@@ -14,7 +14,8 @@ import imagem3 from '../../utils/assets/imgGarcomPizzaioloDesktop.svg';
 import atendente from "../../utils/assets/atendente.svg";
 import insight from "../../utils/assets/insight.svg";
 import quebraCabeca from "../../utils/assets/quebraCabeca.svg";
-import logo from "../../utils/assets/logo.png"
+import logo from "../../utils/assets/logo.png";
+import imgForm from "../../utils/assets/imgForm.svg";
 
 import { IoMenuOutline } from "react-icons/io5";
 import { IoIosTabletPortrait } from "react-icons/io";
@@ -117,21 +118,34 @@ const Home = () => {
             icon={insight} alt="lâmpada de idéias e gráfico"
             title="Insights valiosos"
           />
-          
+
         </div>
       </div>
 
-      <div className={styles['form']}>
-        <h1>Conheça a Orderize!</h1>
-        <p><span className={styles['spanForm']}>
-          Sempre prontos para ouvir você!</span>Entre em contato conosco.</p>
-        <Formulario></Formulario>
+      
+        <div className={styles['form']}>
+          <div className={styles['mobile']}>
+            <h1>Conheça a Orderize!</h1>
+            <p><span className={styles['spanForm']}>
+              Sempre prontos para ouvir você!</span>Entre em contato conosco.</p>
+          </div>
 
+          <div className={styles['desktop']}>
+            <h1 className={styles['h1DesktopForm']}>Para conhecer mais sobre a Orderize!</h1>
+            <p className={styles['paragrafoForm']}>Sempre prontos para ouvir você! Tire suas dúvidas, envie feedbacks ou venha fazer parte da nossa família de clientes e tenha acesso a soluções exclusivas para sua pizzaria.</p>
+          </div>
 
+          <div className={styles['formImage']}>
+          <div className={styles['imageContainer']}>
+            <img src={imgForm} alt="Descrição da imagem" />
+          </div>
+
+          <Formulario></Formulario>
+        </div>
+        </div>
       </div>
-    </div>
 
-  );
+      );
 };
 
-export default Home;
+      export default Home;
