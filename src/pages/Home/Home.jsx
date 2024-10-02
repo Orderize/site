@@ -7,7 +7,10 @@ import Funcionalidade from '../../components/Features/Features';
 
 import imgPizzasBanner from "../../utils/assets/imgsPizzaBanner.png";
 import imgGestao from "../../utils/assets/imgsGestao.svg";
+import imagem1 from '../../utils/assets/imgGestaoDesktop.svg';
 import imgAnalise from "../../utils/assets/imgsAnalise.svg";
+import imagem2 from '../../utils/assets/fatiaPizzaDesktop.svg';
+import imagem3 from '../../utils/assets/imgGarcomPizzaioloDesktop.svg';
 import atendente from "../../utils/assets/atendente.svg";
 import insight from "../../utils/assets/insight.svg";
 import quebraCabeca from "../../utils/assets/quebraCabeca.svg";
@@ -63,7 +66,6 @@ const Home = () => {
           <div className={styles['imageDesktop']}>
             <img src={imgPizzasBanner} alt="Pizzas" className={styles["pizzasBannerDesktop"]} />
           </div>
-
         </div>
       </header>
 
@@ -71,19 +73,29 @@ const Home = () => {
       <div className={styles['features']}>
         <h1 className={styles['h1Mobile']}>Funcionalidades do sistema</h1>
         <h1 className={styles['h1Desktop']}>O que é Orderize?</h1>
+        <p className={styles['paragrafoFeatures']}>Orderize transforma o atendimento das pizzarias, tornando-o mais eficiente, direto e claro. Isso garante uma jornada perfeita do início do pedido até a entrega, fortalecendo a satisfação e a lealdade dos clientes.</p>
+
         <Funcionalidade
-          icon={imgGestao}
+          icon={imgGestao}           
+          iconDesktop={imagem1}      
           title="Gestão de Pedidos"
+          texto="Nosso sistema unifica pedidos recebidos por telefone, aplicativo ou presencialmente em uma única plataforma, permitindo acompanhar todas as etapas, da preparação à entrega, com precisão e agilidade."
         />
 
         <Funcionalidade
           icon={imgAnalise}
+          iconDesktop={imagem2}    
           title="Análise de Dados"
+          texto="Você tem acesso a análises detalhadas e estatísticas abrangentes, desde pedidos populares até controle de estoque, fornecendo uma visão completa da sua pizzaria e ajudando a otimizar processos e tomar decisões estratégicas."
+          fact1="Fato 1 - 88,9% dos sistemas de pizzarias não possuem informações detalhadas sobre as pizzas mais pedidas!"
+          fact2="Fato 2 - Mais da metade dos pizzaiolos enfrentam dificuldades em gerenciar adequadamente seus recursos!"
         />
 
         <Funcionalidade
           icon={<IoIosTabletPortrait className={styles["icon-sistDed"]} />}
+          iconDesktop={imagem3}    
           title="Sistemas Dedicados"
+          texto="O sistema Orderize facilita a gestão de mesas e pedidos pelos garçons, enquanto o pizzaiolo monitora atrasos para garantir agilidade. Isso assegura um atendimento eficiente e rápido, melhorando a satisfação dos clientes. O sistema também permite ajustes rápidos na cozinha para evitar congestionamentos."
         />
 
       </div>
