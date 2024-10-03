@@ -85,7 +85,7 @@
         justify-content: center;
         flex-direction: column;
 
-        background-color: #3A3C16;
+        background-color: #656D4A;
         width: 48%;
         height: 100%;
         padding: 20px;
@@ -94,6 +94,7 @@
 
     .container-report > section.area-mini-charts > .charts > h3 {
         text-align: center;
+        color: #EAE5DE;
     }
 
     .container-report > section.area-charts {

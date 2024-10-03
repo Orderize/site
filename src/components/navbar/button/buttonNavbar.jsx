@@ -23,7 +23,7 @@ function buttonNavbar({ event, icon, isActive, link, text }) {
                         {icon}
                     </i>
                     {
-                        isDesktop && {text}
+                        isDesktop && text
                     }
                 </Link>
             </li>

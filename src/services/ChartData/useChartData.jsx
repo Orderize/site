@@ -1,3 +1,4 @@
+import { color } from "chart.js/helpers";
 import { useEffect, useState } from "react";
 
 function useChartData() {
@@ -31,6 +32,16 @@ function useChartData() {
                     options: {
                         responsive: true,
                         maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                ticks: {
+                                    color: "#EAE5DE",
+                                },
+                                grid: {
+                                    color: "#EAE5DE",
+                                },
+                            }
+                        },
                         plugins: {
                             legend: {
                                 position: "right", 
@@ -38,10 +49,11 @@ function useChartData() {
                                     font: {
                                         size: 20,
                                         weight: "bold",
+                                        color: "#EAE5DE",
                                     },
                                     usePointStyle: true,
                                     pointStyle: "circle",
-                                    padding: 20
+                                    padding: 20,
                                 },
                             },
                         },
@@ -59,7 +71,7 @@ function useChartData() {
                         datasets: [{
                             label: false,
                             data: [ 3125, 3345, 3608, ], 
-                            backgroundColor: ["#7B806A", "#B5B9A4", "#B5B9A4"],
+                            backgroundColor: ["#B5B9A4", "#B5B9A4", "#EAE5DE"],
                             borderRadius: 10,
                         }],
                     },
@@ -73,7 +85,11 @@ function useChartData() {
                                 position: "bottom",
                                 align: "center",
                                 labels: {
-                                    fontSize: 20,
+                                    font: {
+                                        color: "#EAE5DE",
+                                        size: 20,
+                                    }
+                                
                                 },
                             },
                         },
@@ -83,10 +99,16 @@ function useChartData() {
                                     display: false,
                                     text: "Tipo de Lucro",
                                 },
+
+                                ticks: {
+                                    color: "#EAE5DE",
+                                },
                                 
                                 grid: {
                                     display: false,
                                 },
+                                color: "#EAE5DE",
+
                             },
                             y: {
                                 title: {
@@ -96,9 +118,13 @@ function useChartData() {
                                         size: 16,
                                         weight: 'bold',
                                     },
+                                    color: "#EAE5DE",
+                                },
+                                ticks: {
+                                    color: "#EAE5DE",
                                 },
                                 grid: {
-                                    display: false,
+                                    color: "#EAE5DE",
                                 },
                                 beginAtZero: true,
                             },
