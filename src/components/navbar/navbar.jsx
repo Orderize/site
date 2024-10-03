@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { ChartDonut, ClockClockwise, ListMagnifyingGlass, Pizza } from "@phosphor-icons/react";
 import ButtonNavbar from './button/buttonNavbar';
 import Option from "./option/option";
+
 import "./navbar.css";
 
 function navbar({ role, activeButton }) {
@@ -12,14 +13,17 @@ function navbar({ role, activeButton }) {
         icon: role === "admin" ? <ChartDonut size={37} /> : <Pizza size={37} />,
         path: role === "admin" ? "/relatorios" : "/pedidos"
     };
+
     
     const nameMiddleButton = role === "admin" ? "Gerenciamento" : "Opções";
 
     return (
         <>
             <nav className="container-navbar">
-                <img className="logo" src="/image/logo.png" alt="imagem logo orderize" />
-                <ul className="ordenation-navbar">
+                <div className='logo center'>
+                    <img src="/image/logo.png" alt="imagem logo orderize" />
+                </div>
+                <ul className="ordenation-navbar center">
                     <ButtonNavbar
                         icon={mainButton.icon}
                         isActive={actualButton === mainButton.title}
@@ -44,8 +48,6 @@ function navbar({ role, activeButton }) {
                         text="Histórico"
                     />
                 </ul>
-                <button className="button-config">
-                    <a href='/login'>CONFIGURAÇÕES</a></button>
             </nav>
         </>
     )

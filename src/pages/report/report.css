@@ -28,7 +28,7 @@
 
     .container-report {
         width: 82%;
-        min-height: 100vh;
+        height: 100vh;
 
         background-color: #F3EFE9;
         color: #3A3C16;
@@ -56,11 +56,12 @@
     .container-report > section.area-kpis {
         height: fit-content;
         justify-content: space-between;
+        height: 16%;
     }
 
     .container-report > section.area-kpis > div {
         width: 23%;
-        height: 150px;
+        height: 100%;
     }
 
     .container-report > section.area-kpis > div > p {
@@ -68,14 +69,14 @@
     }
 
     .container-report > section.area-kpis > div > p.value {
-        font-size: 36px;
+        font-size: 28px;
     }
 
     .container-report > section.area-mini-charts {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        height: 300px;
+        height: 30%;
     }
 
     .container-report > section.area-mini-charts > .charts {
@@ -84,7 +85,7 @@
         justify-content: center;
         flex-direction: column;
 
-        background-color: #EAE5DE;
+        background-color: #3A3C16;
         width: 48%;
         height: 100%;
         padding: 20px;
@@ -99,7 +100,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        height: 300px;
+        height: 30%;
     }
 
     .container-report > section.area-charts > .charts {

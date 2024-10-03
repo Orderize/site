@@ -1,35 +1,31 @@
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useMediaQuery } from 'react-responsive'
 import "./buttonNavbar.css"
-import { useNavigate } from "react-router-dom";
 
-function buttonNavbar({ classx, event, icon, isActive, link, text }) {
+function buttonNavbar({ event, icon, isActive, link, text }) {
     
-    const setLink = () => {
-        event(text);
-    }
-
-    const navigate = useNavigate();
-
-    const handleClick = (e) => {
-        // setLink();
-        navigate(link);
-    }
-    
+    // Só para teste kk
+    const isDesktop = useMediaQuery({
+        query: '(min-width: 1200px)'
+    })
 
     return (
         <>
             <li 
-                className={ `container-buttonNavbar ${classx} ${isActive ? "active" : ""}` }
-                onClick={handleClick}
+                className={ `container-buttonNavbar ${isActive ? "active" : ""}` }
             >
-                <a 
+                <Link 
+                    to={link}
                     className={ `${isActive ? "active" : ""}` }
                 >
                     <i>
                         {icon}
                     </i>
-                    {text}
-                </a>
+                    {
+                        isDesktop && {text}
+                    }
+                </Link>
             </li>
         </>
     );

@@ -83,6 +83,10 @@ function useChartData() {
                                     display: false,
                                     text: "Tipo de Lucro",
                                 },
+                                
+                                grid: {
+                                    display: false,
+                                },
                             },
                             y: {
                                 title: {
@@ -98,11 +102,6 @@ function useChartData() {
                                 },
                                 beginAtZero: true,
                             },
-                            x: {
-                                grid: {
-                                    display: false,
-                                }
-                            }
                         },
                     },
                 });

@@ -6,7 +6,7 @@ import Flavor from './pages/options/flavor'
 import Navbar from './components/navbar/navbar'
 import Report from './pages/report/report'
 import Order from './pages/new_order/order'
-import './index.css'
+import './utils/global.css'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
