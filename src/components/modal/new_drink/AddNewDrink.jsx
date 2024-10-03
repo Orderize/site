@@ -6,7 +6,6 @@ const AddNewDrink = ({ onClose }) => {
 
   const handlePriceChange = (e) => {
     const value = e.target.value;
-    // Verifica se o valor é um número ou uma string vazia
     if (/^\d*\.?\d*$/.test(value)) {
       setPrice(value);
     }

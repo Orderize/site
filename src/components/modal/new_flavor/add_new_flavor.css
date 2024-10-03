@@ -93,10 +93,10 @@
   border: 1px solid #4f5222; 
   border-radius: 50%;
   color: #4f5222;
-  font-size: 15px;
+  font-size: 10px; 
   cursor: pointer;
-  width: 5px;
-  height: 35px;
+  width: 1px;
+  height: 40px; 
   display: flex; 
   justify-content: center;
   align-items: center;
@@ -105,3 +105,5 @@
 .button-back-add:hover {
   background-color: #f0f0f0; 
 }
+
+

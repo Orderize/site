@@ -65,8 +65,8 @@ const SelectPizzaType = ({ onClose }) => {
           <button className="button-save" onClick={handleSave}>Salvar</button>
         </div>
 
-        <div className="progress-indicator">
-          <span className="dot"></span>
+        <div className="progress-indicator-select-pizza">
+          <span className="dot-not"></span>
           <span className="dot active"></span>
         </div>
       </div>

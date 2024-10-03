@@ -27,9 +27,9 @@ function option({ isActive }) {
                 <ButtonNavbar
                     event={ setActualButton }
                     icon={ <Money size={75} className='money' /> }
-                    isActive={actualButton === "Brindes"}
-                    link="/"
-                    text="Brindes"
+                    isActive={actualButton === "Promo"}
+                    link="/promotion"
+                    text="Promo"
                 />
             </ul>
         </>

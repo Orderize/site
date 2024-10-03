@@ -11,7 +11,7 @@ function breadcrumb({ activeButton }) {
                         <a 
                             href="/sabores"
                             className={ activeButton === "sabores" ? "active": "" }
-                        >Sabores</a>
+                        >Sabores Pizza</a>
                     </li>
                     <li>
                         <a 
@@ -22,8 +22,8 @@ function breadcrumb({ activeButton }) {
                     <li>
                         <a 
                             href=""                            
-                            className={ activeButton === "brindes" ? "active": "" }
-                        >Brindes</a>
+                            className={ activeButton === "Promo" ? "active": "" }
+                        >Promo</a>
                     </li>
                 </ul>
             </nav>
