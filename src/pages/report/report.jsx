@@ -6,6 +6,7 @@ import "./report.css";
 import Kpi from "./kpi/kpi";
 import Navbar from "../../components/navbar/navbar";
 import useChartData from "../../services/ChartData/useChartData";
+import { useMediaQuery } from "react-responsive";
 
 
 function Report() {
@@ -19,6 +20,9 @@ function Report() {
 
     // Adicionar controle para poder ver qual dos tipos de venda teve o maior pedido em dinheiro feito
 
+    const isDesktop = useMediaQuery({
+        query: "(min-width: 1200px)"
+    })
 
     const { invoicingData, profitData, hourlyInvoicingData } = useChartData();
     
@@ -39,24 +43,31 @@ function Report() {
                         title={"Renda Bruta"}
                         value={"R$ 3.125,00"}
                     />
-                    <Kpi
-                        background={"#656D4A"}
-                        color={"#EAE5DE"}
-                        title={"Rendimento/Hora"}
-                        value={"+120%"}
-                    />
-                    <Kpi
-                        background={"#7B806A"}
-                        color={"#EAE5DE"}
-                        title={"Pedidos no dia"}
-                        value={"42"}
-                    />
-                    <Kpi
-                        background={"#B5B9A4"}
-                        color={"#3A3C16"}
-                        title={"Faturamento do dia"}
-                        value={"R$ 3.125,00"}
-                    />
+                    {
+                        isDesktop 
+                        &&
+                        [
+                            <Kpi
+                                background={"#656D4A"}
+                                color={"#EAE5DE"}
+                                title={"Rendimento/Hora"}
+                                value={"+120%"}
+                            />,
+                            <Kpi
+                                background={"#7B806A"}
+                                color={"#EAE5DE"}
+                                title={"Pedidos no dia"}
+                                value={"42"}
+                            />,
+                            <Kpi
+                                background={"#B5B9A4"}
+                                color={"#3A3C16"}
+                                title={"Faturamento do dia"}
+                                value={"R$ 3.125,00"}
+                            />
+
+                        ]   
+                    }
                 </section>
                 <section className="area-mini-charts">
                     <div className="charts profit">

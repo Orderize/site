@@ -2,24 +2,27 @@
 
     .container-report {
         width: 100vw;
-        height: 90%;
+        height: 90vh;
 
         background-color: #F3EFE9;
         color: #3A3C16;
         font-weight: 700;
-
-        position: absolute;
-        top: 10%;
     }
-
+    
     .container-report > h1 {
-        width: 90%;
-        
-        margin: 3vh auto;
+        width: 100%;
+        text-align: center;
+
+        padding: 3vh;
     }
 
     .container-report > section {
-        /* width: 90%; */
+        display: flex;
+
+        margin: 20px auto;
+
+        width: 90%;
+        height: 20%;        
     }
 
 }
@@ -85,7 +88,7 @@
         justify-content: center;
         flex-direction: column;
 
-        background-color: #656D4A;
+        background-color: #EAE5DE;
         width: 48%;
         height: 100%;
         padding: 20px;
@@ -94,7 +97,6 @@
 
     .container-report > section.area-mini-charts > .charts > h3 {
         text-align: center;
-        color: #EAE5DE;
     }
 
     .container-report > section.area-charts {

@@ -4,8 +4,13 @@ import ButtonNavbar from './button/buttonNavbar';
 import Option from "./option/option";
 
 import "./navbar.css";
+import { useMediaQuery } from 'react-responsive';
 
 function navbar({ role, activeButton }) {
+    const isDesktop = useMediaQuery({
+        query: '(min-width: 1200px)' 
+    });
+
     const [actualButton, setActualButton] = useState(activeButton);
 
     const mainButton = {
@@ -20,9 +25,13 @@ function navbar({ role, activeButton }) {
     return (
         <>
             <nav className="container-navbar">
-                <div className='logo center'>
-                    <img src="/image/logo.png" alt="imagem logo orderize" />
-                </div>
+                {
+                    isDesktop 
+                        && 
+                    <div className='logo center'>
+                        <img src="/image/logo.png" alt="imagem logo orderize" />
+                    </div>
+                }
                 <ul className="ordenation-navbar center">
                     <ButtonNavbar
                         icon={mainButton.icon}
