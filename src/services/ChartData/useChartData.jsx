@@ -32,6 +32,13 @@ function useChartData() {
                         responsive: true,
                         maintainAspectRatio: false,
                         plugins: {
+                            title: {
+                                display: true,
+                                text: "Lucros por Período",
+                                font: {
+                                    size: 20,
+                                },
+                            },
                             legend: {
                                 position: "right", 
                                 labels: {
@@ -68,6 +75,13 @@ function useChartData() {
                         responsive: true,
                         maintainAspectRatio: false,
                         plugins: {
+                            title: {
+                                display: true,
+                                text: "Faturamento R$ por Pedido",
+                                font: {
+                                    size: 20,
+                                },
+                            },
                             legend: {
                                 display: false,
                                 position: "bottom",

@@ -20,11 +20,11 @@ function navbar({ role, activeButton }) {
     };
 
     
-    const nameMiddleButton = role === "admin" ? "Gerenciamento" : "Opções";
+    const nameMiddleButton = role === "admin" ? "Gestão" : "Opções";
 
     return (
         <>
-            <nav className="container-navbar">
+            <nav className="container-navbar center">
                 {
                     isDesktop 
                         && 

@@ -37,16 +37,15 @@ function Report() {
             <main className="container-report">
                 <h1>Relatórios</h1>
                 <section className="area-kpis">
-                    <Kpi
-                        background={"#EAE5DE"}
-                        color={"#3A3C16"}
-                        title={"Renda Bruta"}
-                        value={"R$ 3.125,00"}
-                    />
                     {
-                        isDesktop 
-                        &&
+                        isDesktop ?  
                         [
+                            <Kpi
+                                background={"#EAE5DE"}
+                                color={"#3A3C16"}
+                                title={"Lucro Bruto"}
+                                value={"R$ 3.125,00"}
+                            />,
                             <Kpi
                                 background={"#656D4A"}
                                 color={"#EAE5DE"}
@@ -66,34 +65,50 @@ function Report() {
                                 value={"R$ 3.125,00"}
                             />
 
-                        ]   
+                        ] : [
+                            <Kpi
+                                background={"#EAE5DE"}
+                                color={"#3A3C16"}
+                                title={"Lucro Bruto"}
+                                value={"R$ 3.125,00"}
+                            />,
+                            <Kpi
+                                background={"#656D4A"}
+                                color={"#EAE5DE"}
+                                title={"Pedidos no dia"}
+                                value={"42"}
+                            />,
+                        ]
+                        
                     }
                 </section>
                 <section className="area-mini-charts">
                     <div className="charts profit">
-                        <h3>Lucros por Período</h3>
                         <Bar                             
                             data={profitData.data}
                             options={profitData.options}
                         />
                     </div>
                     <div className="charts">
-                        <h3>Faturamento R$ por Pedido</h3>
                         <Doughnut 
                             data={invoicingData.data}
                             options={invoicingData.options}
                         />
                     </div>
                 </section>
-                <section className="area-charts">
-                    <div className="charts profit">
-                        <h3>Faturamento por hora</h3>
-                        <Line                             
-                            data={hourlyInvoicingData.data}
-                            options={hourlyInvoicingData.options}
-                        />
-                    </div>
-                </section>
+                {
+                    isDesktop
+                        &&
+                    <section className="area-charts">
+                        <div className="charts profit">
+                            <h3>Faturamento por hora</h3>
+                            <Line                             
+                                data={hourlyInvoicingData.data}
+                                options={hourlyInvoicingData.options}
+                            />
+                        </div>
+                    </section>
+                }
             </main>
         </>
     )

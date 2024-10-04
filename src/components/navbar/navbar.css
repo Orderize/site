@@ -2,10 +2,12 @@
     /* Celular */
     
     .container-navbar {
-        display: flex;
-        align-items: center;
         justify-content: space-between;
-        
+
+        position: fixed;
+        bottom: 0;
+        left: 0;
+
         background: #EAE5DE;
         
         width: 100%;
@@ -16,19 +18,13 @@
     
     .logo {
         display: none;
-        
     }
     
     .ordenation-navbar {
-        display: flex;
-
-        width: calc(100%);
+        justify-content: space-evenly;
+        width: 100%;
     }
 
-    .ordenation-navbar > ul {
-        /* display: none; */
-    }
-    
 }
 
 

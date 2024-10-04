@@ -2,7 +2,7 @@
 
     .container-report {
         width: 100vw;
-        height: 90vh;
+        height: calc(100vh - 60px);
 
         background-color: #F3EFE9;
         color: #3A3C16;
@@ -18,13 +18,43 @@
 
     .container-report > section {
         display: flex;
+        justify-content: space-between;
 
         margin: 20px auto;
 
         width: 90%;
-        height: 20%;        
+        height: 15%;        
     }
 
+    .container-report > section > div {
+        border-radius: 15px;
+        padding: 25px;
+    }
+
+    .container-report > section.area-kpis > div {
+        width: 45%;
+    }
+
+    .container-report > section.area-kpis > div > p {
+        font-size: 20px;
+    }
+
+    .container-report > section.area-kpis > div > p.value {
+        font-size: 26px;
+    }
+
+    .container-report > section.area-mini-charts {
+        justify-content: space-between;
+        flex-direction: column;
+
+        height: 60%;
+    }
+
+    .container-report > section.area-mini-charts > div {
+        height: 45%;
+        text-align: center;
+        background-color: #EAE5DE;
+    }
 }
 
 @media screen and (min-width: 1200px) {

@@ -5,14 +5,14 @@
     }
     50% {
         opacity: 1;
-        height: 100%;
+        height: 28%;
     }
 }
 
 @keyframes closeComponent {
     0% {
         opacity: 1;
-        height: 100%;
+        height: 30%;
     }
     50% {
         height: 0%;
