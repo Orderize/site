@@ -35,7 +35,6 @@
 
 .component-item > .content > .description {
     font-size: 10px; 
-    border: 1px solid white;    
     max-width: 90%;
     max-height: 20px;
 }
