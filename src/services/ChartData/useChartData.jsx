@@ -34,7 +34,7 @@ function useChartData() {
                         plugins: {
                             title: {
                                 display: true,
-                                text: "Faturamento R$ por Pedido",
+                                text: "Faturamentos por Período",
                                 font: {
                                     size: 20,
                                 },
@@ -77,7 +77,7 @@ function useChartData() {
                         plugins: {
                             title: {
                                 display: true,
-                                text: "Faturamentos por Período",
+                                text: "Faturamento R$ por Pedido",
                                 font: {
                                     size: 20,
                                 },

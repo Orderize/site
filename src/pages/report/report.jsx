@@ -13,7 +13,7 @@ function Report() {
 
     // faturamento semanal/mensal x 
     // faturamento por salão e delivery x
-    // lucro bruto
+    // Faturamento bruto
     
     // faturamento do produto por hora 
     // valor médio de cada pedido diario
@@ -43,7 +43,7 @@ function Report() {
                             <Kpi
                                 background={"#EAE5DE"}
                                 color={"#3A3C16"}
-                                title={"Lucro Bruto"}
+                                title={"Faturamento Bruto"}
                                 value={"R$ 3.125,00"}
                             />,
                             <Kpi
@@ -69,7 +69,7 @@ function Report() {
                             <Kpi
                                 background={"#EAE5DE"}
                                 color={"#3A3C16"}
-                                title={"Lucro Bruto"}
+                                title={"Faturamento Bruto"}
                                 value={"R$ 3.125,00"}
                             />,
                             <Kpi
