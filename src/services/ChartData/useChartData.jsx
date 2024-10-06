@@ -34,7 +34,7 @@ function useChartData() {
                         plugins: {
                             title: {
                                 display: true,
-                                text: "Lucros por Período",
+                                text: "Faturamento R$ por Pedido",
                                 font: {
                                     size: 20,
                                 },
@@ -59,7 +59,7 @@ function useChartData() {
                 setProfitData({
                     data: {
                         labels: [
-                            "Lucro Diário", 
+                            "Faturamento Diário", 
                             "Média Semanal", 
                             "Média Mensal",
                         ],
@@ -77,7 +77,7 @@ function useChartData() {
                         plugins: {
                             title: {
                                 display: true,
-                                text: "Faturamento R$ por Pedido",
+                                text: "Faturamentos por Período",
                                 font: {
                                     size: 20,
                                 },
@@ -95,7 +95,7 @@ function useChartData() {
                             x: {
                                 title: {
                                     display: false,
-                                    text: "Tipo de Lucro",
+                                    text: "Tipo de Faturamento",
                                 },
                                 
                                 grid: {
