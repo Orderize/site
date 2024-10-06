@@ -34,15 +34,16 @@ const Home = () => {
           <div className={styles['nav-acessibility']}>
             <ul className={styles['nav-links']}>
               <li><a href="#" className={styles['item-nav']}>Home</a></li>
-              <li><a href="#" className={styles['item-nav']}>Nosso Sistema</a></li>
-              <li><a href="#" className={styles['item-nav']}>Inovação</a></li>
-              <li><a href="#" className={styles['item-nav']}>Benefícios</a></li>
+              <li><a href="#ourSystem" className={styles['item-nav']}>Nosso Sistema</a></li>
+              <li><a href="#benefits" className={styles['item-nav']}>Benefícios</a></li>
+              <li><a href="#contact" className={styles['item-nav']}>Fale Conosco</a></li>
             </ul>
             <div className={styles['icon-acessiblity']}>
               <img width="30" height="30" src="https://img.icons8.com/ios/50/accessibility2.png" alt="accessibility" className={styles['menu-icon-acessebility-desktop']} />
             </div>
           </div>
         </nav>
+        
 
 
         <div className={styles["content"]}>
@@ -56,7 +57,7 @@ const Home = () => {
             <h1>Um Sistema de Gestão Inovador!</h1>
             <p>Revolucione sua pizzaria com o sistema mais completo do país. Aumente a eficiência e ofereça um atendimento excepcional.</p>
             <p>Adquira agora e leve seu negócio ao próximo nível!</p>
-            <button className={styles["buttonDesktop"]}>Saiba mais</button>
+            <button className={styles["buttonDesktop"]}  onClick={() => document.getElementById("ourSystem").scrollIntoView({ behavior: 'smooth' })}>Saiba mais</button>
           </div>
 
           <div className={styles['buttonImageMobile']}>
@@ -74,36 +75,43 @@ const Home = () => {
       </header>
 
 
-      <div className={styles['features']}>
+      <div id="ourSystem" className={styles['features']}>
         <h1 className={styles['h1Mobile']}>Funcionalidades do sistema</h1>
         <h1 className={styles['h1Desktop']}>O que é Orderize?</h1>
         <p className={styles['paragrafoFeatures']}>Orderize transforma o atendimento das pizzarias, tornando-o mais eficiente, direto e claro. Isso garante uma jornada perfeita do início do pedido até a entrega, fortalecendo a satisfação e a lealdade dos clientes.</p>
 
+        <div className={styles["featuresGestao"]}>
         <Funcionalidade
           icon={imgGestao}
           iconDesktop={imagem1}
           title="Gestão de Pedidos"
           texto="Nosso sistema unifica pedidos recebidos por telefone, aplicativo ou presencialmente em uma única plataforma, permitindo acompanhar todas as etapas, da preparação à entrega, com precisão e agilidade."
         />
+        </div>
 
-        <Funcionalidade
-          icon={imgAnalise}
-          iconDesktop={imagem2}
-          title="Análise de Dados"
-          texto="Você tem acesso a análises detalhadas e estatísticas abrangentes, desde pedidos populares até controle de estoque, fornecendo uma visão completa da sua pizzaria e ajudando a otimizar processos e tomar decisões estratégicas."
-          fact1="Fato 1 - 88,9% dos sistemas de pizzarias não possuem informações detalhadas sobre as pizzas mais pedidas!"
-          fact2="Fato 2 - Mais da metade dos pizzaiolos enfrentam dificuldades em gerenciar adequadamente seus recursos!"
-        />
+        <div className={styles["featuresAnalise"]}>
+          <Funcionalidade
+            icon={imgAnalise}
+            iconDesktop={imagem2}
+            title="Análise de Dados"
+            texto="Você tem acesso a análises detalhadas e estatísticas abrangentes, desde pedidos populares até controle de estoque, fornecendo uma visão completa da sua pizzaria e ajudando a otimizar processos e tomar decisões estratégicas."
+            fact1="Fato 1 - 88,9% dos sistemas de pizzarias não possuem informações detalhadas sobre as pizzas mais pedidas!"
+            fact2="Fato 2 - Mais da metade dos pizzaiolos enfrentam dificuldades em gerenciar adequadamente seus recursos!"
+          />
+        </div>
 
-        <Funcionalidade
-          icon={<IoIosTabletPortrait className={styles["icon-sistDed"]} />}
-          iconDesktop={imagem3}
-          title="Sistemas Dedicados"
-          texto="O sistema Orderize facilita a gestão de mesas e pedidos pelos garçons, enquanto o pizzaiolo monitora atrasos para garantir agilidade. Isso assegura um atendimento eficiente e rápido, melhorando a satisfação dos clientes. O sistema também permite ajustes rápidos na cozinha para evitar congestionamentos."
-        />
+        <div className={styles["featuresSistDed"]}>
+          <Funcionalidade
+            icon={<IoIosTabletPortrait className={styles["icon-sistDed"]} />}
+            iconDesktop={imagem3}
+            title="Sistemas Dedicados"
+            texto="O sistema Orderize facilita a gestão de mesas e pedidos pelos garçons, enquanto o pizzaiolo monitora atrasos para garantir agilidade. Isso assegura um atendimento eficiente e rápido, melhorando a satisfação dos clientes. O sistema também permite ajustes rápidos na cozinha para evitar congestionamentos."
+          />
+        </div>
+
       </div>
 
-      <div className={styles['benefits']}>
+    <div id="benefits" className={styles['benefits']}>
         <h1 className={styles['h1DesktopBenfits']}>Principais Benefícios</h1>
 
         <div className={styles['benefitsDesktop']}>
@@ -126,7 +134,7 @@ const Home = () => {
       </div>
 
 
-      <div className={styles['form']}>
+      <div id="contact" className={styles['form']}>
         <div className={styles['mobile']}>
           <h1>Conheça a Orderize!</h1>
           <p><span className={styles['spanForm']}>
@@ -140,7 +148,7 @@ const Home = () => {
 
         <div className={styles['formImage']}>
           <div className={styles['imageContainer']}>
-            <img src={imgForm} alt="Descrição da imagem" />
+            <img src={imgForm} alt="email e tabua de pizza" />
           </div>
 
           <Formulario></Formulario>

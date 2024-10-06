@@ -33,6 +33,10 @@
   font-style: normal;
 }
 
+html{
+  scroll-behavior: smooth;
+}
+
 .body {
   display: flex;
   text-align: left;
@@ -40,7 +44,7 @@
   gap: 50px;
   font-family: 'Lexend';
   background-color: #f2f2f2;
-  width: 100vw;
+  width: 100%;
   height: 100%;
   margin-top: 0;
   overflow-x: hidden;
@@ -68,7 +72,7 @@ header {
 @media(max-width: 760px) {
 
   header {
-    height: 90vh;
+    height: 90%;
     margin: 10px 10px 0 10px;
   }
 
@@ -76,7 +80,7 @@ header {
   .menu-icon-acessebility {
     font-size: 30px;
     cursor: pointer;
-    margin-right: 10px;
+    margin-right: 20px;
     color: black;
   }
 
@@ -205,7 +209,6 @@ header {
 
 
 @media (min-width: 761px) {
-
   header {
     height: auto;
   }
@@ -223,6 +226,7 @@ header {
   .desktop {
     display: flex;
   }
+  
 
   .nav-acessibility {
     display: flex;
@@ -233,12 +237,18 @@ header {
 
   .icon-acessiblity {
     margin-left: auto;
+    transition: transform 0.1s ease;
+  }
+
+  .icon-acessiblity:hover{
+    transform: scale(1.08);
   }
 
   .menu-icon-acessebility-desktop {
     font-size: 30px;
     cursor: pointer;
     color: black;
+    margin-right: 10px;
   }
 
   .nav {
@@ -264,10 +274,12 @@ header {
     font-family: 'Lexend Bold';
     font-size: 18px;
     color: #4D4138;
-    transition: color 0.2s ease;
+    display: inline-block;
+    transition: transform 0.1s ease;
   }
 
   .item-nav:hover {
+    transform: scale(1.1);
     color: #A60F1B;
     filter: brightness(1.2);
   }
@@ -277,7 +289,7 @@ header {
     justify-content: space-between;
     align-items: center;
     text-align: left;
-    width: 90vw;
+    width: 90%;
     margin: 5px;
   }
 
@@ -286,7 +298,7 @@ header {
     justify-content: flex-start;
     align-items: flex-start;
     text-align: left;
-    width: 50%;
+    width: 100%;
   }
 
   .desktop h1 {
@@ -314,12 +326,13 @@ header {
     border: none;
     border-radius: 30px;
     height: auto;
-    transition: background-color 0.3s ease;
+    transition: transform 0.1s ease;
   }
 
   .buttonDesktop:hover {
     background-color: #cc0f1b;
-    transition: 0.2s;
+    /* transition: 0.2s; */
+    transform: scale(1.08);
   }
 
   .imageDesktop {
@@ -331,7 +344,17 @@ header {
     display: flex;
     justify-content: left;
     align-items: left;
-    width: 90vh;
+    width: 80vh;
+  }
+
+ 
+  .featuresAnalise, .featuresGestao{
+    margin: 30px 0px 0px 70px;
+  }
+
+  .featuresSistDed{
+    background-color: #FBD6D0;
+    margin-top: 30px;
   }
 
   .features {
@@ -406,22 +429,22 @@ header {
 
   .imageContainer img {
     max-width: 100%;
-    height: 80%;
+    height: 75%;
   }
 
   .desktop .h1DesktopForm {
     display: flex;
-    margin: 15% 5% 0% 5%;
+    margin: 5% 5% 0% 5%;
     font-family: 'Lexend SemiBold';
     font-size: 30px;
     color: #4D4138;
-    width: 90vw;
+    width: 90%;
   }
 
   .desktop .paragrafoForm {
     font-family: 'Lexend Regular';
     text-align: left;
-    width: 90vw;
+    width: 90%;
     margin: 2% 5% 0% 5%;
 
   }
