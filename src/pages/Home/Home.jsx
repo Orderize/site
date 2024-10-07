@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './Home.module.css';
 
-import Beneficio from '../../components/Benefits/Benefits';
-import Formulario from '../../components/Form/Form';
-import Funcionalidade from '../../components/Features/Features';
+import Beneficio from '../../Components/Benefits/Benefits';
+import Formulario from '../../Components/Form/Form';
+import Funcionalidade from '../../Components/Features/Features';
 
 import imgPizzasBanner from "../../utils/assets/imgsPizzaBanner.png";
 import imgGestao from "../../utils/assets/imgsGestao.svg";

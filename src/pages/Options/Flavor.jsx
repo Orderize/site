@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { MagnifyingGlass } from "@phosphor-icons/react";
-import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
-import Item from "../../components/Item/Item";
-import Navbar from "../../components/Navbar/Navbar";
+import Breadcrumb from "../../Components/Breadcrumb/Breadcrumb";
+import Item from "../../Components/Item/Item";
+import Navbar from "../../Components/Navbar/Navbar";
 import "./Flavor.css"
 
 
@@ -22,18 +22,16 @@ function flavor() {
         {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30"},
         {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30", description: "dasdçlasmd"},
         {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30"},
-        {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30"},
-        {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30"},
         {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30", description: "dasdçlasmd"},
         {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30"},
     ]
     
     return (
         <>
-            <Navbar activeButton={"Opções"} />
+            <Navbar role={"attendant"} activeButton={"Opções"} />
             <main className="container-flavor">
                 <h1>Opções</h1>
-                <div className="navAndSearch">
+                <div className="breadcrumb-search">
                     <Breadcrumb activeButton={"sabores"} />
                     <div className="comp-search">
                         <label htmlFor="search">

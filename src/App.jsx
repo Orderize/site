@@ -2,19 +2,19 @@ import React, { StrictMode } from 'react'
 import { Route, Routes, BrowserRouter } from 'react-router-dom'
 import { createRoot } from 'react-dom/client'
 
-
 import Home from './pages/Home/Home'
-import ModalDrink from './components/Modal/Drink/Drink';
-import ModalFlavor from './components/Modal/Flavor/Flavor';
-import ModalReview from './components/Modal/Review/Review';
-import AddNewFlavor from './components/Modal/New_flavor/Add_new_flavor'
-import SelectPizzaType from './components/Modal/Select_pizza_type/Select_pizza_type'
-import AddNewDrink from './components/Modal/New_drink/AddNewDrink'
-import Navbar from './components/Navbar/Navbar'
+import ModalDrink from './Components/Modal/Drink/Drink';
+import ModalFlavor from './Components/Modal/Flavor/Flavor';
+import ModalReview from './Components/Modal/Review/Review';
+import AddNewFlavor from './Components/Modal/New_flavor/Add_new_flavor'
+import SelectPizzaType from './Components/Modal/Select_pizza_type/Select_pizza_type'
+import AddNewDrink from './Components/Modal/New_drink/AddNewDrink'
+import Navbar from './Components/Navbar/Navbar'
+import Report from './pages/Report/Report'
 import Login from './pages/Login/Login'
 import Order from './pages/New_order/Order'
 import Flavor from './pages/Options/Flavor'
-import './index.css'
+import './utils/global.css'
 
 
 createRoot(document.getElementById('root')).render(
@@ -23,13 +23,13 @@ createRoot(document.getElementById('root')).render(
       <Routes>
         
         <Route
-          path='/home'
+          path='/'
           element={ <Home /> }
         ></Route>
         
         <Route
-          path='/'
-          element={ <Navbar /> }
+          path='/navbar'
+          element={ <Navbar role={"admin"}/> }
         ></Route>
 
         <Route
@@ -45,6 +45,11 @@ createRoot(document.getElementById('root')).render(
         <Route
           path='/sabores'
           element={ <Flavor /> }
+        ></Route>
+
+        <Route
+          path='/relatorios'
+          element={ <Report /> }
         ></Route>
 
         <Route
