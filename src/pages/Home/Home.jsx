@@ -4,6 +4,7 @@ import styles from './Home.module.css';
 import Beneficio from '../../components/Benefits/Benefits';
 import Formulario from '../../components/Form/Form';
 import Funcionalidade from '../../components/Features/Features';
+import Acessebility from '../../components/acessibility/acessibility';
 
 import imgPizzasBanner from "../../utils/assets/imgsPizzaBanner.png";
 import imgGestao from "../../utils/assets/imgsGestao.svg";
@@ -29,7 +30,7 @@ const Home = () => {
       <header>
         <div className={styles['menu']}>
           <IoMenuOutline className={styles["menu-icon"]} />
-          <img width="30" height="30" src="https://img.icons8.com/ios/50/accessibility2.png" alt="accessibility" className={styles['menu-icon-acessebility']} />
+          {/* <img width="30" height="30" src="https://img.icons8.com/ios/50/accessibility2.png" alt="accessibility" className={styles['menu-icon-acessebility']} /> */}
         </div>
 
         <nav className={styles['nav']}>
@@ -41,9 +42,10 @@ const Home = () => {
               <li><a href="#benefits" className={styles['item-nav']}>Benefícios</a></li>
               <li><a href="#contact" className={styles['item-nav']}>Fale Conosco</a></li>
             </ul>
-            <div className={styles['icon-acessiblity']}>
+            {/* <div className={styles['icon-acessiblity']}>
               <img width="30" height="30" src="https://img.icons8.com/ios/50/accessibility2.png" alt="accessibility" className={styles['menu-icon-acessebility-desktop']} />
-            </div>
+            </div> */}
+            <Acessebility></Acessebility>
           </div>
         </nav>
         
