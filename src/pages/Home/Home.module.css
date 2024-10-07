@@ -33,17 +33,17 @@
   font-style: normal;
 }
 
-html{
+html, body{
   scroll-behavior: smooth;
 }
 
-.body {
+body {
   display: flex;
   text-align: left;
   flex-direction: column;
   gap: 50px;
   font-family: 'Lexend';
-  background-color: #f2f2f2;
+  background-color: #f2f2f2 !important;
   width: 100%;
   height: 100%;
   margin-top: 0;
@@ -301,6 +301,12 @@ header {
     width: 100%;
   }
 
+  .colorEmphasis{
+    color: #A60F1B;
+    font-size: 'Lexend SemiBold';
+    font-weight: 700;
+  }
+
   .desktop h1 {
     margin-top: 30px;
     font-family: 'Lexend Medium';
@@ -347,9 +353,8 @@ header {
     width: 80vh;
   }
 
- 
   .featuresAnalise, .featuresGestao{
-    margin: 30px 0px 0px 70px;
+    margin: 60px 70px 30px 70px;
   }
 
   .featuresSistDed{
@@ -420,7 +425,6 @@ header {
     display: flex;
     flex-direction: row;
     margin: 20px 30px 0px 90px;
-
   }
 
   .form {
