@@ -1,17 +1,14 @@
-
 @media screen and (min-width: 768px){
     .container-client {
         background: var(--cor-fundo-sec);
         width: 90%;
-        height: 40%;
+        height: 35vh;
         border-radius: 25px;
         border: 1px solid var(--verde-escuro);
         display: flex;
         justify-content: center;
         flex-direction: column;
         align-items: center;
-        gap: 8px;
-        /* padding: 3vh; */
       }
     
       .container-client .titulo {
@@ -32,7 +29,7 @@
     
       .container-client .titulo p {
         font-family: var(--fonte-titulo);
-        font-size: 25px;
+        font-size: 22px;
         font-weight: 600;
         color: var(--verde-escuro);
       }

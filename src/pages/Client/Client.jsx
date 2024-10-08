@@ -1,31 +1,59 @@
 import React from "react";
 import Navbar from "../../components/navbar/Navbar";
 import FormClient from "../../components/FormClient/FormClient";
-import "./Client.css";
+import ButtonNext from "../../components/Progress/ButtonNext/ButtonNext";
+import Progress from "../../components/Progress/Progress";
+import styles from "./Client.module.css";
+import MediaQuery from "react-responsive";
+import { useNavigate } from "react-router-dom";
 
-function Client() {
+    function Client() {
+        const navigate = useNavigate();
+
+        const handleNext = () => {
+            navigate("/pedidos/novo-pedido");
+        };
+
     return (
         <>
         <Navbar activeButton={"Pedidos"} />
-        <main className="container-order">
-        
 
-            <section className="client-modal">
-            <p className="titulo">Novo Pedido</p>    
+        <main className={styles["container-client"]}>
+        <MediaQuery maxWidth={768}>
 
-                <p className="subtitulo">Selecione o cliente:</p>
+            {/* <p className={styles.titulo}>Novo Pedido</p>     */}
+            {/* <div className={styles["client-modal"]}> */}
 
-                <div className="client-modal-card">
-                    <p>Cliente</p>
+                {/* <p className={styles.subtitulo}>Selecione o cliente:</p> */}
+                <p className={styles.titulo}>Novo Pedido</p>
+
+                <div className={styles["client-modal-card"]}>
+                    <p className={styles.subtitulo}>Cliente</p>
 
                     <FormClient />
                 </div>
-                <input type="text" />
-                <input type="text" disabled value="dsljahads" />
 
+                <div className={styles.progress}>
+                    <ButtonNext onNext={handleNext} />
 
-                <button>Próximo</button>
-            </section>
+                        <Progress currentStep={1} totalSteps={5} />
+                </div>
+            {/* </div> */}
+        </MediaQuery>
+
+        <MediaQuery minWidth={769}>
+        {/* <div className={styles["client-modal"]}> */}
+            <p className={styles.titulo}>Novo Pedido</p>
+
+            <div className={styles["client-modal-card"]}>
+                <p className={styles.subtitulo}>Cliente</p>
+
+                <FormClient />
+            </div>
+
+            <ButtonNext onNext={handleNext} />
+        {/* </div> */}
+        </MediaQuery>
         </main>
     </>
     );

@@ -1,6 +1,6 @@
 import React from "react";
 import { NotePencil } from "@phosphor-icons/react";
-import "./CardClient.css";
+import styles from "./CardClient.module.css";
 
 function CardClient(){
     const [client, setClient] = React.useState({
@@ -24,24 +24,23 @@ function CardClient(){
 
     return (
         <>
-            <main className="container-client">
-
-                <div className="campos">
-                    <div className="titulo">
+            <main className={styles["container-client"]}>
+                <div className={styles.campos}>
+                    <div className={styles.titulo}>
                         <p>Cliente</p>
                         
-                        <button className="edit">
+                        <button className={styles.edit}>
                             <NotePencil size={32} weight="duotone" />
                         </button>
                     </div>
 
-                    <div className="campo__item">
+                    <div className={styles.campo__item}>
                         <p> <b>Nome:</b> {client.name} </p>
                     </div>
-                    <div className="campo__item">
+                    <div className={styles.campo__item}>
                         <p> <b>Telefone:</b> {client.phone} </p>
                     </div>
-                    <div className="campo__item">
+                    <div className={styles.campo__item}>
                         <p> <b>Endereço:</b> {client.address} </p>
                     </div>
                 </div>

@@ -1,44 +1,44 @@
 import React from "react";
-import "./FormClient.css";
+import FloatingInput from "../Floatinginput/Floatinginput";
+import MediaQuery from "react-responsive";
+import styles from "./FormClient.module.css";
 
 function FormClient() {
+
     return (
         <>
             {/* <main className="container-client"> */}
 
-                <div className="campos">
-
-                    <div className="campo__item-telefone">
-                        <p><b>Telefone:</b>  tele</p>
+                <MediaQuery maxWidth={768}>
+                {/* <div className={styles.campos}> */}
+                <div className={styles["campos-list"]}>
+                        <FloatingInput label={"Telefone"} />
+                        <FloatingInput label={"Nome completo"} />
+                        <FloatingInput label={"CEP"} />
+                        <FloatingInput label={"Número"} />
+                        <FloatingInput label={"Endereço"} />
                     </div>
-                    
-                    <div className="campos__list">
-                        <div className="campos-left">
-                            <div className="campo__item">
-                                <p> <b>Nome completo:</b> nome teste </p>
-                            </div>
-                            <div className="campo__item">
-                                <p> <b>Rua:</b>  </p>
-                            </div>
-                            <div className="campo__item">
-                                <p> <b>Cidade:</b>  </p>
-                            </div>
+                {/* </div> */}
+                </MediaQuery>
+
+                <MediaQuery minWidth={769}>
+                {/* <div className={styles.campos}> */}
+                <div className={styles["campos-list"]}>
+                        <div className={styles["campos-left"]}>
+                            <FloatingInput label={"Telefone"} />  
+                            <FloatingInput label={"Nome completo"} />
+                            <FloatingInput label={"CEP"} />
+                            <FloatingInput label={"Número"} />
                         </div>
 
-                        <div className="campos-right">
-                            <div className="campo__item">
-                                <p> <b>CEP:</b>  </p>
-                            </div>
-                            <div className="campo__item">
-                                <p> <b>Número:</b>  </p>
-                            </div>
-                            <div className="campo__item">
-                                <p> <b>Bairro:</b>  </p>
-                            </div>
+                        <div className={styles["campos-right"]}>
+                            <FloatingInput label={"Rua"} />
+                            <FloatingInput label={"Bairro"} />
+                            <FloatingInput label={"Cidade"} />
                         </div>
                     </div>
-
-                </div>
+                {/* </div> */}
+                </MediaQuery>
             {/* </main> */}
         </>
     );

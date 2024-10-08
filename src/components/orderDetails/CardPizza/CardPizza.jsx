@@ -1,20 +1,22 @@
 import React from "react";
-import "./CardPizza.css";
+import AddButton from "../AddButton/AddButton";
+import styles from "./CardPizza.module.css";
 
 function CardPizza(){
     return (
         <>
-        <main className="container-pizza">
-            <div className="titulo">
+        <main className={styles["container-pizza"]}>
+            <div className={styles.titulo}>
                 <p>Pizzas</p>
 
-                <button className="btn-adicionar">Adicionar pizza</button>        
+                <AddButton texto={"Adicionar pizza"} />
+
+                {/* <button className={styles["btn-adicionar"]}>Adicionar pizza</button>         */}
             </div>
 
-            <div className="list-pizza">
+            <div className={styles["list-pizza"]}>
                 
             </div>
-
 
         </main>
         </>

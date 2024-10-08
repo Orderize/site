@@ -1,0 +1,64 @@
+
+
+.input-container {
+  position: relative;
+  /* margin: 20px 0; */
+  /* width: 17vw; */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 12vh;
+}
+
+.input {
+  width: 90%;
+  height: 3vh;
+  padding: 14px 12px;
+  border: 2px solid var(--verde);
+  border-radius: 10px;
+  transition: border 0.3s ease, padding-top 0.3s ease;
+  outline: none;
+  background-color: var(--cor-fundo-sec);
+  /* background-color:  #f7f3e7; */
+  font-family: var(--fonte);
+  font-size: 12px;
+}
+
+.label {
+  position: absolute;
+  top: 12px;
+  left: 16px;
+  /* background-color: #f8f4eb;  */
+  background-color: var(--cor-fundo-sec);
+  /* background-color: #f8f4eb; */
+  padding: 0 5px;
+  color: var(--verde);
+  transition: all 0.3s ease;  
+  pointer-events: none;
+  font-family: var(--fonte);
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.input-container.focused .label {
+  top: -8px;
+  left: 20px;
+  font-size: 12px;
+  /* color: #0077ff; */
+  color: var(--verde-escuro);
+  font-weight: 700;
+}
+
+.input-container.focused input {
+  /* border-color: #0077ff; */
+  border-color: var(--verde-escuro);
+  padding-top: 18px;
+  transition: all 0.3s ease;
+  border-radius: 13px; 
+}
+
+.input-container.focused {
+  /* border-color: #0077ff; */
+  border-color: var(--verde-escuro);
+
+}
