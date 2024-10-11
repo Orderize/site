@@ -1,0 +1,156 @@
+@media screen and (max-width: 1200px) {
+
+    .container-report {
+        width: 100vw;
+        height: calc(100vh - 60px);
+
+        background-color: #F3EFE9;
+        color: #3A3C16;
+        font-weight: 700;
+    }
+    
+    .container-report > h1 {
+        width: 100%;
+        text-align: center;
+
+        padding: 3vh;
+    }
+
+    .container-report > section {
+        display: flex;
+        justify-content: space-between;
+
+        margin: 20px auto;
+
+        width: 90%;
+        height: 15%;        
+    }
+
+    .container-report > section > div {
+        border-radius: 15px;
+        padding: 25px;
+    }
+
+    .container-report > section.area-kpis > div {
+        width: 45%;
+    }
+
+    .container-report > section.area-kpis > div > p {
+        font-size: 20px;
+    }
+
+    .container-report > section.area-kpis > div > p.value {
+        font-size: 26px;
+    }
+
+    .container-report > section.area-mini-charts {
+        justify-content: space-between;
+        flex-direction: column;
+
+        height: 60%;
+    }
+
+    .container-report > section.area-mini-charts > div {
+        height: 45%;
+        text-align: center;
+        background-color: #EAE5DE;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+
+    .container-report {
+        width: 82%;
+        height: 100vh;
+
+        background-color: #F3EFE9;
+        color: #3A3C16;
+        font-weight: 700;
+
+        position: absolute;
+        left: 18%;
+    }
+
+    .container-report > h1 {
+        width: 90%;
+        
+        margin: 3vh auto;
+    }
+
+    .container-report > section {
+        display: flex;
+
+        margin: 20px auto;
+
+        width: 90%;
+        height: 200px;    
+    }
+
+    .container-report > section.area-kpis {
+        height: fit-content;
+        justify-content: space-between;
+        height: 16%;
+    }
+
+    .container-report > section.area-kpis > div {
+        width: 23%;
+        height: 100%;
+    }
+
+    .container-report > section.area-kpis > div > p {
+        font-size: 18px;
+    }
+
+    .container-report > section.area-kpis > div > p.value {
+        font-size: 28px;
+    }
+
+    .container-report > section.area-mini-charts {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 30%;
+    }
+
+    .container-report > section.area-mini-charts > .charts {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        background-color: #EAE5DE;
+        width: 48%;
+        height: 100%;
+        padding: 20px;
+        border-radius: 15px;
+    }
+
+    .container-report > section.area-mini-charts > .charts > h3 {
+        text-align: center;
+    }
+
+    .container-report > section.area-charts {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 30%;
+    }
+
+    .container-report > section.area-charts > .charts {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        background-color: #EAE5DE;
+        width: 100%;
+        height: 100%;
+        padding: 20px;
+        border-radius: 15px;
+    }
+
+    .container-report > section.area-charts > .charts > h3 {
+        text-align: center;
+    }
+
+}

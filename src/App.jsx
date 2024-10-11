@@ -1,21 +1,24 @@
 import React, { StrictMode } from 'react'
 import { Route, Routes, BrowserRouter } from 'react-router-dom'
 import { createRoot } from 'react-dom/client'
-import Login from './pages/login/login'
-import ModalDrink from './components/modal/drink/drink';
-import ModalFlavor from './components/modal/flavor/flavor';
-import ModalReview from './components/modal/review/review';
-import AddNewFlavor from './components/modal/new_flavor/add_new_flavor'
-import SelectPizzaType from './components/modal/select_pizza_type/select_pizza_type'
-import AddNewDrink from './components/modal/new_drink/AddNewDrink'
+
+import Home from './pages/Home/Home'
+import ModalDrink from './Components/Modal/Drink/Drink';
+import ModalFlavor from './Components/Modal/Flavor/Flavor';
+import ModalReview from './Components/Modal/Review/Review';
+import AddNewFlavor from './Components/Modal/New_flavor/Add_new_flavor'
+import SelectPizzaType from './Components/Modal/Select_pizza_type/Select_pizza_type'
+import AddNewDrink from './Components/Modal/New_drink/AddNewDrink'
 import PromoModal from './components/modal/promo_add/PromoModal'
-import Navbar from './components/navbar/navbar'
+import Navbar from './Components/Navbar/Navbar'
+import Report from './pages/Report/Report'
+import Login from './pages/Login/Login'
 import SelectPizzaPromo from './components/modal/select_pizza_promo/selectPizzaPromo'
 import SelectBeveragePromo from './components/modal/select_beverage_promo/SelectBeveragePromo'
-import Order from './pages/new_order/order'
-
-import './index.css'
-import Promotion from './pages/options/promotion'
+import Order from './pages/New_order/Order'
+import Promotion from './pages/Options/Promotion/Promotion'
+import Flavor from './pages/Options/Flavor/Flavor'
+import './utils/global.css'
 
 
 createRoot(document.getElementById('root')).render(
@@ -25,7 +28,12 @@ createRoot(document.getElementById('root')).render(
         
         <Route
           path='/'
-          element={ <Navbar /> }
+          element={ <Home /> }
+        ></Route>
+        
+        <Route
+          path='/navbar'
+          element={ <Navbar role={"admin"}/> }
         ></Route>
 
         <Route
@@ -37,10 +45,20 @@ createRoot(document.getElementById('root')).render(
           path='/pedidos'
           element={ <Order /> }
         ></Route>
+
+        <Route
+          path='/sabores'
+          element={ <Flavor /> }
+        ></Route>
         
         <Route
           path='/promotion'
           element={ <Promotion /> }
+        ></Route>
+
+        <Route
+          path='/relatorios'
+          element={ <Report /> }
         ></Route>
 
         <Route
