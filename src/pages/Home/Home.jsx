@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Home.module.css';
 
 import Beneficio from '../../components/Benefits/Benefits';
-import Formulario from '../../components/Form/Form';
+import Form from '../../components/Form/Form.jsx';
 import Funcionalidade from '../../components/Features/Features';
 import Acessebility from '../../components/acessibility/acessibility';
 
@@ -12,11 +12,8 @@ import imagem1 from '../../utils/assets/imgGestaoDesktop.svg';
 import imgAnalise from "../../utils/assets/imgsAnalise.svg";
 import imagem2 from '../../utils/assets/fatiaPizzaDesktop.svg';
 import imagem3 from '../../utils/assets/imgGarcomPizzaioloDesktop.svg';
-// import atendente from "../../utils/assets/atendente.svg";
 import imgAtendente from "../../utils/assets/imgAtendente.png";
-// import insight from "../../utils/assets/insight.svg";
 import insight from "../../utils/assets/ideia.png";
-// import quebraCabeca from "../../utils/assets/quebraCabeca.svg";
 import quebraCabeca from "../../utils/assets/quebraCabecaa.png";
 import logo from "../../utils/assets/logo.png";
 import imgForm from "../../utils/assets/imgForm.svg";
@@ -30,7 +27,6 @@ const Home = () => {
       <header>
         <div className={styles['menu']}>
           <IoMenuOutline className={styles["menu-icon"]} />
-          {/* <img width="30" height="30" src="https://img.icons8.com/ios/50/accessibility2.png" alt="accessibility" className={styles['menu-icon-acessebility']} /> */}
         </div>
 
         <nav className={styles['nav']}>
@@ -42,9 +38,6 @@ const Home = () => {
               <li><a href="#benefits" className={styles['item-nav']}>Benefícios</a></li>
               <li><a href="#contact" className={styles['item-nav']}>Fale Conosco</a></li>
             </ul>
-            {/* <div className={styles['icon-acessiblity']}>
-              <img width="30" height="30" src="https://img.icons8.com/ios/50/accessibility2.png" alt="accessibility" className={styles['menu-icon-acessebility-desktop']} />
-            </div> */}
             <Acessebility></Acessebility>
           </div>
         </nav>
@@ -137,7 +130,6 @@ const Home = () => {
             icon={insight} alt="lâmpada de idéias e gráfico"
             title="Insights valiosos"
           />
-
         </div>
       </div>
 
@@ -159,7 +151,7 @@ const Home = () => {
             <img src={imgForm} alt="email e tabua de pizza" />
           </div>
 
-          <Formulario></Formulario>
+          <Form></Form>
         </div>
       </div>
     </body>

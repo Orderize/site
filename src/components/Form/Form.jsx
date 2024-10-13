@@ -1,32 +1,60 @@
-import React from "react";
-import styles from "./Form.module.css"
+import React, { useRef } from "react";
+import styles from "./Form.module.css";
+import { sendEmail } from "./form";
 
-function Form() {
-    return (
-        <div className={styles["form"]}>
-            <h1>Envie uma mensagem!</h1>
-            <div>
-                <input type="text" placeholder="Digite seu nome"/>  
-            </div>
+const Form = () => {
+  const formRef = useRef(); 
 
-            <div>
-                <input type="text" placeholder="Digite seu email"/>  
-            </div>
+  const cancel = () => {
+    if (formRef.current) {
+      formRef.current.reset();
+    }
+  };
 
-            <div>
-                <input type="text" placeholder="Assunto"/>  
-            </div>
+  return (
+    <form ref={formRef} onSubmit={sendEmail(formRef)} className={styles['form']}>
+      <h1>Envie uma mensagem!</h1>
 
-            <div>
-                <textarea placeholder="Escreva sua mensagem..."/>  
-            </div>
-           
-            <div className={styles["buttonsForm"]}>
-                <button type="button" className={styles["buttonCancel"]}> Cancelar</button>
-                <button type="submit" className={styles["buttonSubmit"]}> Enviar</button>
-            </div>
-        </div>
-    );
-}
+      <div>
+        <input
+          type="text"
+          name="name"
+          placeholder="Digite seu nome"
+          required
+        />
+      </div>
+
+      <div>
+        <input
+          type="email"
+          name="email"
+          placeholder="Digite seu email"
+          required
+        />
+      </div>
+
+      <div>
+        <input type="text" name="subject" placeholder="Assunto" required/>
+      </div>
+
+      <div>
+        <textarea
+          name="message"
+          placeholder="Escreva sua mensagem..."
+          required
+        />
+      </div>
+
+      <div className={styles['buttonsForm']}>
+        <button type="button" className={styles['buttonCancel']} onClick={cancel}>
+          Cancelar
+        </button>
+        <button type="submit" className={styles['buttonSubmit']}>
+          Enviar
+        </button>
+      </div>
+    </form>
+  );
+};
 
 export default Form;

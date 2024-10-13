@@ -2,7 +2,6 @@ import React, { StrictMode } from 'react'
 import { Route, Routes, BrowserRouter } from 'react-router-dom'
 import { createRoot } from 'react-dom/client'
 
-
 import Home from './pages/Home/Home';
 import ModalDrink from './components/Modal/Drink/Drink';
 import ModalFlavor from './components/Modal/Flavor/Flavor';
