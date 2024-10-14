@@ -1,10 +1,10 @@
 import React from 'react';
 import styles from './Home.module.css';
 
-import Beneficio from '../../components/Benefits/Benefits';
-import Form from '../../components/Form/Form.jsx';
-import Funcionalidade from '../../components/Features/Features';
-import Acessebility from '../../components/acessibility/acessibility';
+import Acessebility from '../../Components/acessibility/acessibility.jsx';
+import Beneficio from '../../Components/Benefits/Benefits';
+import Formulario from '../../Components/Form/Form.jsx';
+import Funcionalidade from '../../Components/Features/Features';
 
 import imgPizzasBanner from "../../utils/assets/imgsPizzaBanner.png";
 import imgGestao from "../../utils/assets/imgsGestao.svg";
@@ -151,7 +151,7 @@ const Home = () => {
             <img src={imgForm} alt="email e tabua de pizza" />
           </div>
 
-          <Form></Form>
+          <Formulario />
         </div>
       </div>
     </body>
