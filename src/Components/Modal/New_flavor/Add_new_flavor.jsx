@@ -22,9 +22,9 @@ const AddNewFlavor = ({ onClose }) => {
           
         </div>
 
-        <div className="progress-indicator">
-          <span className="dot active"></span>
-          <span className="dot"></span>
+        <div className="progress-indicator-add-new">
+        <span className="dot active"></span>
+          <span className="dot-not"></span>
         </div>
       </div>
     </section>

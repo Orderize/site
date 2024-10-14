@@ -107,13 +107,13 @@
     background-color: #5a7620;
 }
 
-.progress-indicator {
+.progress-indicator-select-pizza {
     display: flex;
     justify-content: center;
     margin-top: 15px;
 }
 
-.dot {
+.dot-not {
     width: 8px;
     height: 8px;
     margin: 0 4px;
@@ -127,22 +127,22 @@
 }
 
 .button-back {
-    position: absolute; 
-    top: 10px;
-    left: 10px;
-    background: white; 
-    border: 1px solid #4f5222; 
-    border-radius: 50%;
-    color: #4f5222;
-    font-size: 15px;
-    cursor: pointer;
-    width: 30px; 
-    height: 30px;
-    display: flex; 
-    justify-content: center; 
-    align-items: center;
+  position: absolute; 
+  top: 10px;
+  left: 10px;
+  background: white; 
+  border: 1px solid #4f5222; 
+  border-radius: 50%;
+  color: #4f5222;
+  font-size: 10px; 
+  cursor: pointer;
+  width: 30px; 
+  height: 30px; 
+  display: flex; 
+  justify-content: center;
+  align-items: center;
 }
 
-.button-back:hover {
-    background-color: #f0f0f0; 
+.button-back-add:hover {
+  background-color: #f0f0f0; 
 }
