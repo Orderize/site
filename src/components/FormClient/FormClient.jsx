@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import FloatingInput from "../Floatinginput/Floatinginput";
 import MediaQuery from "react-responsive";
 import styles from "./FormClient.module.css";
+import { inputNumerosCelular, inputCep, inputSomenteTexto, inputSomenteNumero, inputLetrasNumeros } from "../../utils/globals";
 
 function FormClient() {
+    const [telefone, setTelefone] = useState("");   
+    const [nome, setNome] = useState("");
+    const [cep, setCep] = useState("");
+    const [numero, setNumero] = useState("");
+    const [endereco, setEndereco] = useState("");
+    const [rua, setRua] = useState("");
+    const [bairro, setBairro] = useState("");
+    const [cidade, setCidade] = useState("");
 
     return (
         <>
@@ -12,11 +21,11 @@ function FormClient() {
                 <MediaQuery maxWidth={768}>
                 {/* <div className={styles.campos}> */}
                 <div className={styles["campos-list"]}>
-                        <FloatingInput label={"Telefone"} />
-                        <FloatingInput label={"Nome completo"} />
-                        <FloatingInput label={"CEP"} />
-                        <FloatingInput label={"Número"} />
-                        <FloatingInput label={"Endereço"} />
+                        <FloatingInput onValue={telefone} onSet={setTelefone} label={"Telefone"} onInput={inputNumerosCelular}/>
+                        <FloatingInput onValue={nome} onSet={setNome} label={"Nome completo"} onInput={inputSomenteTexto}/>
+                        <FloatingInput onValue={cep} onSet={setCep} label={"CEP"} onInput={inputCep}/>
+                        <FloatingInput onValue={numero} onSet={setNumero} label={"Número"} onInput={inputSomenteNumero}/>
+                        <FloatingInput onValue={endereco} onSet={setEndereco} label={"Endereço"} onInput={inputLetrasNumeros}/>
                     </div>
                 {/* </div> */}
                 </MediaQuery>
@@ -25,16 +34,16 @@ function FormClient() {
                 {/* <div className={styles.campos}> */}
                 <div className={styles["campos-list"]}>
                         <div className={styles["campos-left"]}>
-                            <FloatingInput label={"Telefone"} />  
-                            <FloatingInput label={"Nome completo"} />
-                            <FloatingInput label={"CEP"} />
-                            <FloatingInput label={"Número"} />
+                            <FloatingInput onValue={telefone} onSet={setTelefone} label={"Telefone"} onInput={inputNumerosCelular}/>  
+                            <FloatingInput onValue={nome} onSet={setNome} label={"Nome completo"} onInput={inputSomenteTexto}/>
+                            <FloatingInput onValue={cep} onSet={setCep} label={"CEP"} onInput={inputCep}/>
+                            <FloatingInput onValue={numero} onSet={setNumero} label={"Número"} onInput={inputSomenteNumero}/>
                         </div>
 
                         <div className={styles["campos-right"]}>
-                            <FloatingInput label={"Rua"} />
-                            <FloatingInput label={"Bairro"} />
-                            <FloatingInput label={"Cidade"} />
+                            <FloatingInput onValue={rua} onSet={setRua} label={"Rua"} onInput={inputSomenteTexto}/>
+                            <FloatingInput onValue={bairro} onSet={setBairro} label={"Bairro"} onInput={inputSomenteTexto}/>
+                            <FloatingInput onValue={cidade} onSet={setCidade} label={"Cidade"} onInput={inputSomenteTexto}/>
                         </div>
                     </div>
                 {/* </div> */}

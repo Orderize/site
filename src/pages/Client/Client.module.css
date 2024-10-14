@@ -53,7 +53,7 @@
     font-family: var(--fonte-titulo);
     font-size: 25px;
     font-weight: 600;
-    color: var(--verde);
+    color: var(--verde-escuro);
     padding: 2vh;
 }
 
@@ -88,7 +88,10 @@
         width: 80%;
         height: 100vh;
         margin-left: 20%;
-        background: var(--cor-fundo);
+        /* background: var(--cor-fundo); */
+        background-image: url(../../utils/assets/novo-pedido.svg);
+        background-size: cover;
+        background-color: var(--cor-fundo);
     }
 
     .client-modal-card {
@@ -117,7 +120,7 @@
         font-family: var(--fonte-titulo);
         font-size: 25px;
         font-weight: 600;
-        color: var(--verde);
+        color: var(--verde-escuro);
         padding: 2vh;
     }
 }

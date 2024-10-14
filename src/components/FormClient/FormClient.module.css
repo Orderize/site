@@ -23,7 +23,7 @@
 @media screen and (min-width: 769px) {
   .campos-list {
     /* width: 40vw; */
-    width: 90%;
+    width: 80%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
