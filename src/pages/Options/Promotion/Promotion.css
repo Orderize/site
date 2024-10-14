@@ -22,6 +22,11 @@
     margin: 40px auto;
 }
 
+.container-promotion > .btn-add-wrapper {
+    width: 90%;
+    margin: 20px auto;
+}
+
 .container-promotion > nav {
     margin-left: 10vh;
 }

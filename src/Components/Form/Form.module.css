@@ -1,5 +1,4 @@
 .form {
-    margin: 10px;
     display: flex;
     flex-direction: column;
 }
@@ -53,7 +52,6 @@ input:focus {
     flex-direction: row;
     justify-content: space-between;
     gap: 20vw;
-    cursor: pointer;
 }
 
 .buttonCancel {
@@ -65,6 +63,8 @@ input:focus {
     background-color: transparent;
     font-family: 'Lexend Bold';
     font-size: 13px;
+    cursor: pointer;
+    transition: transform 0.1s ease;
 }
 
 .buttonSubmit {
@@ -76,7 +76,10 @@ input:focus {
     font-size: 13px;
     border: none;
     color: white;
+    cursor: pointer;
+    transition: transform 0.1s ease;
 }
+
 
 @media (min-width: 761px) {
     .form {
@@ -122,7 +125,6 @@ input:focus {
         flex-direction: row;
         justify-content: space-between;
         gap: 5vw;
-        cursor: pointer;
     }
 
     .buttonCancel {
@@ -134,6 +136,8 @@ input:focus {
         background-color: transparent;
         font-family: 'Lexend Bold';
         font-size: 13px;
+        cursor: pointer;
+        transition: transform 0.1s ease;
     }
 
     .buttonSubmit {
@@ -144,5 +148,16 @@ input:focus {
         font-family: 'Lexend Bold';
         font-size: 13px;
         border: none;
+        cursor: pointer;
+        transition: transform 0.1s ease;
+    }
+
+    .buttonCancel:hover{
+        transform: scale(1.08);
+    }
+
+    .buttonSubmit:hover{
+        transform: scale(1.08);
+        background-color: #cc0f1b;
     }
 }
