@@ -23,6 +23,7 @@ import imgForm from "../../utils/assets/imgForm.svg";
 
 import { IoMenuOutline } from "react-icons/io5";
 import { IoIosTabletPortrait } from "react-icons/io";
+import FooterHome from '../../components/FooterHome/FooterHome';
 
 const Home = () => {
   return (
@@ -162,6 +163,8 @@ const Home = () => {
           <Formulario></Formulario>
         </div>
       </div>
+
+      <FooterHome icon={logo} />
     </body>
 
   );
