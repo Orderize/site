@@ -1,0 +1,39 @@
+.container-breadcrumb {
+    width: 65%;
+    border-bottom: 1px solid #656D4A;
+}
+
+.container-breadcrumb > .organization {
+    display: flex;
+    justify-content: space-between;
+
+    width: 55%;
+}
+
+.container-breadcrumb > .organization > li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    list-style-type: none;
+}
+
+.container-breadcrumb > .organization > li > a {
+    height: 100%;
+
+    color: #656D4A;
+    
+    font-size: 20px;
+    font-weight: 600;
+    
+    text-decoration: none;
+}
+
+.container-breadcrumb > .organization > li > a.active {
+    color: #3A3C16;
+    border-bottom: 2px solid #3A3C16;
+
+    font-weight: 700;
+    
+    text-decoration: none;
+}

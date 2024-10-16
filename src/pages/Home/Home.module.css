@@ -357,24 +357,19 @@ header {
     width: 80vh;
   }
 
-  .featuresAnalise, .featuresGestao{
-    margin: 60px 70px 30px 70px;
-  }
-
-  .featuresSistDed{
-    background-color: #FBD6D0;
-    margin-top: 30px;
-  }
-
   .features {
     display: flex;
-    margin-right: auto;
+    /* margin-right: auto; */
     /* border: 1px solid green; */
     text-align: left;
     width: 100%;
     flex-direction: column;
     color: #4D4138;
+  }
 
+  .features .featuresAnalise, .featuresGestao{
+    /* margin: 60px 70px 30px 70px; */
+    margin: 4% 12% 0% 12%;
   }
 
   .features .h1Desktop {
@@ -391,6 +386,11 @@ header {
     padding: 0px 10px 0px 10px;
     margin-top: 2px;
     margin-left: 4.5vw;
+  }
+
+   .featuresSistDed{
+    background-color: #FBD6D0;
+    margin-top: 30px;
   }
 
   .benefits {
