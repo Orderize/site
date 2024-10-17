@@ -24,14 +24,17 @@
     .benefits {
         display: flex;
         flex-direction: column;
+        align-items: center;
+        justify-content: center;
         border: solid 2px #A60F1B;
         margin: 10px;
-        width: 50%;
+        width: 350px;
         height: 400px;
+        gap: 10%;
     }
 
     .benefits img {
-        width: 20vw;
+        width: 70%;
     }
     
     .benefits h3 {
@@ -41,6 +44,4 @@
         font-size: 18px;
         font-family: 'Lexend Light';
     }
-
-
 }
