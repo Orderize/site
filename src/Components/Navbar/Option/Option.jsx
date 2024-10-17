@@ -3,7 +3,7 @@ import { ForkKnife, Wine, Money } from "@phosphor-icons/react";
 import ButtonNavbar from '../Button/ButtonNavbar';
 import "./Option.css"
 
-function option({ isActive }) {
+function Option({ isActive }) {
     const [actualButton, setActualButton] = useState("Sabores");
     
 
@@ -36,4 +36,4 @@ function option({ isActive }) {
     );
 }
 
-export default option;
+export default Option;

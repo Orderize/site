@@ -15,8 +15,9 @@ import Report from './Pages/Report/Report'
 import Login from './Pages/Login/Login'
 import SelectPizzaPromo from './Components/Modal/select_pizza_promo/selectPizzaPromo'
 import SelectBeveragePromo from './Components/Modal/select_beverage_promo/SelectBeveragePromo'
-import Order from './Pages/New_order/Order'
+import Order from './Pages/Order/Order'
 import Promotion from './Pages/Options/Promotion/Promotion'
+import Client from './Pages/Client/Client'
 import Flavor from './Pages/Options/Flavor/Flavor'
 import './utils/global.css'
 
@@ -43,7 +44,12 @@ createRoot(document.getElementById('root')).render(
 
         <Route
           path='/pedidos'
-          element={ <Order /> }
+          element={ <Client /> }
+        ></Route>
+
+        <Route 
+          path='/pedidos/novo-pedido'
+          element={ <Order />}
         ></Route>
 
         <Route

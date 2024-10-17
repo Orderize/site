@@ -1,0 +1,126 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* .client-modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 75vw; */
+    /* width: 80%; */
+    /* height: 75vh; */
+    /* margin-left: 20vw; */
+    /* position: fixed; */
+    /* border: 2px solid violet;
+} */
+
+.container-client {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 76vh;
+    background-color: var(--cor-fundo);
+}
+
+.client-modal-card {
+    /* width: calc(100% + 20px); */
+    width: 75%;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* gap: 15px; */
+    background: var(--cor-fundo-sec);
+    border: 1px solid var(--verde-escuro);
+    border-radius: 25px;
+}
+
+.titulo {
+    font-family: var(--fonte-titulo);
+    font-size: 30px;
+    font-weight: 700;
+    /* align-self: flex-start; */
+    color: var(--verde-escuro);
+    /* margin: 3vh 0; */
+}
+
+.subtitulo {
+    font-family: var(--fonte-titulo);
+    font-size: 25px;
+    font-weight: 600;
+    color: var(--verde-escuro);
+    padding: 2vh;
+}
+
+.progress {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
+    height: 10vh;
+    position: fixed;
+    bottom: 0;
+    padding: 20px;
+    background-color: var(--cor-fundo);
+}
+
+@media screen and (min-width: 768px) {
+    .container-client {
+        height: 90vh;
+    }
+
+}
+
+@media screen and (min-width: 1200px) {
+
+    .container-client {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around; 
+        align-items: center;
+        /* position: fixed; */
+        width: 82%;
+        height: 100vh;
+        margin-left: 18%;
+        /* background: var(--cor-fundo); */
+        background-image: url(../../utils/assets/novo-pedido.svg);
+        background-size: cover;
+        background-color: var(--cor-fundo);
+    }
+
+    .client-modal-card {
+        width: 55%;
+        height: 65vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        /* gap: 15px; */
+        background: var(--cor-fundo-sec);
+        border: 1px solid var(--verde-escuro);
+        border-radius: 25px;
+    }
+
+    .titulo {
+        font-family: var(--fonte-titulo);
+        font-size: 30px;
+        font-weight: 700;
+        /* align-self: flex-start; */
+        color: var(--verde-escuro);
+        /* margin: 3vh 0; */
+    }
+
+    .subtitulo {
+        font-family: var(--fonte-titulo);
+        font-size: 25px;
+        font-weight: 600;
+        color: var(--verde-escuro);
+        padding: 2vh;
+    }
+}
