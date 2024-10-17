@@ -2,7 +2,7 @@ import React, { StrictMode } from 'react'
 import { Route, Routes, BrowserRouter } from 'react-router-dom'
 import { createRoot } from 'react-dom/client'
 
-import Home from './pages/Home/Home'
+import Home from './Pages/Home/Home'
 import ModalDrink from './Components/Modal/Drink/Drink';
 import ModalFlavor from './Components/Modal/Flavor/Flavor';
 import ModalReview from './Components/Modal/Review/Review';
@@ -10,10 +10,10 @@ import AddNewFlavor from './Components/Modal/New_flavor/Add_new_flavor'
 import SelectPizzaType from './Components/Modal/Select_pizza_type/Select_pizza_type'
 import AddNewDrink from './Components/Modal/New_drink/AddNewDrink'
 import Navbar from './Components/Navbar/Navbar'
-import Report from './pages/Report/Report'
-import Login from './pages/Login/Login'
-import Order from './pages/New_order/Order'
-import Flavor from './pages/Options/Flavor'
+import Report from './Pages/Report/Report'
+import Login from './Pages/Login/Login'
+import Order from './Pages/New_order/Order'
+import Flavor from './Pages/Options/Flavor'
 import './utils/global.css'
 
 
