@@ -1,9 +1,9 @@
 import React from "react";
+import ButtonNavbar from "../Navbar/Button/ButtonNavbar";
 import { Link } from "react-router-dom";
 import "./Breadcrumb.css"
-// import ButtonNavbar from "../navbar/button/buttonNavbar";
 
-function breadcrumb({ activeButton }) {
+function Breadcrumb({ activeButton }) {
     return (
         <>
             <nav className="container-breadcrumb">
@@ -31,4 +31,4 @@ function breadcrumb({ activeButton }) {
     );
 }
 
-export default breadcrumb;
+export default Breadcrumb;

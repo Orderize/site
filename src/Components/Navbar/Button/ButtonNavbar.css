@@ -1,40 +1,73 @@
-a {
-    text-decoration: none;    
+.container-buttonNavbar a {
+    text-decoration: none;   
 }
+
+.button-navbar-text {
+    display: none;
+}
+    
+
 @media screen and (max-width: 1200px) {
+
+    .button-navbar-text {
+        display: block;
+        font-family: var(--fonte);
+    }
     
     .container-buttonNavbar {
         display: block;
         padding: 3px;
+        justify-content: space-around;
         
         margin: 0 25px;
     
         text-decoration: none;
         list-style-type: none;
     
-        border-radius: 50%;
+        border-radius: 15px;
         cursor: pointer;
     }
-
+    
+    .main {
+        display: block;    
+        width: 70%;
+    
+        text-decoration: none;
+        list-style-type: none;
+    
+        border-radius: 15px;
+        cursor: pointer;
+    }
+    
     .container-buttonNavbar.active {
-        background-color: #656D4A;        
+        background-color: #656D4A;  
+        width: 18%;
+        display: flex;
+        justify-content: center;
+        align-items: center;      
     }
     
     .container-buttonNavbar > a {
         display: flex;
-        
-        color: #3A3C16;
+        justify-content: center;
+        align-items: center;
+        color: var(--verde-escuro);
         font-size: 18px;
         font-weight: 600;
+        font-family: var(--fonte);
     }
-    
+
+
     .container-buttonNavbar > a > i {
+        margin-right: 15px;
         height: 40px;
     }
     
     a.active {
         display: flex;
         justify-content: center;
+        align-items: center;
+        text-align: center;
         color: #EAE5DE;
     }
     
@@ -47,6 +80,11 @@ a {
 
 
 @media screen and (min-width: 1200px) {
+    .button-navbar-text {
+        display: block;
+        font-family: var(--fonte);
+    } 
+
     .container-buttonNavbar {
         display: block;
         width: 90%;
@@ -62,19 +100,20 @@ a {
     
     .container-buttonNavbar.active {
         background-color: #656D4A;
+        /* width: 70%; */
+        justify-content: flex-start;
     }
     
     .container-buttonNavbar > a {
         display: flex;
         align-items: center;
-        
-        color: #3A3C16;
+        color: var(--verde-escuro);
         font-size: 20px;
         font-weight: 600;
         
         padding: 5px 10px;
     }
-    
+
     .container-buttonNavbar > a > i {
         margin-right: 15px;
         height: 40px;
@@ -82,6 +121,8 @@ a {
     
     a.active {
         justify-content: flex-start;
+        display: flex;
+        /* justify-content: center; */
         color: #EAE5DE;
     }
     

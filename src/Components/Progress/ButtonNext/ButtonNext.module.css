@@ -1,0 +1,23 @@
+.btn-next {
+    background-color: var(--verde);
+    color: var(--cor-fundo);
+    align-items: center;
+    /* width:  */
+    height: 4vh;
+    width: 20vw;
+    font-family: var(--fonte);
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+    margin: 0;
+    box-shadow: none;
+    transition: background-color 0.3s;
+}
+
+@media screen and (min-width: 1200px) {
+    .btn-next {
+        width: 6vw;
+        height: 6vh;
+        font-size: 15px;
+    }
+}
