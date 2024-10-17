@@ -25,7 +25,7 @@ import FooterHome from '../../components/FooterHome/FooterHome';
 const Home = () => {
   return (
     <body>
-      <header>
+      <header id="home">
         <div className={styles['menu']}>
           <IoMenuOutline className={styles["menu-icon"]} />
         </div>

@@ -1,7 +1,3 @@
-.firstpart {
-    height: 38.36%;
-}
-
 .gap {
     height: 5px;
     width: 100%;
@@ -13,20 +9,15 @@
     justify-content: center;
     gap: 25px;
 }
-
 .medias-social img {
     width: 15%;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 460px) {
-
-    .desktop, .vetorFooter {
-        display: none;
-    }
-
     .mobile {
         display: flex;
-        /* flex-direction: column; */
+        flex-direction: column;
         height: 80vh;
         align-items: center;
         justify-content: space-evenly;
@@ -35,7 +26,6 @@
         background-color: #FBD6D0;
         padding-top: 10px;
     }
-
     .firstpart, .secondpart {
         display: flex;
         justify-content: space-evenly;
@@ -64,11 +54,8 @@
     }
 }
 
-@media screen and (max-width: 1024px){
-    .mobile{
-        display: none;
-    }
 
+@media screen and (min-width: 460px) and (max-width: 1025px) {
     .vetorFooter{
         width: 100%;
         display: block;
@@ -83,29 +70,36 @@
         font-family: 'Lexend Medium';
         color: #4D4138;
         background-color: #FBD6D0;
-        padding: 0;
     }
-
     .firstpart {
         width: 95%;
         height: 30%;
         display: flex;
         align-items: center;
-        justify-content: space-evenly;
+        justify-content: center;
+        gap: 6%;
     }
-
     .menu {
         display: flex;
         gap: 40px;
         justify-content: center;
         align-items: center;
     }
-
     .menu li, .menu a {
         font-weight: 700;
         font-size: 16px;
         color: #4D4138;
         list-style-type: none;
+        transition: transform 0.1s ease;
+    }
+
+    .menu li:hover {
+        transform: scale(1.1);
+        filter: brightness(1.2);
+    }
+
+    .menu a:hover {
+        color: #A60F1B;
     }
     
     .secondpart {
@@ -118,3 +112,58 @@
 
 }
 
+@media screen and (min-width: 1024px) {
+    .vetorFooter{
+        width: 100%;
+        display: block;
+    }
+
+    .desktop {
+        display: flex;
+        flex-direction: column;
+        height: 35vh;
+        align-items: center;
+        justify-content: space-evenly;
+        font-family: 'Lexend Medium';
+        color: #4D4138;
+        background-color: #FBD6D0;
+    }
+    .firstpart {
+        width: 95%;
+        height: 30%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6%;
+    }
+    .menu {
+        display: flex;
+        gap: 80px;
+        justify-content: center;
+        align-items: center;
+    }
+    .menu li, .menu a {
+        font-weight: 700;
+        font-size: 18px;
+        color: #4D4138;
+        list-style-type: none;
+        transition: transform 0.1s ease;
+    }
+
+    .menu li:hover {
+        transform: scale(1.1);
+        filter: brightness(1.2);
+    }
+
+    .menu a:hover {
+        color: #A60F1B;
+    }
+    
+    .secondpart {
+        height: 60%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+}

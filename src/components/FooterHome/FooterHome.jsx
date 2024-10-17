@@ -9,7 +9,7 @@ import MediaQuery from "react-responsive"
 
 function FooterHome({ icon, }) {
     const listMenu = [
-        { text: "Home", href: "#" },
+        { text: "Home", href: "#home" },
         { text: "Nosso Sistema", href: "#ourSystem" },
         { text: "Benefícios", href: "#benefits" },
         { text: "Fale Conosco", href: "#contact" },
@@ -22,8 +22,9 @@ function FooterHome({ icon, }) {
     ];
 
     return (
-            <footer className={style["footerhome"]}>
-                <MediaQuery maxWidth={460}>
+        <footer className={style["footerhome"]}>
+            <MediaQuery maxWidth={460}>
+                {matches => matches && (
                     <div className={style["mobile"]}>
                         <div className={style["firstpart"]}>
                             <div className={style["logo"]}>
@@ -47,35 +48,40 @@ function FooterHome({ icon, }) {
                             </div>
                         </div>
                     </div>
-                </MediaQuery>
-                
-                <MediaQuery maxWidth={1024}>
-                    <img className={style["vetorFooter"]} src={imgVectorFooter} alt="Vetor do footer" />
-                    <div className={style["desktop"]}>
-                    <div className={style["firstpart"]}>
-                            <div className={style["logo"]}>
-                                <img src={icon} alt='Logo da Orderize' />
+                )}
+            </MediaQuery>
+
+            <MediaQuery minWidth={461} maxWidth={1440}>
+                {matches => matches && (
+                    <div>
+                        <img className={style["vetorFooter"]} src={imgVectorFooter} alt="Ondulações no footer" />
+                            <div className={style["desktop"]}>
+                                <div className={style["firstpart"]}>
+                                    <div className={style["logo"]}>
+                                        <img src={icon} alt='Logo da Orderize' />
+                                    </div>
+                                    <ul className={style["menu"]}>
+                                        {listMenu.map((item, index) => (
+                                            <li key={index}><a href={item.href}>{item.text}</a></li>
+                                        ))}
+                                    </ul>
+                                </div>
+                                <span className={style["gap"]}></span>
+                                <div className={style["secondpart"]}>
+                                    <div className={style["medias-social"]}>
+                                        {icons.map((icon, index) => (
+                                            <img key={index} src={icon.src} alt={icon.alt} />
+                                        ))}
+                                    </div>
+                                    <div className={style["copyright"]}>
+                                        <p>&#169;CopyRight Orderize - 2024</p>
+                                    </div>
+                                </div>
                             </div>
-                            <ul className={style["menu"]}>
-                                {listMenu.map((item, index) => (
-                                    <li key={index}><a href={item.href}>{item.text}</a></li>
-                                ))}
-                            </ul>
-                        </div>
-                        <span className={style["gap"]}></span>
-                        <div className={style["secondpart"]}>
-                            <div className={style["medias-social"]}>
-                                {icons.map((icon, index) => (
-                                    <img key={index} src={icon.src} alt={icon.alt} />
-                                ))}
-                            </div>
-                            <div className={style["copyright"]}>
-                                <p>&#169;CopyRight Orderize - 2024</p>
-                            </div>
-                        </div>
                     </div>
-                </MediaQuery> 
-            </footer>
+                )}
+            </MediaQuery>
+        </footer>
     );
 }
 
