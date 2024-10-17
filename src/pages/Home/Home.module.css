@@ -1,0 +1,460 @@
+@font-face {
+  font-family: 'Lexend Medium';
+  src: url('fonts/Lexend-Medium.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Lexend Light';
+  src: url('fonts/Lexend-Light.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Lexend Bold';
+  src: url('fonts/Lexend-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Lexend Regular';
+  src: url('fonts/Lexend-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Lexend SemiBold';
+  src: url('fonts/Lexend-SemiBold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+html, body{
+  scroll-behavior: smooth;
+}
+
+body {
+  display: flex;
+  text-align: left;
+  flex-direction: column;
+  gap: 50px;
+  font-family: 'Lexend';
+  background-color: #f2f2f2 !important;
+  width: 100%;
+  height: 100%;
+  margin-top: 0;
+  overflow-x: hidden;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  background-color: #FBD6D0;
+  width: 90%;
+  padding: 20px 10px 0px 20px;
+  margin-top: 20px;
+  margin: 2% auto 0;
+  border-radius: 20px;
+}
+
+.menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.form {
+  width: 90%;
+  margin: auto;
+}
+
+/* responsividade */
+@media(max-width: 760px) {
+
+  header {
+    height: 90%;
+    margin: 10px 10px 0 10px;
+  }
+
+  .menu-icon,
+  .menu-icon-acessebility {
+    font-size: 30px;
+    cursor: pointer;
+    margin-right: 20px;
+    color: black;
+  }
+
+  .nav-links,
+  .imageLogo,
+  .icon-acessiblity,
+  .desktop,
+  .pizzasBannerDesktop,
+  .h1Desktop,
+  .paragrafoFeatures {
+    display: none;
+  }
+
+  .mobile h1 {
+    margin-top: 15px;
+    font-family: 'Lexend Medium';
+    font-size: 30px;
+    color: #A60F1B;
+  }
+
+  .mobile p {
+    font-family: 'Lexend Regular';
+    font-size: medium !important;
+    margin: 20px 0;
+    color: #4D4138;
+  }
+
+  .buttonContainer {
+    width: 100%;
+  }
+
+  .buttonImageMobile {
+    display: flex;
+    gap: 30px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .buttonImageMobile .button {
+    background-color: #A60F1B;
+    color: white;
+    margin: 0px;
+    padding: 12px 28px;
+    font-size: 15px;
+    font-weight: lighter;
+    cursor: pointer;
+    border: none;
+    border-radius: 30px;
+    height: auto;
+    text-wrap: nowrap;
+  }
+
+  .buttonImageMobile .pizzasBanner {
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    width: 80%;
+  }
+
+  .features {
+    margin-top: 30%;
+    display: flex;
+    flex-direction: column;
+    color: #4D4138;
+    text-align: center;
+    align-items: center;
+  }
+
+  .features h1 {
+    margin: 0% 5% 0% 5%;
+    text-align: center;
+    font-family: 'Lexend SemiBold';
+    font-size: 30px;
+  }
+
+  .icon-sistDed {
+    margin-top: 30px;
+    font-size: 90px;
+    color: black;
+  }
+
+  .benefits {
+    display: flex;
+    flex-direction: column;
+    color: #4D4138;
+    text-align: center;
+    align-items: center;
+  }
+
+  .benefits h1 {
+    margin: 0% 5% 0% 5%;
+    font-family: 'Lexend SemiBold';
+    font-size: 30px;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    color: #4D4138;
+    text-align: center;
+    align-items: center;
+  }
+
+  .form h1 {
+    font-family: 'Lexend SemiBold';
+    font-size: 30px;
+  }
+
+  .form p {
+    font-size: 15px;
+    font-family: 'Lexend Light';
+  }
+
+  .spanForm {
+    margin: 20px 2px 10px 0px;
+    text-align: center;
+    color: #A60F1B;
+    font-family: 'Lexend Medium';
+  }
+
+  .imageContainer {
+    display: none;
+  }
+}
+
+
+@media (min-width: 761px) {
+  header {
+    height: auto;
+  }
+
+  .menu-icon,
+  .menu-icon-acessebility,
+  .mobile,
+  .buttonImageMobile,
+  .h1Mobile {
+    display: none;
+  }
+
+  .imageLogo,
+  .icon-acessiblity,
+  .desktop {
+    display: flex;
+  }
+  
+
+  .nav-acessibility {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+  }
+
+  .icon-acessiblity {
+    margin-left: auto;
+    transition: transform 0.1s ease;
+  }
+
+  .icon-acessiblity:hover{
+    transform: scale(1.08);
+  }
+
+  .menu-icon-acessebility-desktop {
+    font-size: 30px;
+    cursor: pointer;
+    color: black;
+    margin-right: 10px;
+  }
+
+  .nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .imageLogo {
+    margin-right: auto;
+  }
+
+  .nav-links {
+    display: flex;
+    list-style: none;
+    margin: 10px 5px 0px 5px;
+  }
+
+  .item-nav {
+    margin-left: 15px;
+    text-decoration: none;
+    font-family: 'Lexend Bold';
+    font-size: 18px;
+    color: #4D4138;
+    display: inline-block;
+    transition: transform 0.1s ease;
+  }
+
+  .item-nav:hover {
+    transform: scale(1.1);
+    color: #A60F1B;
+    filter: brightness(1.2);
+  }
+
+  .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    width: 90%;
+    margin: 5px;
+  }
+
+  .desktop {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: left;
+    width: 100%;
+  }
+
+  .colorEmphasis{
+    color: #A60F1B;
+    font-size: 'Lexend SemiBold';
+    font-weight: 700;
+  }
+
+  .desktop h1 {
+    margin-top: 30px;
+    font-family: 'Lexend Medium';
+    font-size: 30px;
+    color: #A60F1B;
+  }
+
+  .desktop p {
+    font-family: 'Lexend Regular';
+    font-size: medium !important;
+    margin: 20px 0;
+    color: #4D4138;
+  }
+
+  .buttonDesktop {
+    background-color: #A60F1B;
+    color: white;
+    margin: 20px 0;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: lighter;
+    cursor: pointer;
+    border: none;
+    border-radius: 30px;
+    height: auto;
+    transition: transform 0.1s ease;
+  }
+
+  .buttonDesktop:hover {
+    background-color: #cc0f1b;
+    /* transition: 0.2s; */
+    transform: scale(1.08);
+  }
+
+  .imageDesktop {
+    flex-direction: row;
+  }
+
+  .pizzasBannerDesktop {
+    z-index: 999;
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    width: 80vh;
+  }
+
+  .features {
+    display: flex;
+    /* margin-right: auto; */
+    /* border: 1px solid green; */
+    text-align: left;
+    width: 100%;
+    flex-direction: column;
+    color: #4D4138;
+  }
+
+  .features .featuresAnalise, .featuresGestao{
+    /* margin: 60px 70px 30px 70px; */
+    margin: 4% 12% 0% 12%;
+  }
+
+  .features .h1Desktop {
+    display: flex;
+    margin: 0% 5% 0% 5%;
+    font-family: 'Lexend SemiBold';
+    font-size: 30px;
+  }
+
+  .features .paragrafoFeatures {
+    font-family: 'Lexend Regular';
+    text-align: left;
+    width: 90%;
+    padding: 0px 10px 0px 10px;
+    margin-top: 2px;
+    margin-left: 4.5vw;
+  }
+
+   .featuresSistDed{
+    background-color: #FBD6D0;
+    margin-top: 30px;
+  }
+
+  .benefits {
+    display: flex;
+    flex-direction: column;
+    color: #4D4138;
+    text-align: center;
+    align-items: center;
+  }
+
+  .benefits h1 {
+    margin: 0% 5% 0% 5%;
+    font-family: 'Lexend SemiBold';
+    font-size: 30px;
+    text-align: left;
+    justify-content: left;
+  }
+
+  .benefitsDesktop {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .benefits .h1DesktopBenfits {
+    display: flex;
+    margin: 0% 5% 0% 5%;
+    font-family: 'Lexend SemiBold';
+    font-size: 30px;
+  }
+
+  .mobile {
+    display: none;
+  }
+
+  .formImage {
+    display: flex;
+    flex-direction: row;
+    margin: 20px 30px 0px 90px;
+  }
+
+  .form {
+    margin-right: 20px;
+  }
+
+  .imageContainer img {
+    max-width: 100%;
+    height: 75%;
+  }
+
+  .desktop .h1DesktopForm {
+    display: flex;
+    margin: 5% 5% 0% 5%;
+    font-family: 'Lexend SemiBold';
+    font-size: 30px;
+    color: #4D4138;
+    width: 90%;
+  }
+
+  .desktop .paragrafoForm {
+    font-family: 'Lexend Regular';
+    text-align: left;
+    width: 90%;
+    margin: 2% 5% 0% 5%;
+
+  }
+}
