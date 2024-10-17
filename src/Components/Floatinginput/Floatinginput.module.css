@@ -12,16 +12,17 @@
 
 .input {
   width: 95%;
-  height: 3vh;
+  height: 5vh;
   padding: 14px 12px;
   border: 2px solid var(--verde);
   border-radius: 10px;
   transition: border 0.3s ease, padding-top 0.3s ease;
   outline: none;
   background-color: var(--cor-fundo-sec);
+  color: var(--verde);
   /* background-color:  #f7f3e7; */
   font-family: var(--fonte);
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .label {

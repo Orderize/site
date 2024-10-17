@@ -23,7 +23,7 @@ const FloatingInput = ({ label, initialValue = '', onSet, onValue, onInput }) =>
           value={inputValue || ''}
           onFocus={handleFocus}
           onBlur={handleBlur}
-          onChange={(e)=> {onSet(e.target.value); setInputValue(e.target.value)}}
+          onChange={(e) => {onSet(e.target.value); setInputValue(e.target.value)}}
           onInput={onInput}
           placeholder=" "
         />

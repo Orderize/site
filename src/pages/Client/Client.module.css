@@ -85,9 +85,9 @@
         justify-content: space-around; 
         align-items: center;
         /* position: fixed; */
-        width: 92%;
+        width: 82%;
         height: 100vh;
-        margin-left: 20%;
+        margin-left: 18%;
         /* background: var(--cor-fundo); */
         background-image: url(../../utils/assets/novo-pedido.svg);
         background-size: cover;
