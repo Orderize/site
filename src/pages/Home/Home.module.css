@@ -80,7 +80,6 @@ header {
     margin: 10px 10px 0 10px;
   }
 
-  .menu-icon,
   .menu-icon-acessebility {
     font-size: 30px;
     cursor: pointer;
@@ -88,8 +87,6 @@ header {
     color: black;
   }
 
-  .nav-links,
-  .imageLogo,
   .icon-acessiblity,
   .desktop,
   .pizzasBannerDesktop,
@@ -137,8 +134,9 @@ header {
     text-wrap: nowrap;
   }
 
+  /* MODIFIQUEI O Z-INDEX PQ ESTAVA SOBRESAINDO NA NAV; OLHA OQ MUDA PF */
   .buttonImageMobile .pizzasBanner {
-    z-index: 999;
+    z-index: 0;
     display: flex;
     justify-content: center;
     align-items: left;
@@ -217,7 +215,6 @@ header {
     height: auto;
   }
 
-  .menu-icon,
   .menu-icon-acessebility,
   .mobile,
   .buttonImageMobile,
@@ -225,7 +222,6 @@ header {
     display: none;
   }
 
-  .imageLogo,
   .icon-acessiblity,
   .desktop {
     display: flex;
@@ -253,39 +249,6 @@ header {
     cursor: pointer;
     color: black;
     margin-right: 10px;
-  }
-
-  .nav {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
-  }
-
-  .imageLogo {
-    margin-right: auto;
-  }
-
-  .nav-links {
-    display: flex;
-    list-style: none;
-    margin: 10px 5px 0px 5px;
-  }
-
-  .item-nav {
-    margin-left: 15px;
-    text-decoration: none;
-    font-family: 'Lexend Bold';
-    font-size: 18px;
-    color: #4D4138;
-    display: inline-block;
-    transition: transform 0.1s ease;
-  }
-
-  .item-nav:hover {
-    transform: scale(1.1);
-    color: #A60F1B;
-    filter: brightness(1.2);
   }
 
   .content {
