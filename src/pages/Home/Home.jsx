@@ -20,11 +20,12 @@ import imgForm from "../../utils/assets/imgForm.svg";
 
 import { IoMenuOutline } from "react-icons/io5";
 import { IoIosTabletPortrait } from "react-icons/io";
+import FooterHome from '../../components/FooterHome/FooterHome';
 
 const Home = () => {
   return (
     <body>
-      <header>
+      <header id="home">
         <div className={styles['menu']}>
           <IoMenuOutline className={styles["menu-icon"]} />
         </div>
@@ -154,6 +155,8 @@ const Home = () => {
           <Formulario />
         </div>
       </div>
+
+      <FooterHome icon={logo} />
     </body>
 
   );
