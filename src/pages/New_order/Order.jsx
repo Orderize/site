@@ -1,11 +1,11 @@
 import React from "react";
-import Navbar from "../../components/Navbar/Navbar";
+import Navbar from "../../Components/Navbar/Navbar";
 import "./Order.css"
 
 function order() {
     return (
         <>
-            <Navbar activeButton={"Pedidos"} />
+            <Navbar role={"attendant"} activeButton={"Pedidos"} />
             <main className="container-order">
                 <h1>Novo Pedido</h1>
                 <section className="client-modal">
