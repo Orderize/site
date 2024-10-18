@@ -1,6 +1,7 @@
 .features {
   display: flex;
   flex-direction: column; 
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -94,27 +95,29 @@
   }
 
   .icon-container{
-    width: 50%;
+    width: 70%;
     display: flex;
     align-items: center;
+    padding-right: 30px;
   }
 
   .desktop .icon-img-desktop {
     width: 70%;
+    min-width: 300px; 
   }
 
   .funcionalidade-invertida{
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 50px;
+    gap: 100px;
     margin-left: 30px;
   }
 
   .titleText {
     display: flex;
     flex-direction: column;
-    width: 45%; 
+    width: 100%; 
     margin: 20px 70px 0px 0px; 
     justify-content: center;
   }

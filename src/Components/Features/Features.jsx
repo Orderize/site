@@ -32,7 +32,6 @@ function Funcionalidade({ icon, iconDesktop, title, texto, fact1, fact2, inverte
           </div>
         ) : (
           <div className={styles["funcionalidade"]}>
-            {/* Conteúdo na ordem padrão */}
             <div className={styles["icon-container"]}>
               <img src={iconDesktop} alt={title} className={styles["icon-img-desktop"]} />
             </div>
