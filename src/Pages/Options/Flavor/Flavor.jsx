@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { MagnifyingGlass } from "@phosphor-icons/react";
+import { Log, MagnifyingGlass } from "@phosphor-icons/react";
 import Breadcrumb from "../../../Components/Breadcrumb/Breadcrumb";
 import Item from "../../../Components/Item/Item";
 import Navbar from "../../../Components/Navbar/Navbar";
@@ -9,6 +9,7 @@ import api from "../../../services/api";
 
 function flavor() {
     const [valueSearch, setValueSearch] = useState("");
+    const [pizzas, setPizzas] = useState([]);
     const [token] = useState(localStorage.getItem('token'));
 
     const enter = () => {
@@ -24,36 +25,27 @@ function flavor() {
                 }
             })
             .then(response => {
+                const status = response.status;
                 const data = response.data;
-                console.log(data);
                 
+                return {data, status};                
             })
             .catch(error => {
                 console.log(error);
             });
-
-            console.log(response);
+            
+            if (response.status == 200) {
+                console.log(response.data);
+                setPizzas(response.data);
+            }
 
         } catch (error) {
             // FAZER UM MODAL AQUI PARA FALAR SOBRE O ERRO
-            const message = "Erro ao fazer login. Verifique suas credenciais.";
+            const message = "Erro ao fazer requisição. Aguarde um momento e recarregue a página.";
             alert(message)
             console.log(error);
         }
     };
-
-    const sabores = [
-        {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30", description: "dasdçlasmd"},
-        {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30"},
-        {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30", description: "dasdçlasmd"},
-        {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30"},
-        {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30", description: "dasdçlasmd"},
-        {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30"},
-        {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30", description: "dasdçlasmd"},
-        {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30"},
-        {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30", description: "dasdçlasmd"},
-        {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30"},
-    ]
     
     useEffect(() => {
         handleFlavors();
@@ -85,14 +77,14 @@ function flavor() {
                 </div>
                 <section className="flavor-list">
                     {
-                            sabores.map(sabor => {
+                            pizzas.map(pizza => {
                             return <Item 
-                                type={sabor.type}
-                                cod={sabor.cod}
-                                key={sabor.cod}
-                                flavor={sabor.flavor}
-                                price={sabor.price}
-                                description={"dsaoidsahoidhsaoihdas"}
+                                type={"flavor"}
+                                cod={pizza.idPizza}
+                                key={pizza.idPizza}
+                                name={pizza.name}
+                                price={pizza.price}
+                                description={pizza.observations}
                             />
                         })
                     }
