@@ -80,7 +80,6 @@ input:focus {
     transition: transform 0.1s ease;
 }
 
-
 @media (min-width: 761px) {
     .form {
         margin: 10px;

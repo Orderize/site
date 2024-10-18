@@ -119,7 +119,7 @@ const Home = () => {
             title="Insights valiosos"
           />
         </div>
-      </div>
+    </div>
 
 
       <div id="contact" className={styles['form']}>

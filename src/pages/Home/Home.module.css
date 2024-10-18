@@ -32,6 +32,33 @@
   font-weight: normal;
   font-style: normal;
 }
+/* SCROLLBAR */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: white;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #A60F1B;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #FBD6D0;
+  border-radius: 10px;
+}
 
 html, body{
   scroll-behavior: smooth;
@@ -74,7 +101,6 @@ header {
 
 /* responsividade */
 @media(max-width: 760px) {
-
   header {
     height: 90%;
     margin: 10px 10px 0 10px;
@@ -322,8 +348,6 @@ header {
 
   .features {
     display: flex;
-    /* margin-right: auto; */
-    /* border: 1px solid green; */
     text-align: left;
     width: 100%;
     flex-direction: column;
@@ -331,7 +355,6 @@ header {
   }
 
   .features .featuresAnalise, .featuresGestao{
-    /* margin: 60px 70px 30px 70px; */
     margin: 4% 12% 0% 12%;
   }
 
@@ -420,3 +443,4 @@ header {
 
   }
 }
+
