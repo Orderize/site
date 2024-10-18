@@ -32,6 +32,33 @@
   font-weight: normal;
   font-style: normal;
 }
+/* SCROLLBAR */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: white;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #A60F1B;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #FBD6D0;
+  border-radius: 10px;
+}
 
 html, body{
   scroll-behavior: smooth;
