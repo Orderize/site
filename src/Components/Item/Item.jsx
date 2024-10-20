@@ -30,7 +30,7 @@ function item({ type, cod, description, name, price }) {
                 <p>cod : {cod}</p>
                 <h3 className="name center">{name}</h3>
                 {/* <img src={srcImage} alt={altImage} /> */}
-                <h3>R$ {price}</h3>
+                <h3>R$ {price.toFixed(2)}</h3>
                 {
                     description ?
                     <p className="description">{description}</p>

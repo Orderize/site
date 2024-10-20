@@ -1,4 +1,4 @@
-import api from "../Axios";
+import api from "./Axios";
 
 export const authApi = async (credentials) => {
     try {

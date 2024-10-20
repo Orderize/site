@@ -27,6 +27,19 @@ function flavor() {
             console.log(error);
         }
     };
+
+    const handleSearch = async (event) => {
+        const value = event.target.value;
+        setValueSearch(value);
+        try {
+            const data = await getPops(token, value);
+            setFlavors(data);
+            console.log(data);
+        } catch (error) {
+            alert(error.message);
+            console.log(error);
+        }
+    }
     
     useEffect(() => {
         handleFlavors();
@@ -40,16 +53,11 @@ function flavor() {
                 <div className="breadcrumb-search">
                     <Breadcrumb activeButton={"sabores"} />
                     <div className="comp-search">
-                        <label htmlFor="search">
-                            <button onClick={enter} className="icon-search">
-                                <MagnifyingGlass size={25} weight="bold" />
-                            </button>
-                        </label>
                         <input 
                             id="search" 
                             type="text" 
                             value={valueSearch}
-                            onChange={e => {setValueSearch(e.target.value)}}
+                            onChange={handleSearch}
                             onKeyDown={e => { e.key === "Enter" ? enter() : null}}
                             className="input-search"
                             placeholder="Pesquisar"
@@ -58,6 +66,7 @@ function flavor() {
                 </div>
                 <section className="flavor-list">
                     {
+                            flavors.length > 0 && 
                             flavors.map(flavor => {
                             return <Item 
                                 type={"flavor"}

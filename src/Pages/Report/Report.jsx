@@ -5,7 +5,7 @@ import 'chart.js/auto';
 import "./Report.css";
 import Kpi from "./Kpi/Kpi";
 import Navbar from "../../Components/Navbar/Navbar";
-import useChartData from "../../services/ChartData/useChartData";
+import useChartData from "../../hooks/useChartData";
 import { useMediaQuery } from "react-responsive";
 
 
