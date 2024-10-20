@@ -54,7 +54,7 @@ function navbar({ role, activeButton }) {
                     <ButtonNavbar
                         icon={ <ClockClockwise size={37} /> }
                         isActive={actualButton === "Histórico"}
-                        link="/"
+                        link="/historico"
                         text="Histórico"
                     />
                 </ul>
