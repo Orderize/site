@@ -17,6 +17,7 @@ import SelectPizzaPromo from './Components/Modal/select_pizza_promo/selectPizzaP
 import SelectBeveragePromo from './Components/Modal/select_beverage_promo/SelectBeveragePromo'
 import Order from './pages/Order/Order'
 import Promotion from './pages/Options/Promotion/Promotion'
+import Historic from './pages/Historic/Historic'
 import Client from './pages/Client/Client'
 import Flavor from './pages/Options/Flavor/Flavor'
 import './utils/global.css'
@@ -26,90 +27,95 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        
+
         <Route
           path='/'
-          element={ <Home /> }
+          element={<Home />}
         ></Route>
-        
+
         <Route
           path='/navbar'
-          element={ <Navbar role={"admin"}/> }
+          element={<Navbar role={"admin"} />}
         ></Route>
 
         <Route
           path='/login'
-          element={ <Login /> }
+          element={<Login />}
         ></Route>
 
         <Route
           path='/pedidos'
-          element={ <Client /> }
+          element={<Client />}
         ></Route>
 
-        <Route 
+        <Route
           path='/pedidos/novo-pedido'
-          element={ <Order />}
+          element={<Order />}
         ></Route>
 
         <Route
           path='/sabores'
-          element={ <Flavor /> }
+          element={<Flavor />}
         ></Route>
-        
+
         <Route
           path='/promotion'
-          element={ <Promotion /> }
+          element={<Promotion />}
+        ></Route>
+
+        <Route 
+          path="/historico" 
+          element={<Historic />} 
         ></Route>
 
         <Route
           path='/relatorios'
-          element={ <Report /> }
+          element={<Report />}
         ></Route>
 
         <Route
           path='/modal/sabores'
-          element={ <ModalFlavor /> }
+          element={<ModalFlavor />}
         ></Route>
 
         <Route
           path='/modal/bebidas'
-          element={ <ModalDrink /> }
+          element={<ModalDrink />}
         ></Route>
 
         <Route
           path='/modal/revisoes'
-          element={ <ModalReview /> }
+          element={<ModalReview />}
         ></Route>
 
-        <Route 
+        <Route
           path='/modal/newflavor'
-          element={ <AddNewFlavor /> } 
+          element={<AddNewFlavor />}
         ></Route>
 
-        <Route 
+        <Route
           path='/modal/selectpizzatype'
-          element={ <SelectPizzaType /> } 
+          element={<SelectPizzaType />}
         ></Route>
 
-        <Route 
+        <Route
           path='/modal/addnewdrink'
-          element={ <AddNewDrink /> } 
+          element={<AddNewDrink />}
         ></Route>
 
-        <Route 
+        <Route
           path='/modal/addpromo'
-          element={ <PromoModal/> } 
+          element={<PromoModal />}
         ></Route>
 
-        <Route 
+        <Route
           path='/modal/selectpizzapromo'
-          element={ <SelectPizzaPromo/> } 
+          element={<SelectPizzaPromo />}
         ></Route>
 
-        <Route 
+        <Route
           path='/modal/selectbeveragepromo'
-          element={ <SelectBeveragePromo/> } 
+          element={<SelectBeveragePromo />}
         ></Route>
 
       </Routes>
