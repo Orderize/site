@@ -121,13 +121,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #B5B9A4;
     background-color: #B5B9A4;
-    height: 80px;
+    height: 100px;
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
     width: 100%;
+
+    cursor: pointer;
 }
 
 .orderCard hr{
@@ -140,13 +141,36 @@
 .orderInfo{
     display: flex;
     flex-direction: row;
-    gap: 20px;
+    gap: 30px;
 }
 
-.orderInfo .date{
+.orderInfo .infoDate{
     display: flex;
     flex-direction: column;
-    color: #3A3C16;
+    color: black;
     gap: 5px;
+}
+
+.orderInfo .infoCodTotal{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    gap: 5px;
+}
+
+.infoCodTotal .infos2{
+    display: flex;
+    flex-direction: column;
+    color: black;
+    gap: 5px;
+}
+
+.infoCodTotal .iconPizzaMoney{
+    display: flex;
+    height: 33px;
+    width: auto;
+    margin-right: 15px;
 }
 

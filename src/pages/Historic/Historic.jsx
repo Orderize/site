@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { MagnifyingGlass } from "@phosphor-icons/react";
 import { PiPizzaBold } from "react-icons/pi";
+import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import Navbar from "../../Components/Navbar/Navbar";
 import styles from "./Historic.module.css";
+import { WiDayThunderstorm } from "react-icons/wi";
 
 function Historic() {
 
@@ -69,19 +71,26 @@ function Historic() {
                         return (
                             <div className={styles['orderCard']} style={{ backgroundColor }}>
                                 <div className={styles['orderInfo']}>
-                                    <div className={styles['date']}>
+                                    <div className={styles['infoDate']}>
                                         <span>{order.date}</span>
                                         <span>{order.time}</span>
                                     </div>
                                     <hr></hr>
-                                    <div className={styles['date']}>
-                                        <span>Pedido</span>
-                                        <span>Cod: {order.code}</span>
+                                    <div className={styles['infoCodTotal']}>
+                                        <PiPizzaBold className={styles['iconPizzaMoney']}></PiPizzaBold>
+                                        <div className={styles['infos2']}>
+                                            <span>Pedido</span>
+                                            <span>Cod: {order.code}</span>
+                                        </div>
+
                                     </div>
                                     <hr></hr>
-                                    <div className={styles['date']}>
-                                        <span>Total: </span>
-                                        <span>R$ {order.total}</span>
+                                    <div className={styles['infoCodTotal']}>
+                                        <RiMoneyDollarCircleLine className={styles['iconPizzaMoney']}></RiMoneyDollarCircleLine>
+                                        <div className={styles['infos2']}>
+                                            <span>Total: </span>
+                                            <span>R$ {order.total}</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
