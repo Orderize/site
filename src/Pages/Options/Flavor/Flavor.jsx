@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Log, MagnifyingGlass } from "@phosphor-icons/react";
+import { MagnifyingGlass } from "@phosphor-icons/react";
 import Breadcrumb from "../../../Components/Breadcrumb/Breadcrumb";
 import Item from "../../../Components/Item/Item";
 import Navbar from "../../../Components/Navbar/Navbar";
 import "./Flavor.css"
-import api from "../../../services/api";
+import { getPops } from "../../../api/services/Flavors";
 
 
 function flavor() {
     const [valueSearch, setValueSearch] = useState("");
-    const [pizzas, setPizzas] = useState([]);
+    const [flavors, setFlavors] = useState([]);
     const [token] = useState(localStorage.getItem('token'));
 
     const enter = () => {
@@ -19,30 +19,11 @@ function flavor() {
 
     const handleFlavors = async (event) => {
         try {
-            const response = await api.get('/pizzas', {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            })
-            .then(response => {
-                const status = response.status;
-                const data = response.data;
-                
-                return {data, status};                
-            })
-            .catch(error => {
-                console.log(error);
-            });
-            
-            if (response.status == 200) {
-                console.log(response.data);
-                setPizzas(response.data);
-            }
-
+            const data = await getPops(token);
+            setFlavors(data);
         } catch (error) {
             // FAZER UM MODAL AQUI PARA FALAR SOBRE O ERRO
-            const message = "Erro ao fazer requisição. Aguarde um momento e recarregue a página.";
-            alert(message)
+            alert(error.message)
             console.log(error);
         }
     };
@@ -77,14 +58,14 @@ function flavor() {
                 </div>
                 <section className="flavor-list">
                     {
-                            pizzas.map(pizza => {
+                            flavors.map(flavor => {
                             return <Item 
                                 type={"flavor"}
-                                cod={pizza.idPizza}
-                                key={pizza.idPizza}
-                                name={pizza.name}
-                                price={pizza.price}
-                                description={pizza.observations}
+                                cod={flavor.id}
+                                key={flavor.id}
+                                name={flavor.name}
+                                price={flavor.price}
+                                description={flavor.description}
                             />
                         })
                     }

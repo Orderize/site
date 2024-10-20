@@ -1,8 +1,7 @@
 import React,{ useEffect, useState } from 'react';
-import api from '../../services/api';
-import Cookies from 'js-cookie'
 import "./Login.css";
 import { useNavigate } from 'react-router-dom';
+import { authApi } from '../../api/Auth';
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -13,34 +12,19 @@ const Login = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const data = {
+        
+        const credentials = {
             email,
             password
         };
 
         try {
-            const response = await api.post('/auth/login', data)
-            .then(response => {
-                const token = response.data.token;
-                const headers = response.headers;
-                const status = response.status;
-
-                return {token, status};
-            })
-            .catch(error => {
-                const responseError = error.response;
-                const data = responseError.data;
-                const message = data.message;
-                const status = data.status;
-
-                console.log(data);
-                return status;
-            });
+            const data = await authApi(credentials);
             
-            if (response.status == 200) {
+            if (data) {
                 alert("Login realizado com sucesso.");
                 
-                localStorage.setItem('token', response.token);
+                localStorage.setItem('token', data.token);
 
                 if (isRemembered) localStorage.setItem('emailAuth', email);
                 
@@ -50,18 +34,14 @@ const Login = () => {
                 return () => clearTimeout(timeoutToNav);
             } else alert("Erro ao realizar o login, verifique os campos.");
 
-
         } catch (error) {
             // FAZER UM MODAL AQUI PARA FALAR SOBRE O ERRO
-            const message = "Erro ao fazer login. Verifique suas credenciais.";
-            alert(message)
-            console.log(message);
+            alert(error.message)
+            console.log(error);
         }
     };
-    
-    useEffect(() => {
-        document.title = "Orderize | Login";
 
+    const verifyAuth = () => {
         const emailAuth = localStorage.getItem('emailAuth');
         if (emailAuth) {
             alert('Redirecionando para o sistema!');
@@ -70,7 +50,11 @@ const Login = () => {
             }, 3000);
             return () => clearTimeout(timeoutToNav);
         }
-
+    };
+    
+    useEffect(() => {
+        document.title = "Orderize | Login";
+        verifyAuth();
     }, []);
 
     return (

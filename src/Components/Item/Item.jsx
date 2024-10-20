@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./item.css";
+import "./Item.css";
 
 function item({ type, cod, description, name, price }) {
     const [srcImage, setSrcImage] = useState();
@@ -27,16 +27,16 @@ function item({ type, cod, description, name, price }) {
     return (
         <>
             <div className="component-item">
+                <p>cod : {cod}</p>
                 <h3 className="name center">{name}</h3>
                 {/* <img src={srcImage} alt={altImage} /> */}
                 <h3>R$ {price}</h3>
-                <p>cod : {cod}</p>
-
                 {
                     description ?
-                        <p className="description">{description}</p>
+                    <p className="description">{description}</p>
                     : null
                 }
+
                 
             </div>
 
