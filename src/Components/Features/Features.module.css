@@ -99,6 +99,10 @@
     height: auto;
     max-height: 500px;
   }
+
+  .description {
+    margin: 0 12px;
+  }
 }
 
 @media (min-width: 761px) {
