@@ -4,11 +4,12 @@ import Breadcrumb from "../../../Components/Breadcrumb/Breadcrumb";
 import Item from "../../../Components/Item/Item";
 import Navbar from "../../../Components/Navbar/Navbar";
 import "./Flavor.css"
-import api from "../../../services/api";
+import { getPops } from "../../../api/services/Flavors";
 
 
 function flavor() {
     const [valueSearch, setValueSearch] = useState("");
+    const [flavors, setFlavors] = useState([]);
     const [token] = useState(localStorage.getItem('token'));
 
     const enter = () => {
@@ -18,42 +19,27 @@ function flavor() {
 
     const handleFlavors = async (event) => {
         try {
-            const response = await api.get('/pizzas', {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            })
-            .then(response => {
-                const data = response.data;
-                console.log(data);
-                
-            })
-            .catch(error => {
-                console.log(error);
-            });
-
-            console.log(response);
-
+            const data = await getPops(token);
+            setFlavors(data);
         } catch (error) {
             // FAZER UM MODAL AQUI PARA FALAR SOBRE O ERRO
-            const message = "Erro ao fazer login. Verifique suas credenciais.";
-            alert(message)
+            alert(error.message)
             console.log(error);
         }
     };
 
-    const sabores = [
-        {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30", description: "dasdçlasmd"},
-        {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30"},
-        {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30", description: "dasdçlasmd"},
-        {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30"},
-        {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30", description: "dasdçlasmd"},
-        {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30"},
-        {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30", description: "dasdçlasmd"},
-        {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30"},
-        {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30", description: "dasdçlasmd"},
-        {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30"},
-    ]
+    const handleSearch = async (event) => {
+        const value = event.target.value;
+        setValueSearch(value);
+        try {
+            const data = await getPops(token, value);
+            setFlavors(data);
+            console.log(data);
+        } catch (error) {
+            alert(error.message);
+            console.log(error);
+        }
+    }
     
     useEffect(() => {
         handleFlavors();
@@ -67,16 +53,11 @@ function flavor() {
                 <div className="breadcrumb-search">
                     <Breadcrumb activeButton={"sabores"} />
                     <div className="comp-search">
-                        <label htmlFor="search">
-                            <button onClick={enter} className="icon-search">
-                                <MagnifyingGlass size={25} weight="bold" />
-                            </button>
-                        </label>
                         <input 
                             id="search" 
                             type="text" 
                             value={valueSearch}
-                            onChange={e => {setValueSearch(e.target.value)}}
+                            onChange={handleSearch}
                             onKeyDown={e => { e.key === "Enter" ? enter() : null}}
                             className="input-search"
                             placeholder="Pesquisar"
@@ -85,14 +66,15 @@ function flavor() {
                 </div>
                 <section className="flavor-list">
                     {
-                            sabores.map(sabor => {
+                            flavors.length > 0 && 
+                            flavors.map(flavor => {
                             return <Item 
-                                type={sabor.type}
-                                cod={sabor.cod}
-                                key={sabor.cod}
-                                flavor={sabor.flavor}
-                                price={sabor.price}
-                                description={"dsaoidsahoidhsaoihdas"}
+                                type={"flavor"}
+                                cod={flavor.id}
+                                key={flavor.id}
+                                name={flavor.name}
+                                price={flavor.price}
+                                description={flavor.description}
                             />
                         })
                     }
