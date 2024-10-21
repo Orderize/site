@@ -3,7 +3,7 @@ import styles from './Home.module.css';
 
 import Beneficio from '../../Components/Benefits/Benefits';
 import Formulario from '../../Components/Form/Form.jsx';
-import Funcionalidade from '../../Components/Features/Features';
+import Funcionalidade from '../../components/Features/Features.jsx';
 
 import imgPizzasBanner from "../../utils/assets/imgsPizzaBanner.png";
 import imgGestao from "../../utils/assets/imgsGestao.svg";
@@ -22,8 +22,6 @@ import FooterHome from '../../components/FooterHome/FooterHome';
 import NavbarHome from '../../components/NavbarHome/NavbarHome.jsx';
 
 const Home = () => {
-
-    
 
   return (
     <body>
