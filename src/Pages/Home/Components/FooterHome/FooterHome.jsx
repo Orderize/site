@@ -1,9 +1,9 @@
 import React from "react"
 import style from "./FooterHome.module.css"
-import iconInsta from "../../utils/assets/iconInstagram.png"
-import iconLinkedin from "../../utils/assets/iconLinkedin.png"
-import iconTwitter from "../../utils/assets/iconTwitter.png"
-import imgVectorFooter from "../../utils/assets/VectorFooter.png"
+import iconInsta from "/src/utils/assets/iconInstagram.png"
+import iconLinkedin from "/src/utils/assets/iconLinkedin.png"
+import iconTwitter from "/src/utils//assets/iconTwitter.png"
+import imgVectorFooter from "/src/utils/assets/VectorFooter.png"
 
 import MediaQuery from "react-responsive"
 

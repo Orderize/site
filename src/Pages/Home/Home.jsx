@@ -18,8 +18,8 @@ import logo from "../../utils/assets/logo.png";
 import imgForm from "../../utils/assets/imgForm.svg";
 
 import { IoIosTabletPortrait } from "react-icons/io";
-import FooterHome from '../../components/FooterHome/FooterHome';
-import NavbarHome from '../../components/NavbarHome/NavbarHome.jsx';
+import FooterHome from './Components/FooterHome/FooterHome';
+import NavbarHome from './Components/NavbarHome/NavbarHome.jsx';
 
 const Home = () => {
 

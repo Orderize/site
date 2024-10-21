@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./NavbarHome.module.css";
-import Acessebility from '../acessibility/acessibility.jsx';
+import Acessebility from '../../../../Components/acessibility/acessibility.jsx';
 import MediaQuery from "react-responsive";
 
 import { IoMenuOutline } from "react-icons/io5";
