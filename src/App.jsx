@@ -20,6 +20,7 @@ import Promotion from './Pages/Options/Promotion/Promotion'
 import History from './Pages/History/History'
 import Client from './Pages/Client/Client'
 import Flavor from './Pages/Options/Flavor/Flavor'
+import Drink from '/src/Pages/Options/Drink/Drink'
 import './utils/global.css'
 
 
@@ -56,6 +57,11 @@ createRoot(document.getElementById('root')).render(
         <Route
           path='/sabores'
           element={<Flavor />}
+        ></Route>
+
+        <Route
+          path='/bebidas'
+          element={<Drink />}
         ></Route>
 
         <Route

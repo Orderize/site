@@ -3,13 +3,13 @@ import { MagnifyingGlass } from "@phosphor-icons/react";
 import Breadcrumb from "../../../Components/Breadcrumb/Breadcrumb";
 import Item from "../../../Components/Item/Item";
 import Navbar from "../../../Components/Navbar/Navbar";
-import "./Flavor.css"
-import { getFlavorsPop } from "../../../api/services/Flavors";
+import "./Drink.css"
+import { getDrinksPop } from "../../../api/services/Drinks";
 
 
 function flavor() {
     const [valueSearch, setValueSearch] = useState("");
-    const [flavors, setFlavors] = useState([]);
+    const [drink, setDrink] = useState([]);
     const [token] = useState(localStorage.getItem('token'));
 
     const enter = () => {
@@ -17,10 +17,10 @@ function flavor() {
     }
 
 
-    const handleFlavors = async (event) => {
+    const handleDrink = async (event) => {
         try {
-            const data = await getFlavorsPop(token);
-            setFlavors(data);
+            const data = await getDrinksPop(token);
+            setDrink(data);
         } catch (error) {
             // FAZER UM MODAL AQUI PARA FALAR SOBRE O ERRO
             alert(error.message)
@@ -32,8 +32,8 @@ function flavor() {
         const value = event.target.value;
         setValueSearch(value);
         try {
-            const data = await getFlavorsPop(token, value);
-            setFlavors(data);
+            const data = await getDrinksPop(token, value);
+            setDrink(data);
             console.log(data);
         } catch (error) {
             alert(error.message);
@@ -42,16 +42,16 @@ function flavor() {
     }
     
     useEffect(() => {
-        handleFlavors();
+        handleDrink();
     }, []);
 
     return (
         <>
-            <Navbar role={"attendant"} activeButton={"Opções"} subActiveButton={"Sabores"} />
+            <Navbar role={"attendant"} activeButton={"Opções"} subActiveButton={"Bebidas"} />
             <main className="container-flavor">
                 <h1>Opções</h1>
                 <div className="breadcrumb-search">
-                    <Breadcrumb activeButton={"sabores"} />
+                    <Breadcrumb activeButton={"bebidas"} />
                     <div className="comp-search">
                         <input 
                             id="search" 
@@ -66,8 +66,8 @@ function flavor() {
                 </div>
                 <section className="flavor-list">
                     {
-                            flavors.length > 0 && 
-                            flavors.map(flavor => {
+                            drink.length > 0 && 
+                            drink.map(flavor => {
                             return <Item 
                                 type={"flavor"}
                                 cod={flavor.id}
