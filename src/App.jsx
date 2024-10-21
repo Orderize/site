@@ -2,7 +2,7 @@ import React, { StrictMode } from 'react'
 import { Route, Routes, BrowserRouter } from 'react-router-dom'
 import { createRoot } from 'react-dom/client'
 
-import Home from './pages/Home/Home'
+import Home from './Pages/Home/Home'
 import ModalDrink from './Components/Modal/Drink/Drink';
 import ModalFlavor from './Components/Modal/Flavor/Flavor';
 import ModalReview from './Components/Modal/Review/Review';
@@ -11,13 +11,14 @@ import SelectPizzaType from './Components/Modal/Select_pizza_type/Select_pizza_t
 import AddNewDrink from './Components/Modal/New_drink/AddNewDrink'
 import PromoModal from './Components/Modal/promo_add/PromoModal'
 import Navbar from './Components/Navbar/Navbar'
-import Report from './pages/Report/Report'
-import Login from './pages/Login/Login'
+import Report from './Pages/Report/Report'
+import Login from './Pages/Login/Login'
 import SelectPizzaPromo from './Components/Modal/select_pizza_promo/selectPizzaPromo'
 import SelectBeveragePromo from './Components/Modal/select_beverage_promo/SelectBeveragePromo'
-import Order from './pages/New_order/Order'
-import Promotion from './pages/Options/Promotion/Promotion'
-import Flavor from './pages/Options/Flavor/Flavor'
+import Order from './Pages/Order/Order'
+import Promotion from './Pages/Options/Promotion/Promotion'
+import Client from './Pages/Client/Client'
+import Flavor from './Pages/Options/Flavor/Flavor'
 import './utils/global.css'
 
 
@@ -43,7 +44,12 @@ createRoot(document.getElementById('root')).render(
 
         <Route
           path='/pedidos'
-          element={ <Order /> }
+          element={ <Client /> }
+        ></Route>
+
+        <Route 
+          path='/pedidos/novo-pedido'
+          element={ <Order />}
         ></Route>
 
         <Route
