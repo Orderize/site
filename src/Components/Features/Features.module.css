@@ -66,17 +66,42 @@
     display: none; 
   }
 
-  .funcionalidade {
-    flex-direction: column;
-    align-items: center; 
+  .mobile {
+    margin-top: 40px;
   }
 
-  .content {
-    text-align: center; 
+  .icon-container img {
+    width: 50%;
   }
 
-  .icon {
-    width: 80%; 
+  .title-iconPlus{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .iconPlus {
+    color: #A60F1B;
+    font-size: 30px;
+  }
+
+  .desciptionBlock {
+    margin: 0;
+    height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out, margin 0.3s ease-in-out; 
+    max-height: 0;
+  }
+
+  .desciptionBlock.active {
+    margin: 10px 0;
+    height: auto;
+    max-height: 500px;
+  }
+
+  .description {
+    margin: 0 12px;
   }
 }
 
