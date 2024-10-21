@@ -1,0 +1,52 @@
+.progressContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+}
+
+.progressStep {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stepCircle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #d3d3d3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+.stepCircle p {
+    font-family: var(--fonte);
+    font-size: 12px;
+    font-weight: 600;
+    color: #9A8F8F;
+}
+
+.active {
+    background-color: var(--verde-claro);
+}
+
+.active p {
+    font-family: var(--fonte-titulo);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--verde-escuro);
+}
+
+.stepLine {
+    flex-grow: 1;
+    height: 4px;
+    background-color: #d3d3d3;
+    margin: 0 8px;
+}
+
+.activeLine {
+    background-color: var(--verde-claro);
+}

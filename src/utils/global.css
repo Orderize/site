@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,600&display=swap');
+
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -19,5 +22,16 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+:root {
+  --cor-fundo: #F3EFE9;
+  --cor-fundo-sec: #EAE5DE;
+  --verde-escuro: #3A3C16;
+  --verde: #656D4A;
+  --verde-claro: #B5B9A4;
+  --erro: #A60F1B;
+  --fonte-titulo: "League Spartan";
+  --fonte: "Poppins";
 }
 
