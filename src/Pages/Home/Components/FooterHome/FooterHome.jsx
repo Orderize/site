@@ -51,7 +51,7 @@ function FooterHome({ icon, }) {
                 )}
             </MediaQuery>
 
-            <MediaQuery minWidth={461} maxWidth={1440}>
+            <MediaQuery minWidth={461}>
                 {matches => matches && (
                     <div>
                         <img className={style["vetorFooter"]} src={imgVectorFooter} alt="Ondulações no footer" />
