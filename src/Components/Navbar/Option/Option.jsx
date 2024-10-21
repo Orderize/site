@@ -3,8 +3,8 @@ import { ForkKnife, Wine, Money } from "@phosphor-icons/react";
 import ButtonNavbar from '../Button/ButtonNavbar';
 import "./Option.css"
 
-function Option({ isActive }) {
-    const [actualButton, setActualButton] = useState("Sabores");
+function Option({ activeButton }) {
+    const [actualButton, setActualButton] = useState(activeButton);
     
 
     return (
@@ -27,9 +27,9 @@ function Option({ isActive }) {
                 <ButtonNavbar
                     event={ setActualButton }
                     icon={ <Money size={75} className='money' /> }
-                    isActive={actualButton === "Promo"}
+                    isActive={actualButton === "Brindes"}
                     link="/promotion"
-                    text="Promo"
+                    text="Brindes"
                 />
             </ul>
         </>

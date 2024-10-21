@@ -32,17 +32,12 @@ function Promotion() {
 
     return (
         <>
-            <Navbar activeButton={"Opções"} />
+            <Navbar activeButton={"Opções"} subActiveButton={"Brindes"} />
             <main className="container-promotion">
                 <h1>Gerenciamento</h1>
                 <div className="breadcrumb-search">
-                    <Breadcrumb activeButton={"sabores"} />
+                    <Breadcrumb activeButton={"brindes"} />
                     <div className="comp-search">
-                        <label htmlFor="search">
-                            <button onClick={enter} className="icon-search">
-                                <MagnifyingGlass size={25} weight="bold" />
-                            </button>
-                        </label>
                         <input 
                             id="search" 
                             type="text" 
