@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import "./item.css";
+import "./Item.css";
 
-function item({ type, cod, description, flavor, price }) {
+function item({ type, cod, description, name, price }) {
     const [srcImage, setSrcImage] = useState();
     const [altImage, setAltImage] = useState();
 
@@ -27,18 +27,17 @@ function item({ type, cod, description, flavor, price }) {
     return (
         <>
             <div className="component-item">
-                <div className="content">
-                    <img src={srcImage} alt={altImage} />
-                    <h3>R$ {price}</h3>
-                    <p>{cod} | {flavor}</p>
+                <p>cod : {cod}</p>
+                <h3 className="name center">{name}</h3>
+                {/* <img src={srcImage} alt={altImage} /> */}
+                <h3>R$ {price.toFixed(2)}</h3>
+                {
+                    description ?
+                    <p className="description">{description}</p>
+                    : null
+                }
 
-                    {
-                        description ?
-                            <p className="description">{description}</p>
-                        : null
-                    }
-                    
-                </div>
+                
             </div>
 
         </>

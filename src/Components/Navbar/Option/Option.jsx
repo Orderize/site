@@ -21,7 +21,7 @@ function Option({ activeButton }) {
                     event={ setActualButton }
                     icon={ <Wine size={37} />}
                     isActive={actualButton === "Bebidas"}
-                    link="/"
+                    link="/bebidas"
                     text="Bebidas"
                 />
                 <ButtonNavbar
