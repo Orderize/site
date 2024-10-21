@@ -61,7 +61,7 @@ function flavor() {
 
     return (
         <>
-            <Navbar role={"attendant"} activeButton={"Opções"} />
+            <Navbar role={"attendant"} activeButton={"Opções"} subActiveButton={"Sabores"} />
             <main className="container-flavor">
                 <h1>Opções</h1>
                 <div className="breadcrumb-search">
