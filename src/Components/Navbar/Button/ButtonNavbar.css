@@ -41,10 +41,7 @@
     
     .container-buttonNavbar.active {
         background-color: #656D4A;  
-        width: 18%;
-        display: flex;
-        justify-content: center;
-        align-items: center;      
+        padding: 5px;
     }
     
     .container-buttonNavbar > a {
@@ -59,7 +56,11 @@
 
 
     .container-buttonNavbar > a > i {
-        margin-right: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 40px;
         height: 40px;
     }
     

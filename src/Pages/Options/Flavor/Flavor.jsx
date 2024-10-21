@@ -1,17 +1,46 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MagnifyingGlass } from "@phosphor-icons/react";
 import Breadcrumb from "../../../Components/Breadcrumb/Breadcrumb";
 import Item from "../../../Components/Item/Item";
 import Navbar from "../../../Components/Navbar/Navbar";
 import "./Flavor.css"
+import api from "../../../services/api";
 
 
 function flavor() {
     const [valueSearch, setValueSearch] = useState("");
+    const [token] = useState(localStorage.getItem('token'));
 
     const enter = () => {
         console.log(valueSearch);
     }
+
+
+    const handleFlavors = async (event) => {
+        try {
+            const response = await api.get('/pizzas', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            .then(response => {
+                const data = response.data;
+                console.log(data);
+                
+            })
+            .catch(error => {
+                console.log(error);
+            });
+
+            console.log(response);
+
+        } catch (error) {
+            // FAZER UM MODAL AQUI PARA FALAR SOBRE O ERRO
+            const message = "Erro ao fazer login. Verifique suas credenciais.";
+            alert(message)
+            console.log(error);
+        }
+    };
 
     const sabores = [
         {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30", description: "dasdçlasmd"},
@@ -26,9 +55,13 @@ function flavor() {
         {type: "flavor", cod: 123, flavor: "Calabresa", price: "12.30"},
     ]
     
+    useEffect(() => {
+        handleFlavors();
+    }, []);
+
     return (
         <>
-            <Navbar role={"attendant"} activeButton={"Opções"} />
+            <Navbar role={"attendant"} activeButton={"Opções"} subActiveButton={"Sabores"} />
             <main className="container-flavor">
                 <h1>Opções</h1>
                 <div className="breadcrumb-search">

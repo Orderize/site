@@ -2,7 +2,7 @@ import React, { StrictMode } from 'react'
 import { Route, Routes, BrowserRouter } from 'react-router-dom'
 import { createRoot } from 'react-dom/client'
 
-import Home from './pages/Home/Home'
+import Home from './Pages/Home/Home'
 import ModalDrink from './Components/Modal/Drink/Drink';
 import ModalFlavor from './Components/Modal/Flavor/Flavor';
 import ModalReview from './Components/Modal/Review/Review';
@@ -11,14 +11,15 @@ import SelectPizzaType from './Components/Modal/Select_pizza_type/Select_pizza_t
 import AddNewDrink from './Components/Modal/New_drink/AddNewDrink'
 import PromoModal from './Components/Modal/promo_add/PromoModal'
 import Navbar from './Components/Navbar/Navbar'
-import Report from './pages/Report/Report'
-import Login from './pages/Login/Login'
+import Report from './Pages/Report/Report'
+import Login from './Pages/Login/Login'
 import SelectPizzaPromo from './Components/Modal/select_pizza_promo/selectPizzaPromo'
 import SelectBeveragePromo from './Components/Modal/select_beverage_promo/SelectBeveragePromo'
-import Order from './pages/Order/Order'
-import Promotion from './pages/Options/Promotion/Promotion'
-import Client from './pages/Client/Client'
-import Flavor from './pages/Options/Flavor/Flavor'
+import Order from './Pages/Order/Order'
+import Promotion from './Pages/Options/Promotion/Promotion'
+import History from './Pages/History/History'
+import Client from './Pages/Client/Client'
+import Flavor from './Pages/Options/Flavor/Flavor'
 import './utils/global.css'
 
 
@@ -26,90 +27,95 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        
+
         <Route
           path='/'
-          element={ <Home /> }
+          element={<Home />}
         ></Route>
-        
+
         <Route
           path='/navbar'
-          element={ <Navbar role={"admin"}/> }
+          element={<Navbar role={"admin"} />}
         ></Route>
 
         <Route
           path='/login'
-          element={ <Login /> }
+          element={<Login />}
         ></Route>
 
         <Route
           path='/pedidos'
-          element={ <Client /> }
+          element={<Client />}
         ></Route>
 
-        <Route 
+        <Route
           path='/pedidos/novo-pedido'
-          element={ <Order />}
+          element={<Order />}
         ></Route>
 
         <Route
           path='/sabores'
-          element={ <Flavor /> }
+          element={<Flavor />}
         ></Route>
-        
+
         <Route
           path='/promotion'
-          element={ <Promotion /> }
+          element={<Promotion />}
+        ></Route>
+
+        <Route 
+          path="/historico" 
+          element={<History />} 
         ></Route>
 
         <Route
           path='/relatorios'
-          element={ <Report /> }
+          element={<Report />}
         ></Route>
 
         <Route
           path='/modal/sabores'
-          element={ <ModalFlavor /> }
+          element={<ModalFlavor />}
         ></Route>
 
         <Route
           path='/modal/bebidas'
-          element={ <ModalDrink /> }
+          element={<ModalDrink />}
         ></Route>
 
         <Route
           path='/modal/revisoes'
-          element={ <ModalReview /> }
+          element={<ModalReview />}
         ></Route>
 
-        <Route 
+        <Route
           path='/modal/newflavor'
-          element={ <AddNewFlavor /> } 
+          element={<AddNewFlavor />}
         ></Route>
 
-        <Route 
+        <Route
           path='/modal/selectpizzatype'
-          element={ <SelectPizzaType /> } 
+          element={<SelectPizzaType />}
         ></Route>
 
-        <Route 
+        <Route
           path='/modal/addnewdrink'
-          element={ <AddNewDrink /> } 
+          element={<AddNewDrink />}
         ></Route>
 
-        <Route 
+        <Route
           path='/modal/addpromo'
-          element={ <PromoModal/> } 
+          element={<PromoModal />}
         ></Route>
 
-        <Route 
+        <Route
           path='/modal/selectpizzapromo'
-          element={ <SelectPizzaPromo/> } 
+          element={<SelectPizzaPromo />}
         ></Route>
 
-        <Route 
+        <Route
           path='/modal/selectbeveragepromo'
-          element={ <SelectBeveragePromo/> } 
+          element={<SelectBeveragePromo />}
         ></Route>
 
       </Routes>
