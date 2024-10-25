@@ -107,8 +107,10 @@ function Order() {
 
             <div className={styles["order-details-right"]}>
                 <CardClient />
-                <CardPayment />
+                {/* <CardPayment /> */}
                 <CardTotal />
+
+                <button className={styles["btn-finalizar"]}>Finalizar</button>
             </div>
         </main>
       </MediaQuery>

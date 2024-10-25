@@ -99,7 +99,8 @@
         height: 65vh;
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
+        /* justify-content: center; */
+        /* justify-content: space-around; */
         align-items: center;
         /* gap: 15px; */
         background: var(--cor-fundo-sec);
@@ -113,7 +114,9 @@
         font-weight: 700;
         /* align-self: flex-start; */
         color: var(--verde-escuro);
+        /* margin-top: 10px;     */
         /* margin: 3vh 0; */
+        
     }
 
     .subtitulo {
@@ -122,5 +125,6 @@
         font-weight: 600;
         color: var(--verde-escuro);
         padding: 2vh;
+        margin-bottom: 15px;
     }
 }

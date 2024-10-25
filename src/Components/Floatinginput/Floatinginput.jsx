@@ -15,9 +15,13 @@ const FloatingInput = ({ label, initialValue = '', onSet, onValue, onInput }) =>
         setIsFocused(false);
       }
     };
+
+
     
     return (
-      <div className={`${styles['input-container']} ${isFocused || inputValue ? styles['focused'] : ''}`}>
+      <div 
+        className={`${styles['input-container']} ${isFocused || inputValue ? styles['focused'] : ''}`}
+      >
         <input className={styles.input}
           type="text"
           value={inputValue || ''}
