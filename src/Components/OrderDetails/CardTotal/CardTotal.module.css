@@ -71,8 +71,9 @@
 @media screen and (min-width: 1200px){
     .container-total {
         width: 85%;
-        height: 37%;
+        height: 40%;
         gap: 15px;
+        margin: 0;
     }
 
     .container-total .titulo {
