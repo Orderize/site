@@ -55,6 +55,10 @@ function Promotion() {
         }
     };
 
+    useEffect(() => {
+        handlePromotions();
+    }, []);
+
     return (
         <>
             <Navbar activeButton={"Opções"} subActiveButton={"Brindes"} />
