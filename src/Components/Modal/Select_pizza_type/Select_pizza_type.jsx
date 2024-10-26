@@ -4,6 +4,8 @@ import './select_pizza_type.css';
 const SelectPizzaType = ({ onClose }) => {
   const [selectedType, setSelectedType] = useState(null);
   const [price, setPrice] = useState("");
+  const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   const handleSelectType = (type) => {
     setSelectedType(type);
@@ -22,10 +24,19 @@ const SelectPizzaType = ({ onClose }) => {
   };
 
   const handleSave = () => {
-    if (selectedType && price) {
-      console.log(`Tipo de Pizza: ${selectedType}, Preço: ${price}`);
-      onClose();    
+    if (!selectedType || !price) {
+      setError("Selecione um tipo de pizza e preencha o preço.");
+      return;
     }
+    setError("");
+    setSuccessMessage("Pizza adicionada com sucesso!");
+
+    setSelectedType(null);
+    setPrice("");
+    
+    setTimeout(() => {
+        onClose(); 
+    }, 2000); 
   };
 
   return (
@@ -33,6 +44,9 @@ const SelectPizzaType = ({ onClose }) => {
       <div className="container-select-pizza-type">
         <button className="button-back" onClick={onClose}>{"<"}</button>
         <h2>Selecione o tipo da pizza:</h2>
+
+        {error && <div className="error-message">{error}</div>}
+        {successMessage && <div className="success-message">{successMessage}</div>}
 
         <div className="select-pizza-form">
           <div className="pizza-type-buttons">

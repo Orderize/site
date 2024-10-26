@@ -1,10 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './selectPizzaPromo.css';
+import SelectBeveragePromo from '/src/Components/Modal/select_beverage_promo/SelectBeveragePromo.jsx';
+import PromoModal from '/src/Components/Modal/promo_add/PromoModal.jsx';
 
 const SelectPizzaPromo = () => {
   const [activeTabPromo, setActiveTabPromo] = useState('Salgadas');
   const [pizzaListPromo, setPizzaListPromo] = useState([]); 
-  const [visiblePizzaCount, setVisiblePizzaCount] = useState(10); 
+  const [visiblePizzaCount, setVisiblePizzaCount] = useState(10);
+  const [selectedPizza, setSelectedPizza] = useState(null);
+  const [isBeverageModalOpen, setIsBeverageModalOpen] = useState(false);
+  const [isPromoModalOpen, setIsPromoModalOpen] = useState(false);
   const pizzaScrollRef = useRef(null);
 
   useEffect(() => {
@@ -22,9 +27,37 @@ const SelectPizzaPromo = () => {
     }
   };
 
+  const handlePizzaSelect = (pizza) => {
+    setSelectedPizza(pizza);
+  };
+
+  const handleNext = () => {
+    if (selectedPizza) {
+      setIsBeverageModalOpen(true);
+    } else {
+      alert('Por favor, selecione uma pizza antes de continuar.');
+    }
+  };
+
+  const closeBeverageModal = () => {
+    setIsBeverageModalOpen(false);
+  };
+
+  const closePromoModal = () => {
+    setIsPromoModalOpen(false);
+    setIsBeverageModalOpen(false);
+  };
+
+  const handleClose = () => {
+    window.location.reload(); 
+  };
+
   return (
     <div className="selectPizzaPromo-modal-wrapper">
       <section className="selectPizzaPromo-modal-container">
+        <button className="close-button" onClick={handleClose}>
+          ✖
+        </button>
         <h2>Selecione as pizzas para a promoção</h2>
 
         <div className="selectPizzaPromo-pizza-menu">
@@ -33,7 +66,8 @@ const SelectPizzaPromo = () => {
               className={`selectPizzaPromo-pizza-tab ${activeTabPromo === 'Salgadas' ? 'active' : ''}`} 
               onClick={() => {
                 setActiveTabPromo('Salgadas');
-                setVisiblePizzaCount(10); 
+                setVisiblePizzaCount(10);
+                setSelectedPizza(null);
               }}>
               Salgadas
             </button>
@@ -41,7 +75,8 @@ const SelectPizzaPromo = () => {
               className={`selectPizzaPromo-pizza-tab ${activeTabPromo === 'Doces' ? 'active' : ''}`} 
               onClick={() => {
                 setActiveTabPromo('Doces');
-                setVisiblePizzaCount(10); 
+                setVisiblePizzaCount(10);
+                setSelectedPizza(null);
               }}>
               Doces
             </button>
@@ -58,13 +93,22 @@ const SelectPizzaPromo = () => {
             onScroll={handleScrollPromo}
           >
             {pizzaListPromo.slice(0, visiblePizzaCount).map((pizza, index) => (
-              <button key={index} className="selectPizzaPromo-pizza-item">
+              <button 
+                key={index} 
+                className={`selectPizzaPromo-pizza-item ${selectedPizza === pizza ? 'selected' : ''}`} 
+                onClick={() => handlePizzaSelect(pizza)}
+              >
                 {index + 1} | {pizza}
               </button>
             ))}
           </div>
         </div>
-        <button className="selectPizzaPromo-next-button">
+        
+        <button 
+          className="selectPizzaPromo-next-button" 
+          onClick={handleNext}
+          disabled={!selectedPizza}
+        >
           Próximo
         </button>
 
@@ -74,6 +118,14 @@ const SelectPizzaPromo = () => {
           <span className="dot-not"></span>
         </div>
       </section>
+
+      {isBeverageModalOpen && (
+        <SelectBeveragePromo onClose={closeBeverageModal} />
+      )}
+
+      {isPromoModalOpen && (
+        <PromoModal onClose={closePromoModal} />
+      )}
     </div>
   );
 };

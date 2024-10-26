@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './selectBeveragePromo.css';
+import PromoModal from '/src/Components/Modal/promo_add/PromoModal.jsx'; 
 
-const SelectBeveragePromo = () => {
+const SelectBeveragePromo = ({ onClose }) => {
   const [beverageListPromo, setBeverageListPromo] = useState([]); 
   const [visibleBeverageCount, setVisibleBeverageCount] = useState(10); 
+  const [selectedBeverage, setSelectedBeverage] = useState(null);
+  const [isPromoModalOpen, setIsPromoModalOpen] = useState(false); 
   const beverageScrollRef = useRef(null);
 
   useEffect(() => {
@@ -20,9 +23,33 @@ const SelectBeveragePromo = () => {
     }
   };
 
+  const handleBeverageSelect = (beverage) => {
+    setSelectedBeverage(beverage);
+  };
+
+  const handleNext = () => {
+    if (selectedBeverage) {
+      setIsPromoModalOpen(true); 
+    } else {
+      alert('Por favor, selecione uma bebida antes de continuar.');
+    }
+  };
+
+  const closePromoModal = () => {
+    setIsPromoModalOpen(false); 
+    onClose(); 
+  };
+
+  const handleClose = () => {
+    onClose(); // Fecha o modal principal
+  };
+
   return (
     <div className="selectBeveragePromo-modal-wrapper">
       <section className="selectBeveragePromo-modal-container">
+        <button className="close-button" onClick={handleClose}>
+          ✖
+        </button>
         <h2>Selecione as bebidas para a promoção</h2>
 
         <div className="selectBeveragePromo-beverage-menu">
@@ -43,13 +70,18 @@ const SelectBeveragePromo = () => {
             onScroll={handleScrollBeverage}
           >
             {beverageListPromo.slice(0, visibleBeverageCount).map((beverage, index) => (
-              <button key={index} className="selectBeveragePromo-beverage-item">
+              <button 
+                key={index} 
+                className={`selectBeveragePromo-beverage-item ${selectedBeverage === beverage ? 'selected' : ''}`} 
+                onClick={() => handleBeverageSelect(beverage)}
+              >
                 {index + 1} | {beverage}
               </button>
             ))}
           </div>
         </div>
-        <button className="selectBeveragePromo-next-button">
+        
+        <button className="selectBeveragePromo-next-button" onClick={handleNext}>
           Próximo
         </button>
 
@@ -58,6 +90,8 @@ const SelectBeveragePromo = () => {
           <span className="dot active"></span>
           <span className="dot-not"></span>
         </div>
+
+        {isPromoModalOpen && <PromoModal onClose={closePromoModal} />}
       </section>
     </div>
   );

@@ -15,11 +15,43 @@
   background-color: #f5f5f5;
   border-radius: 10px;
   padding: 20px;
-  width: 600px; /* Largura para desktop */
+  width: 600px; 
   display: flex; 
   flex-direction: column; 
   background-image: url('/public/image/banner.png');
   background-size: cover;
+  position: relative;
+}
+
+.promo-form {
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  padding: 20px;
+  width: 600px; 
+  display: flex; 
+  flex-direction: column; 
+  background-image: url('/public/image/banner.png');
+  background-size: cover;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px; 
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #3A3C16;
+}
+
+.close-button:hover {
+  color: #4CAF50; 
+}
+.success-message {
+  color: green; 
+  text-align: center;
+  margin-bottom: 15px;
 }
 
 .promo-form h2 {
