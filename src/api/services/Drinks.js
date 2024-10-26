@@ -1,18 +1,18 @@
 import api from "../Axios";
 
-export const getFlavorsPop = async (token, value = "") => {
+export const getDrinksPop = async (token, value = "") => {
     try {
-        const response = await api.get('/flavors/pop', {
+        const response = await api.get('/drinks', {
             headers: {
                 'Authorization': `Bearer ${token}`
             },
-            params: {
-                value,
-            },
+            // params: {
+                // value,
+            // },
         });
         return response.data;
     } catch (error) {
-        console.error('[getFlavorsPop] error: ', error);
+        console.error('[getDrinksPop] error: ', error);
         throw new Error('Erro ao fazer requisição. Aguarde um momento e recarregue a página.');
     }
 };

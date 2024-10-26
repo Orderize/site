@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './Home.module.css';
 
-import Acessebility from '../../Components/acessibility/acessibility.jsx';
 import Beneficio from '../../Components/Benefits/Benefits';
 import Formulario from '../../Components/Form/Form.jsx';
 import Funcionalidade from '../../Components/Features/Features';
@@ -18,31 +17,20 @@ import quebraCabeca from "../../utils/assets/quebraCabecaa.png";
 import logo from "../../utils/assets/logo.png";
 import imgForm from "../../utils/assets/imgForm.svg";
 
-import { IoMenuOutline } from "react-icons/io5";
 import { IoIosTabletPortrait } from "react-icons/io";
+import FooterHome from './Components/FooterHome/FooterHome';
+import NavbarHome from './Components/NavbarHome/NavbarHome.jsx';
 
 const Home = () => {
+
+    
+
   return (
     <body>
-      <header>
-        <div className={styles['menu']}>
-          <IoMenuOutline className={styles["menu-icon"]} />
-        </div>
-
-        <nav className={styles['nav']}>
-          <img src={logo} className={styles['imageLogo']} />
-          <div className={styles['nav-acessibility']}>
-            <ul className={styles['nav-links']}>
-              <li><a href="#" className={styles['item-nav']}>Home</a></li>
-              <li><a href="#ourSystem" className={styles['item-nav']}>Nosso Sistema</a></li>
-              <li><a href="#benefits" className={styles['item-nav']}>Benefícios</a></li>
-              <li><a href="#contact" className={styles['item-nav']}>Fale Conosco</a></li>
-            </ul>
-            <Acessebility></Acessebility>
-          </div>
-        </nav>
+      <header id="home">
         
-
+        <NavbarHome 
+        logo={logo}/>
 
         <div className={styles["content"]}>
           <div className={styles["mobile"]}>
@@ -131,7 +119,7 @@ const Home = () => {
             title="Insights valiosos"
           />
         </div>
-      </div>
+    </div>
 
 
       <div id="contact" className={styles['form']}>
@@ -154,6 +142,8 @@ const Home = () => {
           <Formulario />
         </div>
       </div>
+
+      <FooterHome icon={logo} />
     </body>
 
   );

@@ -10,10 +10,15 @@ function buttonNavbar({ event, icon, isActive, link, text }) {
         query: '(min-width: 1200px)'
     })
 
+    const handleClick = (e) => {
+        event(text);
+    }
+
     return (
         <>
             <li 
                 className={ `container-buttonNavbar ${isActive ? "active" : ""}` }
+                onClick={handleClick}
             >
                 <Link 
                     to={link}
