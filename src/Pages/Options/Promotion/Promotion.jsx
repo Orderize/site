@@ -90,8 +90,10 @@ function Promotion() {
                         <span>Possui Alguma Condição?</span>
                     </div>
                     <div className="promotion-list" style={{ overflowY: 'scroll', maxHeight: '500px' }}>
-                        {promotions.map((promotion, index) => (
-                            <div className="promotion-item" key={index}>
+                        {
+                            promotions.length > 0 &&
+                            promotions.map(promotion => (
+                            <div className="promotion-item" key={promotion.id}>
                                 <span>{promotion.name}</span>
                                 <span>{promotion.dates}</span>
                                 <span className={`status ${promotion.status === "Ativa" ? "active" : "inactive"}`}>{promotion.status}</span>

@@ -6,25 +6,47 @@ import Progress from "../../Components/Progress/Progress";
 import styles from "./Client.module.css";
 import MediaQuery from "react-responsive";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
-    function Client() {
-        const navigate = useNavigate();
+function Client() {
+    const { user } = useAuth();
+    const navigate = useNavigate();
 
-        const handleNext = () => {
-            navigate("/pedidos/novo-pedido");
-        };
+    const handleNext = () => {
+        navigate("/pedidos/novo-pedido");
+    };
+
+    console.log(user);
 
     return (
         <>
-        <Navbar activeButton={"Pedidos"} />
+            <Navbar activeButton={"Pedidos"} role={user.role}/>
 
-        <main className={styles["container-client"]}>
-        <MediaQuery maxWidth={768}>
+            <main className={styles["container-client"]}>
+            <MediaQuery maxWidth={768}>
 
-            {/* <p className={styles.titulo}>Novo Pedido</p>     */}
+                {/* <p className={styles.titulo}>Novo Pedido</p>     */}
+                {/* <div className={styles["client-modal"]}> */}
+
+                    {/* <p className={styles.subtitulo}>Selecione o cliente:</p> */}
+                    <p className={styles.titulo}>Novo Pedido</p>
+
+                    <div className={styles["client-modal-card"]}>
+                        <p className={styles.subtitulo}>Cliente</p>
+
+                        <FormClient />
+                    </div>
+
+                    <div className={styles.progress}>
+                        <ButtonNext onNext={handleNext} />
+
+                            <Progress currentStep={1} totalSteps={5} />
+                    </div>
+                {/* </div> */}
+            </MediaQuery>
+
+            <MediaQuery minWidth={769}>
             {/* <div className={styles["client-modal"]}> */}
-
-                {/* <p className={styles.subtitulo}>Selecione o cliente:</p> */}
                 <p className={styles.titulo}>Novo Pedido</p>
 
                 <div className={styles["client-modal-card"]}>
@@ -33,29 +55,11 @@ import { useNavigate } from "react-router-dom";
                     <FormClient />
                 </div>
 
-                <div className={styles.progress}>
-                    <ButtonNext onNext={handleNext} />
-
-                        <Progress currentStep={1} totalSteps={5} />
-                </div>
+                <ButtonNext onNext={handleNext} />
             {/* </div> */}
-        </MediaQuery>
-
-        <MediaQuery minWidth={769}>
-        {/* <div className={styles["client-modal"]}> */}
-            <p className={styles.titulo}>Novo Pedido</p>
-
-            <div className={styles["client-modal-card"]}>
-                <p className={styles.subtitulo}>Cliente</p>
-
-                <FormClient />
-            </div>
-
-            <ButtonNext onNext={handleNext} />
-        {/* </div> */}
-        </MediaQuery>
-        </main>
-    </>
+            </MediaQuery>
+            </main>
+        </>
     );
 }
 

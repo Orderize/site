@@ -19,7 +19,12 @@ function flavor() {
 
     const handleDrink = async (event) => {
         try {
-            const data = await getDrinksPop(token);
+            const params = {
+                name: "",
+                milimeters: ""
+            };
+            
+            const data = await getDrinksPop(token, params);
             setDrink(data);
         } catch (error) {
             // FAZER UM MODAL AQUI PARA FALAR SOBRE O ERRO

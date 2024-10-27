@@ -1,14 +1,12 @@
 import api from "../Axios";
 
-export const getDrinksPop = async (token, value = "") => {
+export const getDrinksPop = async (token, params) => {
     try {
         const response = await api.get('/drinks', {
             headers: {
                 'Authorization': `Bearer ${token}`
             },
-            // params: {
-                // value,
-            // },
+            params,
         });
         return response.data;
     } catch (error) {
