@@ -7,7 +7,7 @@ const AuthContext = createContext(undefined);
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [token, setToken] = useState(null);
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const login = (userData, authToken) => {
         setUser(userData);
@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
         setUser(null);
         setToken(null);
         localStorage.removeItem("token");
-        navigate("/login")
+        // navigate("/login")
     }
 
     const handleAuth = async () => {
