@@ -1,18 +1,18 @@
 import api from "../Axios";
 
-export const getPromotions = async (token, name="") => {
+export const getClientByPhone = async (token, phone) => {
     try {
-        const response = await api.get('/promotions', {
+        const response = await api.get('/users', {
             headers: {
                 'Authorization': `Bearer ${token}`
             },
             params: {
-                name
+                phone
             },
         });
         return response.data;
     } catch (error) {
-        console.error('[getPromotions] error: ', error);
+        console.error('[getClientByPhone] error: ', error);
         throw new Error('Erro ao fazer requisição. Aguarde um momento e recarregue a página.');
     }
 };

@@ -22,16 +22,7 @@
         margin-left: 5vh;
     }
 
-    .container-flavor > .comp-search {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-
-        width: 90%;
-        margin: 25px 5vh;
-    }
-
-    .container-flavor > .comp-search > label > .icon-search {
+    .container-flavor > label > .icon-search {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -48,7 +39,7 @@
         cursor: pointer;
     }
 
-    .container-flavor > .comp-search > .input-search {
+    .container-flavor > .input-search {
         margin-left: 10px;
         padding: 15px 20px;
         

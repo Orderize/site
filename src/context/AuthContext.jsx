@@ -2,45 +2,36 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import { authApi } from '../api/Auth';
 import { useNavigate } from 'react-router-dom';
 
-const AuthContext = createContext(undefined);
+const AuthContext = createContext(undefined);   
 
-export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
-    const [token, setToken] = useState(null);
-    // const navigate = useNavigate();
+const AuthProvider = ({ children }) => {
+    const [user, setUser] = useState(() => {
+        const storedUser = localStorage.getItem("user");
+        return storedUser ? JSON.parse(storedUser) : null;
+    });
+    
+    const [token, setToken] = useState(() => {
+        return localStorage.getItem("token") || null
+    });
 
     const login = (userData, authToken) => {
         setUser(userData);
         setToken(authToken);
+        localStorage.setItem("user", JSON.stringify(userData));
         localStorage.setItem("token", authToken);
-        localStorage.setItem("user", userData);
     };
     
     const logout = () => {
         setUser(null);
         setToken(null);
         localStorage.removeItem("token");
+        localStorage.removeItem("user");
         // navigate("/login")
     }
 
-    const handleAuth = async () => {
-        const storedToken = localStorage.getItem("token");
-        
-        if (storedToken) {
-            try {
-                const response = await authApi(); 
-                setUser(response.data.user);
-                setToken(response.data.token);
-            } catch {
-                setUser(null);
-                setToken(null);
-            }
-        }
-    };
 
     useEffect(() => {
-        handleAuth();
-    }, []);
+    });
 
     return (
         <AuthContext.Provider value={{ user, token, login, logout }}>
@@ -49,6 +40,6 @@ export const AuthProvider = ({ children }) => {
     )
 }
 
-export const useAuth = () => {
+const useAuth = () => {
     return useContext(AuthContext);
 }

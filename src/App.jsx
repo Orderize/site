@@ -1,7 +1,7 @@
 import React, { StrictMode } from 'react'
 import { Route, Routes, BrowserRouter } from 'react-router-dom'
 import { createRoot } from 'react-dom/client'
-import { AuthProvider } from './context/AuthContext'
+// import { AuthProvider } from './context/AuthContext'
 
 import Home from './Pages/Home/Home'
 import ModalDrink from './Components/Modal/Drink/Drink';
@@ -27,9 +27,8 @@ import './utils/global.css'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <AuthProvider>
-      <BrowserRouter>
-        <Routes>
+    <BrowserRouter>
+      <Routes>
           <Route
             path='/'
             element={<Home />}
@@ -106,8 +105,7 @@ createRoot(document.getElementById('root')).render(
             path='/modal/selectbeveragepromo'
             element={<SelectBeveragePromo />}
           ></Route>
-        </Routes>
-      </BrowserRouter>
-    </AuthProvider>
+      </Routes>
+    </BrowserRouter>
   </StrictMode>,
 )

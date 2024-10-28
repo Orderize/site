@@ -5,16 +5,13 @@ import Item from "../../../Components/Item/Item";
 import Navbar from "../../../Components/Navbar/Navbar";
 import "./Flavor.css"
 import { getFlavorsPop } from "../../../api/services/Flavors";
+import InputSearch from "../../../Components/InputSearch/InputSearch";
 
 
 function flavor() {
     const [valueSearch, setValueSearch] = useState("");
     const [flavors, setFlavors] = useState([]);
     const [token] = useState(localStorage.getItem('token'));
-
-    const enter = () => {
-        console.log(valueSearch);
-    }
 
 
     const handleFlavors = async (event) => {
@@ -47,22 +44,12 @@ function flavor() {
 
     return (
         <>
-            <Navbar role={"attendant"} activeButton={"Opções"} subActiveButton={"Sabores"} />
+            <Navbar roles={"attendant"} activeButton={"Opções"} subActiveButton={"Sabores"} />
             <main className="container-flavor">
                 <h1>Opções</h1>
                 <div className="breadcrumb-search">
                     <Breadcrumb activeButton={"sabores"} />
-                    <div className="comp-search">
-                        <input 
-                            id="search" 
-                            type="text" 
-                            value={valueSearch}
-                            onChange={handleSearch}
-                            onKeyDown={e => { e.key === "Enter" ? enter() : null}}
-                            className="input-search"
-                            placeholder="Pesquisar"
-                        />
-                    </div>
+                    <InputSearch valueSearch={valueSearch} handleSearch={handleSearch} />
                 </div>
                 <section className="flavor-list">
                     {

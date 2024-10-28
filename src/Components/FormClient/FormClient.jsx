@@ -1,19 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FloatingInput from "../Floatinginput/Floatinginput";
 import MediaQuery from "react-responsive";
 import styles from "./FormClient.module.css";
 import { inputNumerosCelular, inputCep, inputSomenteTexto, inputSomenteNumero, inputLetrasNumeros } from "../../utils/globals";
+import { getClientByPhone } from "../../api/services/User";
 
 function FormClient() {
-    const [telefone, setTelefone] = useState("");   
-    const [nome, setNome] = useState("");
-    const [cep, setCep] = useState("");
-    const [numero, setNumero] = useState("");
-    const [endereco, setEndereco] = useState("");
-    const [rua, setRua] = useState("");
-    const [bairro, setBairro] = useState("");
-    const [cidade, setCidade] = useState("");
-
+    
     return (
         <>
             {/* <main className="container-client"> */}

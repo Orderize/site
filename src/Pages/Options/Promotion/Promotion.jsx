@@ -5,19 +5,16 @@ import Navbar from "../../../Components/Navbar/Navbar";
 import SelectPizzaPromo from "/src/Components/Modal/select_pizza_promo/selectPizzaPromo.jsx"; 
 import "./Promotion.css";
 import { getPromotions } from "/src/api/services/Promotion.js";
+import InputSearch from "../../../Components/InputSearch/InputSearch";
 
 function Promotion() {
-    const [searchTerm, setSearchTerm] = useState("");
+    const [valueSearch, setValueSearch] = useState("");
     const [promotions, setPromotions] = useState([]);
     const [token] = useState(localStorage.getItem('token'));
     const [isSelectPizzaModalOpen, setIsSelectPizzaModalOpen] = useState(false);
 
     const handleSearchChange = (e) => {
-        setSearchTerm(e.target.value);
-    };
-
-    const enter = () => {
-        console.log(searchTerm);
+        setValueSearch(e.target.value);
     };
 
     const handlePromotions = async () => {
@@ -32,7 +29,7 @@ function Promotion() {
 
     const handleSearch = async (event) => {
         const value = event.target.value;
-        setSearchTerm(value);
+        setValueSearch(value);
         try {
             const data = await getPromotions(token, value);
             setPromotions(data);
@@ -66,17 +63,7 @@ function Promotion() {
                 <h1>Gerenciamento</h1>
                 <div className="breadcrumb-search">
                     <Breadcrumb activeButton={"brindes"} />
-                    <div className="comp-search">
-                        <input 
-                            id="search" 
-                            type="text" 
-                            value={searchTerm}
-                            onChange={handleSearch}
-                            onKeyDown={e => { e.key === "Enter" ? enter() : null }}
-                            className="input-search"
-                            placeholder="Pesquisar" 
-                        />
-                    </div>
+                    <InputSearch valueSearch={valueSearch} handleSearch={handleSearch}/>
                 </div>
                 <div className="btn-add-wrapper">
                     <button className="btn-add-promotion" onClick={openSelectPizzaModal}>Adicionar promoção +</button>

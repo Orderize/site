@@ -5,17 +5,13 @@ import Item from "../../../Components/Item/Item";
 import Navbar from "../../../Components/Navbar/Navbar";
 import "./Drink.css"
 import { getDrinksPop } from "../../../api/services/Drinks";
+import InputSearch from "../../../Components/InputSearch/InputSearch";
 
 
 function flavor() {
     const [valueSearch, setValueSearch] = useState("");
     const [drink, setDrink] = useState([]);
     const [token] = useState(localStorage.getItem('token'));
-
-    const enter = () => {
-        console.log(valueSearch);
-    }
-
 
     const handleDrink = async (event) => {
         try {
@@ -37,7 +33,12 @@ function flavor() {
         const value = event.target.value;
         setValueSearch(value);
         try {
-            const data = await getDrinksPop(token, value);
+            const params = {
+                name: value,
+                milimeters: null
+            };
+
+            const data = await getDrinksPop(token, params);
             setDrink(data);
             console.log(data);
         } catch (error) {
@@ -52,22 +53,12 @@ function flavor() {
 
     return (
         <>
-            <Navbar role={"attendant"} activeButton={"Opções"} subActiveButton={"Bebidas"} />
+            <Navbar roles={"attendant"} activeButton={"Opções"} subActiveButton={"Bebidas"} />
             <main className="container-flavor">
                 <h1>Opções</h1>
                 <div className="breadcrumb-search">
                     <Breadcrumb activeButton={"bebidas"} />
-                    <div className="comp-search">
-                        <input 
-                            id="search" 
-                            type="text" 
-                            value={valueSearch}
-                            onChange={handleSearch}
-                            onKeyDown={e => { e.key === "Enter" ? enter() : null}}
-                            className="input-search"
-                            placeholder="Pesquisar"
-                        />
-                    </div>
+                    <InputSearch valueSearch={valueSearch} handleSearch={handleSearch} />
                 </div>
                 <section className="flavor-list">
                     {

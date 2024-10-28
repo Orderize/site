@@ -1,26 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NotePencil } from "@phosphor-icons/react";
 import styles from "./CardClient.module.css";
 
-function CardClient(){
-    const [client, setClient] = React.useState({
-        name: "Teste",
-        phone: "11 0000-0000",
-        address: "Rua teste, 123"
-    });
-
-    // const handleChange = (event) => { //atualizar valores do cliente
-    //     const {name, value} = event.target;
-    //     setClient({...client, [name]: value});
-    // };
-
-    // const handleSubmit = (event) => {
-    //     // event.preventDefault();
-    //     console.log(client);
-
-    //     //chamar api para salvar cliente
-    // };
-
+function CardClient() {
+    const [client, setClient] = useState(JSON.parse(localStorage.getItem("client")));
 
     return (
         <>
@@ -41,7 +24,7 @@ function CardClient(){
                         <p> <b>Telefone:</b> {client.phone} </p>
                     </div>
                     <div className={styles.campo__item}>
-                        <p> <b>Endereço:</b> {client.address} </p>
+                        <p> <b>Endereço:</b> {client.address.street} </p>
                     </div>
                 </div>
             </main>

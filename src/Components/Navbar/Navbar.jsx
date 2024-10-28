@@ -7,7 +7,9 @@ import "./Navbar.css";
 import ImgLogo from '../../utils/assets/logo.png';
 import { useMediaQuery } from 'react-responsive';
 
-function navbar({ role, activeButton, subActiveButton }) {
+function navbar({ roles, activeButton, subActiveButton }) {
+    // const [ isOwner ] = useState(roles.some(role => role.name === "OWNER"));
+    
     const isDesktop = useMediaQuery({
         query: '(min-width: 1200px)' 
     });
@@ -15,13 +17,13 @@ function navbar({ role, activeButton, subActiveButton }) {
     const [actualButton, setActualButton] = useState(activeButton);
 
     const mainButton = {
-        title: role === "admin" ? "Relatórios" : "Pedidos",  
-        icon: role === "admin" ? <ChartDonut size={37} /> : <Pizza size={37} />,
-        path: role === "admin" ? "/relatorios" : "/pedidos"
+        title: roles === "OWNER" ? "Relatórios" : "Pedidos",  
+        icon: roles === "OWNER" ? <ChartDonut size={37} /> : <Pizza size={37} />,
+        path: roles === "OWNER" ? "/relatorios" : "/pedidos"
     };
 
     
-    const nameMiddleButton = role === "admin" ? "Gestão" : "Opções";
+    const nameMiddleButton = roles === "OWNER" ? "Gestão" : "Opções";
 
     return (
         <>

@@ -2,10 +2,10 @@ import React,{ useEffect, useState } from 'react';
 import "./Login.css";
 import { useNavigate } from 'react-router-dom';
 import { authApi } from '../../api/Auth';
-import { useAuth } from '../../context/AuthContext';
+// import { useAuth } from '../../context/AuthContext';
 
 const Login = () => {
-    const { login } = useAuth();
+    // const { login } = useAuth();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isRemembered, setIsRemembered] = useState(false);
@@ -27,10 +27,11 @@ const Login = () => {
                 alert("Login realizado com sucesso.");
                 
                 localStorage.setItem('token', data.token);
+                localStorage.setItem('user', JSON.stringify(data.user));
 
                 if (isRemembered) localStorage.setItem('emailAuth', email);
                 
-                login(data.user, data.token);
+                // login(data.user, data.token);
                 
                 const timeoutToNav = setTimeout(() => {
                     goTo("/pedidos");

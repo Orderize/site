@@ -8,6 +8,7 @@
     font-size: 15px;
     margin: 0;
     box-shadow: none;
+    cursor: pointer;
 }
 
 @media screen and (min-width: 768px){

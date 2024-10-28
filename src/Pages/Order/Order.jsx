@@ -15,6 +15,8 @@ import { useNavigate } from "react-router-dom";
 
 function Order() {
   const [currentStep, setCurrentStep] = useState(2);
+  const [total, setTotal] = useState();
+  const [pizzaValue, setPizzaValue] = useState();
 
   const handleNext = () => {
     if (currentStep < 5) {
@@ -97,7 +99,7 @@ function Order() {
                 </div>
 
                 <section>
-                    <CardPizza />
+                    <CardPizza setTotal={setTotal} setPizzaValue={setPizzaValue} />
                 </section>
 
                 <section>
@@ -108,7 +110,7 @@ function Order() {
             <div className={styles["order-details-right"]}>
                 <CardClient />
                 <CardPayment />
-                <CardTotal />
+                <CardTotal total={total} pizzaValue={pizzaValue} />
             </div>
         </main>
       </MediaQuery>
