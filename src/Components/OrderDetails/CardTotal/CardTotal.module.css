@@ -1,0 +1,108 @@
+
+.container-total {
+    background: var(--verde-escuro);
+    border-radius: 25px;
+    width: 90vw;
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+    /* padding: 0 3vh; */
+}
+
+.container-total .titulo {
+    font-family: var(--fonte-titulo);
+    font-size: 25px;
+    font-weight: 600;
+    color: #F7F0E6;
+    align-self: flex-start;
+    padding: 2.5vh;
+}
+
+.container-total .total {
+    font-family: var(--fonte-titulo);
+    font-size: 30px;
+    font-weight: 600;
+    color: #F7F0E6;
+    align-self: center;
+}
+
+.container-total .list-precos {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+}
+
+.container-total .list-precos .list-precos__item {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    /* width: 90%; */
+}
+
+.container-total .list-precos .list-precos__item p {
+    font-family: var(--fonte);
+    color: #F7F0E6;
+    font-size: 15px;
+    font-weight: 400;
+} 
+
+@media screen  and (min-width: 768px ){
+    .container-total {
+        width: 90%;
+        height: 28vh;
+    }
+
+    .container-total .titulo {
+        font-size: 20px;
+    }
+
+    .container-total .total {
+        font-size: 25px;
+    }
+
+    .container-total .list-precos .list-precos__item p {
+        font-size: 12px;
+    }  
+}
+
+@media screen and (min-width: 1200px){
+    .container-total {
+        width: 85%;
+        height: 37%;
+        gap: 15px;
+    }
+
+    .container-total .titulo {
+        font-size: 22px;
+        padding: 0 3vh;
+    }
+
+    .container-total .total {
+        font-size: 25px;
+    }
+
+    .container-total .list-precos .list-precos__item {
+        gap: 20px;
+    }
+
+    .container-total .list-precos .list-precos__item p {
+        font-size: 14px;
+    }
+}
+
+@media screen and (min-width: 1900px){
+    .container-total .titulo {
+        font-size: 35px;
+    }
+
+    .container-total .total {
+        font-size: 45px;
+    }
+
+    .container-total .list-precos .list-precos__item p {
+        font-size: 22px;
+    }
+}

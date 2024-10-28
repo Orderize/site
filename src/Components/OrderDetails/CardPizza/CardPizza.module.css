@@ -1,0 +1,89 @@
+.container-pizza {
+    background: var(--cor-fundo-sec);
+    width: 90vw;
+    height: 65vh;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.container-pizza .titulo {
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+    align-items: center;
+    /* border-bottom: 2px solid #FFF; */
+    padding: 2vh;
+}
+
+.container-pizza .titulo p {
+    font-family: var(--fonte-titulo);
+    font-weight: 600;
+    font-size: 25px;
+    text-align: center;
+    color: var(--verde);
+}
+
+
+@media screen and (min-width: 768px){
+    .container-pizza {
+        width: 100%;
+        height: 45vh;
+    }
+
+    .container-pizza .titulo {
+        width: 93%;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .container-pizza {
+        width: 40vw;
+        max-height: 40vh;
+    }
+
+    .container-pizza .titulo {
+        width: 95%;
+    }
+
+    .container-pizza .titulo p {
+        font-size: 22px;
+    }
+
+    .container-pizza .list-pizza {
+        width: 100%;
+        height: 85%;
+        padding: 20px;
+        margin: auto;
+        border-top: 2px solid white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .container-pizza .list-pizza .content-pizza {
+        width: 80%;
+        padding: 10px;
+        font-size: 20px;
+        color: var(--verde);
+        font-weight: 700;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .container-pizza .list-pizza .content-pizza .value {
+        font-weight: 900;
+        font-size: 22px;
+    }
+
+}
+
+@media screen and (min-width: 1900px){
+    .container-pizza .titulo p {
+        font-size: 35px;
+    }
+
+    .container-pizza .titulo .btn-adicionar {
+        font-size: 20px;
+    }
+}

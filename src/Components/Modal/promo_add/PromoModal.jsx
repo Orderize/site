@@ -1,21 +1,38 @@
 import React, { useState } from 'react';
 import './PromoModal.css'; 
 
-const PromoModal = () => {
+const PromoModal = ({ onClose }) => {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [conditionDo, setConditionDo] = useState('');
   const [conditionIf, setConditionIf] = useState('');
+  const [successMessage, setSuccessMessage] = useState(''); 
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log({ startDate, endDate, conditionDo, conditionIf });
+    
+    // Exibir mensagem de sucesso
+    setSuccessMessage('Promoção adicionada com sucesso!');
+
+    // Fechar o modal após 2 segundos
+    setTimeout(() => {
+      setSuccessMessage('');
+      onClose();
+    }, 2000);
   };
 
   return (
     <div className="modal">
       <form className="promo-form" onSubmit={handleSubmit}>
+        <button type="button" className="close-button" onClick={onClose}>
+          ✖
+        </button>
         <h2>Adicionar promoção</h2>
+
+        {successMessage && (
+          <div className="success-message">{successMessage}</div>
+        )}
 
         <div className="period-condition-wrapper">
           <div className="label-column">

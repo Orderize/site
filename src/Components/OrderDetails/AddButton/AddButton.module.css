@@ -1,0 +1,27 @@
+.btn-adicionar {
+    height: 4vh;
+    width: 30vw;
+    background: #FFF;
+    border-radius: 5px;
+    color: var(--verde-escuro);
+    font-family: var(--fonte-titulo);
+    font-size: 15px;
+    margin: 0;
+    box-shadow: none;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 768px){
+    .btn-adicionar {
+        height: 5vh;
+        width: 15vw;
+    }
+}
+
+@media screen and (min-width: 1200px){
+    .btn-adicionar {
+        height: 6vh;
+        width: 12vw;
+        font-size: 16px;
+    }
+}

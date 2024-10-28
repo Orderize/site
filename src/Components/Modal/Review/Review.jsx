@@ -1,7 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './review.css';
 
-const PizzaModal = () => {
+function PizzaModal({ pizzas, handleNext, handleBack }) {
+  const [listIngredients, setListIngredients] = useState([]);
+
+  const handleIngredients = () => {    
+    if (pizzas.length > 0) {
+      const ingredients = pizzas.flatMap(pizza => pizza.flavors).flatMap(flavor => flavor.ingredients);
+      setListIngredients(ingredients);
+    }
+  }
+
+  useEffect(() => {
+    handleIngredients();
+  }, []);
+
   return (
     <section className="modal-overlay-review">
       <div className="container-review">
@@ -29,31 +42,24 @@ const PizzaModal = () => {
 
         <div className="pizza-menu-review">
           <div className="pizza-header">
-            <span>100 | Calabresa</span>
+            <span>{pizzas[0].id} | {pizzas[0].name}</span>
           </div>
 
           <div className="pizza-ingredients">
             <p>Ingredientes:</p>
             <ul>
-              <li>
-                <input type="checkbox" checked readOnly /> Cebola
-              </li>
-              <li>
-                <input type="checkbox" checked readOnly /> Calabresa
-              </li>
-              <li>
-                <input type="checkbox" checked readOnly /> Tomate
-              </li>
-              <li>
-                <input type="checkbox" checked readOnly /> Massa de tomate
-              </li>
+            {listIngredients.map(ingredient => (
+                <li key={ingredient.id}>
+                  <input type="checkbox" checked readOnly /> {ingredient.name}
+                </li>
+            ))}
             </ul>
           </div>
         </div>
 
         <div className="pizza-actions">
-          <button className="button back-btn">Voltar</button>
-          <button className="button next-btn">Próximo</button>
+          <button onClick={handleBack} className="button back-btn">Voltar</button>
+          <button onClick={handleNext} className="button next-btn">Próximo</button>
         </div>
       </div>
     </section>
