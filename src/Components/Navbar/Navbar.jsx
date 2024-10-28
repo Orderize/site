@@ -7,7 +7,7 @@ import "./Navbar.css";
 import ImgLogo from '../../utils/assets/logo.png';
 import { useMediaQuery } from 'react-responsive';
 
-function navbar({ role, activeButton }) {
+function navbar({ role, activeButton, subActiveButton }) {
     const isDesktop = useMediaQuery({
         query: '(min-width: 1200px)' 
     });
@@ -47,14 +47,14 @@ function navbar({ role, activeButton }) {
                         text={nameMiddleButton}
                         />
                     {
-                        actualButton === "Opções" ? 
-                            <Option />
+                        subActiveButton === "Sabores" || subActiveButton === "Bebidas" || subActiveButton === "Brindes" ? 
+                            <Option activeButton={subActiveButton} />
                         : null
                     }
                     <ButtonNavbar
                         icon={ <ClockClockwise size={37} /> }
                         isActive={actualButton === "Histórico"}
-                        link="/"
+                        link="/historico"
                         text="Histórico"
                     />
                 </ul>

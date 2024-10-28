@@ -2,38 +2,59 @@
     display: flex;
     flex-direction: row;
     border: solid 2px #A60F1B;
-    margin: 20px;
-    width: 80vw;
-    height: 20vh;
+    margin: 10px;
+    width: 100%; 
+    max-width: 60vw; 
+    height: auto;
+    min-height: 15vh; 
+    align-items: center;
+    gap: 10px;
 }
 
 .benefits img {
-    width: 30vw;
+    width: 25%;
+    max-width: 100px; 
 }
 
 .benefits h3 {
-    display: flex;
-    align-items: center;
     color: #4D4138;
     font-size: 18px;
     font-family: 'Lexend Light';
 }
 
-/* responsividade */
-@media (min-width: 761px) {
+/* Responsividade p/ tablet*/
+@media (min-width: 600px) {
     .benefits {
-        display: flex;
-        flex-direction: column;
-        border: solid 2px #A60F1B;
-        margin: 10px;
-        width: 50%;
-        height: 400px;
+        flex-direction: column; 
+        width: 90%; 
+        height: auto;
+        max-height: 300px; 
+        padding: 15px;
+        gap: 5%;
     }
 
     .benefits img {
-        width: 20vw;
+        width: 50%; 
     }
-    
+}
+
+/* Responsividade p/ desktops */
+@media (min-width: 1200px) {
+    .benefits {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 350px;
+        height: 400px;
+        gap: 10%;
+    }
+
+    .benefits img {
+        width: 58%;
+        max-width: 100%; 
+    }
+
     .benefits h3 {
         display: flex;
         align-items: center;
@@ -41,6 +62,4 @@
         font-size: 18px;
         font-family: 'Lexend Light';
     }
-
-
 }
