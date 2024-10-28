@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useMediaQuery } from 'react-responsive'
 import "./ButtonNavbar.css"
 
-function buttonNavbar({ event, icon, isActive, link, text }) {
+function buttonNavbar({ icon, isActive, link, text }) {
     
     // Só para teste kk
     const isDesktop = useMediaQuery({
@@ -11,7 +11,6 @@ function buttonNavbar({ event, icon, isActive, link, text }) {
     })
 
     const handleClick = (e) => {
-        event(text);
     }
 
     return (
