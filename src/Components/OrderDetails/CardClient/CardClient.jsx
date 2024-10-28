@@ -2,31 +2,16 @@ import React from "react";
 import styles from "./CardClient.module.css";
 import FloatingInput from "../../FloatingInput/FloatingInput";
 import { NotePencil } from "@phosphor-icons/react";
-import { VscHeart } from "react-icons/vsc";
 
-function CardClient(){
-    const [client, setClient] = React.useState({
-        name: "Teste",
-        phone: "11 0000-0000",
-        address: "Rua teste, 123"
-    });
+function formatAddress(address) {
+    if (!address) return "Endereço não disponível";
 
-    // const handleChange = (event) => { //atualizar valores do cliente
-    //     const {name, value} = event.target;
-    //     setClient({...client, [name]: value});
-    // };
+    const { cep, number, street, neighborhood, city } = address;
+    return `${street}, ${number}, ${neighborhood} - ${city}, CEP: ${cep}`;
+}
 
-    // const handleSubmit = (event) => {
-    //     // event.preventDefault();
-    //     console.log(client);
-
-    //     //chamar api para salvar cliente
-    // };
-
-    const style = {
-        height: '5vh'
-    };
-
+function CardClient({ clientData }){
+    console.log('client card client'+ JSON.stringify(clientData));
 
     return (
         <>
@@ -35,28 +20,18 @@ function CardClient(){
                     <div className={styles.titulo}>
                         <p>Cliente</p>
                         
-                        <button className={styles.edit}>
+                        {/* <button className={styles.edit}>
                             <NotePencil size={32} weight="duotone" />
-                        </button>
+                        </button> */}
                     </div>
                     
                     <div className={styles.list}>
                         <div className={styles["list-superior"]}>
-                            <FloatingInput onValue={client.name} label={"Nome"} />
-                            <FloatingInput onValue={client.phone} label={"Telefone"} />
+                            <FloatingInput onValue={clientData.name} label={"Nome"} />
+                            <FloatingInput onValue={clientData.phone} label={"Telefone"} />
                         </div>
-                        <FloatingInput onValue={client.address} label={"Endereço"} />
+                        <FloatingInput onValue={formatAddress(clientData.address)} label={"Endereço"} />
                     </div>
-
-                    {/* <div className={styles.campo__item}>
-                        <p> <b>Nome:</b> {client.name} </p>
-                    </div>
-                    <div className={styles.campo__item}>
-                        <p> <b>Telefone:</b> {client.phone} </p>
-                    </div>
-                    <div className={styles.campo__item}>
-                        <p> <b>Endereço:</b> {client.address} </p>
-                    </div> */}
                 </div>
             </main>
         </>

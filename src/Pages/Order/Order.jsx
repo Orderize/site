@@ -11,10 +11,17 @@ import CardPayment from "../../Components/OrderDetails/CardPayment/CardPayment";
 import CardTotal from "../../Components/OrderDetails/CardTotal/CardTotal";
 import MediaQuery from "react-responsive";
 import styles from "./Order.module.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function Order() {
   const [currentStep, setCurrentStep] = useState(2);
+  const location = useLocation();
+  console.log("location.state:", location.state); // Verifica o state completo
+  const clientData = location.state?.clientData;
+
+  if (!clientData) {
+      console.log("Nenhum dado de cliente encontrado.");
+  }
 
   const handleNext = () => {
     if (currentStep < 5) {
@@ -106,7 +113,12 @@ function Order() {
             </div>
 
             <div className={styles["order-details-right"]}>
-                <CardClient />
+              {clientData ? (
+                  <CardClient clientData={clientData} />
+              ) : (
+                  <p>Nenhum cliente selecionado.</p>
+              )}
+
                 {/* <CardPayment /> */}
                 <CardTotal />
 

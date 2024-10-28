@@ -119,11 +119,29 @@
         
     }
 
+    .client-nao-encontrado {
+        font-family: var(--fonte-titulo);
+        font-size: 10px;
+        font-weight: 600;
+        color: red;
+        /* padding: 2vh; */
+        margin-bottom: 10px;
+    }
+
     .subtitulo {
         font-family: var(--fonte-titulo);
         font-size: 25px;
         font-weight: 600;
         color: var(--verde-escuro);
+        padding: 2vh;
+        margin-bottom: 15px;
+    }
+
+    .novoCliente {
+        font-family: var(--fonte-titulo);
+        font-size: 25px;
+        font-weight: 600;
+        color: var(--verde);
         padding: 2vh;
         margin-bottom: 15px;
     }
