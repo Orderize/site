@@ -9,6 +9,8 @@ function Funcionalidade({ icon, iconDesktop, title, texto, fact1, fact2, inverte
 
   const desciptionBlockClass = `${styles.desciptionBlock} ${isDescriptionOpen ? styles.active : ''}`;
 
+  // console.log("Esse icone aqui" + JSON.stringify(icon))
+
   return (
     <div className={styles["features"]}>
       <div className={styles["mobile"]}>

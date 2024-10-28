@@ -11,13 +11,13 @@ import imagem1 from '../../utils/assets/imgGestaoDesktop.svg';
 import imgAnalise from "../../utils/assets/imgsAnalise.svg";
 import imagem2 from '../../utils/assets/fatiaPizzaDesktop.svg';
 import imagem3 from '../../utils/assets/imgGarcomPizzaioloDesktop.svg';
+import imagem4 from '../../utils/assets/SmartphoneTablet.svg';
 import imgAtendente from "../../utils/assets/imgAtendente.png";
 import insight from "../../utils/assets/ideia.png";
 import quebraCabeca from "../../utils/assets/quebraCabecaa.png";
 import logo from "../../utils/assets/logo.png";
 import imgForm from "../../utils/assets/imgForm.svg";
 
-import { IoIosTabletPortrait } from "react-icons/io";
 import FooterHome from './Components/FooterHome/FooterHome';
 import NavbarHome from './Components/NavbarHome/NavbarHome.jsx';
 
@@ -88,7 +88,7 @@ const Home = () => {
 
         <div className={styles["featuresSistDed"]}>
           <Funcionalidade
-            icon={<IoIosTabletPortrait className={styles["icon-sistDed"]} />}
+            icon={imagem4}
             iconDesktop={imagem3}
             title="Sistemas Dedicados"
             texto="O sistema Orderize facilita a gestão de mesas e pedidos pelos garçons, enquanto o pizzaiolo monitora atrasos para garantir agilidade. Isso assegura um atendimento eficiente e rápido, melhorando a satisfação dos clientes. O sistema também permite ajustes rápidos na cozinha para evitar congestionamentos."
