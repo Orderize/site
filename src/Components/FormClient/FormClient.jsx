@@ -6,8 +6,8 @@ import { inputNumerosCelular, inputCep, inputSomenteTexto, inputSomenteNumero, i
 import { getClientByPhone } from "../../api/services/User";
 
 function FormClient() {
-    
-    return (
+
+  return (
         <>
             {/* <main className="container-client"> */}
 
@@ -25,9 +25,10 @@ function FormClient() {
 
                 <MediaQuery minWidth={769}>
                 {/* <div className={styles.campos}> */}
-                <div className={styles["campos-list"]}>
+                <div >
+                        <FloatingInput onValue={telefone} onSet={setTelefone} label={"Telefone"} onInput={inputNumerosCelular}/>  
+                        <div className={styles["campos-list"]}>
                         <div className={styles["campos-left"]}>
-                            <FloatingInput onValue={telefone} onSet={setTelefone} label={"Telefone"} onInput={inputNumerosCelular}/>  
                             <FloatingInput onValue={nome} onSet={setNome} label={"Nome completo"} onInput={inputSomenteTexto}/>
                             <FloatingInput onValue={cep} onSet={setCep} label={"CEP"} onInput={inputCep}/>
                             <FloatingInput onValue={numero} onSet={setNumero} label={"Número"} onInput={inputSomenteNumero}/>
@@ -37,6 +38,7 @@ function FormClient() {
                             <FloatingInput onValue={rua} onSet={setRua} label={"Rua"} onInput={inputSomenteTexto}/>
                             <FloatingInput onValue={bairro} onSet={setBairro} label={"Bairro"} onInput={inputSomenteTexto}/>
                             <FloatingInput onValue={cidade} onSet={setCidade} label={"Cidade"} onInput={inputSomenteTexto}/>
+                        </div>
                         </div>
                     </div>
                 {/* </div> */}

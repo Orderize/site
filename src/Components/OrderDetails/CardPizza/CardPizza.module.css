@@ -38,8 +38,8 @@
 
 @media screen and (min-width: 1200px) {
     .container-pizza {
-        width: 40vw;
-        max-height: 40vh;
+        width: 100%;
+        max-height: 42vh;
     }
 
     .container-pizza .titulo {

@@ -62,7 +62,7 @@
   .container-client {
     background: var(--cor-fundo-sec);
     width: 85%;
-    height: 40%;
+    height: 47%;
     border-radius: 25px;
     border: 1px solid var(--verde-escuro);
     display: flex;
@@ -119,6 +119,27 @@
     border: 1.5px solid var(--verde-escuro);
     padding: 1vh;
     background: var(--campo-preenchido);
+  }
+
+  .list-superior {
+    display: flex;
+    
+  }
+
+  /* .list-superior > .input-container:last-child {
+    width: 25%;
+    background-color: red;
+  } */
+
+  /* .list-superior :nth-child(2) {
+    width: 65%; 
+} */
+
+  .list {
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 }
 
