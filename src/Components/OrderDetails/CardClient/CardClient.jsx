@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./CardClient.module.css";
-import FloatingInput from "../../FloatingInput/FloatingInput";
+import FloatingInput from "/src/Components/FloatingInput/FloatingInput";
 import { NotePencil } from "@phosphor-icons/react";
 import { VscHeart } from "react-icons/vsc";
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import FloatingInput from "../Floatinginput/Floatinginput";
+import FloatingInput from "/src/Components/FloatingInput/FloatingInput";
 import MediaQuery from "react-responsive";
 import styles from "./FormClient.module.css";
 import { inputNumerosCelular, inputCep, inputSomenteTexto, inputSomenteNumero, inputLetrasNumeros } from "../../utils/globals";
