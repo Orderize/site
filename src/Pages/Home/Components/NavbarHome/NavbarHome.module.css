@@ -46,7 +46,6 @@
         position: fixed;
         display: flex;
         flex-direction: column;
-        width: 100%;
         top: 0;
         left: -300px;
         width: 50%;
