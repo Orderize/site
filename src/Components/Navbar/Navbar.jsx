@@ -49,7 +49,7 @@ function navbar({ roles, activeButton, subActiveButton }) {
                         text={nameMiddleButton}
                         />
                     {
-                        subActiveButton === "Sabores" || subActiveButton === "Bebidas" || subActiveButton === "Brindes" ? 
+                        subActiveButton === "Sabores" || subActiveButton === "Bebidas" || subActiveButton === "Promo" ? 
                             <Option activeButton={subActiveButton} />
                         : null
                     }

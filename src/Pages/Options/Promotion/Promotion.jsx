@@ -58,7 +58,7 @@ function Promotion() {
 
     return (
         <>
-            <Navbar activeButton={"Opções"} subActiveButton={"Brindes"} />
+            <Navbar activeButton={"Opções"} subActiveButton={"Promo"} />
             <main className="container-promotion">
                 <h1>Gerenciamento</h1>
                 <div className="breadcrumb-search">
