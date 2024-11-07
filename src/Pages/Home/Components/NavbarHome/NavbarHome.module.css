@@ -1,0 +1,135 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+@media screen and (max-width: 760px) {
+
+    .menu.open {
+        visibility: hidden;
+    }
+
+    .menu-icon {
+        font-size: 30px;
+        cursor: pointer;
+        margin-right: 20px;
+        color: black;
+        z-index: 2;
+    }
+
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s, visibility 0.3s;
+        z-index: 1;
+    }
+
+    .overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .nav {
+        position: fixed;
+        display: flex;
+        flex-direction: column;
+        top: 0;
+        left: -300px;
+        width: 50%;
+        height: 100vh;
+        background-color: #f4f4f4;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s;
+        padding: 20px;
+        gap: 15px;
+    }
+
+    .nav.open {
+        transform: translateX(300px);
+    }
+
+    .close-btn {
+        cursor: pointer;
+        font-size: 45px;
+        color: black;
+        margin-bottom: 5px;
+        z-index: 2;
+    }
+
+
+    .imageLogo {
+        align-self: center;
+    }
+
+    .nav-links {
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+        margin: 10px;
+        gap: 25px;
+    }
+
+    .item-nav {
+        margin-left: 15px;
+        text-decoration: none;
+        font-family: 'Lexend Bold';
+        font-size: 18px;
+        color: #4D4138;
+        display: inline-block;
+        transition: transform 0.1s ease;
+    }
+
+    .item-nav:hover {
+        transform: scale(1.1);
+        color: #A60F1B;
+        filter: brightness(1.2);
+    }
+}
+
+@media screen and (min-width: 761px) {
+
+    .imageLogo {
+        display: flex;
+    }
+
+    .nav {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+    }
+
+    .nav-links {
+        display: flex;
+        list-style: none;
+        margin: 10px 5px 0px 5px;
+    }
+
+    .item-nav {
+        margin-left: 15px;
+        text-decoration: none;
+        font-family: 'Lexend Bold';
+        font-size: 18px;
+        color: #4D4138;
+        display: inline-block;
+        transition: transform 0.1s ease;
+    }
+
+    .item-nav:hover {
+        transform: scale(1.1);
+        color: #A60F1B;
+        filter: brightness(1.2);
+    }
+}

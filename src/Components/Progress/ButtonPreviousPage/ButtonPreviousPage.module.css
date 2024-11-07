@@ -1,0 +1,21 @@
+.btn-previous {
+    height: 4vh;
+    width: 10%  ;
+    /* width: 100vw; */
+    justify-self: flex-end;
+    /* background: var(--cor-fundo); */
+    background: transparent;
+    color: var(--verde-escuro);
+    border-radius: 5px;
+    font-family: var(--fonte-titulo);
+    font-size: 15px;    
+    margin: 0;
+    box-shadow: none;
+    /* margin-right: 80vw; */
+}
+
+@media screen and (max-width: 768px) {
+    .btn-previous {
+        margin-right: 90%;
+    }
+}

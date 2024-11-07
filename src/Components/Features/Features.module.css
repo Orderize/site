@@ -1,12 +1,12 @@
 .features {
   display: flex;
   flex-direction: column; 
+  justify-content: space-between;
   align-items: center;
 }
 
 .features img {
-  margin-top: 30px;
-  width: 80%; 
+  width: 100%; 
 }
 
 .titlePlus {
@@ -33,7 +33,6 @@
   display: flex;
   align-items: center; 
   justify-content: center; 
-  margin-top: 30px;
 }
 
 .content {
@@ -44,7 +43,6 @@
 .title {
   font-size: 24px;
   font-weight: bold; 
-  margin-bottom: 10px; 
 }
 
 .description {
@@ -55,10 +53,6 @@
 .fact {
   font-size: 14px; 
   color: #555; 
-}
-
-.image-container {
-  flex: 0 0 auto; 
 }
 
 .icon {
@@ -72,19 +66,42 @@
     display: none; 
   }
 
-  .funcionalidade {
-    flex-direction: column;
-    align-items: center; 
+  .mobile {
+    margin-top: 40px;
   }
 
-  .content {
-    margin-right: 0; 
-    text-align: center; 
+  .icon-container img {
+    width: 50%;
   }
 
-  .icon {
-    width: 80%; 
-    margin: 0; 
+  .title-iconPlus{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .iconPlus {
+    color: #A60F1B;
+    font-size: 30px;
+  }
+
+  .desciptionBlock {
+    margin: 0;
+    height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out, margin 0.3s ease-in-out; 
+    max-height: 0;
+  }
+
+  .desciptionBlock.active {
+    margin: 10px 0;
+    height: auto;
+    max-height: 500px;
+  }
+
+  .description {
+    margin: 0 12px;
   }
 }
 
@@ -99,17 +116,33 @@
 
   .desktop {
     display: flex; 
+    width: 94%;
+  }
+
+  .icon-container{
+    width: 70%;
+    display: flex;
+    align-items: center;
+    padding-right: 30px;
   }
 
   .desktop .icon-img-desktop {
     width: 70%;
-    margin: 20px 0px 0px 70px;
+    min-width: 300px; 
+  }
+
+  .funcionalidade-invertida{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 100px;
+    margin-left: 30px;
   }
 
   .titleText {
     display: flex;
     flex-direction: column;
-    width: 40%; 
+    width: 100%; 
     margin: 20px 70px 0px 0px; 
     justify-content: center;
   }
@@ -137,8 +170,7 @@
   .facts {
     display: flex;
     flex-direction: row;
-    margin-top: 10px;
-    gap: 20px;
+    gap: 30px;
     font-size: 14px; 
   }
 }
