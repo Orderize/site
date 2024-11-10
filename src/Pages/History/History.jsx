@@ -1,30 +1,51 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { PiPizzaBold } from "react-icons/pi";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
+// import { IoCloseCircleOutline } from "react-icons/io5";
 import Navbar from "../../Components/Navbar/Navbar";
 import styles from "./History.module.css";
-import { WiDayThunderstorm } from "react-icons/wi";
+import { getHistory } from "../../api/services/History";
 
 function History() {
 
-    const [valueSearch, setValueSearch] = useState("");
+    const [history, setHistory] = useState([]);
+    const [token] = useState(localStorage.getItem('token'));
+    const [selectedOrder, setSelectedOrder] = useState(null);
 
-    const enter = () => {
-        console.log(valueSearch);
+    const handleHistory = async (event) => {
+        try{
+            const data = await getHistory(token);
+            console.log("data:",data);
+            setHistory(data);
+        }catch(error){
+            alert(error.message)
+            console.log(error);
+        }
     }
 
-    const orders = [
-        { date: "19/10/2024", time: "14:30", code: "123", total: 50, type: "Delivery" },
-        { date: "18/10/2024", time: "18:00", code: "124", total: 30, type: "Salao/mesa" },
-        { date: "17/10/2024", time: "13:00", code: "125", total: 70, type: "Delivery" },
-        { date: "17/10/2024", time: "18:00", code: "125", total: 70, type: "salao/mesa" },
-        { date: "16/10/2024", time: "22:00", code: "125", total: 70, type: "Delivery" },
-    ];
+    useEffect(()=> {
+        handleHistory();
+
+        const interval = setInterval(() => {
+            handleHistory();
+        }, 5000);
+
+        return() => clearInterval(interval);
+    }, [token]);
+
+
+    const handleClickOrder = (order) => {
+        setSelectedOrder(order);
+    }
+
+    // const closeDetails = () => {
+    //     setSelectedOrder(null); 
+    // };
 
     return (
+        <>
+            <Navbar roles={"attendant"} activeButton={"Histórico"}/>
         <div className={styles['container']}>
-            <Navbar></Navbar>
-
             <div className={styles['main']}>
                 <h1>Histórico de pedidos</h1>
 
@@ -47,11 +68,11 @@ function History() {
                 </div>
 
                 <div className={styles['orderList']}>
-                    {orders.map((order) => {
-                        const backgroundColor = order.type === "Delivery" ? '#B5B9A4' : '#7B806A';
+                    {history.map((order) => {
+                        const backgroundColor = order.type === "delivery" ? '#B5B9A4' : '#7B806A';
 
                         return (
-                            <div className={styles['orderCard']} style={{ backgroundColor }}>
+                            <div key={order.id} className={styles['orderCard']} style={{ backgroundColor }} onClick={() => handleClickOrder(order)}>
                                 <div className={styles['orderInfo']}>
                                     <div className={styles['infoDate']}>
                                         <span>{order.date}</span>
@@ -62,7 +83,7 @@ function History() {
                                         <PiPizzaBold className={styles['iconPizzaMoney']}></PiPizzaBold>
                                         <div className={styles['infos2']}>
                                             <span>Pedido</span>
-                                            <span>Cod: {order.code}</span>
+                                            <span>Cod: {order.id}</span>
                                         </div>
 
                                     </div>
@@ -71,7 +92,7 @@ function History() {
                                         <RiMoneyDollarCircleLine className={styles['iconPizzaMoney']}></RiMoneyDollarCircleLine>
                                         <div className={styles['infos2']}>
                                             <span>Total: </span>
-                                            <span>R$ {order.total}</span>
+                                            <span>R$ {order.price}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -80,7 +101,32 @@ function History() {
                     })}
                 </div>
             </div>
+            {selectedOrder && (
+                    <div className={styles['sidebar']}>
+                        <div className={styles['sidebarContent']}>
+                            <h2>Detalhes do Pedido</h2>
+                            <div><strong>Data:</strong> {selectedOrder.date}</div>
+                            <div><strong>Código:</strong> {selectedOrder.id}</div>
+                            <div><strong>Pizzas:</strong></div>
+                            <ul>
+                                {selectedOrder.pizzas.map((pizza) => (
+                                    <li key={pizza.id}>
+                                        {pizza.name} - {pizza.observations}
+                                    </li>
+                                ))}
+                            </ul>
+                            <div><strong>Bebidas:</strong></div>
+                            <ul>
+                                {selectedOrder.drinks.map((drink) => (
+                                    <li key={drink.id}>{drink.name} - {drink.description}</li>
+                                ))}
+                            </ul>
+                            <div><strong>Total:</strong> R$ {selectedOrder.price}</div>
+                        </div>
+                    </div>
+            )}
         </div>
+    </>
     );
 }
 
