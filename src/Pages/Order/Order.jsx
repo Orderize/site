@@ -15,6 +15,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 function Order() {
   const [currentStep, setCurrentStep] = useState(2);
+  const [total, setTotal] = useState();
+  const [pizzaValue, setPizzaValue] = useState();
   // const location = useLocation();
   const navigate = useNavigate();
   
@@ -57,11 +59,11 @@ function Order() {
 
           <section className={styles["container-details-order"]}>
             <section>
-              <CardPizza />
+              <CardPizza setTotal={setTotal} setPizzaValue={setPizzaValue} />
             </section>
 
             <section>
-              <CardTotal />
+              <CardTotal total={total} pizzaValue={pizzaValue}/>
             </section>
 
             <section>
@@ -71,7 +73,7 @@ function Order() {
             <section>
               <CardClient />
             </section>
-          </section>  
+          </section>
               
           <div className={styles["btn-finalizar"]}>
             <button className={styles["btn"]} onClick={handleFinalize}>Finalizar</button>

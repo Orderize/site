@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './Home.module.css';
 
-import Acessebility from '../../Components/acessibility/acessibility.jsx';
 import Beneficio from '../../Components/Benefits/Benefits';
 import Formulario from '../../Components/Form/Form.jsx';
-import Funcionalidade from '../../Components/Features/Features';
+import Funcionalidade from '../../Components/Features/Features.jsx';
 
 import imgPizzasBanner from "../../utils/assets/imgsPizzaBanner.png";
 import imgGestao from "../../utils/assets/imgsGestao.svg";
@@ -12,37 +11,24 @@ import imagem1 from '../../utils/assets/imgGestaoDesktop.svg';
 import imgAnalise from "../../utils/assets/imgsAnalise.svg";
 import imagem2 from '../../utils/assets/fatiaPizzaDesktop.svg';
 import imagem3 from '../../utils/assets/imgGarcomPizzaioloDesktop.svg';
+import imagem4 from '../../utils/assets/SmartphoneTablet.svg';
 import imgAtendente from "../../utils/assets/imgAtendente.png";
 import insight from "../../utils/assets/ideia.png";
 import quebraCabeca from "../../utils/assets/quebraCabecaa.png";
 import logo from "../../utils/assets/logo.png";
 import imgForm from "../../utils/assets/imgForm.svg";
 
-import { IoMenuOutline } from "react-icons/io5";
-import { IoIosTabletPortrait } from "react-icons/io";
+import FooterHome from './Components/FooterHome/FooterHome';
+import NavbarHome from './Components/NavbarHome/NavbarHome.jsx';
 
 const Home = () => {
+
   return (
     <body>
-      <header>
-        <div className={styles['menu']}>
-          <IoMenuOutline className={styles["menu-icon"]} />
-        </div>
-
-        <nav className={styles['nav']}>
-          <img src={logo} className={styles['imageLogo']} />
-          <div className={styles['nav-acessibility']}>
-            <ul className={styles['nav-links']}>
-              <li><a href="#" className={styles['item-nav']}>Home</a></li>
-              <li><a href="#ourSystem" className={styles['item-nav']}>Nosso Sistema</a></li>
-              <li><a href="#benefits" className={styles['item-nav']}>Benefícios</a></li>
-              <li><a href="#contact" className={styles['item-nav']}>Fale Conosco</a></li>
-            </ul>
-            <Acessebility></Acessebility>
-          </div>
-        </nav>
+      <header id="home">
         
-
+        <NavbarHome 
+        logo={logo}/>
 
         <div className={styles["content"]}>
           <div className={styles["mobile"]}>
@@ -102,7 +88,7 @@ const Home = () => {
 
         <div className={styles["featuresSistDed"]}>
           <Funcionalidade
-            icon={<IoIosTabletPortrait className={styles["icon-sistDed"]} />}
+            icon={imagem4}
             iconDesktop={imagem3}
             title="Sistemas Dedicados"
             texto="O sistema Orderize facilita a gestão de mesas e pedidos pelos garçons, enquanto o pizzaiolo monitora atrasos para garantir agilidade. Isso assegura um atendimento eficiente e rápido, melhorando a satisfação dos clientes. O sistema também permite ajustes rápidos na cozinha para evitar congestionamentos."
@@ -131,7 +117,7 @@ const Home = () => {
             title="Insights valiosos"
           />
         </div>
-      </div>
+    </div>
 
 
       <div id="contact" className={styles['form']}>
@@ -154,6 +140,8 @@ const Home = () => {
           <Formulario />
         </div>
       </div>
+
+      <FooterHome icon={logo} />
     </body>
 
   );

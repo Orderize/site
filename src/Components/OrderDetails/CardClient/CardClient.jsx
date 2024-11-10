@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./CardClient.module.css";
-import FloatingInput from "../../FloatingInput/FloatingInput";
+import FloatingInput from "../../Floatinginput/Floatinginput";
 import { NotePencil } from "@phosphor-icons/react";
 
 function formatAddress(clientData) {

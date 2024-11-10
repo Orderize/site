@@ -23,7 +23,7 @@ function Breadcrumb({ activeButton }) {
                         <Link 
                             to={""}                            
                             className={ activeButton === "brindes" ? "active": "" }
-                        >Brindes</Link>
+                        >Promoções</Link>
                     </li>
                 </ul>
             </nav>

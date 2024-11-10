@@ -1,6 +1,7 @@
 import React, { StrictMode } from 'react'
 import { Route, Routes, BrowserRouter } from 'react-router-dom'
 import { createRoot } from 'react-dom/client'
+// import { AuthProvider } from './context/AuthContext'
 
 import Home from './Pages/Home/Home'
 import ModalDrink from './Components/Modal/Drink/Drink';
@@ -17,8 +18,10 @@ import SelectPizzaPromo from './Components/Modal/select_pizza_promo/selectPizzaP
 import SelectBeveragePromo from './Components/Modal/select_beverage_promo/SelectBeveragePromo'
 import Order from './Pages/Order/Order'
 import Promotion from './Pages/Options/Promotion/Promotion'
+import History from './Pages/History/History'
 import Client from './Pages/Client/Client'
 import Flavor from './Pages/Options/Flavor/Flavor'
+import Drink from '/src/Pages/Options/Drink/Drink'
 import './utils/global.css'
 import ModalPagamento from './Components/OrderDetails/ModalPagamento/ModalPAgamento';
 
@@ -26,8 +29,7 @@ import ModalPagamento from './Components/OrderDetails/ModalPagamento/ModalPAgame
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-      <Routes>
-        
+      <Routes>  
         <Route
           path='/'
           element={ <Home /> }

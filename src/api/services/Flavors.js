@@ -1,6 +1,6 @@
 import api from "../Axios";
 
-export const getPops = async (token, value = "") => {
+export const getFlavorsPop = async (token, value = "") => {
     try {
         const response = await api.get('/flavors/pop', {
             headers: {
@@ -12,7 +12,7 @@ export const getPops = async (token, value = "") => {
         });
         return response.data;
     } catch (error) {
-        console.error('[getPops] error: ', error);
+        console.error('[getFlavorsPop] error: ', error);
         throw new Error('Erro ao fazer requisição. Aguarde um momento e recarregue a página.');
     }
 };

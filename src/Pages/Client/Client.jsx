@@ -52,7 +52,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
     return (
         <>
-        <Navbar activeButton={"Pedidos"} />
+            <Navbar activeButton={"Pedidos"}/>
         <ToastContainer />  
 
         <main className={styles["container-client"]}>
@@ -66,8 +66,8 @@ import 'react-toastify/dist/ReactToastify.css';
                     <FormClient onNovoClientChange={handleNovoClientChange} />
                 </div>
 
-                <div className={styles.progress}>
-                    <ButtonNext onNext={handleNext} />
+                    <div className={styles.progress}>
+                        <ButtonNext onNext={handleNext} />
 
                     <Progress currentStep={1} totalSteps={5} />
                 </div>

@@ -1,9 +1,12 @@
 import React from "react";
 import styles from "./AddButton.module.css";
 
-function AddButton({ texto }) {
+function AddButton({ openModal, texto }) {
     return (
-        <button className={styles["btn-adicionar"]}>{texto}</button> 
+        <button 
+            onClick={openModal} 
+            className={styles["btn-adicionar"]}
+        >{texto}</button> 
     );
 }
 
