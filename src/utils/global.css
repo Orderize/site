@@ -10,7 +10,8 @@
 body {
     height: 100vh;
     width: 100vw;
-    background-color: #242424;
+    /* background-color: #242424; */
+    background: var(--cor-fundo);
     color: rgba(255, 255, 255, 0.87);
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
@@ -33,5 +34,9 @@ body {
   --erro: #A60F1B;
   --fonte-titulo: "League Spartan";
   --fonte: "Poppins";
+}
+
+.Toastify__toast {
+    font-family: var(--fonte); 
 }
 

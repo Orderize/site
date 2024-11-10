@@ -2,7 +2,6 @@
     background-color: var(--verde);
     color: var(--cor-fundo);
     align-items: center;
-    /* width:  */
     height: 4vh;
     width: 20vw;
     font-family: var(--fonte);
@@ -12,6 +11,8 @@
     margin: 0;
     box-shadow: none;
     transition: background-color 0.3s;
+    border: none;
+    border-radius: 5px;
 }
 
 @media screen and (min-width: 1200px) {

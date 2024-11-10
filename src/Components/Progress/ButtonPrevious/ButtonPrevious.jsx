@@ -5,7 +5,7 @@ import styles from "./ButtonPrevious.module.css";
 function ButtonPrevious({ onPrevious, disabled }) {
     return (
         <button className={styles["btn-previous"]} onClick={onPrevious} disabled={disabled}>
-            <CaretCircleLeft size={20} weight="duotone" />
+            <CaretCircleLeft size={22} weight="duotone" />
         </button>
     );
 }

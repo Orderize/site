@@ -1,15 +1,13 @@
 import api from '../Axios';
 
 export const getAddressByCep = async (token, { cep, number }) => {
+    console.log("Buscando endereço pelo CEP:", token, cep, number);
     try {
-        const response = await api.get('/addresses/cep', 
-            { cep, number, }, 
-            {
+        const response = await api.get('/addresses/cep', {cep, number}, {
                 headers: {
-                    Authorization: `Bearer ${token}`, 
-                },
-            }
-        );
+                    Authorization: `Bearer ${token}`
+                }
+        });
         console.log("Resposta da API:", response.data); 
         return response.data;
     } catch (error) {

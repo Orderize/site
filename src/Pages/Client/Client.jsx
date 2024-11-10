@@ -6,39 +6,30 @@ import Progress from "../../Components/Progress/Progress";
 import styles from "./Client.module.css";
 import MediaQuery from "react-responsive";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
     function Client() {
         const navigate = useNavigate();
         const [isNovoClient, setIsNovoClient] = useState(false);
         const formClientRef = useRef();
-
-        // const [client, setClient] = useState({
-        //     name: "",
-        //     phone: "",
-        //     address: "",
-        // });
-
+    
         const handleNext = async () => {
             console.log("handleNext foi chamado");
             try {
                 if (formClientRef.current && !formClientRef.current.isValidForm()) {
-                    alert("Por favor, preencha todos os campos obrigatórios.");
+                    toast.error("Por favor, preencha todos os campos obrigatórios.", {
+                        position: "top-right",
+                        autoClose: 3000,
+                    });
                     return;
                 }
         
                 if (isNovoClient) {
                     await formClientRef.current.handleSaveClient();
                 }
-        
-                let clientData; // Defina clientData fora do bloco para torná-lo acessível no navigate
-        
-                if (formClientRef.current) {
-                    clientData = formClientRef.current.getClientData();
-                    console.log("Dados do cliente:", clientData); //até aqui está trazendo os dados certos
-                    navigate("/pedidos/novo-pedido", { state: { clientData } });
-                }
-        
-                // Navegue para o próximo componente com o estado clientData
+
+                navigate("/pedidos/novo-pedido");
         
             } catch (error) {
                 alert("Erro ao salvar o cliente: " + error.message);
@@ -50,11 +41,19 @@ import { useNavigate } from "react-router-dom";
         const handleNovoClientChange = (isNovo) => {
             console.log("Mudando estado de novo cliente para:", isNovo);
             setIsNovoClient(isNovo);
+    
+            if (isNovo) {
+                toast.info("Cliente não encontrado.", {
+                    position: "top-right",
+                    autoClose: 3000,
+                });
+            }
         };
 
     return (
         <>
         <Navbar activeButton={"Pedidos"} />
+        <ToastContainer />  
 
         <main className={styles["container-client"]}>
         <MediaQuery maxWidth={768}>
@@ -62,8 +61,8 @@ import { useNavigate } from "react-router-dom";
 
                 <div className={styles["client-modal-card"]}>
                     <p className={isNovoClient ? styles.novoCliente : styles.subtitulo}>
-                        {isNovoClient ? "Novo Cliente" : "Cliente"}
-                    </p>
+                            {isNovoClient ? "Novo Cliente" : "Cliente"}
+                        </p>
                     <FormClient onNovoClientChange={handleNovoClientChange} />
                 </div>
 
@@ -77,11 +76,6 @@ import { useNavigate } from "react-router-dom";
         <MediaQuery minWidth={769}>
             <p className={styles.titulo}>Novo Pedido</p>
             <div className={styles["client-modal-card"]}>
-                {isNovoClient ?
-                    <p className={styles["client-nao-encontrado"]}>Cliente não encontrado.</p>
-                    : null
-                }
-
                 <p className={isNovoClient ? styles.novoCliente : styles.subtitulo}>
                     {isNovoClient ? "Novo Cliente" : "Cliente"}
                 </p>

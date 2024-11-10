@@ -71,18 +71,19 @@
 @media screen and (min-width: 1200px){
     .container-total {
         width: 85%;
-        height: 40%;
+        /* height: 40%; */
+        height: 95%;
         gap: 15px;
         margin: 0;
     }
 
     .container-total .titulo {
-        font-size: 22px;
+        font-size: 25px;
         padding: 0 3vh;
     }
 
     .container-total .total {
-        font-size: 25px;
+        font-size: 32px;
     }
 
     .container-total .list-precos .list-precos__item {
@@ -90,7 +91,7 @@
     }
 
     .container-total .list-precos .list-precos__item p {
-        font-size: 14px;
+        font-size: 16px;
     }
 }
 

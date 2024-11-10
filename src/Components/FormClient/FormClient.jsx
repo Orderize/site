@@ -5,8 +5,11 @@ import styles from "./FormClient.module.css";
 import { inputNumerosCelular, inputCep, inputSomenteTexto, inputSomenteNumero, inputLetrasNumeros } from "../../utils/globals";
 import { getClients, saveClient  } from "../../api/services/Clients";
 import { getAddressByCep, saveAddress } from "../../api/services/Address";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const FormClient = forwardRef(({ onNovoClientChange }, ref) => {
+
     const [telefone, setTelefone] = useState("");   
     const [nome, setNome] = useState("");
     const [cep, setCep] = useState("");
@@ -15,14 +18,28 @@ const FormClient = forwardRef(({ onNovoClientChange }, ref) => {
     const [rua, setRua] = useState("");
     const [bairro, setBairro] = useState("");
     const [cidade, setCidade] = useState("");
-
+    
     const [novoClient, setnovoClient] = useState(false);
     const [token] = useState(localStorage.getItem('token'));
-
+    
     const [isTelefonePreenchido, setIsTelefonePreenchido] = useState(false); 
     useEffect(() => {
         setIsTelefonePreenchido(telefone.trim() !== "");
     }, [telefone]);
+
+    useEffect(() => {
+        const clientData = JSON.parse(localStorage.getItem("client"));
+        
+        if (clientData) {
+            setTelefone(clientData.phone || "");
+            setNome(clientData.name || "");
+            setCep(clientData.cep || "");
+            setNumero(clientData.number || "");
+            setRua(clientData.street || "");
+            setBairro(clientData.neighborhood || "");
+            setCidade(clientData.city || "");
+        }
+    }, []);
 
     const handleClient = async (event) => {
         try {
@@ -48,6 +65,17 @@ const FormClient = forwardRef(({ onNovoClientChange }, ref) => {
                     setRua(data.address?.street || "");
                     setBairro(data.address?.neighborhood || "");
                     setCidade(data.address?.city || "");
+
+                    localStorage.setItem("client", JSON.stringify({
+                        phone: data.phone,
+                        name: data.name,
+                        cep: data.address?.cep || "",
+                        number: data.address?.number || "",
+                        street: data.address?.street || "",
+                        neighborhood: data.address?.street || "",
+                        city: data.address?.city || ""
+                    }));
+
                 } else {
                     console.log("Cliente não encontrado ou dados incompletos.");
                     setnovoClient(true);
@@ -58,6 +86,7 @@ const FormClient = forwardRef(({ onNovoClientChange }, ref) => {
                 console.log("Resposta da API é vazia.");
                 setnovoClient(true);
                 onNovoClientChange(true);
+                localStorage.removeItem("client");
                 resetForm();
             }
         } catch (error) {
@@ -70,9 +99,9 @@ const FormClient = forwardRef(({ onNovoClientChange }, ref) => {
         console.log("Executando handleAddress...");
         try {
             const cepLimpo = cep.replace(/\D/g, "");
-            console.log("Chamando API com os seguintes parâmetros:", token, { cep: cepLimpo, numero });
+            console.log("Chamando API com os seguintes parâmetros:", token, { cep: cepLimpo, number: numero });
             const addressData = await getAddressByCep(token, { cep: cepLimpo, number: numero });
-
+            console.log("Endereço encontrado:", addressData);
             setRua(addressData.street);
             setBairro(addressData.neighborhood);
             setCidade(addressData.city);
@@ -122,7 +151,7 @@ const FormClient = forwardRef(({ onNovoClientChange }, ref) => {
             console.log("Executando handleSaveClient...");
             console.log("Fazendo requisição para a API com:", { token, telefoneLimpo, nome, cepLimpo, numero, rua, bairro, cidade });
     
-            const response = await saveClient(token, {phone: telefoneLimpo, name: nome, address: {cepLimpo, number: numero, street: rua, neighborhood: bairro, city: cidade}});
+            const response = await saveClient(token, {phone: telefoneLimpo, name: nome, address: {cep: cepLimpo, number: numero, street: rua, neighborhood: bairro, city: cidade}});
             console.log("Resposta da API:", response);
             
             if (response) {
@@ -140,24 +169,9 @@ const FormClient = forwardRef(({ onNovoClientChange }, ref) => {
         return nome.trim() !== "" && telefone.trim() !== "";
     };
 
-    const getClientData = () => {
-        return {
-            name: nome,
-            phone: telefone,
-            address: {
-                cep,
-                number: numero,
-                street: rua,
-                neighborhood: bairro,
-                city: cidade,
-            },
-        };
-    };
-
     useImperativeHandle(ref, () => ({
         isValidForm,
-        handleSaveClient,
-        getClientData,
+        handleSaveClient
     }));
 
     const handleEnterPress = async (e, type) => {
@@ -171,7 +185,7 @@ const FormClient = forwardRef(({ onNovoClientChange }, ref) => {
                 console.log("Chamando handleAddress...");
                 handleAddress();
             }
-        }
+        } 
     };
     
     return (
@@ -179,6 +193,7 @@ const FormClient = forwardRef(({ onNovoClientChange }, ref) => {
             {/* <main className="container-client"> */}
 
                 <MediaQuery minWidth={769}>
+                    <ToastContainer />
                 {/* <div className={styles.campos}> */}
                 <div >
                         <FloatingInput onValue={telefone} onSet={setTelefone} label={"Telefone"} onInput={inputNumerosCelular} onEnterPress={(e) => handleEnterPress(e, "telefone")}/>  

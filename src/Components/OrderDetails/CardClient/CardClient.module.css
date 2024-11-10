@@ -62,11 +62,12 @@
   .container-client {
     background: var(--cor-fundo-sec);
     width: 85%;
-    height: 47%;
+    /* height: 47%; */
+    height: 95%;
     border-radius: 25px;
     border: 1px solid var(--verde-escuro);
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     flex-direction: column;
     align-items: center;
     gap: 5px;
@@ -79,6 +80,7 @@
     width: 100%;
     justify-content: space-between;
     align-items: center;
+    /* margin-bottom: 5px; */
   }
 
   .container-client .titulo .edit {
@@ -88,6 +90,7 @@
     margin: 0;
     align-items: center;
     color: var(--verde-escuro);
+    cursor: pointer;
   }
 
   .container-client .titulo p {

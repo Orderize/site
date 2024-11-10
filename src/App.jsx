@@ -20,6 +20,7 @@ import Promotion from './Pages/Options/Promotion/Promotion'
 import Client from './Pages/Client/Client'
 import Flavor from './Pages/Options/Flavor/Flavor'
 import './utils/global.css'
+import ModalPagamento from './Components/OrderDetails/ModalPagamento/ModalPAgamento';
 
 
 createRoot(document.getElementById('root')).render(
@@ -51,6 +52,8 @@ createRoot(document.getElementById('root')).render(
           path='/pedidos/novo-pedido'
           element={ <Order />}
         ></Route>
+
+        <Route path='/modal/pagamento' element={ <ModalPagamento /> }></Route>
 
         <Route
           path='/sabores'
