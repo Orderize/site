@@ -37,12 +37,12 @@
 
 @media screen and (min-width: 1200px) {
     .container-drink {
-        width: 40vw;
+        width: 100%;
         height: 35vh;
     }
 
     .container-drink .titulo {
-        width: 95%;
+        width: 100%;
     }
 
     .container-drink .titulo p {

@@ -11,12 +11,21 @@ import CardPayment from "../../Components/OrderDetails/CardPayment/CardPayment";
 import CardTotal from "../../Components/OrderDetails/CardTotal/CardTotal";
 import MediaQuery from "react-responsive";
 import styles from "./Order.module.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function Order() {
   const [currentStep, setCurrentStep] = useState(2);
   const [total, setTotal] = useState();
   const [pizzaValue, setPizzaValue] = useState();
+  // const location = useLocation();
+  const navigate = useNavigate();
+  
+  // console.log("location.state:", location.state);
+  // const clientData = location.state?.clientData;
+
+  // if (!clientData) {
+  //     console.log("Nenhum dado de cliente encontrado.");
+  // }
 
   const handleNext = () => {
     if (currentStep < 5) {
@@ -29,89 +38,46 @@ function Order() {
       setCurrentStep((prevStep) => prevStep - 1);
     }
   };
-  
-  const navigate = useNavigate();
 
   const handlePreviousPage = () => {
     navigate("/pedidos");
+  };
+
+  const handleFinalize = () => {
+    navigate("/modal/pagamento");
   };
 
   return (
     <>
       <Navbar activeButton={"Pedidos"} />
 
-      <MediaQuery maxWidth={768}>
-        <main className={styles["container-order"]}>
-          <div className={styles.details}>
-
-            {currentStep === 2 ? (
-              <ButtonPreviousPage
-                onPreviousPage={handlePreviousPage} 
-              />
-            ) : (
-              <ButtonPrevious
-                onPrevious={handlePrevious} 
-                disabled={currentStep <= 2}
-              />
-            )}
-
-            {currentStep === 2 && (
-              <section className={styles["container-pizza"]}>
-                <CardPizza />
-              </section>
-            )}
-            {currentStep === 3 && (
-              <section className={styles["container-drink"]}>
-                <CardDrink />
-              </section>
-            )}
-            {currentStep === 4 && (
-              <section className={styles["pricing"]}>
-                <CardPayment />
-                <CardTotal />
-              </section>
-            )}
-            {currentStep === 5 && (
-              <section className={styles["review"]}>
-                <CardPizza />
-                <CardDrink />
-                <CardPayment />
-                <CardTotal />
-              </section>
-            )}
-
-            <div className={styles.progress}>
-              <ButtonNext onNext={handleNext} disabled={currentStep >= 5} />
-              <Progress currentStep={currentStep} totalSteps={5} />
-            </div>
-          </div>
-        </main>
-      </MediaQuery>
-
       <MediaQuery minWidth={769}>
         <main className={styles["container-order"]}>
-            <div className={styles["order-details-left"]}>
-                <div className={styles.titulo}>
-                    <ButtonPreviousPage
-                        onPreviousPage={handlePreviousPage}
-                    />
-                    <h1>Novo Pedido</h1>
-                </div>
+          <div className={styles["btn-voltar"]}>
+            <ButtonPreviousPage onPreviousPage={handlePreviousPage} />
+          </div>
 
-                <section>
-                    <CardPizza setTotal={setTotal} setPizzaValue={setPizzaValue} />
-                </section>
+          <section className={styles["container-details-order"]}>
+            <section>
+              <CardPizza setTotal={setTotal} setPizzaValue={setPizzaValue} />
+            </section>
 
-                <section>
-                    <CardDrink />
-                </section>
-            </div>
+            <section>
+              <CardTotal total={total} pizzaValue={pizzaValue}/>
+            </section>
 
-            <div className={styles["order-details-right"]}>
-                <CardClient />
-                <CardPayment />
-                <CardTotal total={total} pizzaValue={pizzaValue} />
-            </div>
+            <section>
+              <CardDrink />
+            </section>
+
+            <section>
+              <CardClient />
+            </section>
+          </section>
+              
+          <div className={styles["btn-finalizar"]}>
+            <button className={styles["btn"]} onClick={handleFinalize}>Finalizar</button>
+          </div>
         </main>
       </MediaQuery>
       
