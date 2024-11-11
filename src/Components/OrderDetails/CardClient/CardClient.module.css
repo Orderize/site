@@ -126,7 +126,7 @@
 
   .list-superior {
     display: flex;
-    
+    z-index: 1;
   }
 
   /* .list-superior > .input-container:last-child {

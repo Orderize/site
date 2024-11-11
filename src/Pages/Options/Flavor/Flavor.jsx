@@ -49,7 +49,7 @@ function flavor() {
                 <h1>Opções</h1>
                 <div className="breadcrumb-search">
                     <Breadcrumb activeButton={"sabores"} />
-                    <InputSearch valueSearch={valueSearch} handleSearch={handleSearch} />
+                    <InputSearch valueSearch={valueSearch} handleSearch={handleSearch} text="Pesquise pelo nome do sabor"/>
                 </div>
                 <section className="flavor-list">
                     {

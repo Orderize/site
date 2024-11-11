@@ -3,38 +3,31 @@ import AddButton from "../AddButton/AddButton";
 import styles from "./CardPizza.module.css";
 // import SelectPizzaPromo from "../../Modal/select_pizza_promo/selectPizzaPromo";
 import Flavor from '../../Modal/Flavor/Flavor';
-import Review from "/src/Components/Modal/Review/Review";
+import { XSquare, NotePencil } from '@phosphor-icons/react';
 
 function CardPizza({ setTotal, setPizzaValue }) {
     const [isOpenPizzaModal, setIsOpenPizzaModal] = useState(false);
-    const [isOpenReviewModal, setIsOpenReviewModal] = useState(false);
     const [listPizzas, setListPizzas] = useState([]);
 
     const openSelectPizzaModal = () => {
         setIsOpenPizzaModal(true);
     };
 
+    const editPizzaModal = () => {
+        // abrir o modal com os dados da pizza setado conforme o sabor
+        setIsOpenPizzaModal(true);
+    }
+
     const handleNext = () => {
         if (isOpenPizzaModal) {
             setIsOpenPizzaModal(false);
-            setIsOpenReviewModal(true);
-        }
-        
-        if (isOpenReviewModal) {
-            setIsOpenReviewModal(false);
         }
     }
 
     const handleBack = () => {
         if (isOpenPizzaModal) {
             setIsOpenPizzaModal(false);
-        }
-
-        if (isOpenReviewModal) {
-            setIsOpenReviewModal(false);
-            setIsOpenPizzaModal(true);
-        }    
-        
+        }  
     }
 
     const showPizzas = () => {
@@ -53,11 +46,30 @@ function CardPizza({ setTotal, setPizzaValue }) {
             <div className={styles.titulo}>
                 <p>Pizzas</p>
                 <AddButton openModal={openSelectPizzaModal} texto={"Adicionar pizza"} />
-
-                {/* <button className={styles["btn-adicionar"]}>Adicionar pizza</button>         */}
             </div>
 
             <div className={styles["list-pizza"]}>
+                <div className={styles["content-pizza"]}>
+
+                  <div className={styles["pizza-information"]}>
+                    <p className={styles["name"]}>Pizza (1 Sabor)</p>
+                    <p className={styles["name"]}>R$0.00</p>
+
+                    <div className={styles["edit-cancel"]}>
+                        <XSquare size={25} weight="duotone" />
+                        <NotePencil size={25} weight="duotone" onClick={editPizzaModal}/>
+                    </div>
+                  </div>
+
+                  <div className={styles["flavor-information"]}>
+                    <p className={styles["flavor"]}>Calabresa</p>
+
+                    <p className={styles["observation"]}>- sem cebola</p>
+                  </div>
+
+                </div>
+
+
                 {
                     listPizzas.length > 0 &&
                     listPizzas.map(pizza => (
@@ -73,11 +85,11 @@ function CardPizza({ setTotal, setPizzaValue }) {
                 && 
                 <Flavor 
                     // setListPizzas={setListPizzas} 
-                    // handleNext={handleNext}
-                    // handleBack={handleBack} 
+                    handleNext={handleNext}
+                    handleBack={handleBack} 
                 />
             }
-            {
+            {/* {
                 isOpenReviewModal
                 &&
                 <Review 
@@ -85,7 +97,7 @@ function CardPizza({ setTotal, setPizzaValue }) {
                     handleNext={handleNext}
                     handleBack={handleBack}
                 />
-            }
+            } */}
         </main>
         </>
     );

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import './Drink.css';
 import FooterModal from '../../footer_modal/FooterModal';
 
-const PizzaComponent = () => {
+const PizzaComponent = ({  handleNext, handleBack }) => {
   const [activeTab, setActiveTab] = useState('Doces');
   const [pizzaItems, setPizzaItems] = useState([]); 
   const [visibleItems, setVisibleItems] = useState(10); 
@@ -58,7 +58,7 @@ const PizzaComponent = () => {
         </div>
       </div>
 
-     <FooterModal/>
+     <FooterModal handleBack={handleBack} handleNext={handleNext}/>
 
      </div>
     </section>

@@ -17,6 +17,7 @@ function Order() {
   const [currentStep, setCurrentStep] = useState(2);
   const [total, setTotal] = useState();
   const [pizzaValue, setPizzaValue] = useState();
+  
   // const location = useLocation();
   const navigate = useNavigate();
   
