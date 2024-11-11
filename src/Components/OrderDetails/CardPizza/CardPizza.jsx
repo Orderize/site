@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import AddButton from "../AddButton/AddButton";
 import styles from "./CardPizza.module.css";
-import SelectPizzaPromo from "../../Modal/select_pizza_promo/selectPizzaPromo";
+// import SelectPizzaPromo from "../../Modal/select_pizza_promo/selectPizzaPromo";
+import Flavor from '../../Modal/Flavor/Flavor';
 import Review from "/src/Components/Modal/Review/Review";
 
 function CardPizza({ setTotal, setPizzaValue }) {
@@ -70,9 +71,9 @@ function CardPizza({ setTotal, setPizzaValue }) {
             {
                 isOpenPizzaModal 
                 && 
-                <SelectPizzaPromo 
-                    setListPizzas={setListPizzas} 
-                    handleNext={handleNext}
+                <Flavor 
+                    // setListPizzas={setListPizzas} 
+                    // handleNext={handleNext}
                     // handleBack={handleBack} 
                 />
             }

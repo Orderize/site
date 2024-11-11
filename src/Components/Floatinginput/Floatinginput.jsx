@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from'./Floatinginput.module.css'; 
 
-const FloatingInput = ({ label, initialValue = '', onSet, onValue, onInput }) => {
+const FloatingInput = ({ label, initialValue = '', onSet, onValue, onInput, onEnterPress, disabled = false }) => {
     const [isFocused, setIsFocused] = useState(false);
     const [inputValue, setInputValue] = useState(initialValue);
 
@@ -15,9 +15,19 @@ const FloatingInput = ({ label, initialValue = '', onSet, onValue, onInput }) =>
         setIsFocused(false);
       }
     };
+
+    const handleKeyDown = (e) => {
+      console.log("Tecla pressionada:", e.key);
+      
+      if (onEnterPress) {
+        onEnterPress(e);
+      }
+    };
     
     return (
-      <div className={`${styles['input-container']} ${isFocused || inputValue ? styles['focused'] : ''}`}>
+      <div 
+        className={`${styles['input-container']} ${isFocused || inputValue ? styles['focused'] : ''}`}
+      >
         <input className={styles.input}
           type="text"
           value={inputValue || ''}
@@ -25,6 +35,8 @@ const FloatingInput = ({ label, initialValue = '', onSet, onValue, onInput }) =>
           onBlur={handleBlur}
           onChange={(e) => {onSet(e.target.value); setInputValue(e.target.value)}}
           onInput={onInput}
+          onKeyDown={handleKeyDown}
+          disabled={disabled}
           placeholder=" "
         />
         
