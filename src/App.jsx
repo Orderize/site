@@ -23,7 +23,7 @@ import Client from './Pages/Client/Client'
 import Flavor from './Pages/Options/Flavor/Flavor'
 import Drink from '/src/Pages/Options/Drink/Drink'
 import './utils/global.css'
-import ModalPagamento from './Components/OrderDetails/ModalPagamento/ModalPAgamento';
+import ModalPagamento from './Components/OrderDetails/ModalPagamento/ModalPagamento';
 
 
 createRoot(document.getElementById('root')).render(
