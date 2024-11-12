@@ -7,18 +7,20 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getFlavorsPop } from '../../../api/services/Flavors';
 
+import pizza from '../../../utils/assets/pizzas/pizza.svg';
 import pizza1Sabor from '../../../utils/assets/pizzas/pizza-1-sabor.svg';
 import pizza2Sabores from '../../../utils/assets/pizzas/pizza-2-sabores.svg';
 import pizza3Sabores from '../../../utils/assets/pizzas/pizza-3-sabores.svg';
 import pizza4Sabores from '../../../utils/assets/pizzas/pizza-4-sabores.svg';
 
-const PizzaComponent = ({  handleNext, handleBack }) => {
+const PizzaComponent = ({ handleNext, handleBack }) => {
   const [token] = useState(localStorage.getItem('token'));
   const [flavors, setFlavors] = useState([]);
   const [valueSearch, setValueSearch] = useState("");
   const [showFlavorOptions, setShowFlavorOptions] = useState(false);
 
-  const [flavorCount, setFlavorCount] = useState('1');
+  const [flavorCount, setFlavorCount] = useState('0');
+
   const [selectedFlavors, setSelectedFlavors] = useState([]);
   const [ingredients, setIngredients] = useState({});
   const [animate, setAnimate] = useState(false);
@@ -33,6 +35,10 @@ const PizzaComponent = ({  handleNext, handleBack }) => {
         console.log(error);
     }
 };
+
+useEffect(() => {
+  handleFlavors();
+}, []);
 
 const handleSearch = async (event) => {
     const value = event.target.value;
@@ -106,12 +112,24 @@ const handleIngredientChange = (flavorName, ingredientName) => {
   });
 };
 
-useEffect(() => {
-  handleFlavors();
-}, []);
+  const getObservationText = () => {
+    return selectedFlavors.map((flavor) => {
+      const removedIngredients = ingredients[flavor.name]?.filter(ingredient => !ingredient.checked).map(ingredient => ingredient.name);
+
+      if (removedIngredients.length > 0) {
+        return `Pizza de ${flavor.name} sem ${removedIngredients.join(', ')}`;
+      }
+
+      return '';
+    }).filter(Boolean).join('\n'); 
+  };
+
   
   const handleFlavorCountChange = (event) => {
-    setFlavorCount(event.target.value); 
+    setFlavorCount(
+      parseInt(event.target.value)
+    );
+
     setSelectedFlavors([]);
     setAnimate(true); 
 
@@ -121,19 +139,36 @@ useEffect(() => {
   };
 
   const getPizzaImage = () => {
+    console.log(flavorCount);
+    
     switch (flavorCount) {
-      case '1':
+      case 1:
         return pizza1Sabor;
-      case '2':
+      case 2:
         return pizza2Sabores;
-      case '3':
+      case 3:
         return pizza3Sabores;
-      case '4':
+      case 4:
         return pizza4Sabores;
       default:
-        return pizza1Sabor; 
+        return pizza; 
     }
   };
+
+  const getTextPizza = () => {
+    switch (flavorCount) {
+      case 1:
+        return 'Pizza (1 Sabor)';
+      case 2:
+        return 'Pizza (2 Sabores)';
+      case 3:
+        return 'Pizza (3 Sabores)';
+      case 4:
+        return 'Pizza (4 Sabores)';
+      default:
+        return 'Selecione a quantidade de sabores'; 
+    }
+  }
 
   return (
     <div className={styles["modal-wrapper-flavor"]}>
@@ -142,11 +177,11 @@ useEffect(() => {
         <div className={styles["pizza-options-flavor"]}>
 
           <select className={styles["pizza-dropdown-flavor"]} onChange={handleFlavorCountChange} value={flavorCount}>
-            <option value="1">Qtd Sabores</option>
-            <option value="1">1 Sabor</option>
-            <option value="2">2 Sabores</option>
-            <option value="3">3 Sabores</option>
-            <option value="4">4 Sabores</option>
+            <option value='0'>Quantidade</option>
+            <option value='1'>1 Sabor</option>
+            <option value='2'>2 Sabores</option>
+            <option value='3'>3 Sabores</option>
+            <option value='4'>4 Sabores</option>
           </select>
 
           <select className={styles["pizza-dropdown-flavor"]}>
@@ -196,7 +231,7 @@ useEffect(() => {
 
           <div className={styles["pizza-information"]}>
             <div className={styles["info-left"]}>
-              <p className={styles["pizza-title"]}>Pizza:</p>
+              <p className={styles["pizza-title"]}>{getTextPizza()}</p>
 
               {flavorCount && (
                 <img 
@@ -244,6 +279,7 @@ useEffect(() => {
                         </ul>
                       </div>
                     )}
+
                     </div>
                   </div>
                 ))
@@ -253,7 +289,12 @@ useEffect(() => {
                 </div>
               )}
               
+            <div className={styles["note"]}>
+              <p className={styles["note-texto"]}>Observação:</p>
+              <p className={styles["note-texto"]}>{getObservationText()}</p>
             </div>
+            </div>
+
           </div>
         </div>
 

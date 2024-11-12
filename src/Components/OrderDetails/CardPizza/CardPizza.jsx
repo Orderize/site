@@ -5,7 +5,7 @@ import styles from "./CardPizza.module.css";
 import Flavor from '../../Modal/Flavor/Flavor';
 import { XSquare, NotePencil } from '@phosphor-icons/react';
 
-function CardPizza({ setTotal, setPizzaValue }) {
+function CardPizza({ setTotal, setPizzaValue, setModal }) {
     const [isOpenPizzaModal, setIsOpenPizzaModal] = useState(false);
     const [listPizzas, setListPizzas] = useState([]);
 
@@ -85,6 +85,7 @@ function CardPizza({ setTotal, setPizzaValue }) {
                 && 
                 <Flavor 
                     // setListPizzas={setListPizzas} 
+                    // setSelectedFlavors={setSelectedFlavors}
                     handleNext={handleNext}
                     handleBack={handleBack} 
                 />
