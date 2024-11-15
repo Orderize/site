@@ -69,6 +69,12 @@
     margin: 25px auto;
     width: 90%;
     gap: 15px;
+    transition: all 0.3s ease;
+}
+
+.orderList.active {
+    width: 60% !important;
+    margin: 3px;
 }
 
 .orderCard {
@@ -144,21 +150,60 @@
     transition: transform 0.3s ease-in-out;
 }
 
-.sidebarContent {
+.sidebarContent{
     margin-top: 20px;
+    text-align: center;
 }
 
-.sidebar ul {
+.sidebarContent .detailsOrder{
+    text-align: center;
+}
+
+.sidebarContent .divClose{
+    display: flex;
+    height: 50px;
+}
+
+.divClose .iconX{
+    cursor: pointer;
+}
+
+.sidebarContent hr{
+    width: 40%;
+    height: 1px;
+    border: black;
+    background-color: black;
+    margin: 25px auto;
+}
+
+/* .sidebarContent .divPizzaCodigo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+
+} */
+
+/* .sidebarContent .iconPizzaCode{
+    display: flex;
+    height: 33px;
+    width: auto;
+    margin-right: 15px;
+} */
+
+.sidebarContent ul {
     list-style-type: none;
     padding-left: 0;
 }
 
-.sidebar li {
+.sidebarContent li {
     margin: 5px 0;
 }
 
-.sidebar h2 {
+.sidebarContent h2 {
     margin-bottom: 20px;
 }
+
+
 
 
