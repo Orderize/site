@@ -11,7 +11,7 @@ function buttonNavbar({ event, icon, isActive, link, text }) {
     })
 
     const handleClick = (e) => {
-        event(text);
+        if (event) event(text);
     }
 
     return (

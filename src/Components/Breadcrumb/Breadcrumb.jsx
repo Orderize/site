@@ -15,13 +15,13 @@ function Breadcrumb({ activeButton }) {
                     </li>
                     <li>
                         <Link 
-                            to={""}
+                            to={"/bebidas"}
                             className={ activeButton === "bebidas" ? "active": "" }
                         >Bebidas</Link>
                     </li>
                     <li>
                         <Link 
-                            to={""}                            
+                            to={"/promotion"}                            
                             className={ activeButton === "brindes" ? "active": "" }
                         >Promoções</Link>
                     </li>
