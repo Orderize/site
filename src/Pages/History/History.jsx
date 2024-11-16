@@ -34,17 +34,18 @@ function History() {
 
         return () => clearInterval(interval);
     }, [token]);
-    
+
     const handleClickOrder = (order) => {
         setSelectedOrder(order);
         setIsOpen(true);
-        
+
     }
 
     const orderClass = `${styles.orderList} ${isOpen ? styles.active : ''}`;
+    // const dateClass = `${styles.dateInput} ${isOpen ? styles.active : ''}`;
 
     const closeDetails = () => {
-        setSelectedOrder(null); 
+        setSelectedOrder(null);
         setIsOpen(false);
     };
 
@@ -57,7 +58,7 @@ function History() {
 
                     <div className={styles['filters']}>
                         <div className={styles['dateWrapper']}>
-                            <input type="date" className={styles['dateInput']} />
+                            <input type="date" className={`${styles['dateInput']} ${isOpen ? styles['dateInputVisible'] : ''}`} />
                         </div>
                     </div>
 
@@ -91,7 +92,6 @@ function History() {
                                                 <span>Pedido</span>
                                                 <span>Cod: {order.id}</span>
                                             </div>
-
                                         </div>
                                         <hr></hr>
                                         <div className={styles['infoCodTotal']}>
@@ -110,28 +110,33 @@ function History() {
                 {selectedOrder && (
                     <div className={styles['sidebar']}>
                         <div className={styles['sidebarContent']}>
-                            <div className="divClose">
-                                <IoCloseCircleOutline className="iconX" onClick={closeDetails}></IoCloseCircleOutline>
+                            <div className={styles['divClose']}>
+                                <IoCloseCircleOutline
+                                    className={styles['iconX']}
+                                    onClick={closeDetails}
+                                />
                             </div>
 
-                            <div className="detailsOrder">
+                            <div className={styles['detailsOrder']}>
                                 <h2>Detalhes do Pedido</h2>
-                                <div><strong>Data:</strong>{selectedOrder.date}</div>
-                                <hr></hr>
-                                {/* <div className="divPizzaCodigo">
-                                <div className="divPizza">
-                                    <PiPizzaBold className={styles['iconPizzaCode']}></PiPizzaBold>
-                                    <strong>Código do Pedido: </strong>
-                                </div>
-                                <ul>{selectedOrder.id}</ul>
-                            </div> */}
                                 <div>
-                                    <PiPizzaBold className={styles['iconPizzaCode']}></PiPizzaBold>
-                                    <strong>Código do Pedido: </strong>
+                                    <strong>Data:</strong> {selectedOrder.date}
                                 </div>
-                                <ul>{selectedOrder.id}</ul>
+                                <hr />
+                                <div className="divIconPizzaTitulo">
+                                    <div className="divIconPizza">
+                                        <PiPizzaBold className={styles['iconPizzaCode']} />
+                                    </div>
 
-                                <hr></hr>
+                                    <div className="divTituloValor">
+                                        <strong>Código do Pedido:</strong>
+                                        <ul>{selectedOrder.id}</ul>
+                                    </div>
+
+                                </div>
+
+
+                                <hr />
                                 <div><strong>Pizzas:</strong></div>
                                 <ul>
                                     {selectedOrder.pizzas.map((pizza) => (
@@ -140,23 +145,30 @@ function History() {
                                         </li>
                                     ))}
                                 </ul>
-                                <hr></hr>
+                                <hr />
                                 <div><strong>Bebidas:</strong></div>
                                 <ul>
                                     {selectedOrder.drinks.map((drink) => (
-                                        <li key={drink.id}>{drink.name} - R${drink.price}</li>
+                                        <li key={drink.id}>
+                                            {drink.name} - R${drink.price}
+                                        </li>
                                     ))}
                                 </ul>
-                                <hr></hr>
-                                <div>
-                                    <RiMoneyDollarCircleLine></RiMoneyDollarCircleLine>
-                                    <strong>Total: </strong>
+                                <hr />
+                                <div className="divIconPizzaTitulo">
+                                    <div className="divIconPizza">
+                                        <RiMoneyDollarCircleLine className={styles['iconMoney']} />
+                                    </div>
+                                    <div className="divTituloValor">
+                                        <strong>Total:</strong>
+                                        <ul>R${selectedOrder.price}</ul>
+                                    </div>
                                 </div>
-                                <ul> R${selectedOrder.price}</ul>
                             </div>
                         </div>
                     </div>
                 )}
+
             </div>
         </>
     );
