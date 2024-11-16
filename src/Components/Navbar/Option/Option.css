@@ -5,7 +5,7 @@
     }
     to {
         opacity: 1;
-        height: 45%;
+        height: 30%;
     }
 }
 
@@ -18,14 +18,6 @@
         height: 0%;
         opacity: 0;
     }
-}
-
-.openAnimation {
-    animation: openComponent 3s normal;
-}
-
-.closeAnimation {
-    animation: closeComponent 3s normal;
 }
 
 
@@ -47,7 +39,7 @@
     
     .container-option > li {
         margin: 10px 0;
-        animation: openComponent 3s normal;
+        animation: openComponent 2s normal;
     }
     
     .container-option > li.active {

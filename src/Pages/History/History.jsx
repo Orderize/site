@@ -23,7 +23,7 @@ function History() {
 
     return (
         <div className={styles['container']}>
-            <Navbar></Navbar>
+            <Navbar activeButton={'Histórico'}/>
 
             <div className={styles['main']}>
                 <h1>Histórico de pedidos</h1>

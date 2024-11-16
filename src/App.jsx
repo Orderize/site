@@ -63,6 +63,11 @@ createRoot(document.getElementById('root')).render(
         ></Route>
         
         <Route
+          path='/historicos'
+          element= { <History />}>
+        </Route>
+
+        <Route
           path='/promotion'
           element={ <Promotion /> }
         ></Route>

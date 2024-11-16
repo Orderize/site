@@ -34,7 +34,13 @@ const Login = () => {
                 //login(data.user, data.token);
                 
                 const timeoutToNav = setTimeout(() => {
-                    goTo("/pedidos");
+                    const user = JSON.parse(localStorage.getItem('user'));
+
+                    if (user && user.roles.some(role => role.name == "OWNER")) {
+                        goTo("/relatorios");
+                    } else {
+                        goTo("/pedidos");
+                    }
                 }, 3000);
                 return () => clearTimeout(timeoutToNav);
             } else alert("Erro ao realizar o login, verifique os campos.");
@@ -53,10 +59,12 @@ const Login = () => {
 
             if (data) {
                 localStorage.setItem('user', JSON.stringify(data));
+                return data;
             }
         } catch (error) {
             alert(error.message);
             console.log(error);
+            return null;
         }
     };
     

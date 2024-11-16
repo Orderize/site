@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ChartDonut, ClockClockwise, ListMagnifyingGlass, Pizza } from "@phosphor-icons/react";
 import ButtonNavbar from './Button/ButtonNavbar';
 import Option from "./Option/Option";
@@ -7,23 +7,22 @@ import "./Navbar.css";
 import ImgLogo from '../../utils/assets/logo.png';
 import { useMediaQuery } from 'react-responsive';
 
-function navbar({ roles, activeButton, subActiveButton }) {
-    // const [ isOwner ] = useState(roles.some(role => role.name === "OWNER"));
-    
+function navbar({ activeButton, subActiveButton }) {
     const isDesktop = useMediaQuery({
         query: '(min-width: 1200px)' 
     });
 
     const [actualButton, setActualButton] = useState(activeButton);
 
-    const mainButton = {
-        title: roles === "OWNER" ? "Relatórios" : "Pedidos",  
-        icon: roles === "OWNER" ? <ChartDonut size={37} /> : <Pizza size={37} />,
-        path: roles === "OWNER" ? "/relatorios" : "/pedidos"
-    };
+    const [ user ] = useState(JSON.parse(localStorage.getItem('user')));
+    const [ isOwner ] = useState(user.roles.some(role => role.name == "OWNER"));
+    const [ mainButton ] = useState({
+        title: isOwner ? "Relatórios" : "Pedidos",
+        icon: isOwner ? <ChartDonut size={37} /> : <Pizza size={37} />,
+        path: isOwner ? "/relatorios" : "/pedidos"
+    });
 
-    
-    const nameMiddleButton = roles === "OWNER" ? "Gestão" : "Opções";
+    const nameMiddleButton = isOwner ? "Gestão" : "Opções";
 
     return (
         <>
@@ -41,13 +40,13 @@ function navbar({ roles, activeButton, subActiveButton }) {
                         isActive={actualButton === mainButton.title}
                         link={mainButton.path}
                         text={mainButton.title}
-                        />
+                    />
                     <ButtonNavbar
                         icon={ <ListMagnifyingGlass size={37}/>}
-                        isActive={actualButton === nameMiddleButton}
+                        isActive={actualButton === "Opções"}
                         link="/sabores"
                         text={nameMiddleButton}
-                        />
+                    />
                     {
                         subActiveButton === "Sabores" || subActiveButton === "Bebidas" || subActiveButton === "Promo" ? 
                             <Option activeButton={subActiveButton} />
@@ -56,7 +55,7 @@ function navbar({ roles, activeButton, subActiveButton }) {
                     <ButtonNavbar
                         icon={ <ClockClockwise size={37} /> }
                         isActive={actualButton === "Histórico"}
-                        link="/historico"
+                        link="/historicos"
                         text="Histórico"
                     />
                 </ul>

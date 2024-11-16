@@ -4,7 +4,7 @@ import Breadcrumb from "../../../Components/Breadcrumb/Breadcrumb";
 import Item from "../../../Components/Item/Item";
 import Navbar from "../../../Components/Navbar/Navbar";
 import "./Flavor.css"
-import { getFlavorsPop } from "../../../api/services/Flavors";
+import { getFlavorsPop } from "/src/api/services/Flavors";
 import InputSearch from "../../../Components/InputSearch/InputSearch";
 
 
@@ -14,7 +14,7 @@ function flavor() {
     const [token] = useState(localStorage.getItem('token'));
 
 
-    const handleFlavors = async (event) => {
+    const handleFlavors = async () => {
         try {
             const data = await getFlavorsPop(token);
             setFlavors(data);
@@ -44,7 +44,7 @@ function flavor() {
 
     return (
         <>
-            <Navbar roles={"attendant"} activeButton={"Opções"} subActiveButton={"Sabores"} />
+            <Navbar activeButton={"Opções"} subActiveButton={"Sabores"} />
             <main className="container-flavor">
                 <h1>Opções</h1>
                 <div className="breadcrumb-search">
