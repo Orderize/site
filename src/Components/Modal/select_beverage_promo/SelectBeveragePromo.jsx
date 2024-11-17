@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import './selectBeveragePromo.css';
 import PromoModal from '/src/Components/Modal/promo_add/PromoModal.jsx'; 
 import InputSearch from '../../InputSearch/InputSearch';
-import { getDrinksPop } from '../../../api/services/Drinks';
+import { getDrinks } from '../../../api/services/Drinks';
 
 const SelectBeveragePromo = ({ onClose }) => {
   const [valueSearch, setValueSearch] = useState("");
@@ -52,7 +52,7 @@ const SelectBeveragePromo = ({ onClose }) => {
         name: value,
         milimeters: null
       };
-      const data = await getDrinksPop(token, params);
+      const data = await getDrinks(token, params);
       setDrinkList(data);
     } catch (error) {
       // FAZER UM MODAL AQUI PARA FALAR SOBRE O ERRO
@@ -69,7 +69,7 @@ const SelectBeveragePromo = ({ onClose }) => {
           name: value,
           milimeters: null
         };
-        const data = await getDrinksPop(token, params);
+        const data = await getDrinks(token, params);
         if (data.length > 0) setDrinkList(data);        
     } catch (error) {
         alert(error.message);
