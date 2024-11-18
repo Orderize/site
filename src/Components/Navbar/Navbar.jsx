@@ -3,7 +3,7 @@ import { ChartDonut, ClockClockwise, ListMagnifyingGlass, Pizza } from "@phospho
 import ButtonNavbar from './Button/ButtonNavbar';
 import Option from "./Option/Option";
 
-import "./Navbar.css";
+import styles from "./Navbar.module.css";
 import ImgLogo from '../../utils/assets/logo.png';
 import { useMediaQuery } from 'react-responsive';
 import { getMainButton, isUserOwner } from './NavbarData';

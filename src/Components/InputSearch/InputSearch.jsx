@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import styles from "./InputSearch.module.css";
 
-function InputSearch({ handleSearch, valueSearch }) {    
+function InputSearch({ handleSearch, valueSearch, text }) {    
     return (
         <>
             <input 
@@ -9,8 +10,8 @@ function InputSearch({ handleSearch, valueSearch }) {
                 value={valueSearch}
                 onChange={handleSearch}
                 onKeyDown={e => { e.key === "Enter" ? enter() : null }}
-                className="input-search"
-                placeholder="Pesquisar" 
+                className={styles["input-search"]}
+                placeholder={text} 
             />
         </>
     )
