@@ -41,37 +41,14 @@ import 'react-toastify/dist/ReactToastify.css';
         const handleNovoClientChange = (isNovo) => {
             console.log("Mudando estado de novo cliente para:", isNovo);
             setIsNovoClient(isNovo);
-    
-            if (isNovo) {
-                toast.info("Cliente não encontrado.", {
-                    position: "top-right",
-                    autoClose: 3000,
-                });
-            }
         };
 
     return (
         <>
-            <Navbar activeButton={"Pedidos"}/>
         <ToastContainer />  
+        <Navbar activeButton={"Pedidos"}/>
 
         <main className={styles["container-client"]}>
-        <MediaQuery maxWidth={768}>
-                <p className={styles.titulo}>Novo Pedido</p>
-
-                <div className={styles["client-modal-card"]}>
-                    <p className={isNovoClient ? styles.novoCliente : styles.subtitulo}>
-                            {isNovoClient ? "Novo Cliente" : "Cliente"}
-                        </p>
-                    <FormClient onNovoClientChange={handleNovoClientChange} />
-                </div>
-
-                    <div className={styles.progress}>
-                        <ButtonNext onNext={handleNext} />
-
-                    <Progress currentStep={1} totalSteps={5} />
-                </div>
-        </MediaQuery>
 
         <MediaQuery minWidth={769}>
             <p className={styles.titulo}>Novo Pedido</p>

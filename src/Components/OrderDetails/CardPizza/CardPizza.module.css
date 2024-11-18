@@ -60,6 +60,9 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        gap: 10px;
+        overflow-y: scroll;
+        scrollbar-width: none;
     }
 
     .container-pizza .list-pizza .content-pizza {

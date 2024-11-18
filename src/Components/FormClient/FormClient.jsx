@@ -76,17 +76,18 @@ const FormClient = forwardRef(({ onNovoClientChange }, ref) => {
                         city: data.address?.city || ""
                     }));
 
-                } else {
-                    console.log("Cliente não encontrado ou dados incompletos.");
-                    setnovoClient(true);
-                    onNovoClientChange(true);
-                    resetForm();
-                }
+                } 
             } else {
                 console.log("Resposta da API é vazia.");
                 setnovoClient(true);
                 onNovoClientChange(true);
                 localStorage.removeItem("client");
+
+                toast.info("Cliente não encontrado.", {
+                    position: "top-right",
+                    autoClose: 3000,
+                });
+
                 resetForm();
             }
         } catch (error) {
@@ -106,7 +107,7 @@ const FormClient = forwardRef(({ onNovoClientChange }, ref) => {
             setBairro(addressData.neighborhood);
             setCidade(addressData.city);
             console.log("Dados do endereço:", JSON.stringify(addressData));
-            // handleSaveAdress();
+            handleSaveAdress();
         } catch (error) {
             alert("Erro ao buscar o endereço.");
         }
@@ -192,8 +193,8 @@ const FormClient = forwardRef(({ onNovoClientChange }, ref) => {
         <>
             {/* <main className="container-client"> */}
 
+                    {/* <ToastContainer /> */}
                 <MediaQuery minWidth={769}>
-                    <ToastContainer />
                 {/* <div className={styles.campos}> */}
                 <div >
                         <FloatingInput onValue={telefone} onSet={setTelefone} label={"Telefone"} onInput={inputNumerosCelular} onEnterPress={(e) => handleEnterPress(e, "telefone")}/>  
@@ -206,7 +207,8 @@ const FormClient = forwardRef(({ onNovoClientChange }, ref) => {
                                             onSet={setNome} 
                                             label={"Nome completo"} 
                                             onInput={inputSomenteTexto} 
-                                            disabled={!isTelefonePreenchido}/>
+                                            disabled={!isTelefonePreenchido}
+                                        />
 
                                         <FloatingInput
                                             onValue={cep}
@@ -222,7 +224,8 @@ const FormClient = forwardRef(({ onNovoClientChange }, ref) => {
                                             label={"Número"} 
                                             onInput={inputSomenteNumero} 
                                             onEnterPress={(e) => handleEnterPress(e, "numero")} 
-                                            disabled={!isTelefonePreenchido}/>
+                                            disabled={!isTelefonePreenchido}
+                                        />
                                     </>
                                 ) : (
                                     <>
@@ -272,6 +275,7 @@ const FormClient = forwardRef(({ onNovoClientChange }, ref) => {
                     </div>
                 {/* </div> */}
                 </MediaQuery>
+                <ToastContainer />
             {/* </main> */}
         </>
     );

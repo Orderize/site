@@ -7,7 +7,7 @@ import { getDrinks } from '../../../api/services/Drinks';
 import { XSquare } from '@phosphor-icons/react';
 import { ToastContainer, toast } from 'react-toastify';
 
-const DrinkModal = ({  handleNext, handleBack }) => {
+const DrinkModal = ({  handleNext, handleBack, setModal }) => {
   const [token] = useState(localStorage.getItem('token'));
   const [drinks, setDrinks] = useState([]);
   const [selectedDrinks, setSelectedDrinks] = useState([]);
@@ -54,13 +54,15 @@ const DrinkModal = ({  handleNext, handleBack }) => {
   const handleDrinkSelect = (drink) => {
     if (!selectedDrinks.some((selected) => selected.id === drink.id)) {
       setSelectedDrinks((prev) => [...prev, drink]);
+      setModal((prev) => [...prev, drink]); 
     }
   };
 
   const removeDrink = (drinkToRemove) => {
     setSelectedDrinks((prev) =>
-      prev.filter((drink) => drink.id !== drinkToRemove.id)
+      prev.filter((drink) => drink.id !== drinkToRemove.id)  
     );
+    setModal((prev) => prev.filter((drink) => drink.id !== drinkToRemove.id));
 
     toast.success(`Sabor ${drinkToRemove.name} removido com sucesso.`);
   };
@@ -92,6 +94,7 @@ const DrinkModal = ({  handleNext, handleBack }) => {
                     <p>{drink.name}</p>
                     <p>R${drink.price}</p>
                   </div>
+                  
                   <div onClick={() => removeDrink(drink)}>
                     <XSquare size={30} weight="duotone" />
                   </div>
@@ -104,7 +107,6 @@ const DrinkModal = ({  handleNext, handleBack }) => {
                 )}
               </div>
           </div>
-            
 
           <div className={styles["drink-list"]}>
           {drinks.map((drink) => (
