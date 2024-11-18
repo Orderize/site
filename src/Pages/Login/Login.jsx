@@ -3,6 +3,9 @@ import "./Login.css";
 import { useNavigate } from 'react-router-dom';
 import { authApi, userInfo } from '../../api/Auth';
 //import { useAuth } from '../../context/AuthContext';
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const Login = () => {
     //const { login, getUser } = useAuth();
@@ -24,7 +27,8 @@ const Login = () => {
             const data = await authApi(credentials);
             
             if (data) {
-                alert("Login realizado com sucesso.");
+                // alert("Login realizado com sucesso.");
+                toast.success("Login realizado com sucesso!");
                 
                 localStorage.setItem('token', data.token);
 
@@ -37,11 +41,12 @@ const Login = () => {
                     goTo("/pedidos");
                 }, 3000);
                 return () => clearTimeout(timeoutToNav);
-            } else alert("Erro ao realizar o login, verifique os campos.");
+            } else toast.warning("Erro ao realizar o login, verifique os campos.");
 
         } catch (error) {
             // FAZER UM MODAL AQUI PARA FALAR SOBRE O ERRO
-            alert(error.message)
+
+            toast.warning(error.message);
             console.log(error);
         }
     };
@@ -55,7 +60,7 @@ const Login = () => {
                 localStorage.setItem('user', JSON.stringify(data));
             }
         } catch (error) {
-            alert(error.message);
+            toast.error(error.message);
             console.log(error);
         }
     };
@@ -63,7 +68,7 @@ const Login = () => {
     const verifyAuth = () => {
         const emailAuth = localStorage.getItem('emailAuth');
         if (emailAuth) {
-            alert('Redirecionando para o sistema!');
+            toast.success('Redirecionando para o sistema!');
             const timeoutToNav = setTimeout(() => {
                 goTo("/pedidos");
             }, 3000);
@@ -78,6 +83,8 @@ const Login = () => {
 
     return (
         <>
+        <ToastContainer
+        autoClose={3000} />
             <main className='banner'>
                     <section className='container'> 
                         <form onSubmit={handleSubmit}>

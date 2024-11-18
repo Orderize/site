@@ -76,6 +76,8 @@ const FormClient = forwardRef(({ onNovoClientChange }, ref) => {
                         city: data.address?.city || ""
                     }));
 
+                    toast.success("Cliente encontrado! Clique em 'Próximo' para prosseguir com o pedido.");
+
                 } else {
                     console.log("Cliente não encontrado ou dados incompletos.");
                     setnovoClient(true);
@@ -121,7 +123,7 @@ const FormClient = forwardRef(({ onNovoClientChange }, ref) => {
         setBairro("");
         setCidade("");
     };
-    
+    788
     const handleSaveAdress = async (event) => {
         try {
             const cepLimpo = cep.replace(/\D/g, "");
