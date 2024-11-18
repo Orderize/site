@@ -1,11 +1,14 @@
 import api from "../Axios";
 
-export const getClients = async (token, telefone) => {
+export const getClients = async (token, phone) => {
     try {
-        const response = await api.get(`/users?phone=${telefone}` , {
+        const response = await api.get('/users', {
             headers: {
                 'Authorization': `Bearer ${token}`
             },
+            params: {
+                phone
+            }
         });
         return response.data;
     } catch (error) {

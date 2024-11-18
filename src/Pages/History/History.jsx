@@ -27,7 +27,7 @@ function History() {
 
     useEffect(() => {
         handleHistory();
-
+      
         const interval = setInterval(() => {
             handleHistory();
         }, 5000);

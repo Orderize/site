@@ -1,102 +1,56 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Bar, Doughnut, Line } from "react-chartjs-2";
 import 'chart.js/auto';
 
 import "./Report.css";
-import Kpi from "./Kpi/Kpi";
 import Navbar from "../../Components/Navbar/Navbar";
-import useChartData from "../../hooks/useChartData";
 import { useMediaQuery } from "react-responsive";
 
+import RenderKpis from "./RenderKpis";
+import RenderDoughnutChart from "./RenderDoughnutChart";
+import useAttestations from "../../hooks/useAttestations";
+import { ToastContainer } from "react-toastify";
 
 function Report() {
-
-    // faturamento semanal/mensal x 
-    // faturamento por salão e delivery x
-    // Faturamento bruto
+    const [ token ] = useState(localStorage.getItem('token'));
+    const { infoKpi, infoDoughnutChart } = useAttestations(token);
     
-    // faturamento do produto por hora 
-    // valor médio de cada pedido diario
-
-    // Adicionar controle para poder ver qual dos tipos de venda teve o maior pedido em dinheiro feito
-
-    const isDesktop = useMediaQuery({
-        query: "(min-width: 1200px)"
-    })
-
-    const { invoicingData, profitData, hourlyInvoicingData } = useChartData();
+    const [ barChart, setBarChart ] = useState();
     
+    const isDesktop = useMediaQuery({query: "(min-width: 1200px)"})
 
-    if (!invoicingData || !profitData || !hourlyInvoicingData) {
-        return <div>Carregando dados...</div>;
-    }
+    const handleBarChart = () => {
+        const data = [{}];
+
+        const infos = {
+            delivery: data.filter(it => it.orderType == "delivery").reduce((sum, current) => sum + current.totalValue, 0).toFixed(2),
+            saloon: data.filter(it => it.orderType == "saloon").reduce((sum, current) => sum + current.totalValue, 0).toFixed(2),
+        };
+        
+        // const dataBarChart = barData(infos);
+    } 
 
     return (
         <>
-            <Navbar role={"admin"} activeButton={"Relatórios"} />
+            <Navbar activeButton={"Relatórios"} />
+            <ToastContainer />
             <main className="container-report">
                 <h1>Relatórios</h1>
                 <section className="area-kpis">
-                    {
-                        isDesktop ?  
-                        [
-                            <Kpi
-                                background={"#EAE5DE"}
-                                color={"#3A3C16"}
-                                title={"Faturamento Bruto"}
-                                value={"R$ 3.125,00"}
-                            />,
-                            <Kpi
-                                background={"#656D4A"}
-                                color={"#EAE5DE"}
-                                title={"Rendimento/Hora"}
-                                value={"+120%"}
-                            />,
-                            <Kpi
-                                background={"#7B806A"}
-                                color={"#EAE5DE"}
-                                title={"Pedidos no dia"}
-                                value={"42"}
-                            />,
-                            <Kpi
-                                background={"#B5B9A4"}
-                                color={"#3A3C16"}
-                                title={"Faturamento do dia"}
-                                value={"R$ 3.125,00"}
-                            />
-
-                        ] : [
-                            <Kpi
-                                background={"#EAE5DE"}
-                                color={"#3A3C16"}
-                                title={"Faturamento Bruto"}
-                                value={"R$ 3.125,00"}
-                            />,
-                            <Kpi
-                                background={"#656D4A"}
-                                color={"#EAE5DE"}
-                                title={"Pedidos no dia"}
-                                value={"42"}
-                            />,
-                        ]
-                        
-                    }
+                    <RenderKpis info={infoKpi} isDesktop={isDesktop}/>
                 </section>
                 <section className="area-mini-charts">
-                    <div className="charts profit">
-                        <Bar                             
-                            data={profitData.data}
-                            options={profitData.options}
-                        />
-                    </div>
-                    <div className="charts">
-                        <Doughnut 
-                            data={invoicingData.data}
-                            options={invoicingData.options}
-                        />
-                    </div>
+                    <RenderDoughnutChart info={infoDoughnutChart}/>
                 </section>
-                {
+                
+                {/* <div className="charts profit">
+                    <Bar                             
+                        data={profitData.data}
+                        options={profitData.options}
+                    />
+                </div> */}
+                    
+                    
+                {/* {
                     isDesktop
                         &&
                     <section className="area-charts">
@@ -108,7 +62,7 @@ function Report() {
                             />
                         </div>
                     </section>
-                }
+                } */}
             </main>
         </>
     )
