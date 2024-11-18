@@ -18,15 +18,10 @@
   background-color: #5a7620;
 }
 
-
-.cancel-button {
-  color: #ffffff;
-  background-color: #656D4A;
-  border-radius: 5px;
-}
-
-.next-button {
-  color: #ffffff;
-  background-color: #656D4A;
-  border-radius: 5px;
+button {
+  color: var(--cor-fundo);
+  font-family: var(--fonte);
+  font-size: 14px;
+  background-color: var(--verde);
+  border-radius: 10px;
 }

@@ -42,12 +42,14 @@ function navbar({ roles, activeButton, subActiveButton }) {
                         isActive={actualButton === mainButton.title}
                         link={mainButton.path}
                         text={mainButton.title}
+                        event={setActualButton}
                         />
                     <ButtonNavbar
                         icon={ <ListMagnifyingGlass size={37}/>}
                         isActive={actualButton === nameMiddleButton}
                         link="/sabores"
                         text={nameMiddleButton}
+                        event={setActualButton}
                         />
                     {
                         subActiveButton === "Sabores" || subActiveButton === "Bebidas" || subActiveButton === "Promo" ? 
@@ -59,6 +61,7 @@ function navbar({ roles, activeButton, subActiveButton }) {
                         isActive={actualButton === "Histórico"}
                         link="/historico"
                         text="Histórico"
+                        event={setActualButton}
                     />
                 </ul>
             </nav>

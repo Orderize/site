@@ -15,8 +15,10 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 function Order() {
   const [currentStep, setCurrentStep] = useState(2);
+  const [modalPizza, setModalPizza] = useState(undefined);
   const [total, setTotal] = useState();
   const [pizzaValue, setPizzaValue] = useState();
+  
   // const location = useLocation();
   const navigate = useNavigate();
   
@@ -59,7 +61,7 @@ function Order() {
 
           <section className={styles["container-details-order"]}>
             <section>
-              <CardPizza setTotal={setTotal} setPizzaValue={setPizzaValue} />
+              <CardPizza setTotal={setTotal} setPizzaValue={setPizzaValue} setModal={setModalPizza}/>
             </section>
 
             <section>
