@@ -54,11 +54,12 @@ function flavor() {
                 <section className="flavor-list">
                     {
                             flavors.length > 0 && 
-                            flavors.map(flavor => {
+                            flavors.map((flavor, idx) => {
                             return <Item 
+                                index={idx+1}
                                 type={"flavor"}
                                 cod={flavor.id}
-                                key={flavor.id}
+                                key={idx}
                                 name={flavor.name}
                                 price={flavor.price}
                                 description={flavor.description}
