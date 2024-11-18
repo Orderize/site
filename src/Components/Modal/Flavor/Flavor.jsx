@@ -12,11 +12,10 @@ import pizza1Sabor from '../../../utils/assets/pizzas/pizza-1-sabor.svg';
 import pizza2Sabores from '../../../utils/assets/pizzas/pizza-2-sabores.svg';
 import pizza3Sabores from '../../../utils/assets/pizzas/pizza-3-sabores.svg';
 import pizza4Sabores from '../../../utils/assets/pizzas/pizza-4-sabores.svg';
-import { PiEnvelopeThin } from 'react-icons/pi';
 import Select from '../../UI/Select/Select';
 
 
-const PizzaComponent = ({ handleNext, handleBack }) => {
+const PizzaComponent = ({ handleBack, setListPizzas }) => {
   const [token] = useState(localStorage.getItem('token'));
   const [flavors, setFlavors] = useState([]);
   const [valueSearch, setValueSearch] = useState("");
@@ -28,8 +27,6 @@ const PizzaComponent = ({ handleNext, handleBack }) => {
     pizzaText: 'Selecione a quantidade de sabores',
     pizzaImage: pizza
   });
-  const [size, setSize] = useState();
-
   const [selectedFlavors, setSelectedFlavors] = useState([]);
   const [ingredients, setIngredients] = useState({});
   const [animate, setAnimate] = useState(false);
@@ -49,33 +46,47 @@ useEffect(() => {
   handleFlavors();
 }, []);
 
+const handleConfirm = () => {
+  setListPizzas(selectedFlavors);
+}
+
 const handleSearch = async (event) => {
-    const value = event.target.value;
-    setValueSearch(value);
+  const value = event.target.value;
+  setValueSearch(value);
 
-    if (value.length > 0) {
-      setShowFlavorOptions(true);  
-    } else {
-      setShowFlavorOptions(false);
-    }
+  if (value.length > 0) {
+    setShowFlavorOptions(true);  
+  } else {
+    setShowFlavorOptions(false);
+  }
 
-    try {
-        const data = await getFlavorsPop(token, value);
-        setFlavors(data);
-        console.log(data);
-    } catch (error) {
-        alert(error.message);
-        console.log(error);
-    }
-
-
+  try {
+      const data = await getFlavorsPop(token, value);
+      setFlavors(data);
+  } catch (error) {
+      alert(error.message);
+      console.log(error);
+  }
 }
 
 const handleFlavorSelect = (flavor) => {
-  if (selectedFlavors.length < parseInt(flavorCount)) {
+  if (modal.pizzaImage == pizza) {
+    toast.error("Selecione a quantidade de sabores!"); 
+    return;
+  } else if (modal.size == null) {
+    toast.error("Selecione o tamanho da pizza!"); 
+    return;
+  } else if (modal.mass == null) {
+    toast.error("Selecione o tipo de massa!"); 
+    return;
+  } else if (modal.border == null) {
+    toast.error("Selecione o tipo de borda!"); 
+    return;
+  }
+  
+  if (!selectedFlavors.some(it => JSON.stringify(it) == JSON.stringify(flavor))) {
     setSelectedFlavors([...selectedFlavors, flavor]);
 
-    console.log(selectedFlavors, flavor);
 
     setIngredients((prevIngredients) => ({
       ...prevIngredients,
@@ -175,8 +186,42 @@ const handleIngredientChange = (flavorName, ingredientName) => {
 
   const handlePizzaMass = (event) => {
     const key = parseInt(event.target.value)
-    switch (flavorCount) {
-    
+    switch (key) {
+      case 1:
+        setModal(prev => ({
+          ...prev,
+          mass: 'THIN',
+        }));
+        break;
+      case 2:
+        setModal(prev => ({
+          ...prev,
+          mass: 'THICK',
+        }));
+        break;
+      default:
+        break;
+    }
+  }
+
+  const handlePizzaBorder = (event) => {
+    const key = parseInt(event.target.value);
+
+    switch (key) {
+      case 1:
+        setModal(prev => ({
+          ...prev,
+          border: 'Catupiry',
+        }));
+        break;
+      case 2:
+        setModal(prev => ({
+          ...prev,
+          border: 'Chocolate',
+        }));
+        break;
+      default:
+        break;
     }
   }
 
@@ -220,11 +265,6 @@ const handleIngredientChange = (flavorName, ingredientName) => {
       <section className={styles["modal-container-flavor"]}>
 
         <div className={styles["pizza-options-flavor"]}>
-
-          <Select 
-            options={['1 Sabor', '2 Sabores', '3 Sabores', '4 Sabores']}
-            defaultValue={'0'} 
-          />
           <select className={styles["pizza-dropdown-flavor"]} defaultValue='0' onChange={handleFlavorCount}>
             <option value='0' disabled>Quantidade</option>
             <option value='1'>1 Sabor</option>
@@ -246,10 +286,10 @@ const handleIngredientChange = (flavorName, ingredientName) => {
             <option value='2'>Grossa</option>
           </select>
 
-          <select className={styles["pizza-dropdown-flavor"]}>
-            <option>Borda da pizza</option>
-            <option>Catupiry</option>
-            <option>Chocolate</option>
+          <select className={styles["pizza-dropdown-flavor"]} defaultValue='0' onChange={handlePizzaBorder}>
+            <option value='0' disabled>Borda da pizza</option>
+            <option value='1'>Catupiry</option>
+            <option value='2'>Chocolate</option>
           </select>
 
         </div>
@@ -265,7 +305,7 @@ const handleIngredientChange = (flavorName, ingredientName) => {
 
             {showFlavorOptions && (
               <div className={styles["flavor-options-list"]}>
-                {flavors.map((flavor, index) => (
+                {flavors && flavors.map((flavor, index) => (
                   <div 
                     key={index} 
                     className={styles["flavor-option"]}
@@ -292,7 +332,6 @@ const handleIngredientChange = (flavorName, ingredientName) => {
             </div>
 
             <div className={styles["info-right"]}>
-              <button>{modal.size}</button>
               <p className={styles["pizza-title"]}>Sabor selecionado:</p>
 
               {selectedFlavors.length > 0 ? (
@@ -348,7 +387,7 @@ const handleIngredientChange = (flavorName, ingredientName) => {
           </div>
         </div>
 
-        <FooterModal handleBack={handleBack} handleNext={handleNext}/>
+        <FooterModal handleBack={handleBack} handleNext={handleConfirm}/>
       </section>
       <ToastContainer />
     </div>

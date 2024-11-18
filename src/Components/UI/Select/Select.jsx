@@ -1,19 +1,17 @@
 import React from 'react';
-import styles from './Select.modules.css';
+import styles from './Select.module.css';
 
 function Select({ options, defaultValue }) {
     return (
         <>
-        <select className={styles["dropdown"]} defaultValue='0' onChange={handleFlavorCount}>
+        <select className={styles["dropdown"]} /*onChange={handleFlavorCount}*/>
+            <option disabled>{defaultValue}</option>
             {
                 options.length > 0 &&
-                
+                options.map((opt, idx) => {
+                    <option value={`${idx+1}`}>{opt}</option>
+                })
             }
-            <option value='0' disabled>Quantidade</option>
-            <option value='1'>1 Sabor</option>
-            <option value='2'>2 Sabores</option>
-            <option value='3'>3 Sabores</option>
-            <option value='4'>4 Sabores</option>
         </select>
         </>
     )
