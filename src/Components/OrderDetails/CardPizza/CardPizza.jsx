@@ -30,7 +30,7 @@ function CardPizza({ setTotal, setPizzaValue }) {
         }  
     }
 
-    const showPizzas = () => {
+    const show = () => {
         console.log(listPizzas);
     }
 
@@ -48,12 +48,13 @@ function CardPizza({ setTotal, setPizzaValue }) {
                 <AddButton openModal={openSelectPizzaModal} texto={"Adicionar pizza"} />
             </div>
 
+        <button onClick={show}>mostrar</button>
             <div className={styles["list-pizza"]}>
-                {listPizzas.length > 0 && listPizzas.map(pizza => {
+                {listPizzas && listPizzas.map(itens => {
                     <div className={styles["content-pizza"]}>
                         <div className={styles["pizza-information"]}>
-                            <p className={styles["name"]}>Pizza (1 Sabor)</p>
-                            <p className={styles["name"]}>R$0.00</p>
+                            <p className={styles["name"]}>{itens.modal.flavor.pizzaText}</p>
+                            <p className={styles["name"]}>{itens.modal.total}</p>
 
                             <div className={styles["edit-cancel"]}>
                                 <XSquare size={25} weight="duotone" />
@@ -61,6 +62,9 @@ function CardPizza({ setTotal, setPizzaValue }) {
                             </div>
                         </div>
 
+                        {itens.modal.selectedFlavors.length > 0 && itens.modal.selectedFlavors.map(flavor => {
+
+                        })}
                         <div className={styles["flavor-information"]}>
                             <p className={styles["flavor"]}>Calabresa</p>
 
