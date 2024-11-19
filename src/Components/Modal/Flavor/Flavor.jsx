@@ -21,15 +21,15 @@ const PizzaComponent = ({ handleBack, setListPizzas }) => {
   const [valueSearch, setValueSearch] = useState("");
   const [showFlavorOptions, setShowFlavorOptions] = useState(false);
 
-  const [flavorCount, setFlavorCount] = useState(0);
-
   const [modal, setModal] = useState({
-    pizzaText: 'Selecione a quantidade de sabores',
-    pizzaImage: pizza
+    flavor: {
+      pizzaText: 'Selecione a quantidade de sabores',
+      pizzaImage: pizza
+    },
+    total: 0
   });
   const [selectedFlavors, setSelectedFlavors] = useState([]);
   const [ingredients, setIngredients] = useState({});
-  const [animate, setAnimate] = useState(false);
   const [showIngredients, setShowIngredients] = useState({});
 
   const handleFlavors = async (event) => {
@@ -40,99 +40,97 @@ const PizzaComponent = ({ handleBack, setListPizzas }) => {
         alert(error.message)
         console.log(error);
     }
-};
+  };
 
-useEffect(() => {
-  handleFlavors();
-}, []);
+  useEffect(() => {
+    handleFlavors();
+  }, []);
 
-const handleConfirm = () => {
-  setListPizzas(selectedFlavors);
-}
-
-const handleSearch = async (event) => {
-  const value = event.target.value;
-  setValueSearch(value);
-
-  if (value.length > 0) {
-    setShowFlavorOptions(true);  
-  } else {
-    setShowFlavorOptions(false);
+  const handleConfirm = () => {
+    if (selectedFlavors.length == 0) {
+      toast.error("Selecione a quantidade de sabores!"); 
+    } else {
+      console.log({selectedFlavors, modal});
+      setListPizzas({modal, selectedFlavors});
+    }
   }
 
-  try {
-      const data = await getFlavorsPop(token, value);
-      setFlavors(data);
-  } catch (error) {
-      alert(error.message);
-      console.log(error);
+  const handleSearch = async (event) => {
+    const value = event.target.value;
+    setValueSearch(value);
+
+    if (value.length > 0) {
+      setShowFlavorOptions(true);  
+    } else {
+      setShowFlavorOptions(false);
+    }
+
+    try {
+        const data = await getFlavorsPop(token, value);
+        setFlavors(data);
+    } catch (error) {
+        alert(error.message);
+        console.log(error);
+    }
   }
-}
 
-const handleFlavorSelect = (flavor) => {
-  if (modal.pizzaImage == pizza) {
-    toast.error("Selecione a quantidade de sabores!"); 
-    return;
-  } else if (modal.size == null) {
-    toast.error("Selecione o tamanho da pizza!"); 
-    return;
-  } else if (modal.mass == null) {
-    toast.error("Selecione o tipo de massa!"); 
-    return;
-  } else if (modal.border == null) {
-    toast.error("Selecione o tipo de borda!"); 
-    return;
-  }
-  
-  if (!selectedFlavors.some(it => JSON.stringify(it) == JSON.stringify(flavor))) {
-    setSelectedFlavors([...selectedFlavors, flavor]);
+  const handleFlavorSelect = (flavor) => {
+    if (isValid()) {
+      if (!selectedFlavors.some(it => JSON.stringify(it) == JSON.stringify(flavor))) {
+        setSelectedFlavors([...selectedFlavors, flavor]);
+        let total = modal?.total + flavor.price;
+        setModal(prev => ({
+          ...prev, 
+          total 
+        }));
+    
+    
+        setIngredients((prevIngredients) => ({
+          ...prevIngredients,
+          [flavor.name]: flavor.ingredients.map((ingredient) => ({
+            ...ingredient,
+            checked: true,
+          })),
+        }));
+    
+        setShowIngredients((prevShowIngredients) => ({
+          ...prevShowIngredients,
+          [flavor.name]: false,
+        }));
+      } else {
+        toast.error(`Você já selecionou o sabor ${flavor} para a pizza.`);
+      }
+      setShowFlavorOptions(false);
+    }
+  };
 
+  const removeFlavor = (flavorToRemove) => {
+    setSelectedFlavors((prevSelectedFlavors) =>
+      prevSelectedFlavors.filter((flavor) => flavor.id !== flavorToRemove.id)
+    );
 
-    setIngredients((prevIngredients) => ({
-      ...prevIngredients,
-      [flavor.name]: flavor.ingredients.map((ingredient) => ({
-        ...ingredient,
-        checked: true,
-      })),
-    }));
+    console.log("Removendo sabor", flavorToRemove);
 
+    toast.success(`Sabor ${flavorToRemove.name} removido com sucesso.`);
+  };
+
+  const toggleIngredients = (flavorName) => {
     setShowIngredients((prevShowIngredients) => ({
       ...prevShowIngredients,
-      [flavor.name]: false,
+      [flavorName]: !prevShowIngredients[flavorName],
     }));
-  } else {
-    toast.error(`Você já selecionou ${flavorCount} sabor(es) para a pizza.`);
-  }
-  setShowFlavorOptions(false);
-};
+  };
 
-const removeFlavor = (flavorToRemove) => {
-  setSelectedFlavors((prevSelectedFlavors) =>
-    prevSelectedFlavors.filter((flavor) => flavor.id !== flavorToRemove.id)
-  );
-
-  console.log("Removendo sabor", flavorToRemove);
-
-  toast.success(`Sabor ${flavorToRemove.name} removido com sucesso.`);
-};
-
-const toggleIngredients = (flavorName) => {
-  setShowIngredients((prevShowIngredients) => ({
-    ...prevShowIngredients,
-    [flavorName]: !prevShowIngredients[flavorName],
-  }));
-};
-
-const handleIngredientChange = (flavorName, ingredientName) => {
-  setIngredients((prevIngredients) => {
-    const updatedIngredients = prevIngredients[flavorName].map((ingredient) =>
-      ingredient.name === ingredientName
-        ? { ...ingredient, checked: !ingredient.checked }
-        : ingredient
-    );
-    return { ...prevIngredients, [flavorName]: updatedIngredients };
-  });
-};
+  const handleIngredientChange = (flavorName, ingredientName) => {
+    setIngredients((prevIngredients) => {
+      const updatedIngredients = prevIngredients[flavorName].map((ingredient) =>
+        ingredient.name === ingredientName
+          ? { ...ingredient, checked: !ingredient.checked }
+          : ingredient
+      );
+      return { ...prevIngredients, [flavorName]: updatedIngredients };
+    });
+  };
 
   const handlePizzaSize = (event) => {
     const key = parseInt(event.target.value, 0);
@@ -140,19 +138,28 @@ const handleIngredientChange = (flavorName, ingredientName) => {
       case 1:
         setModal(prev => ({
           ...prev,
-          size: 'SMALL'
+          size: {
+            name: 'SMALL',
+            value: key
+          }
         }));
         break;
       case 2:
         setModal(prev => ({
           ...prev,
-          size: 'MEDIUM'
+          size: {
+            name: 'MEDIUM',
+            value: key
+          }
         }));
         break;
       case 3:
         setModal(prev => ({
           ...prev,
-          size: 'LARGE'
+          size: {
+            name: 'LARGE',
+            value: key
+          }
         }));
         break;
     }
@@ -170,33 +177,25 @@ const handleIngredientChange = (flavorName, ingredientName) => {
     }).filter(Boolean).join('\n'); 
   };
 
-  
-  const handleFlavorCountChange = (event) => {
-    setFlavorCount(
-      parseInt(event.target.value, 10)
-    );
-
-    setSelectedFlavors([]);
-    setAnimate(true); 
-
-    setTimeout(() => {
-      setAnimate(false); 
-    }, 300); 
-  };
-
   const handlePizzaMass = (event) => {
     const key = parseInt(event.target.value)
     switch (key) {
       case 1:
         setModal(prev => ({
           ...prev,
-          mass: 'THIN',
+          mass: {
+            name: 'THIN',
+            value: key
+          }
         }));
         break;
       case 2:
         setModal(prev => ({
           ...prev,
-          mass: 'THICK',
+          mass: {
+            name: 'THICK',
+            value: key
+          }
         }));
         break;
       default:
@@ -211,13 +210,19 @@ const handleIngredientChange = (flavorName, ingredientName) => {
       case 1:
         setModal(prev => ({
           ...prev,
-          border: 'Catupiry',
+          border: {
+            name: 'Catupiry',
+            value: key
+          }
         }));
         break;
       case 2:
         setModal(prev => ({
           ...prev,
-          border: 'Chocolate',
+          border: {
+            name: 'Chocolate',
+            value: key
+          },
         }));
         break;
       default:
@@ -231,32 +236,62 @@ const handleIngredientChange = (flavorName, ingredientName) => {
       case 1:
         setModal(prev => ({
           ...prev,
-          pizzaText: 'Pizza (1 Sabor)',
-          pizzaImage: pizza1Sabor
+          flavor: {
+            pizzaText: 'Pizza (1 Sabor)',
+            pizzaImage: pizza1Sabor,
+            value: key
+          }
         }));
         break;
       case 2:
         setModal(prev => ({
           ...prev,
-          pizzaText: 'Pizza (2 Sabores)',
-          pizzaImage: pizza2Sabores
+          flavor: {
+            pizzaText: 'Pizza (2 Sabores)',
+            pizzaImage: pizza2Sabores,
+            value: key
+          }
         }));
         break;
       case 3:
         setModal(prev => ({
           ...prev,
-          pizzaText: 'Pizza (3 Sabores)',
-          pizzaImage: pizza3Sabores
+          flavor: {
+            pizzaText: 'Pizza (3 Sabores)',
+            pizzaImage: pizza3Sabores,
+            value: key
+          }
         }));
         break;
       case 4:
         setModal(prev => ({
           ...prev,
-          pizzaText: 'Pizza (4 Sabores)',
-          pizzaImage: pizza4Sabores
+          flavor: {
+            pizzaText: 'Pizza (4 Sabores)',
+            pizzaImage: pizza4Sabores,
+            value: key
+          }
         }))
         break;
     }
+  }
+
+  const isValid = () => {
+    
+    if (modal.flavor.pizzaImage == pizza) {
+      toast.error("Selecione a quantidade de sabores!"); 
+      return false;
+    } else if (modal.size == null) {
+      toast.error("Selecione o tamanho da pizza!"); 
+      return false;
+    } else if (modal.mass == null) {
+      toast.error("Selecione o tipo de massa!"); 
+      return false;
+    } else if (modal.border == null) {
+      toast.error("Selecione o tipo de borda!"); 
+      return false;
+    }
+    return true;
   }
 
 
@@ -320,13 +355,13 @@ const handleIngredientChange = (flavorName, ingredientName) => {
 
           <div className={styles["pizza-information"]}>
             <div className={styles["info-left"]}>
-              <p className={styles["pizza-title"]}>{modal.pizzaText}</p>
+              <p className={styles["pizza-title"]}>{modal.flavor.pizzaText}</p>
 
-              {modal.pizzaImage && (
+              {modal.flavor.pizzaImage && (
                 <img 
-                  src={modal.pizzaImage} 
-                  alt={`Pizza com ${flavorCount} sabor(es)`} 
-                  className={`${styles["pizza-image"]} ${animate ? styles["animate"] : ''}`} 
+                  src={modal.flavor.pizzaImage} 
+                  alt={`Sabores da pizza`} 
+                  className={`${styles["pizza-image"]}`} 
                 />
               )}
             </div>

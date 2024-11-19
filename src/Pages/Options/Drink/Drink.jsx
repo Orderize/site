@@ -6,6 +6,7 @@ import Navbar from "../../../Components/Navbar/Navbar";
 import "./Drink.css"
 import { getDrinksPop } from "../../../api/services/Drinks";
 import InputSearch from "../../../Components/InputSearch/InputSearch";
+import { toast } from "react-toastify";
 
 
 function flavor() {
@@ -23,9 +24,8 @@ function flavor() {
             const data = await getDrinksPop(token, params);
             setDrink(data);
         } catch (error) {
-            // FAZER UM MODAL AQUI PARA FALAR SOBRE O ERRO
-            alert(error.message)
-            console.log(error);
+            toast.error(error.message)
+            console.error(error);
         }
     };
 
