@@ -8,37 +8,40 @@ import { XSquare, NotePencil } from '@phosphor-icons/react';
 function CardPizza({ setTotal, setPizzaValue }) {
     const [isOpenPizzaModal, setIsOpenPizzaModal] = useState(false);
     const [listPizzas, setListPizzas] = useState([]);
+    const [selectedPizza, setSelectedPizza] = useState(undefined);
+    const [isEdition, setIsEdition] = useState(false);
 
     const openSelectPizzaModal = () => {
         setIsOpenPizzaModal(true);
     };
 
-    const editPizzaModal = () => {
-        // abrir o modal com os dados da pizza setado conforme o sabor
+    const editPizzaModal = (pizzaToEdit) => {
+        setSelectedPizza(pizzaToEdit);
+        setIsEdition(true);
         setIsOpenPizzaModal(true);
-    }
-
-    const handleNext = () => {
+    };
+      
+    const close = () => {
         if (isOpenPizzaModal) {
+            setIsEdition(false);
             setIsOpenPizzaModal(false);
+            setSelectedPizza(undefined);
         }
     }
 
-    const handleBack = () => {
-        if (isOpenPizzaModal) {
-            setIsOpenPizzaModal(false);
-        }  
-    }
-
-    const show = () => {
-        console.log(listPizzas);
-    }
+    const getObservationText = (flavor) => {
+        const removedIngredients = ingredients[flavor.name]?.filter(ingredient => !ingredient.checked).map(ingredient => ingredient.name);
+      
+        if (removedIngredients.length > 0) {
+          return `sem ${removedIngredients.join(', ')}`;
+        }
+      
+        return '';
+    };
+      
 
     useEffect(() => {
-        const price = listPizzas.map(pizza => pizza.price)[0];
-        setTotal(price);
-        setPizzaValue(price);
-    }, [listPizzas]);
+    }, [isOpenPizzaModal]);
 
     return (
         <>
@@ -48,40 +51,37 @@ function CardPizza({ setTotal, setPizzaValue }) {
                 <AddButton openModal={openSelectPizzaModal} texto={"Adicionar pizza"} />
             </div>
 
-        <button onClick={show}>mostrar</button>
             <div className={styles["list-pizza"]}>
-                {listPizzas && listPizzas.map(itens => {
+                {listPizzas.length > 0 && listPizzas.map(pizza => (
                     <div className={styles["content-pizza"]}>
                         <div className={styles["pizza-information"]}>
-                            <p className={styles["name"]}>{itens.modal.flavor.pizzaText}</p>
-                            <p className={styles["name"]}>{itens.modal.total}</p>
+                            <p className={styles["name"]}>{pizza.info.flavor.text}</p>
+                            <p className={styles["name"]}>{pizza.info.total}</p>
 
                             <div className={styles["edit-cancel"]}>
                                 <XSquare size={25} weight="duotone" />
-                                <NotePencil size={25} weight="duotone" onClick={editPizzaModal}/>
+                                <NotePencil size={25} weight="duotone" onClick={() => editPizzaModal(pizza)}/>
                             </div>
                         </div>
 
-                        {itens.modal.selectedFlavors.length > 0 && itens.modal.selectedFlavors.map(flavor => {
+                        {pizza.selectedFlavors.length > 0 && pizza.selectedFlavors.map(flavor => (
+                            <div className={styles["flavor-information"]}>
+                                <p className={styles["flavor"]}>{flavor.name}</p>
 
-                        })}
-                        <div className={styles["flavor-information"]}>
-                            <p className={styles["flavor"]}>Calabresa</p>
-
-                            <p className={styles["observation"]}>- sem cebola</p>
-                        </div>
+                                <p className={styles["observation"]}>- sem massa</p>
+                            </div>
+                        ))}
                     </div>
-
-                })}
+                ))}
             </div>
             {
                 isOpenPizzaModal 
                 && 
                 <Flavor 
                     setListPizzas={setListPizzas} 
-                    // setSelectedFlavors={setSelectedFlavors}
-                    handleNext={handleNext}
-                    handleBack={handleBack} 
+                    selectedPizza={selectedPizza}
+                    close={close}
+                    isEdition={isEdition}
                 />
             }
             {/* {
