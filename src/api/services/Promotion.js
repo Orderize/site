@@ -16,3 +16,5 @@ export const getPromotions = async (token, name="") => {
         throw new Error('Erro ao fazer requisição. Aguarde um momento e recarregue a página.');
     }
 };
+
+
