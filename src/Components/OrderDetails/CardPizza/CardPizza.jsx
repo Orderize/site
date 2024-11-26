@@ -9,36 +9,27 @@ function CardPizza({ setTotal, setPizzaValue }) {
     const [isOpenPizzaModal, setIsOpenPizzaModal] = useState(false);
     const [listPizzas, setListPizzas] = useState([]);
     const [selectedPizza, setSelectedPizza] = useState(undefined);
-    const [isEdition, setIsEdition] = useState(false);
 
     const openSelectPizzaModal = () => {
         setIsOpenPizzaModal(true);
     };
 
-    const editPizzaModal = (pizzaToEdit) => {
+    const editPizza = (pizzaToEdit) => {
         setSelectedPizza(pizzaToEdit);
-        setIsEdition(true);
         setIsOpenPizzaModal(true);
     };
+
+    // adicionar a logica para desfazer isso, colocando essa pizza em uma pilha que desfaz o remover
+    const removePizza = (pizza) => {
+        setListPizzas(prev => prev.filter(p => p.id != pizza.id));
+    }
       
     const close = () => {
         if (isOpenPizzaModal) {
-            setIsEdition(false);
             setIsOpenPizzaModal(false);
             setSelectedPizza(undefined);
         }
-    }
-
-    const getObservationText = (flavor) => {
-        const removedIngredients = ingredients[flavor.name]?.filter(ingredient => !ingredient.checked).map(ingredient => ingredient.name);
-      
-        if (removedIngredients.length > 0) {
-          return `sem ${removedIngredients.join(', ')}`;
-        }
-      
-        return '';
-    };
-      
+    }      
 
     useEffect(() => {
     }, [isOpenPizzaModal]);
@@ -55,22 +46,21 @@ function CardPizza({ setTotal, setPizzaValue }) {
                 {listPizzas.length > 0 && listPizzas.map(pizza => (
                     <div className={styles["content-pizza"]}>
                         <div className={styles["pizza-information"]}>
-                            <p className={styles["name"]}>{pizza.info.flavor.text}</p>
-                            <p className={styles["name"]}>{pizza.info.total}</p>
+                            <p className={styles["name"]}>{pizza.name}</p>
+                            <p className={styles["name"]}>{pizza.price}</p>
 
                             <div className={styles["edit-cancel"]}>
-                                <XSquare size={25} weight="duotone" />
-                                <NotePencil size={25} weight="duotone" onClick={() => editPizzaModal(pizza)}/>
+                                <XSquare size={25} weight="duotone" onClick={() => removePizza(pizza)}/>
+                                <NotePencil size={25} weight="duotone" onClick={() => editPizza(pizza)}/>
                             </div>
                         </div>
 
-                        {pizza.selectedFlavors.length > 0 && pizza.selectedFlavors.map(flavor => (
+                        {pizza.flavors.map(flavor => (
                             <div className={styles["flavor-information"]}>
                                 <p className={styles["flavor"]}>{flavor.name}</p>
-
-                                <p className={styles["observation"]}>- sem massa</p>
                             </div>
                         ))}
+                        <p className={styles["observation"]}>{pizza.observations}</p>
                     </div>
                 ))}
             </div>
@@ -81,7 +71,6 @@ function CardPizza({ setTotal, setPizzaValue }) {
                     setListPizzas={setListPizzas} 
                     selectedPizza={selectedPizza}
                     close={close}
-                    isEdition={isEdition}
                 />
             }
             {/* {

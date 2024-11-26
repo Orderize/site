@@ -18,22 +18,14 @@ import Select from '../../UI/Select/Select';
 import DropdownSelect from './components/DropdownSelect';
 
 
-const PizzaComponent = ({ close, isEdition, setListPizzas, id, selectedPizza }) => {
+const PizzaComponent = ({ close, setListPizzas, selectedPizza }) => {
   const [token] = useState(localStorage.getItem('token'));
   
   const [optionsFlavor, setOptionsFlavor] = useState([]);
   const [pizzas, setPizzas] = useState(undefined);
   
-  const [pizzaOptions, setPizzaOptions] = useState({
-    border: selectedPizza?.info.border.value || "0",
-    flavor: selectedPizza?.info.border.value || "0",
-    mass: selectedPizza?.info.border.value || "0",
-    size: selectedPizza?.info.border.value || "0"
-  });
-  
   const [valueSearch, setValueSearch] = useState("");
 
-  const [ingredients, setIngredients] = useState(selectedPizza?.ingredients || {});
   const [showIngredients, setShowIngredients] = useState({});
 
   function handleOptionSize(event) {
@@ -60,19 +52,20 @@ const PizzaComponent = ({ close, isEdition, setListPizzas, id, selectedPizza }) 
     }));
   }
 
-  const handleGetPizza = async () => {
+  const handleGetPizza = async (id) => {
     try {
       const data = await getPizzaById(token, id);
-      if (data) setPizzas(data);
+      setPizzas(data);
     } catch (error) {
       toast.error(error.message);
     }
   }
 
-  const handleSavePizza = async () => {
+  const handleSavePizza = async (pizza) => {
     try {
-      const data = await savePizza(token, pizzas);
-      if (data) setPizzas(data);
+      const data = await savePizza(token, pizza);
+      setPizzas(data)
+      return data;        
     } catch (error) {
       toast.error(error.message);
     }
@@ -93,15 +86,33 @@ const PizzaComponent = ({ close, isEdition, setListPizzas, id, selectedPizza }) 
   }
 
   useEffect(() => {
-    if (id) handleGetPizza();
-  }, []);
+    if (selectedPizza) handleGetPizza(selectedPizza.id);
+  }, [pizzas]);
   
-  const handleConfirm = () => {
+  const handleConfirm = async () => {
     if (!isValid()) return;
     
-    handleSavePizza();
+    const pizza = handleDataPizza();
+    const data = await handleSavePizza(pizza);
+
+    setListPizzas(prev => ([...prev, data]));
     setPizzas([]);
     close();
+  }
+
+  const handleDataPizza = () => {
+    const observations = pizzas.flavors
+      .filter(flavor => flavor.observations?.length > 0)
+      .map(flavor => `Pizza de ${flavor.name} sem ${flavor.observations?.map(obs => obs.name).join(', ')}`)
+      .join(", ");
+
+    const transformedPizza = {
+      ...pizzas,
+      flavors: pizzas.flavors.map(flavor => flavor.id),
+      observations
+    };
+
+    return transformedPizza;
   }
 
   const handleCancel = () => {
@@ -153,7 +164,7 @@ const PizzaComponent = ({ close, isEdition, setListPizzas, id, selectedPizza }) 
       [flavor.name]: false
     }));
 
-    setValueSearch(undefined);
+    setValueSearch("");
     setOptionsFlavor([]);
   };
 
@@ -175,7 +186,6 @@ const PizzaComponent = ({ close, isEdition, setListPizzas, id, selectedPizza }) 
       flavors: prev.flavors.map(it => {
         if (it.id === flavor.id) {
           const exists = it.observations?.some(obs => obs.id === ingredient.id);
-          console.log(exists);
           
           return {
             ...it,
@@ -208,6 +218,10 @@ const PizzaComponent = ({ close, isEdition, setListPizzas, id, selectedPizza }) 
     }
   }
 
+  const handleCheckboxChange = (flavor, ingredient) => {
+    return !flavor.observations?.some(obs => obs.id == ingredient.id)
+  }
+
   const handleTitleChange = () => {
     switch (pizzas?.flavors?.length) {
       case undefined: return 'Selecione a quantidade de sabores';
@@ -235,7 +249,7 @@ const PizzaComponent = ({ close, isEdition, setListPizzas, id, selectedPizza }) 
               { value: 'MEDIUM', label: 'Média' },
               { value: 'LARGE', label: 'Grande' },
             ]}
-            defaultValue={pizzaOptions.size}
+            value={pizzas?.size || '0'}
             onChange={handleOptionSize}
           />
 
@@ -245,7 +259,7 @@ const PizzaComponent = ({ close, isEdition, setListPizzas, id, selectedPizza }) 
               { value: 'THIN', label: 'Fina' },
               { value: 'THICK', label: 'Grossa' },
             ]}
-            defaultValue={pizzaOptions.mass}
+            value={pizzas?.mass || '0'}
             onChange={handleOptionMass}
           />
 
@@ -255,7 +269,7 @@ const PizzaComponent = ({ close, isEdition, setListPizzas, id, selectedPizza }) 
               { value: 'Catupiry', label: 'Catupiry' },
               { value: 'Chocolate', label: 'Chocolate' },
             ]}
-            defaultValue={pizzaOptions.border}
+            value={pizzas?.border || '0'}
             onChange={handleOptionBorder}
           />
         </div>
@@ -299,7 +313,7 @@ const PizzaComponent = ({ close, isEdition, setListPizzas, id, selectedPizza }) 
 
               <div className={styles["flavor-information"]}>
               {pizzas?.flavors && pizzas.flavors.map(flavor => (
-                <div className={styles["flavor"]}>
+                <div key={flavor.id} className={styles["flavor"]}>
                   <div 
                     className={styles["flavor-name"]}
                   >
@@ -319,7 +333,7 @@ const PizzaComponent = ({ close, isEdition, setListPizzas, id, selectedPizza }) 
                           <li key={ingredient.id} className={styles['pointer']}>
                             <input
                               type="checkbox"
-                              checked={!flavor.observations?.some(obs => obs.id == ingredient.id)}
+                              checked={handleCheckboxChange(flavor, ingredient)}
                               onClick={() => handleIngredientChange(flavor, ingredient)}
                               id={ingredient.id}
                             />{' '}

@@ -1,11 +1,11 @@
 import React from 'react';
 import styles from './DropdownSelect.module.css';
 
-const DropdownSelect = ({ options, defaultValue = '0', onChange, label }) => {
+const DropdownSelect = ({ options, value = '0', onChange, label }) => {
   return (
       <select
         className={styles["pizza-dropdown-flavor"]}
-        defaultValue={defaultValue}
+        value={value}
         onChange={onChange}
       >
         {options.map((option) => (
