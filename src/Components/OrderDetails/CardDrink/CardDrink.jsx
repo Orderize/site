@@ -5,6 +5,7 @@ import ModalDrink from "../../Modal/Drink/Drink";
 import { XSquare, NotePencil } from '@phosphor-icons/react';
 
 function CardDrink(){
+    const [modalDrink, setModalDrink] = useState([]);
     const [isOpenDrinkModal, setIsOpenDrinkModal] = useState(false);
 
     const openSelectDrinkModal = () => {    
@@ -12,9 +13,12 @@ function CardDrink(){
     };
 
     const editDrinkModal = () => {
-        // abrir o modal com os dados da bebida setado conforme o sabor
         setIsOpenDrinkModal(true);
     }
+
+    const removeDrink = (drinkToRemove) => {
+        setModalDrink((prev) => prev.filter((drink) => drink.id !== drinkToRemove.id));
+    };
 
     const handleBack = () => {
         if (isOpenDrinkModal) {
@@ -35,26 +39,30 @@ function CardDrink(){
                 <p>Bebidas</p>
 
                 <AddButton openModal={openSelectDrinkModal} texto={"Adicionar bebida"} />
-                {/* <button className={styles["btn-adicionar"]}>Adicionar bebida</button>         */}
             </div>
 
             <div className={styles["list-drink"]}>
-                <div className={styles["content-drink"]}>
-                    <div className={styles["drink-information"]}>
-                        <p className={styles["name"]}>Fanta-laranja 2L (201)</p>
-                        <p className={styles["name"]}>R$0.00</p>
 
-                        <div className={styles["edit-cancel"]}>
-                            <XSquare size={25} weight="duotone" />
-                            <NotePencil size={25} weight="duotone" onClick={editDrinkModal}/>
+                {modalDrink.length > 0 ? (
+                    modalDrink.map((drink) => (
+                        <div key={drink.id} className={styles["content-drink"]}>
+                            <div className={styles["drink-information"]}>
+                                <p className={styles["name"]}>{drink.name}</p>
+                                <p className={styles["name"]}>R${drink.price}</p>
+
+                                <div className={styles["edit-cancel"]}>
+                                    <XSquare size={25} weight="duotone" onClick={() => removeDrink(drink)}/>
+                                    {/* <NotePencil size={25} weight="duotone" onClick={editDrinkModal}/> */}
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    ))
+                ) : null }
                 
             </div>
 
             {
-                isOpenDrinkModal && <ModalDrink handleBack={handleBack} handleNext={handleNext}/>
+                isOpenDrinkModal && <ModalDrink handleBack={handleBack} handleNext={handleNext} setModal={setModalDrink} />
             }
 
 
