@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Navbar from "../../Components/Navbar/Navbar";
 import Progress from "../../Components/Progress/Progress";
 import ButtonNext from "../../Components/Progress/ButtonNext/ButtonNext";
@@ -11,16 +11,19 @@ import CardPayment from "../../Components/OrderDetails/CardPayment/CardPayment";
 import CardTotal from "../../Components/OrderDetails/CardTotal/CardTotal";
 import MediaQuery from "react-responsive";
 import styles from "./Order.module.css";
-import { ToastContainer } from "react-toastify";
 import { useNavigate, useLocation } from "react-router-dom";
+import { Stack } from "../../utils/stack/Stack";
 
 function Order() {
   const [currentStep, setCurrentStep] = useState(2);
   const [total, setTotal] = useState();
-  // const [drinkValue, setDrinkTotal] = useState();
   const [pizzaValue, setPizzaValue] = useState();
+  const [pizzas, setPizzas] = useState([]);
+  const [drinks, setDrinks] = useState([]);
+  const unremovedItens = useRef(new Stack(20));
   
   const navigate = useNavigate();
+  
 
   const handleNext = () => {
     if (currentStep < 5) {
@@ -54,7 +57,7 @@ function Order() {
 
           <section className={styles["container-details-order"]}>
             <section>
-              <CardPizza setTotal={setTotal} setPizzaValue={setPizzaValue} />
+              <CardPizza unremovedItem={unremovedItens} pizzas={pizzas} setPizzas={setPizzas} />
             </section>
 
             <section>
@@ -62,8 +65,7 @@ function Order() {
             </section>
 
             <section>
-              <CardDrink />
-              {/* <CardDrink total={setTotal} setDrinkTotal={setDrinkTotal}/> */}
+              <CardDrink unremovedItens={unremovedItens} setDrinks={setDrinks}/>
             </section>
 
             <section>
@@ -77,7 +79,6 @@ function Order() {
         </main>
       </MediaQuery>
       
-      <ToastContainer />
     </>
   );
 }

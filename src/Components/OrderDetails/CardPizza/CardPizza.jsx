@@ -1,47 +1,59 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import AddButton from "../AddButton/AddButton";
 import styles from "./CardPizza.module.css";
 // import SelectPizzaPromo from "../../Modal/select_pizza_promo/selectPizzaPromo";
 import Flavor from '../../Modal/Flavor/Flavor';
 import { XSquare, NotePencil } from '@phosphor-icons/react';
+import { Stack } from "../../../utils/stack/Stack.js";
+import savePizzas, { deletePizzas, handleDataPizza } from "../../../hooks/usePizzas.js";
 
-function CardPizza({ setTotal, setPizzaValue }) {
+function CardPizza({ unremovedItem, pizzas, setPizzas }) {
+    const [token] = useState(localStorage.getItem('token'));
     const [isOpenPizzaModal, setIsOpenPizzaModal] = useState(false);
-    const [listPizzas, setListPizzas] = useState([]);
     const [selectedPizza, setSelectedPizza] = useState(undefined);
-    const [isEdition, setIsEdition] = useState(false);
-
+    
     const openSelectPizzaModal = () => {
         setIsOpenPizzaModal(true);
     };
 
-    const editPizzaModal = (pizzaToEdit) => {
+    const editPizza = (pizzaToEdit) => {
         setSelectedPizza(pizzaToEdit);
-        setIsEdition(true);
         setIsOpenPizzaModal(true);
     };
+
+    const removePizza = (pizza) => {
+        setPizzas(prev => prev.filter(p => p.id != pizza.id));
+        unremovedItem.current.push(pizza);        
+    }
       
     const close = () => {
         if (isOpenPizzaModal) {
-            setIsEdition(false);
             setIsOpenPizzaModal(false);
             setSelectedPizza(undefined);
         }
     }
-
-    const getObservationText = (flavor) => {
-        const removedIngredients = ingredients[flavor.name]?.filter(ingredient => !ingredient.checked).map(ingredient => ingredient.name);
-      
-        if (removedIngredients.length > 0) {
-          return `sem ${removedIngredients.join(', ')}`;
+    
+    const handleUnremovePizza = async (event) => {
+        if (event.key == "z" && event.ctrlKey) {
+            const pizza = unremovedItem.current.pop();
+            if (pizza) {
+                setPizzas(prev => ([...prev, pizza]));
+            }
         }
-      
-        return '';
-    };
-      
+    }
 
     useEffect(() => {
-    }, [isOpenPizzaModal]);
+        const handleKeyDown = (event) => {
+            handleUnremovePizza(event);
+        };
+
+        document.addEventListener('keydown', handleKeyDown);
+
+        return () => {
+            document.removeEventListener('keydown', handleKeyDown);
+        };
+    
+    }, []);
 
     return (
         <>
@@ -52,25 +64,23 @@ function CardPizza({ setTotal, setPizzaValue }) {
             </div>
 
             <div className={styles["list-pizza"]}>
-                {listPizzas.length > 0 && listPizzas.map(pizza => (
+                {pizzas.length > 0 && pizzas.map(pizza => (
                     <div className={styles["content-pizza"]}>
                         <div className={styles["pizza-information"]}>
-                            <p className={styles["name"]}>{pizza.info.flavor.text}</p>
-                            <p className={styles["name"]}>{pizza.info.total}</p>
+                            <p className={styles["name"]}>{pizza.name}</p>
+                            <p className={styles["name"]}>{pizza.price}</p>
 
                             <div className={styles["edit-cancel"]}>
-                                <XSquare size={25} weight="duotone" />
-                                <NotePencil size={25} weight="duotone" onClick={() => editPizzaModal(pizza)}/>
+                                <XSquare size={25} weight="duotone" onClick={() => removePizza(pizza)}/>
+                                <NotePencil size={25} weight="duotone" onClick={() => editPizza(pizza)}/>
                             </div>
                         </div>
-
-                        {pizza.selectedFlavors.length > 0 && pizza.selectedFlavors.map(flavor => (
+                        {pizza.flavors.map(flavor => (
                             <div className={styles["flavor-information"]}>
                                 <p className={styles["flavor"]}>{flavor.name}</p>
-
-                                <p className={styles["observation"]}>- sem massa</p>
                             </div>
                         ))}
+                        <p className={styles["observation"]}>{pizza.observations}</p>
                     </div>
                 ))}
             </div>
@@ -78,21 +88,11 @@ function CardPizza({ setTotal, setPizzaValue }) {
                 isOpenPizzaModal 
                 && 
                 <Flavor 
-                    setListPizzas={setListPizzas} 
+                    setListPizzas={setPizzas} 
                     selectedPizza={selectedPizza}
                     close={close}
-                    isEdition={isEdition}
                 />
             }
-            {/* {
-                isOpenReviewModal
-                &&
-                <Review 
-                    pizzas={listPizzas}
-                    handleNext={handleNext}
-                    handleBack={handleBack}
-                />
-            } */}
         </main>
         </>
     );

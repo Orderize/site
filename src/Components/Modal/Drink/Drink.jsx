@@ -7,10 +7,9 @@ import { getDrinks } from '../../../api/services/Drinks';
 import { XSquare } from '@phosphor-icons/react';
 import { ToastContainer, toast } from 'react-toastify';
 
-const DrinkModal = ({  handleNext, handleBack, setModal }) => {
+const DrinkModal = ({  handleNext, handleBack, setSelectedDrinks }) => {
   const [token] = useState(localStorage.getItem('token'));
   const [drinks, setDrinks] = useState([]);
-  const [selectedDrinks, setSelectedDrinks] = useState([]);
   const [valueSearch, setValueSearch] = useState("");
 
   const handleDrinks = async (event) => {
@@ -52,64 +51,16 @@ const DrinkModal = ({  handleNext, handleBack, setModal }) => {
   }
 
   const handleDrinkSelect = (drink) => {
-    setSelectedDrinks((prev) => {
-        const existingDrink = prev.find((selected) => selected.id === drink.id);
-        if (existingDrink) {
-            return prev.map((selected) =>
-                selected.id === drink.id
-                    ? { ...selected, quantity: selected.quantity + 1 }
-                    : selected
-            );
-        } else {
-            return [...prev, { ...drink, quantity: 1 }];
-        }
-    });
-
-    setModal((prev) => {
-        const existingDrink = prev.find((selected) => selected.id === drink.id);
-        if (existingDrink) {
-            localStorage.setItem('order', JSON.stringify({
-              "drinks": [...prev, { ...drink, quantity: 1 }]
-            }));
-
-            return prev.map((selected) =>
-                selected.id === drink.id
-                    ? { ...selected, quantity: selected.quantity + 1 }
-                    : selected
-            );
-
-        } else {
-            return [...prev, { ...drink, quantity: 1 }];
-        }
-    });
+    if (!drinks.some((selected) => selected.id === drink.id)) {
+      setSelectedDrinks((prev) => [...prev, drink]);
+    }
   };
-
 
   const removeDrink = (drinkToRemove) => {
     setSelectedDrinks((prev) =>
-        prev
-            .map((drink) =>
-                drink.id === drinkToRemove.id
-                    ? { ...drink, quantity: drink.quantity - 1 }
-                    : drink
-            )
-            .filter((drink) => drink.quantity > 0)
+      prev.filter((drink) => drink.id !== drinkToRemove.id)  
     );
-
-    setModal((prev) =>
-        prev
-            .map((drink) =>
-                drink.id === drinkToRemove.id
-                    ? { ...drink, quantity: drink.quantity - 1 }
-                    : drink
-            )
-            .filter((drink) => drink.quantity > 0)
-      );
-
-      toast.success(`A bebida: ${drinkToRemove.name} foi removida.`, {
-        position: "top-right",
-        autoClose: 3000,
-    });
+    toast.success(`Sabor ${drinkToRemove.name} removido com sucesso.`);
   };
 
   return (
@@ -132,8 +83,8 @@ const DrinkModal = ({  handleNext, handleBack, setModal }) => {
             <img src={drink} alt="drink" className={styles["drink-image"]}/>
               <div className={styles["info"]}>
                 <p className={styles["info-titulo"]}>Bebidas selecionadas:</p>
-                {selectedDrinks.length > 0 ? (
-              selectedDrinks.map((drink) => (
+                {drinks.length > 0 ? (
+              drinks.map((drink) => (
                 <div key={drink.id} className={styles["drink-information-selected"]}>
                   <div>
                     <p>{drink.name}</p>
@@ -158,7 +109,7 @@ const DrinkModal = ({  handleNext, handleBack, setModal }) => {
             <div
               key={drink.id}
               className={`${styles["drink-item"]} ${
-                selectedDrinks.some((selected) => selected.id === drink.id)
+                drinks.some((selected) => selected.id === drink.id)
                   ? styles["selected"]
                   : ""
               }`}

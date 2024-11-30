@@ -66,13 +66,13 @@ function navbar({ activeButton, subActiveButton }) {
     }, []);
 
     return (
-        <nav className="container-navbar center">
+        <nav className={`${styles.container} ${styles.center}`}>
             {isDesktop && (
-                <div className='logo center'>
+                <div className={`${styles.logo} ${styles.center}`}>
                     <img src={ImgLogo} alt="Orderize logo" />
                 </div>
             )}
-            <ul className="ordenation-navbar center">
+            <ul className={`${styles.ordenation} ${styles.center}`}>
                 <ButtonNavbar
                     icon={mainButton.icon}
                     isActive={activeButton === mainButton.title}

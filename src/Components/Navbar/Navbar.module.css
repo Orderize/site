@@ -1,7 +1,7 @@
 @media screen and (max-width: 1200px) { 
     /* Celular */
     
-    .container-navbar {
+    .container {
         display: flex;
         align-items: center;
 
@@ -23,7 +23,7 @@
         display: none;
     }
     
-    .ordenation-navbar {
+    .ordenation {
         justify-content: center;
         width: 100%;
     }
@@ -34,7 +34,7 @@
 @media screen and (min-width: 1200px) { 
     /* Computador */
   
-    .container-navbar {
+    .container {
         display: flex;
         align-items: center;
         
@@ -55,7 +55,7 @@
         cursor: pointer;
     }   
 
-    .ordenation-navbar {
+    .ordenation {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -64,7 +64,7 @@
         height: calc(100% - 160px);
     }
 
-    .ordenation-navbar > li {
+    .ordenation > li {
         margin: 2vh;
     }
 
