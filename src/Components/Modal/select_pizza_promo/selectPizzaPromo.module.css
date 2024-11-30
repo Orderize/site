@@ -64,7 +64,7 @@ h2, h3 {
   margin-bottom: 5px;
 }
 
-select {
+.selectPizzaPromo-group select {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;

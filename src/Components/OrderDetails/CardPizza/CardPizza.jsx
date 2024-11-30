@@ -8,7 +8,6 @@ import { Stack } from "../../../utils/stack/Stack.js";
 import savePizzas, { deletePizzas, handleDataPizza } from "../../../hooks/usePizzas.js";
 
 function CardPizza({ unremovedItem, pizzas, setPizzas }) {
-    const [token] = useState(localStorage.getItem('token'));
     const [isOpenPizzaModal, setIsOpenPizzaModal] = useState(false);
     const [selectedPizza, setSelectedPizza] = useState(undefined);
     

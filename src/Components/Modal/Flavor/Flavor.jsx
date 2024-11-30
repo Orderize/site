@@ -120,8 +120,6 @@ const PizzaComponent = ({ close, setListPizzas, selectedPizza }) => {
     }
 
     setListPizzas(prev => {
-      console.log(prev);
-      
       const pizzaExists = prev.some(p => p.id == data.id);
 
       if (pizzaExists) return prev.map(p => (p.id == data.id ? data : p));
