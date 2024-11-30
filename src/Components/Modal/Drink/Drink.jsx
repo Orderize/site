@@ -7,10 +7,9 @@ import { getDrinks } from '../../../api/services/Drinks';
 import { XSquare } from '@phosphor-icons/react';
 import { ToastContainer, toast } from 'react-toastify';
 
-const DrinkModal = ({  handleNext, handleBack, setModal }) => {
+const DrinkModal = ({  handleNext, handleBack, setSelectedDrinks }) => {
   const [token] = useState(localStorage.getItem('token'));
   const [drinks, setDrinks] = useState([]);
-  const [selectedDrinks, setSelectedDrinks] = useState([]);
   const [valueSearch, setValueSearch] = useState("");
 
   const handleDrinks = async (event) => {
@@ -52,9 +51,8 @@ const DrinkModal = ({  handleNext, handleBack, setModal }) => {
   }
 
   const handleDrinkSelect = (drink) => {
-    if (!selectedDrinks.some((selected) => selected.id === drink.id)) {
+    if (!drinks.some((selected) => selected.id === drink.id)) {
       setSelectedDrinks((prev) => [...prev, drink]);
-      setModal((prev) => [...prev, drink]); 
     }
   };
 
@@ -62,8 +60,6 @@ const DrinkModal = ({  handleNext, handleBack, setModal }) => {
     setSelectedDrinks((prev) =>
       prev.filter((drink) => drink.id !== drinkToRemove.id)  
     );
-    setModal((prev) => prev.filter((drink) => drink.id !== drinkToRemove.id));
-
     toast.success(`Sabor ${drinkToRemove.name} removido com sucesso.`);
   };
 
@@ -87,8 +83,8 @@ const DrinkModal = ({  handleNext, handleBack, setModal }) => {
             <img src={drink} alt="drink" className={styles["drink-image"]}/>
               <div className={styles["info"]}>
                 <p className={styles["info-titulo"]}>Bebidas selecionadas:</p>
-                {selectedDrinks.length > 0 ? (
-              selectedDrinks.map((drink) => (
+                {drinks.length > 0 ? (
+              drinks.map((drink) => (
                 <div key={drink.id} className={styles["drink-information-selected"]}>
                   <div>
                     <p>{drink.name}</p>
@@ -113,7 +109,7 @@ const DrinkModal = ({  handleNext, handleBack, setModal }) => {
             <div
               key={drink.id}
               className={`${styles["drink-item"]} ${
-                selectedDrinks.some((selected) => selected.id === drink.id)
+                drinks.some((selected) => selected.id === drink.id)
                   ? styles["selected"]
                   : ""
               }`}

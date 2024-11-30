@@ -38,3 +38,26 @@ export const savePizza = async (token, pizza) => {
         throw new Error('Erro ao salvar a pizza. Tente novamente.');
     }
 }
+
+export const updatePizza = async (token, pizza, id) => {
+    try {
+        const response = await api.put(`${base}/${id}`, pizza, {
+            headers: { Authorization: `Bearer ${token}`},
+        });
+        return response.data;
+    } catch (error) {
+        console.error('[updatePizza] Error: ', error.response || error.message);
+        throw new Error('Erro ao atualizar pizza. Tente novamente.');
+    }
+}
+
+export const deletePizza = async (token, id) => {
+    try {
+        const response = await api.delete(`${base}/${id}`, {
+            headers: { Authorization: `Bearer ${token}`},
+        })
+        return response.data;
+    } catch (error) {
+        
+    }
+}

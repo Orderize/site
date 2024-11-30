@@ -4,20 +4,16 @@ import styles from "./CardDrink.module.css";
 import ModalDrink from "../../Modal/Drink/Drink";
 import { XSquare, NotePencil } from '@phosphor-icons/react';
 
-function CardDrink(){
-    const [modalDrink, setModalDrink] = useState([]);
+function CardDrink({ setDrinks }){
     const [isOpenDrinkModal, setIsOpenDrinkModal] = useState(false);
+    const [selectedDrinks, setSelectedDrinks] = useState([]);
 
     const openSelectDrinkModal = () => {    
         setIsOpenDrinkModal(true);
     };
 
-    const editDrinkModal = () => {
-        setIsOpenDrinkModal(true);
-    }
-
     const removeDrink = (drinkToRemove) => {
-        setModalDrink((prev) => prev.filter((drink) => drink.id !== drinkToRemove.id));
+        setSelectedDrinks((prev) => prev.filter((drink) => drink.id !== drinkToRemove.id));
     };
 
     const handleBack = () => {
@@ -28,6 +24,7 @@ function CardDrink(){
 
     const handleNext = () => {
         if (isOpenDrinkModal) {
+            setDrinks(selectedDrinks);
             setIsOpenDrinkModal(false);
         }
     }
@@ -43,8 +40,8 @@ function CardDrink(){
 
             <div className={styles["list-drink"]}>
 
-                {modalDrink.length > 0 ? (
-                    modalDrink.map((drink) => (
+                {selectedDrinks.length > 0 ? (
+                    selectedDrinks.map((drink) => (
                         <div key={drink.id} className={styles["content-drink"]}>
                             <div className={styles["drink-information"]}>
                                 <p className={styles["name"]}>{drink.name}</p>
@@ -62,7 +59,12 @@ function CardDrink(){
             </div>
 
             {
-                isOpenDrinkModal && <ModalDrink handleBack={handleBack} handleNext={handleNext} setModal={setModalDrink} />
+                isOpenDrinkModal && 
+                <ModalDrink 
+                    handleBack={handleBack} 
+                    handleNext={handleNext} 
+                    setSelectedDrinks={setSelectedDrinks}
+                />
             }
 
 

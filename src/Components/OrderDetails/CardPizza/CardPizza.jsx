@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import AddButton from "../AddButton/AddButton";
 import styles from "./CardPizza.module.css";
 // import SelectPizzaPromo from "../../Modal/select_pizza_promo/selectPizzaPromo";
 import Flavor from '../../Modal/Flavor/Flavor';
 import { XSquare, NotePencil } from '@phosphor-icons/react';
+import { Stack } from "../../../utils/stack/Stack.js";
+import savePizzas, { deletePizzas, handleDataPizza } from "../../../hooks/usePizzas.js";
 
-function CardPizza({ setTotal, setPizzaValue }) {
+function CardPizza({ unremovedItem, pizzas, setPizzas }) {
+    const [token] = useState(localStorage.getItem('token'));
     const [isOpenPizzaModal, setIsOpenPizzaModal] = useState(false);
-    const [listPizzas, setListPizzas] = useState([]);
     const [selectedPizza, setSelectedPizza] = useState(undefined);
-
+    
     const openSelectPizzaModal = () => {
         setIsOpenPizzaModal(true);
     };
@@ -19,9 +21,9 @@ function CardPizza({ setTotal, setPizzaValue }) {
         setIsOpenPizzaModal(true);
     };
 
-    // adicionar a logica para desfazer isso, colocando essa pizza em uma pilha que desfaz o remover
     const removePizza = (pizza) => {
-        setListPizzas(prev => prev.filter(p => p.id != pizza.id));
+        setPizzas(prev => prev.filter(p => p.id != pizza.id));
+        unremovedItem.current.push(pizza);        
     }
       
     const close = () => {
@@ -29,10 +31,29 @@ function CardPizza({ setTotal, setPizzaValue }) {
             setIsOpenPizzaModal(false);
             setSelectedPizza(undefined);
         }
-    }      
+    }
+    
+    const handleUnremovePizza = async (event) => {
+        if (event.key == "z" && event.ctrlKey) {
+            const pizza = unremovedItem.current.pop();
+            if (pizza) {
+                setPizzas(prev => ([...prev, pizza]));
+            }
+        }
+    }
 
     useEffect(() => {
-    }, [isOpenPizzaModal]);
+        const handleKeyDown = (event) => {
+            handleUnremovePizza(event);
+        };
+
+        document.addEventListener('keydown', handleKeyDown);
+
+        return () => {
+            document.removeEventListener('keydown', handleKeyDown);
+        };
+    
+    }, []);
 
     return (
         <>
@@ -43,7 +64,7 @@ function CardPizza({ setTotal, setPizzaValue }) {
             </div>
 
             <div className={styles["list-pizza"]}>
-                {listPizzas.length > 0 && listPizzas.map(pizza => (
+                {pizzas.length > 0 && pizzas.map(pizza => (
                     <div className={styles["content-pizza"]}>
                         <div className={styles["pizza-information"]}>
                             <p className={styles["name"]}>{pizza.name}</p>
@@ -54,7 +75,6 @@ function CardPizza({ setTotal, setPizzaValue }) {
                                 <NotePencil size={25} weight="duotone" onClick={() => editPizza(pizza)}/>
                             </div>
                         </div>
-
                         {pizza.flavors.map(flavor => (
                             <div className={styles["flavor-information"]}>
                                 <p className={styles["flavor"]}>{flavor.name}</p>
@@ -68,20 +88,11 @@ function CardPizza({ setTotal, setPizzaValue }) {
                 isOpenPizzaModal 
                 && 
                 <Flavor 
-                    setListPizzas={setListPizzas} 
+                    setListPizzas={setPizzas} 
                     selectedPizza={selectedPizza}
                     close={close}
                 />
             }
-            {/* {
-                isOpenReviewModal
-                &&
-                <Review 
-                    pizzas={listPizzas}
-                    handleNext={handleNext}
-                    handleBack={handleBack}
-                />
-            } */}
         </main>
         </>
     );

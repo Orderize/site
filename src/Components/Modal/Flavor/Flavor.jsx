@@ -16,13 +16,14 @@ import pizza3Sabores from '../../../utils/assets/pizzas/pizza-3-sabores.svg';
 import pizza4Sabores from '../../../utils/assets/pizzas/pizza-4-sabores.svg';
 import Select from '../../UI/Select/Select';
 import DropdownSelect from './components/DropdownSelect';
+import { handleDataPizza, savePizzas, updatePizzas } from '../../../hooks/usePizzas';
 
 
 const PizzaComponent = ({ close, setListPizzas, selectedPizza }) => {
   const [token] = useState(localStorage.getItem('token'));
   
   const [optionsFlavor, setOptionsFlavor] = useState([]);
-  const [pizzas, setPizzas] = useState(undefined);
+  const [pizzas, setPizzas] = useState([]);
   
   const [valueSearch, setValueSearch] = useState("");
 
@@ -55,17 +56,7 @@ const PizzaComponent = ({ close, setListPizzas, selectedPizza }) => {
   const handleGetPizza = async (id) => {
     try {
       const data = await getPizzaById(token, id);
-      setPizzas(data);
-    } catch (error) {
-      toast.error(error.message);
-    }
-  }
-
-  const handleSavePizza = async (pizza) => {
-    try {
-      const data = await savePizza(token, pizza);
-      setPizzas(data)
-      return data;        
+      handleObservations(data);
     } catch (error) {
       toast.error(error.message);
     }
@@ -86,34 +77,61 @@ const PizzaComponent = ({ close, setListPizzas, selectedPizza }) => {
   }
 
   useEffect(() => {
-    if (selectedPizza) handleGetPizza(selectedPizza.id);
-  }, [pizzas]);
+    if (selectedPizza) {
+      handleGetPizza(selectedPizza.id);
+    }
+  }, []);
   
+  const handleObservations = (data) => {
+    
+    const observations = data.observations;
+    const listaPizzas = observations.split(",").map(p => p.trim());
+
+    const pizzasMap = new Map();
+
+    listaPizzas.forEach((item) => {
+        const [nome, ...resto] = item.split(" sem ");
+        const ingredientes = resto.join(", ").split(",").map(ingrediente => ingrediente.trim());
+
+        if (pizzasMap.has(nome)) {
+            pizzasMap.set(nome, pizzasMap.get(nome).concat(ingredientes));
+        } else {
+            pizzasMap.set(nome, ingredientes);
+        }
+    });
+
+    data.flavors = data.flavors.map(it => ({
+      ...it,
+      observations: pizzasMap.get(it.name) || []
+    }));
+
+    setPizzas(data);
+  }
+
   const handleConfirm = async () => {
     if (!isValid()) return;
     
-    const pizza = handleDataPizza();
-    const data = await handleSavePizza(pizza);
+    const pizza = handleDataPizza(pizzas);
+    let data;
+    if (pizza.id && pizzas.id == pizza.id) {
+      data = await updatePizzas(token, pizza);
+    } else {
+      data = await savePizzas(token, pizza);
+    }
 
-    setListPizzas(prev => ([...prev, data]));
+    setListPizzas(prev => {
+      console.log(prev);
+      
+      const pizzaExists = prev.some(p => p.id == data.id);
+
+      if (pizzaExists) return prev.map(p => (p.id == data.id ? data : p));
+      else return [...prev, data];
+    });
+
     setPizzas([]);
     close();
   }
 
-  const handleDataPizza = () => {
-    const observations = pizzas.flavors
-      .filter(flavor => flavor.observations?.length > 0)
-      .map(flavor => `Pizza de ${flavor.name} sem ${flavor.observations?.map(obs => obs.name).join(', ')}`)
-      .join(", ");
-
-    const transformedPizza = {
-      ...pizzas,
-      flavors: pizzas.flavors.map(flavor => flavor.id),
-      observations
-    };
-
-    return transformedPizza;
-  }
 
   const handleCancel = () => {
     setPizzas([]);
@@ -185,13 +203,13 @@ const PizzaComponent = ({ close, setListPizzas, selectedPizza }) => {
       ...prev,
       flavors: prev.flavors.map(it => {
         if (it.id === flavor.id) {
-          const exists = it.observations?.some(obs => obs.id === ingredient.id);
+          const exists = it.observations?.some(obs => obs === ingredient.name);
           
           return {
             ...it,
             observations: exists 
-              ? it.observations.filter(obs => obs.id !== ingredient.id)
-              : [...(it.observations || []), ingredient]
+              ? it.observations.filter(obs => obs !== ingredient.name)
+              : [...(it.observations || []), ingredient.name]
           };
         }
         return it;
@@ -219,7 +237,7 @@ const PizzaComponent = ({ close, setListPizzas, selectedPizza }) => {
   }
 
   const handleCheckboxChange = (flavor, ingredient) => {
-    return !flavor.observations?.some(obs => obs.id == ingredient.id)
+    return !flavor.observations?.some(obs => obs == ingredient.name)
   }
 
   const handleTitleChange = () => {
@@ -232,8 +250,9 @@ const PizzaComponent = ({ close, setListPizzas, selectedPizza }) => {
 
   const getObservationText = () => {
     return pizzas?.flavors?.map(flavor => {
-      const removedIngredients = flavor.observations?.map(obs => {return obs.name});
-      if (removedIngredients && removedIngredients.length > 0) return `Pizza de ${flavor.name} sem ${removedIngredients.join(', ')}`;
+      const removedIngredients = flavor.observations;
+      
+      if (removedIngredients && removedIngredients.length > 0) return `${flavor.name} sem ${removedIngredients.join(', ')}`;
     }).filter(Boolean).join('\n'); 
   };
 
