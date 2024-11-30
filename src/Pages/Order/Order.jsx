@@ -11,6 +11,7 @@ import CardPayment from "../../Components/OrderDetails/CardPayment/CardPayment";
 import CardTotal from "../../Components/OrderDetails/CardTotal/CardTotal";
 import MediaQuery from "react-responsive";
 import styles from "./Order.module.css";
+import { ToastContainer } from "react-toastify";
 import { useNavigate, useLocation } from "react-router-dom";
 
 function Order() {
@@ -18,17 +19,10 @@ function Order() {
   const [modalPizza, setModalPizza] = useState(undefined);
 
   const [total, setTotal] = useState();
+  // const [drinkValue, setDrinkTotal] = useState();
   const [pizzaValue, setPizzaValue] = useState();
   
-  // const location = useLocation();
   const navigate = useNavigate();
-  
-  // console.log("location.state:", location.state);
-  // const clientData = location.state?.clientData;
-
-  // if (!clientData) {
-  //     console.log("Nenhum dado de cliente encontrado.");
-  // }
 
   const handleNext = () => {
     if (currentStep < 5) {
@@ -71,6 +65,7 @@ function Order() {
 
             <section>
               <CardDrink />
+              {/* <CardDrink total={setTotal} setDrinkTotal={setDrinkTotal}/> */}
             </section>
 
             <section>
@@ -84,6 +79,7 @@ function Order() {
         </main>
       </MediaQuery>
       
+      <ToastContainer />
     </>
   );
 }

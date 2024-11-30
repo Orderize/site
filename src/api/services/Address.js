@@ -2,7 +2,7 @@ import api from '../Axios';
 
 export const getAddressByCep = async (token, { cep, number }) => {
     try {
-        const response = await api.get('/addresses/cep', {cep, number}, {
+        const response = await api.post('/addresses/cep', {cep, number}, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

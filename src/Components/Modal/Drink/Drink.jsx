@@ -52,19 +52,64 @@ const DrinkModal = ({  handleNext, handleBack, setModal }) => {
   }
 
   const handleDrinkSelect = (drink) => {
-    if (!selectedDrinks.some((selected) => selected.id === drink.id)) {
-      setSelectedDrinks((prev) => [...prev, drink]);
-      setModal((prev) => [...prev, drink]); 
-    }
+    setSelectedDrinks((prev) => {
+        const existingDrink = prev.find((selected) => selected.id === drink.id);
+        if (existingDrink) {
+            return prev.map((selected) =>
+                selected.id === drink.id
+                    ? { ...selected, quantity: selected.quantity + 1 }
+                    : selected
+            );
+        } else {
+            return [...prev, { ...drink, quantity: 1 }];
+        }
+    });
+
+    setModal((prev) => {
+        const existingDrink = prev.find((selected) => selected.id === drink.id);
+        if (existingDrink) {
+            localStorage.setItem('order', JSON.stringify({
+              "drinks": [...prev, { ...drink, quantity: 1 }]
+            }));
+
+            return prev.map((selected) =>
+                selected.id === drink.id
+                    ? { ...selected, quantity: selected.quantity + 1 }
+                    : selected
+            );
+
+        } else {
+            return [...prev, { ...drink, quantity: 1 }];
+        }
+    });
   };
+
 
   const removeDrink = (drinkToRemove) => {
     setSelectedDrinks((prev) =>
-      prev.filter((drink) => drink.id !== drinkToRemove.id)  
+        prev
+            .map((drink) =>
+                drink.id === drinkToRemove.id
+                    ? { ...drink, quantity: drink.quantity - 1 }
+                    : drink
+            )
+            .filter((drink) => drink.quantity > 0)
     );
-    setModal((prev) => prev.filter((drink) => drink.id !== drinkToRemove.id));
 
-    toast.success(`Sabor ${drinkToRemove.name} removido com sucesso.`);
+    setModal((prev) =>
+        prev
+            .map((drink) =>
+                drink.id === drinkToRemove.id
+                    ? { ...drink, quantity: drink.quantity - 1 }
+                    : drink
+            )
+            .filter((drink) => drink.quantity > 0)
+      );
+
+      toast.success(`A bebida: ${drinkToRemove.name} foi removida.`, {
+        position: "top-right",
+        autoClose: 3000,
+    });
   };
 
   return (

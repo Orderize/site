@@ -30,7 +30,7 @@ const FloatingInput = ({ label, initialValue = '', onSet, onValue, onInput, onEn
         className={`${styles['input-container']} ${isFocused || inputValue ? styles['focused'] : ''}`}
       >
         <input 
-          className={`${styles.input} ${disabled ? styles['input-disabled'] : ''}`}
+          className={`${styles.input}`}
           type="text"
           value={inputValue || ''}
           onFocus={handleFocus}
@@ -42,9 +42,8 @@ const FloatingInput = ({ label, initialValue = '', onSet, onValue, onInput, onEn
           placeholder=" "
         />
         
-        <label 
-          // className={styles.label}
-          className={`${styles.label} ${disabled ? styles['label-disabled'] : ''}`}
+        <label
+          className={`${styles.label}`}
         >
           {label}
         </label>
