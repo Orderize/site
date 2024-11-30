@@ -7,61 +7,58 @@ import { getDrinks } from '../../../api/services/Drinks';
 import { XSquare } from '@phosphor-icons/react';
 import { ToastContainer, toast } from 'react-toastify';
 
-const DrinkModal = ({  handleNext, handleBack, setSelectedDrinks }) => {
+const DrinkModal = ({  close, setListDrinks }) => {
   const [token] = useState(localStorage.getItem('token'));
+  const [optionsDrink, setOptionsDrink] = useState([]);
   const [drinks, setDrinks] = useState([]);
   const [valueSearch, setValueSearch] = useState("");
 
-  const handleDrinks = async (event) => {
+  const handleDrinks = async (name) => {
+    if (name == "") {
+      setOptionsDrink([]);
+      return;
+    }
+    
     try {
       const params = {
-        name: "",
+        name,
         milimeters: ""
         };
 
         const data = await getDrinks(token, params);
-        setDrinks(data);
+        setOptionsDrink(data);
     } catch (error) {
         alert(error.message)
         console.log(error);
     }
   };
 
-  useEffect(() => {
-    handleDrinks();
-  }, []);
-
   const handleSearch = async (event) => {
     const value = event.target.value;
     setValueSearch(value);
-
-    try {
-      const params = {
-        name: value,
-        milimeters: null
-      };
-
-        const data = await getDrinks(token, params);
-        setDrinks(data);
-        console.log(data);
-    } catch (error) {
-        alert(error.message);
-        console.log(error);
-    }
+    handleDrinks(value);
   }
 
   const handleDrinkSelect = (drink) => {
     if (!drinks.some((selected) => selected.id === drink.id)) {
-      setSelectedDrinks((prev) => [...prev, drink]);
+      setDrinks((prev) => [...prev, drink]);
     }
+
+    setValueSearch("");
+    setOptionsDrink([]);
   };
 
   const removeDrink = (drinkToRemove) => {
-    setSelectedDrinks((prev) =>
+    setDrinks((prev) =>
       prev.filter((drink) => drink.id !== drinkToRemove.id)  
     );
     toast.success(`Sabor ${drinkToRemove.name} removido com sucesso.`);
   };
+
+  const handleConfirm = () => {
+    setListDrinks(drinks);
+    close();
+  }
 
   return (
     <section className={styles["modal-wrapper-drink"]}>
@@ -75,37 +72,52 @@ const DrinkModal = ({  handleNext, handleBack, setSelectedDrinks }) => {
             </button>
           </div>
 
-          <div className={styles["search-bar-drink"]}>
+
+          <div className={styles["search-bar"]}>
+            <p className={styles["drink-title"]}>Selecione a bebida</p>
+
             <InputSearch valueSearch={valueSearch} handleSearch={handleSearch} text="Pesquise pelo nome da bebida"/>
+
+            {optionsDrink.length > 0 && (
+              <div className={styles["drink-options-list"]}>
+                {optionsDrink.map((drink, index) => (
+                  <div 
+                    key={index} 
+                    className={styles["drink-option"]}
+                    onClick={() => handleDrinkSelect(drink)}
+                  >
+                    {drink.name}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
           <div className={styles["info-drink"]}>
             <img src={drink} alt="drink" className={styles["drink-image"]}/>
               <div className={styles["info"]}>
                 <p className={styles["info-titulo"]}>Bebidas selecionadas:</p>
-                {drinks.length > 0 ? (
-              drinks.map((drink) => (
-                <div key={drink.id} className={styles["drink-information-selected"]}>
-                  <div>
-                    <p>{drink.name}</p>
-                    <p>R${drink.price}</p>
-                  </div>
-                  
-                  <div onClick={() => removeDrink(drink)}>
-                    <XSquare size={30} weight="duotone" />
-                  </div>
-                </div>
-              ))
-                ) : (
+                {drinks.length > 0 && drinks.map((drink) => (
+                    <div key={drink.id} className={styles["drink-information-selected"]}>
+                      <div>
+                        <p>{drink.name}</p>
+                        <p>R${drink.price}</p>
+                      </div>
+                      
+                      <div onClick={() => removeDrink(drink)}>
+                        <XSquare size={30} weight="duotone" />
+                      </div>
+                    </div>
+                )) || (
                   <div className={styles["drink-information"]}>
-                   <p>Selecione uma bebida</p>
+                  <p>Selecione uma bebida</p>
                   </div>
                 )}
               </div>
           </div>
 
           <div className={styles["drink-list"]}>
-          {drinks.map((drink) => (
+          {drinks.length > 0 && drinks.map((drink) => (
             <div
               key={drink.id}
               className={`${styles["drink-item"]} ${
@@ -121,7 +133,7 @@ const DrinkModal = ({  handleNext, handleBack, setSelectedDrinks }) => {
           ))}
         </div>
 
-        <FooterModal handleBack={handleBack} handleNext={handleNext}/>
+        <FooterModal handleBack={close} handleNext={handleConfirm}/>
 
      </div>
 

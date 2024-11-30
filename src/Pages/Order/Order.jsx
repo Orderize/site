@@ -15,27 +15,11 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { Stack } from "../../utils/stack/Stack";
 
 function Order() {
-  const [currentStep, setCurrentStep] = useState(2);
-  const [total, setTotal] = useState();
-  const [pizzaValue, setPizzaValue] = useState();
   const [pizzas, setPizzas] = useState([]);
   const [drinks, setDrinks] = useState([]);
   const unremovedItens = useRef(new Stack(20));
   
   const navigate = useNavigate();
-  
-
-  const handleNext = () => {
-    if (currentStep < 5) {
-      setCurrentStep((prevStep) => prevStep + 1);
-    }
-  };
-  
-  const handlePrevious = () => {
-    if (currentStep > 2) {
-      setCurrentStep((prevStep) => prevStep - 1);
-    }
-  };
 
   const handlePreviousPage = () => {
     navigate("/pedidos");
@@ -61,11 +45,11 @@ function Order() {
             </section>
 
             <section>
-              <CardTotal total={total} pizzaValue={pizzaValue}/>
+              <CardTotal drinks={drinks} pizzas={pizzas}/>
             </section>
 
             <section>
-              <CardDrink unremovedItens={unremovedItens} setDrinks={setDrinks}/>
+              <CardDrink unremovedItens={unremovedItens} drinks={drinks} setDrinks={setDrinks}/>
             </section>
 
             <section>
