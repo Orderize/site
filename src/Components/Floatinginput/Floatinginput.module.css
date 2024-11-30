@@ -63,26 +63,3 @@
   /* border-color: #0077ff; */
   border-color: var(--verde-escuro);
 }
-
-.input-disabled {
-  /* background-color: #f0f0f0;  */
-  color: #b0b0b0; 
-  border: 2px solid var(--verde); 
-  background-color: var(--cor-fundo);
-}
-
-.label-disabled {
-  position: absolute;
-  top: 12px;
-  left: 16px;
-  /* background-color: #f8f4eb;  */
-  background-color: var(--cor-fundo);
-  /* background-color: #f8f4eb; */
-  padding: 0 5px;
-  color: var(--verde);
-  transition: all 0.3s ease;  
-  pointer-events: none;
-  font-family: var(--fonte);
-  font-weight: 500;
-  font-size: 12px;
-}
