@@ -2,6 +2,9 @@
     /* Celular */
     
     .container-navbar {
+        display: flex;
+        align-items: center;
+
         justify-content: space-between;
 
         position: fixed;
@@ -21,7 +24,7 @@
     }
     
     .ordenation-navbar {
-        justify-content: space-evenly;
+        justify-content: center;
         width: 100%;
     }
 
@@ -34,6 +37,9 @@
     .container-navbar {
         display: flex;
         align-items: center;
+        
+        justify-content: center;
+
         flex-direction: column;
         
         background: #EAE5DE;
@@ -50,7 +56,9 @@
     }   
 
     .ordenation-navbar {
+        display: flex;
         flex-direction: column;
+        justify-content: center;
 
         width: 90%;
         height: calc(100% - 160px);

@@ -7,7 +7,6 @@ export const getAddressByCep = async (token, { cep, number }) => {
                     Authorization: `Bearer ${token}`
                 }
         });
-        console.log("Resposta da API:"+ response.data); 
         return response.data;
     } catch (error) {
         console.error("Erro ao buscar o endereço pelo CEP:", error); 
@@ -22,7 +21,6 @@ export const saveAddress = async (token, address) => {
                 Authorization: `Bearer ${token}`,
             }
         });
-        console.log("Resposta da API:"+ response.data);
         return response.data;
     } catch (error) {
         console.error("Erro ao criar o endereço:", error);

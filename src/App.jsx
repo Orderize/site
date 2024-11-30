@@ -65,7 +65,17 @@ createRoot(document.getElementById('root')).render(
           path='/sabores'
           element={ <Flavor /> }
         ></Route>
+
+        <Route
+          path='/bebidas'
+          element={ <Drink /> }
+        ></Route>
         
+        <Route
+          path='/historicos'
+          element= { <History />}>
+        </Route>
+
         <Route
           path='/promotion'
           element={ <Promotion /> }

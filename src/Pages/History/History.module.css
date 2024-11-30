@@ -38,6 +38,10 @@
     cursor: pointer;
 }
 
+.dateInputVisible {
+    transform: translateX(-375px);
+    transition: all 0.5s ease;
+}
 
 .legend {
     margin: 10px auto;
@@ -69,13 +73,18 @@
     margin: 25px auto;
     width: 90%;
     gap: 15px;
+    transition: all 0.5s ease;
+}
+
+.orderList.active {
+    width: 60% !important;
+    margin: 4px;
 }
 
 .orderCard {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #B5B9A4;
     height: 100px;
     padding: 15px;
     border-radius: 8px;
@@ -128,3 +137,103 @@
     margin-right: 15px;
 }
 
+/*aba lateral da order*/
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 30%;
+    height: 100vh;
+    color: black;
+    background-color: #EAE5DE;
+    box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    z-index: 1000;
+    display: flex;
+    overflow-y: auto;
+    flex-direction: column;
+    transition: transform 0.3s ease-in-out;
+    overflow: hidden;
+}
+
+.sidebarContent {
+    margin-top: 10px;
+    text-align: center;
+    flex-grow: 1; /*conteúdo ocupa o espaço restante */
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    overflow-y: scroll;
+}
+
+.sidebarContent::-webkit-scrollbar{
+    width: 0px; 
+    background: transparent; 
+}
+
+.divClose {
+    position: relative;
+    display: flex;
+    justify-content: flex-start; /* Alinha o icon X à esquerda */
+    width: 100%;
+}
+
+.iconX {
+    cursor: pointer;
+    font-size: 30px !important;
+    position: absolute;
+    left: 0;
+}
+
+.detailsOrder {
+    margin-top: 10px;
+    max-height: calc(100vh - 50px);  /* conteúdo dentro não ultrapasse a tela */
+    overflow-y: scroll;
+}
+
+.detailsOrder::-webkit-scrollbar {
+    width: 0px; 
+    background: transparent;
+}
+
+.sidebarContent hr {
+    width: 40%;
+    height: 1px;
+    border: none;
+    background-color: black;
+    margin: 25px auto;
+}
+
+.sidebarContent ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.sidebarContent li {
+    margin: 5px 0;
+}
+
+.sidebarContent h2 {
+    margin-bottom: 20px;
+}
+
+.detailsOrder .divIconPizzaTitulo {
+    display: flex;
+    align-items: center; 
+    margin-bottom: 10px;  
+}
+
+.divIconPizza {
+    margin-right: 10px;  
+}
+
+.divTituloValor {
+    display: flex;
+    flex-direction: column;  
+    justify-content: center;
+}
+
+.iconPizzaCode, .iconMoney {
+    font-size: 30px;  
+    vertical-align: middle; 
+}
