@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Navbar from "../../Components/Navbar/Navbar";
 import FormClient from "../../Components/FormClient/FormClient";
 import ButtonNext from "../../Components/Progress/ButtonNext/ButtonNext";
@@ -6,111 +6,116 @@ import Progress from "../../Components/Progress/Progress";
 import styles from "./Client.module.css";
 import MediaQuery from "react-responsive";
 import { useNavigate } from "react-router-dom";
-import { getClientByPhone } from "../../api/services/User";
-import { inputNumerosCelular, inputCep, inputSomenteTexto, inputSomenteNumero, inputLetrasNumeros } from "../../utils/globals";
-import FloatingInput from "../../Components/Floatinginput/Floatinginput";
-// import { useAuth } from "../../context/AuthContext";
+import { NotePencil } from '@phosphor-icons/react';
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
-function Client() {
-    // const { user } = useAuth();
-    const [telefone, setTelefone] = useState("");   
-    const [nome, setNome] = useState("");
-    const [cep, setCep] = useState("");
-    const [numero, setNumero] = useState("");
-    const [rua, setRua] = useState("");
-    const [bairro, setBairro] = useState("");
-    const [cidade, setCidade] = useState("");
-    const [token] = useState(localStorage.getItem('token'));
-    const navigate = useNavigate();
-    const [user] = useState(JSON.parse(localStorage.getItem('user')));
+    function Client() {
+        const navigate = useNavigate();
+        const [isNovoClient, setIsNovoClient] = useState(false);
+        const [isEditing, setIsEditing] = useState(false);
+        const formClientRef = useRef();
 
-    const handleNext = () => {
-        navigate("/pedidos/novo-pedido");
-    };
+        var respostaAddress;
+        var respostaUser;
+    
+        const handleNext = async () => {
+            console.log("handleNext foi chamado");
+            try {
+                if (isNovoClient) {
+                    respostaAddress = await formClientRef.current.handleSaveAdress();
 
+                    console.log("respostaAddress de salvar endereço:", respostaAddress);
 
-    const setForms = (data) => {
-        localStorage.setItem("client", JSON.stringify(data));
-        setNome(data.name);
-        setCep(data.address.cep);
-        setNumero(data.address.number);
-        // setEndereco(data.)
-        setRua(data.address.street);
-        setBairro(data.address.neighborhood);
-        setCidade(data.address.city);
-    }
+                    respostaUser = await formClientRef.current.handleSaveClient(respostaAddress);
+                }
 
-    const handleSearchUser = async () => {
-        const value = telefone.replace(/\D/g, "");
-        try {
-            const data = await getClientByPhone(token, value);
-            if (data.length == 1) setForms(data[0]);
-        } catch (error) {
-            // FAZER UM MODAL AQUI PARA FALAR SOBRE O ERRO
-            alert(error.message)
-            console.log(error);
-        }
-    }
+                if (!formClientRef.current.isValidForm()) {
+                    toast.error("Por favor, preencha todos os campos.", {
+                        position: "top-right",
+                        autoClose: 3000,
+                    });
+                    // setIsNovoClient(false);
 
-    useEffect(() => {
-        handleSearchUser();
-    }, [telefone]);
+                    return;
+                } 
+                navigate("/pedidos/novo-pedido");
+            } catch (error) {
+                alert("Erro ao salvar o cliente: " + error.message);
+                console.error(error);
+            }
+        };
 
+        const handleEdit = () => {
+            console.log("handleEdit foi chamado");
+            setIsEditing(true);
+        };
+
+        const handleSave = async () => {
+            try {
+                console.log("handleSave foi chamado");
+                console.log("respostaUser", respostaUser);
+                console.log("respostaAddress", respostaAddress);
+                formClientRef.current.handleSaveClick();
+
+                toast.success('Cliente editado com sucesso!');
+                setIsEditing(false);
+            } catch (error) {
+                alert("Erro ao salvar o cliente: " + error.message);
+                console.error(error);
+            }
+        };
+
+        const handleNovoClientChange = (isNovo) => {
+            console.log("Mudando estado de novo cliente para:", isNovo);
+            setIsNovoClient(isNovo);
+        };
 
     return (
         <>
-            <Navbar activeButton={"Pedidos"} roles={user.roles}/>
+        <Navbar activeButton={"Pedidos"}/>
 
-            <main className={styles["container-client"]}>
-            <MediaQuery maxWidth={768}>
+        <main className={styles["container-client"]}>
 
-                {/* <p className={styles.titulo}>Novo Pedido</p>     */}
-                {/* <div className={styles["client-modal"]}> */}
+        <MediaQuery minWidth={769}>
+        
+            <p className={styles.titulo}>Novo Pedido</p>
+            <div className={styles["client-modal-card"]}>
 
-                    {/* <p className={styles.subtitulo}>Selecione o cliente:</p> */}
-                    <p className={styles.titulo}>Novo Pedido</p>
+            {/* {isNovoClient ? ( */}
+                {isEditing ? (
+                    <button onClick={handleSave} className={styles.save}>Salvar</button>
+                ) : (
+                    <NotePencil 
+                        size={25} 
+                        weight="duotone" 
+                        className={styles.edit} 
+                        onClick={handleEdit}
+                    />  
+                )}
+            {/* ) : (
+                <NotePencil 
+                        size={25} 
+                        weight="duotone" 
+                        className={styles["edit-desativado"]} 
+                />  
+            )} */}
 
-                    <div className={styles["client-modal-card"]}>
-                        <p className={styles.subtitulo}>Cliente</p>
 
-                        <FormClient />
-                    </div>
 
-                    <div className={styles.progress}>
-                        <ButtonNext onNext={handleNext} />
-
-                            <Progress currentStep={1} totalSteps={5} />
-                    </div>
-                {/* </div> */}
-            </MediaQuery>
-
-            <MediaQuery minWidth={769}>
-            {/* <div className={styles["client-modal"]}> */}
-                <p className={styles.titulo}>Novo Pedido</p>
-
-                <div className={styles["client-modal-card"]}>
-                    <p className={styles.subtitulo}>Cliente</p>
-                    <div className={styles["campos-list"]}>
-                        <div className={styles["campos-left"]}>
-                            <FloatingInput onValue={telefone} onSet={setTelefone} label={"Telefone"} onInput={inputNumerosCelular}/>  
-                            <FloatingInput onValue={nome} onSet={setNome} label={"Nome completo"} onInput={inputSomenteTexto}/>
-                            <FloatingInput onValue={cep} onSet={setCep} label={"CEP"} onInput={inputCep}/>
-                            <FloatingInput onValue={numero} onSet={setNumero} label={"Número"} onInput={inputSomenteNumero}/>
-                        </div>
-
-                        <div className={styles["campos-right"]}>
-                            <FloatingInput onValue={rua} onSet={setRua} label={"Rua"} onInput={inputSomenteTexto}/>
-                            <FloatingInput onValue={bairro} onSet={setBairro} label={"Bairro"} onInput={inputSomenteTexto}/>
-                            <FloatingInput onValue={cidade} onSet={setCidade} label={"Cidade"} onInput={inputSomenteTexto}/>
-                        </div>
-                    </div>
+                <div className={styles["client-info"]}> 
+                    <p className={isNovoClient ? styles.novoCliente : styles.subtitulo}>
+                        {isNovoClient ? "Novo Cliente" : "Cliente"}
+                    </p>
+                        
+                    <FormClient ref={formClientRef} onNovoClientChange={handleNovoClientChange} isEditing={isEditing} />
                 </div>
+            </div>
 
-                <ButtonNext onNext={handleNext} />
-            {/* </div> */}
-            </MediaQuery>
-            </main>
-        </>
+            <ButtonNext onNext={handleNext} />
+        </MediaQuery>
+        </main>
+    </>
     );
 }
 

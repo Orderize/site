@@ -1,11 +1,11 @@
 import React,{ useEffect, useState } from 'react';
 import "./Login.css";
 import { useNavigate } from 'react-router-dom';
-import { authApi } from '../../api/Auth';
-// import { useAuth } from '../../context/AuthContext';
+import { authApi, userInfo } from '../../api/Auth';
+//import { useAuth } from '../../context/AuthContext';
 
 const Login = () => {
-    // const { login } = useAuth();
+    //const { login, getUser } = useAuth();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isRemembered, setIsRemembered] = useState(false);
@@ -27,14 +27,20 @@ const Login = () => {
                 alert("Login realizado com sucesso.");
                 
                 localStorage.setItem('token', data.token);
-                localStorage.setItem('user', JSON.stringify(data.user));
 
                 if (isRemembered) localStorage.setItem('emailAuth', email);
                 
-                // login(data.user, data.token);
+                getUser(data.token);
+                //login(data.user, data.token);
                 
                 const timeoutToNav = setTimeout(() => {
-                    goTo("/pedidos");
+                    const user = JSON.parse(localStorage.getItem('user'));
+
+                    if (user && user.roles.some(role => role.name == "OWNER")) {
+                        goTo("/relatorios");
+                    } else {
+                        goTo("/pedidos");
+                    }
                 }, 3000);
                 return () => clearTimeout(timeoutToNav);
             } else alert("Erro ao realizar o login, verifique os campos.");
@@ -46,6 +52,22 @@ const Login = () => {
         }
     };
 
+    // formula temporaria para armazenar informações do usuario
+    const getUser = async (token) => {
+        try {
+            const data = await userInfo(token);
+
+            if (data) {
+                localStorage.setItem('user', JSON.stringify(data));
+                return data;
+            }
+        } catch (error) {
+            alert(error.message);
+            console.log(error);
+            return null;
+        }
+    };
+    
     const verifyAuth = () => {
         const emailAuth = localStorage.getItem('emailAuth');
         if (emailAuth) {

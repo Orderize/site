@@ -4,8 +4,9 @@ import Breadcrumb from "../../../Components/Breadcrumb/Breadcrumb";
 import Item from "../../../Components/Item/Item";
 import Navbar from "../../../Components/Navbar/Navbar";
 import "./Drink.css"
-import { getDrinksPop } from "../../../api/services/Drinks";
+import { getDrinks } from "../../../api/services/Drinks";
 import InputSearch from "../../../Components/InputSearch/InputSearch";
+import { toast } from "react-toastify";
 
 
 function flavor() {
@@ -20,12 +21,11 @@ function flavor() {
                 milimeters: ""
             };
             
-            const data = await getDrinksPop(token, params);
+            const data = await getDrinks(token, params);
             setDrink(data);
         } catch (error) {
-            // FAZER UM MODAL AQUI PARA FALAR SOBRE O ERRO
-            alert(error.message)
-            console.log(error);
+            toast.error(error.message)
+            console.error(error);
         }
     };
 
@@ -38,7 +38,7 @@ function flavor() {
                 milimeters: null
             };
 
-            const data = await getDrinksPop(token, params);
+            const data = await getDrinks(token, params);
             setDrink(data);
             console.log(data);
         } catch (error) {
@@ -53,7 +53,7 @@ function flavor() {
 
     return (
         <>
-            <Navbar roles={"attendant"} activeButton={"Opções"} subActiveButton={"Bebidas"} />
+            <Navbar activeButton={"Opções"} subActiveButton={"Bebidas"} />
             <main className="container-flavor">
                 <h1>Opções</h1>
                 <div className="breadcrumb-search">

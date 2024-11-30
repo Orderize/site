@@ -1,9 +1,115 @@
 import { useEffect, useState } from "react";
 
+export const doughnutData = (data) => {
+    return {
+        data: {
+            labels: ["Delivery", "Salão"],
+            datasets: [{
+                label: "Faturamento (R$)",
+                data: [data.delivery, data.saloon],
+                backgroundColor: ["#7B806A", "#B5B9A4"], 
+                hoverOffset: 4, 
+                borderWidth: 5,
+                borderColor: "#EAE5DE",
+                borderRadius: 10,
+            }],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                title: {
+                    display: true,
+                    text: "Faturamentos por Período",
+                    font: {
+                        size: 20,
+                    },
+                },
+                legend: {
+                    position: "right", 
+                    labels: {
+                        font: {
+                            size: 20,
+                            weight: "bold",
+                        },
+                        usePointStyle: true,
+                        pointStyle: "circle",
+                        padding: 20
+                    },
+                },
+            },
+            cutout: "42%",
+        },
+    }
+} 
+
+export const barData = (data) => {
+    return {
+        data: {
+            labels: [
+                "Lucro Diário", 
+                "Média Semanal", 
+                "Média Mensal",
+            ],
+            datasets: [{
+                label: false,
+                data: [ data.daily, data.weekly, data.monthly, ], 
+                backgroundColor: ["#7B806A", "#B5B9A4", "#B5B9A4"],
+                borderRadius: 10,
+            }],
+        },
+        
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                title: {
+                    display: true,
+                    text: "Lucro R$ por Pedido",
+                    font: {
+                        size: 20,
+                    },
+                },
+                legend: {
+                    display: false,
+                    position: "bottom",
+                    align: "center",
+                    labels: {
+                        fontSize: 20,
+                    },
+                },
+            },
+            scales: {
+                x: {
+                    title: {
+                        display: false,
+                        text: "Tipo de Lucro",
+                    },
+                    
+                    grid: {
+                        display: false,
+                    },
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: "Valor (R$)",
+                        font: {
+                            size: 16,
+                            weight: 'bold',
+                        },
+                    },
+                    grid: {
+                        display: false,
+                    },
+                    beginAtZero: true,
+                },
+            },
+        },
+    }
+}
+
 function useChartData() {
-    const [invoicingData, setInvoicingData] = useState(null);
-    const [profitData, setProfitData] = useState(null);
-    const [hourlyInvoicingData, setHourlyInvoicingData] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -14,111 +120,6 @@ function useChartData() {
 
                 // const invoicingJson = await invoicingReponse.json();
                 // const profitJson = await profitResponse.json();
-
-                setInvoicingData({
-                    data: {
-                        labels: ["Delivery", "Salão"],
-                        datasets: [{
-                            label: "Faturamento (R$)",
-                            data: [680, 2345],
-                            backgroundColor: ["#7B806A", "#B5B9A4"], 
-                            hoverOffset: 4, 
-                            borderWidth: 5,
-                            borderColor: "#EAE5DE",
-                            borderRadius: 10,
-                        }],
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            title: {
-                                display: true,
-                                text: "Faturamentos por Período",
-                                font: {
-                                    size: 20,
-                                },
-                            },
-                            legend: {
-                                position: "right", 
-                                labels: {
-                                    font: {
-                                        size: 20,
-                                        weight: "bold",
-                                    },
-                                    usePointStyle: true,
-                                    pointStyle: "circle",
-                                    padding: 20
-                                },
-                            },
-                        },
-                        cutout: "42%",
-                    },
-                });
-
-                setProfitData({
-                    data: {
-                        labels: [
-                            "Faturamento Diário", 
-                            "Média Semanal", 
-                            "Média Mensal",
-                        ],
-                        datasets: [{
-                            label: false,
-                            data: [ 3125, 3345, 3608, ], 
-                            backgroundColor: ["#7B806A", "#B5B9A4", "#B5B9A4"],
-                            borderRadius: 10,
-                        }],
-                    },
-                    
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            title: {
-                                display: true,
-                                text: "Faturamento R$ por Pedido",
-                                font: {
-                                    size: 20,
-                                },
-                            },
-                            legend: {
-                                display: false,
-                                position: "bottom",
-                                align: "center",
-                                labels: {
-                                    fontSize: 20,
-                                },
-                            },
-                        },
-                        scales: {
-                            x: {
-                                title: {
-                                    display: false,
-                                    text: "Tipo de Faturamento",
-                                },
-                                
-                                grid: {
-                                    display: false,
-                                },
-                            },
-                            y: {
-                                title: {
-                                    display: true,
-                                    text: "Valor (R$)",
-                                    font: {
-                                        size: 16,
-                                        weight: 'bold',
-                                    },
-                                },
-                                grid: {
-                                    display: false,
-                                },
-                                beginAtZero: true,
-                            },
-                        },
-                    },
-                });
 
                 setHourlyInvoicingData({
                     data: {

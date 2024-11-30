@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Item.css";
 
-function item({ type, cod, description, name, price }) {
+function item({ index, type, cod, description, name, price }) {
     const [srcImage, setSrcImage] = useState();
     const [altImage, setAltImage] = useState();
 
@@ -26,7 +26,7 @@ function item({ type, cod, description, name, price }) {
 
     return (
         <>
-            <div className="component-item">
+            <div className="component-item" tabIndex={index}>
                 <p>cod : {cod}</p>
                 <h3 className="name center">{name}</h3>
                 {/* <img src={srcImage} alt={altImage} /> */}

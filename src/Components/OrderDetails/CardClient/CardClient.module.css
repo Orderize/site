@@ -62,11 +62,12 @@
   .container-client {
     background: var(--cor-fundo-sec);
     width: 85%;
-    height: 40%;
+    /* height: 47%; */
+    height: 95%;
     border-radius: 25px;
     border: 1px solid var(--verde-escuro);
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     flex-direction: column;
     align-items: center;
     gap: 5px;
@@ -79,6 +80,7 @@
     width: 100%;
     justify-content: space-between;
     align-items: center;
+    /* margin-bottom: 5px; */
   }
 
   .container-client .titulo .edit {
@@ -88,6 +90,7 @@
     margin: 0;
     align-items: center;
     color: var(--verde-escuro);
+    cursor: pointer;
   }
 
   .container-client .titulo p {
@@ -119,6 +122,27 @@
     border: 1.5px solid var(--verde-escuro);
     padding: 1vh;
     background: var(--campo-preenchido);
+  }
+
+  .list-superior {
+    display: flex;
+    z-index: 1;
+  }
+
+  /* .list-superior > .input-container:last-child {
+    width: 25%;
+    background-color: red;
+  } */
+
+  /* .list-superior :nth-child(2) {
+    width: 65%; 
+} */
+
+  .list {
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 }
 
