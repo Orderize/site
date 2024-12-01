@@ -1,68 +1,145 @@
 import React, { useState, useEffect, useRef } from 'react';
-import './Drink.css';
 import FooterModal from '../../footer_modal/FooterModal';
+import InputSearch from '../../InputSearch/InputSearch';
+import styles from './Drink.module.css';
+import drink from '../../../utils/assets/drink.svg';
+import { getDrinks } from '../../../api/services/Drinks';
+import { XSquare } from '@phosphor-icons/react';
+import { ToastContainer, toast } from 'react-toastify';
 
-const PizzaComponent = () => {
-  const [activeTab, setActiveTab] = useState('Doces');
-  const [pizzaItems, setPizzaItems] = useState([]); 
-  const [visibleItems, setVisibleItems] = useState(10); 
-  const pizzaListRef = useRef(null);
+const DrinkModal = ({  close, setListDrinks }) => {
+  const [token] = useState(localStorage.getItem('token'));
+  const [optionsDrink, setOptionsDrink] = useState([]);
+  const [drinks, setDrinks] = useState([]);
+  const [valueSearch, setValueSearch] = useState("");
 
-  useEffect(() => {
-    const docePizzas = Array.from({ length: 30 }, (_, i) => `Bebida ${i + 1}`);
-    setPizzaItems(docePizzas);
-  }, []);
+  const handleDrinks = async (name) => {
+    if (name == "") {
+      setOptionsDrink([]);
+      return;
+    }
+    
+    try {
+      const params = {
+        name,
+        milimeters: ""
+        };
 
-  const handleScroll = () => {
-    if (pizzaListRef.current) {
-      const { scrollTop, scrollHeight, clientHeight } = pizzaListRef.current;
-      if (scrollTop + clientHeight >= scrollHeight - 10) {
-        setVisibleItems((prevVisibleItems) => prevVisibleItems + 10);
-      }
+        const data = await getDrinks(token, params);
+        setOptionsDrink(data);
+    } catch (error) {
+        alert(error.message)
+        console.log(error);
     }
   };
 
+  const handleSearch = async (event) => {
+    const value = event.target.value;
+    setValueSearch(value);
+    handleDrinks(value);
+  }
+
+  const handleDrinkSelect = (drink) => {
+    if (!drinks.some((selected) => selected.id === drink.id)) {
+      setDrinks((prev) => [...prev, drink]);
+    }
+
+    setValueSearch("");
+    setOptionsDrink([]);
+  };
+
+  const removeDrink = (drinkToRemove) => {
+    setDrinks((prev) =>
+      prev.filter((drink) => drink.id !== drinkToRemove.id)  
+    );
+    toast.success(`Sabor ${drinkToRemove.name} removido com sucesso.`);
+  };
+
+  const handleConfirm = () => {
+    setListDrinks(drinks);
+    close();
+  }
+
   return (
-    <section className="modal-wrapper-drink">
-      <div className='drink-container'>
-      <div className="pizza-options-drink">
-      </div>
+    <section className={styles["modal-wrapper-drink"]}>
+      <div className={styles['drink-container']}>
 
-      <div className="menu-drinks">
-        <div className="pizza-tabs">
-          <button 
-            className={`pizza-tab ${activeTab === 'Doces' ? 'active' : ''}`} 
-            onClick={() => {
-              setActiveTab('Doces');
-              setVisibleItems(10); 
-            }}>
-            Bebidas
-          </button>
-        </div>
-
-        <div className="search-bar-drink">
-          <input type="text" placeholder="Pesquise pelo nome da bebida" />
-          <button className="search-button">🔍</button>
-        </div>
-
-        <div 
-          className="pizza-list" 
-          ref={pizzaListRef} 
-          onScroll={handleScroll}
-        >
-          {pizzaItems.slice(0, visibleItems).map((pizza, index) => (
-            <button key={index} className="pizza-item">
-              {index + 1} | {pizza}
+        {/* <div className={styles["menu-drinks"]}> */}
+          <div className={styles["drink-tabs"]}>
+            <button 
+              className={styles["drink-tab"]}>
+              Bebidas
             </button>
+          </div>
+
+
+          <div className={styles["search-bar"]}>
+            <p className={styles["drink-title"]}>Selecione a bebida</p>
+
+            <InputSearch valueSearch={valueSearch} handleSearch={handleSearch} text="Pesquise pelo nome da bebida"/>
+
+            {optionsDrink.length > 0 && (
+              <div className={styles["drink-options-list"]}>
+                {optionsDrink.map((drink, index) => (
+                  <div 
+                    key={index} 
+                    className={styles["drink-option"]}
+                    onClick={() => handleDrinkSelect(drink)}
+                  >
+                    {drink.name}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <div className={styles["info-drink"]}>
+            <img src={drink} alt="drink" className={styles["drink-image"]}/>
+              <div className={styles["info"]}>
+                <p className={styles["info-titulo"]}>Bebidas selecionadas:</p>
+                {drinks.length > 0 && drinks.map((drink) => (
+                    <div key={drink.id} className={styles["drink-information-selected"]}>
+                      <div>
+                        <p>{drink.name}</p>
+                        <p>R${drink.price}</p>
+                      </div>
+                      
+                      <div onClick={() => removeDrink(drink)}>
+                        <XSquare size={30} weight="duotone" />
+                      </div>
+                    </div>
+                )) || (
+                  <div className={styles["drink-information"]}>
+                  <p>Selecione uma bebida</p>
+                  </div>
+                )}
+              </div>
+          </div>
+
+          <div className={styles["drink-list"]}>
+          {drinks.length > 0 && drinks.map((drink) => (
+            <div
+              key={drink.id}
+              className={`${styles["drink-item"]} ${
+                drinks.some((selected) => selected.id === drink.id)
+                  ? styles["selected"]
+                  : ""
+              }`}
+              onClick={() => handleDrinkSelect(drink)}
+            >
+              <p>{drink.name}</p>
+              <p>R${drink.price}</p>
+            </div>
           ))}
         </div>
-      </div>
 
-     <FooterModal/>
+        <FooterModal handleBack={close} handleNext={handleConfirm}/>
 
      </div>
+
+     <ToastContainer />
     </section>
   );
 };
 
-export default PizzaComponent;
+export default DrinkModal;

@@ -24,11 +24,15 @@ import Flavor from './Pages/Options/Flavor/Flavor'
 import Drink from '/src/Pages/Options/Drink/Drink'
 import './utils/global.css'
 import ModalPagamento from './Components/OrderDetails/ModalPagamento/ModalPagamento';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
+
+      <ToastContainer />
       <Routes>  
         <Route
           path='/'
@@ -61,7 +65,17 @@ createRoot(document.getElementById('root')).render(
           path='/sabores'
           element={ <Flavor /> }
         ></Route>
+
+        <Route
+          path='/bebidas'
+          element={ <Drink /> }
+        ></Route>
         
+        <Route
+          path='/historicos'
+          element= { <History />}>
+        </Route>
+
         <Route
           path='/promotion'
           element={ <Promotion /> }

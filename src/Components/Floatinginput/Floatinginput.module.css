@@ -62,5 +62,4 @@
 .input-container.focused {
   /* border-color: #0077ff; */
   border-color: var(--verde-escuro);
-
 }

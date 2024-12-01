@@ -1,0 +1,262 @@
+.modal-wrapper-drink {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5); 
+  z-index: 1000; 
+}
+
+.drink-container {
+  background-color: var(--cor-fundo);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    /* width: 700px;  */
+    width: 65%;
+    height: 85%;
+    /* height: 650px; */
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: space-between;
+  }
+
+
+.drink-tabs {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px;
+  /* margin-bottom: 10px; */
+  width: 100%;
+  border-bottom: 1px solid #ccc; 
+  /* padding-bottom: 10px;  */
+}
+
+.drink-tab {
+  background: none; 
+  border: none; 
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 10px;
+  color: var(--verde-escuro);
+}
+
+
+
+.search-bar {
+  display: flex;
+  width: 70%;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  margin-top: -10%;
+  /* align-items: center; */
+}
+
+.drink-title {
+  font-family: var(--fonte-titulo);
+  font-size: 20px;
+  color: var(--verde-escuro);
+}
+
+.drink-options-list {
+  position: absolute;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  background-color: var(--cor-fundo-sec);
+  max-height: 200px;
+  overflow-y: auto;
+  width: 100%;
+  padding: 10px;
+  z-index: 10;
+  border-radius: 10px;
+  margin-top: 85px;
+}
+
+.drink-option {
+  padding: 10px;
+  cursor: pointer;
+  color: var(--verde-escuro);
+  font-family: var(--fonte);
+}
+
+.drink-image {
+  width: 500px;
+  /* align-self: flex-start; */
+}
+
+.info-drink {
+  width: 90%;
+  height: 20%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center
+
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  width: 80%;
+}
+
+.info-titulo {
+  color: var(--verde);
+  font-family: var(--fonte);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.drink-information {
+  width: 90%;
+  /* height: 90%; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  border-radius: 10px;
+  border: 2px solid #FFF;
+  background: var(--cor-fundo-sec);
+
+  color: var(--verde-escuro);
+  font-family: var(--fonte);
+  font-size: 16px;
+  text-align: center;
+
+  padding: 10px;
+}
+
+.drink-information-selected {
+  width: 90%;
+  /* height: 90%; */
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: space-around;
+  align-items: center;
+
+  border-radius: 10px;
+  border: 2px solid #FFF;
+  background: var(--cor-fundo-sec);
+
+  color: var(--verde-escuro);
+  font-family: var(--fonte);
+  font-size: 16px;
+  text-align: center;
+
+  padding: 10px;
+}
+
+.drink-list {
+  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-height: 350px; 
+  overflow-y: auto; 
+}
+
+.drink-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 10px;
+  background: var(--cor-fundo-sec);
+  align-items: center;
+
+  font-family: var(--fonte);
+  color: var(--verde-escuro);
+  font-size: 16px;
+  text-align: center;
+
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.drink-item:hover {
+  background-color: #C2C5AA;
+  transition: background-color 0.3s ease;
+}
+
+.drink-item.selected {
+  background-color: #C2C5AA; 
+}
+
+
+
+
+.pizza-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-height: 350px; 
+  overflow-y: auto; 
+  scrollbar-width: thin; 
+}
+
+
+.pizza-list::-webkit-scrollbar {
+  width: 8px; 
+}
+
+.pizza-list::-webkit-scrollbar-thumb {
+  background: #C2C5AA; 
+  border-radius: 10px; 
+}
+
+.pizza-list::-webkit-scrollbar-track {
+  background: #F3EFE9;
+}
+
+.pizza-item {
+  padding: 15px 30px; 
+  background-color: #f5f5f5;
+  color: #000000;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 16px; 
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  word-wrap: break-word;
+  height: 70px;
+  min-width: 250px; 
+}
+
+.pizza-actions-drink {
+  justify-content: flex-end;
+  width: 100%;
+  display: flex;
+  gap: 10px;  
+}
+
+
+.pizza-item:hover {
+  background-color: #C2C5AA;
+  transition: background-color 0.3s ease;
+}
+
+.cancel-button{
+  color: #ffffff;
+  background-color: #656D4A;
+  border-radius: 5px;
+}
+
+.next-button{
+  color: #ffffff;
+  background-color: #656D4A;
+  border-radius: 5px;
+}

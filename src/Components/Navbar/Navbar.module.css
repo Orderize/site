@@ -1,0 +1,72 @@
+@media screen and (max-width: 1200px) { 
+    /* Celular */
+    
+    .container {
+        display: flex;
+        align-items: center;
+
+        justify-content: space-between;
+
+        position: fixed;
+        bottom: 0;
+        left: 0;
+
+        background: #EAE5DE;
+        
+        width: 100%;
+        height: 60px;
+        
+        z-index: 1;
+    }
+    
+    .logo {
+        display: none;
+    }
+    
+    .ordenation {
+        justify-content: center;
+        width: 100%;
+    }
+
+}
+
+
+@media screen and (min-width: 1200px) { 
+    /* Computador */
+  
+    .container {
+        display: flex;
+        align-items: center;
+        
+        justify-content: center;
+
+        flex-direction: column;
+        
+        background: #EAE5DE;
+        
+        width: 18%;
+        height: 100vh;
+
+        position: fixed;
+    }
+
+    .logo {
+        height: 80px;
+        cursor: pointer;
+    }   
+
+    .ordenation {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        width: 90%;
+        height: calc(100% - 160px);
+    }
+
+    .ordenation > li {
+        margin: 2vh;
+    }
+
+}
+

@@ -12,7 +12,6 @@ function formatAddress(clientData) {
 
 function CardClient(){
     const clientData = JSON.parse(localStorage.getItem('client'));
-    console.log('client card client'+ JSON.stringify(clientData));
 
     return (
         <>

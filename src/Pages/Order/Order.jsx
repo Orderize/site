@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Navbar from "../../Components/Navbar/Navbar";
 import Progress from "../../Components/Progress/Progress";
 import ButtonNext from "../../Components/Progress/ButtonNext/ButtonNext";
@@ -12,32 +12,14 @@ import CardTotal from "../../Components/OrderDetails/CardTotal/CardTotal";
 import MediaQuery from "react-responsive";
 import styles from "./Order.module.css";
 import { useNavigate, useLocation } from "react-router-dom";
+import { Stack } from "../../utils/stack/Stack";
 
 function Order() {
-  const [currentStep, setCurrentStep] = useState(2);
-  const [total, setTotal] = useState();
-  const [pizzaValue, setPizzaValue] = useState();
-  // const location = useLocation();
+  const [pizzas, setPizzas] = useState([]);
+  const [drinks, setDrinks] = useState([]);
+  const unremovedItens = useRef(new Stack(20));
+  
   const navigate = useNavigate();
-  
-  // console.log("location.state:", location.state);
-  // const clientData = location.state?.clientData;
-
-  // if (!clientData) {
-  //     console.log("Nenhum dado de cliente encontrado.");
-  // }
-
-  const handleNext = () => {
-    if (currentStep < 5) {
-      setCurrentStep((prevStep) => prevStep + 1);
-    }
-  };
-  
-  const handlePrevious = () => {
-    if (currentStep > 2) {
-      setCurrentStep((prevStep) => prevStep - 1);
-    }
-  };
 
   const handlePreviousPage = () => {
     navigate("/pedidos");
@@ -59,15 +41,15 @@ function Order() {
 
           <section className={styles["container-details-order"]}>
             <section>
-              <CardPizza setTotal={setTotal} setPizzaValue={setPizzaValue} />
+              <CardPizza unremovedItem={unremovedItens} pizzas={pizzas} setPizzas={setPizzas} />
             </section>
 
             <section>
-              <CardTotal total={total} pizzaValue={pizzaValue}/>
+              <CardTotal drinks={drinks} pizzas={pizzas}/>
             </section>
 
             <section>
-              <CardDrink />
+              <CardDrink unremovedItens={unremovedItens} drinks={drinks} setDrinks={setDrinks}/>
             </section>
 
             <section>
