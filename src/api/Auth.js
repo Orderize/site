@@ -19,7 +19,7 @@ export const userInfo = async (authorization) => {
         });
         return response.data;
     } catch (error) {
-        console.error('[userInfo] error: ', error);
+        console.error('[userInfo] error: ', error); 
         throw new Error('Erro ao pegar informações do usuário.');
     }
 };
