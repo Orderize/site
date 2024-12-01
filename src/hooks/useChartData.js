@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { json } from "react-router-dom";
 
 export const doughnutData = (data) => {
     return {
@@ -20,7 +21,7 @@ export const doughnutData = (data) => {
             plugins: {
                 title: {
                     display: true,
-                    text: "Faturamentos por Período",
+                    text: "Faturamentos por Período Semanal",
                     font: {
                         size: 20,
                     },
@@ -47,14 +48,13 @@ export const barData = (data) => {
     return {
         data: {
             labels: [
-                "Lucro Diário", 
-                "Média Semanal", 
-                "Média Mensal",
+                "Faturamento Semanal", 
+                "Faturamento Mensal",
             ],
             datasets: [{
                 label: false,
-                data: [ data.daily, data.weekly, data.monthly, ], 
-                backgroundColor: ["#7B806A", "#B5B9A4", "#B5B9A4"],
+                data: [ data.weekly, data.monthly, ], 
+                backgroundColor: ["#7B806A", "#B5B9A4"],
                 borderRadius: 10,
             }],
         },
@@ -65,7 +65,7 @@ export const barData = (data) => {
             plugins: {
                 title: {
                     display: true,
-                    text: "Lucro R$ por Pedido",
+                    text: "Faturamento por Pedido",
                     font: {
                         size: 20,
                     },
@@ -81,16 +81,30 @@ export const barData = (data) => {
             },
             scales: {
                 x: {
+                    ticks: {
+                        font: {
+                            size: 20,
+                        },
+                    },
+
                     title: {
                         display: false,
-                        text: "Tipo de Lucro",
+                        text: "Tipo de Faturamento",
                     },
                     
                     grid: {
                         display: false,
                     },
+
                 },
+                
                 y: {
+                    ticks: {
+                        font: {
+                            size: 20,
+                        },
+                    },
+
                     title: {
                         display: true,
                         text: "Valor (R$)",

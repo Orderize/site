@@ -60,8 +60,12 @@
 @media screen and (min-width: 1200px) {
 
     .container-report {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
         width: 82%;
-        height: 100vh;
+        height: 90vh;
 
         background-color: #F3EFE9;
         color: #3A3C16;
@@ -109,20 +113,14 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        height: 30%;
+        height: 50%;
+        width: 90%;
+        gap: 20px;
     }
 
-    .container-report > section.area-mini-charts > .charts {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-
-        background-color: #EAE5DE;
-        width: 48%;
+    .container-report > section.area-mini-charts > .chart {
+        width: 40%;
         height: 100%;
-        padding: 20px;
-        border-radius: 15px;
     }
 
     .container-report > section.area-mini-charts > .charts > h3 {
