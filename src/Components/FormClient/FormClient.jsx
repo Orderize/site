@@ -86,7 +86,7 @@ const FormClient = forwardRef(({ onNovoClientChange, isEditing }, ref) => {
                toast.success("Cliente encontrado! Clique em 'Próximo' para prosseguir com o pedido.");
             } else {
                 console.log("Resposta da API é vazia.");
-                if (!novoClient) { // Apenas exibe o toast se já não está em modo novo cliente
+                if (!novoClient) { 
                     toast.info("Cliente não encontrado.", {
                         position: "top-right",
                         autoClose: 3000,
