@@ -9,25 +9,13 @@ import RenderKpis from "./RenderKpis";
 import RenderDoughnutChart from "./RenderDoughnutChart";
 import useAttestations from "../../hooks/useAttestations";
 import { ToastContainer } from "react-toastify";
+import RenderBarChart from "./RenderBarChart";
 
 function Report() {
     const [ token ] = useState(localStorage.getItem('token'));
-    const { infoKpi, infoDoughnutChart } = useAttestations(token);
-    
-    const [ barChart, setBarChart ] = useState();
+    const { infoKpi, infoDoughnutChart, infoBarChart } = useAttestations(token);
     
     const isDesktop = useMediaQuery({query: "(min-width: 1200px)"})
-
-    const handleBarChart = () => {
-        const data = [{}];
-
-        const infos = {
-            delivery: data.filter(it => it.orderType == "delivery").reduce((sum, current) => sum + current.totalValue, 0).toFixed(2),
-            saloon: data.filter(it => it.orderType == "saloon").reduce((sum, current) => sum + current.totalValue, 0).toFixed(2),
-        };
-        
-        // const dataBarChart = barData(infos);
-    } 
 
     return (
         <>
@@ -39,14 +27,15 @@ function Report() {
                     <RenderKpis info={infoKpi} isDesktop={isDesktop}/>
                 </section>
                 <section className="area-mini-charts">
-                    <RenderDoughnutChart info={infoDoughnutChart}/>
+                    <div className="chart">
+                        <RenderDoughnutChart info={infoDoughnutChart}/>
+                    </div>
+                    <div className="chart">
+                        <RenderBarChart info={infoBarChart}/>
+                    </div>
                 </section>
-                
+
                 {/* <div className="charts profit">
-                    <Bar                             
-                        data={profitData.data}
-                        options={profitData.options}
-                    />
                 </div> */}
                     
                     

@@ -53,9 +53,6 @@ const FormClient = forwardRef(({ onNovoClientChange, isEditing }, ref) => {
             
             if (response && response.length > 0) {
                 const data = response[0];
-    
-                // Cliente encontrado, atualiza o estado
-                console.log("Cliente encontrado:", JSON.stringify(data));
                 setnovoClient(false);
                 onNovoClientChange(false);
     
@@ -86,7 +83,7 @@ const FormClient = forwardRef(({ onNovoClientChange, isEditing }, ref) => {
                     neighborhood: data.address?.neighborhood,
                     city: data.address?.city
                 }));
-    
+               toast.success("Cliente encontrado! Clique em 'Próximo' para prosseguir com o pedido.");
             } else {
                 console.log("Resposta da API é vazia.");
                 if (!novoClient) { // Apenas exibe o toast se já não está em modo novo cliente
@@ -136,7 +133,7 @@ const FormClient = forwardRef(({ onNovoClientChange, isEditing }, ref) => {
         setCidade("");
     };
 
-    const handleSaveAdress = async (event) => {
+  const handleSaveAdress = async (event) => {
         try {
             const cepLimpo = cep.replace(/\D/g, "");
 
