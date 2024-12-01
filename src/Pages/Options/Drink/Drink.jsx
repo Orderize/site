@@ -5,6 +5,7 @@ import Item from "../../../Components/Item/Item";
 import Navbar from "../../../Components/Navbar/Navbar";
 import "./Drink.css"
 import { getDrinks } from "../../../api/services/Drinks";
+import Drink from "../../../Components/Modal/Drink/Drink"
 import InputSearch from "../../../Components/InputSearch/InputSearch";
 import { toast } from "react-toastify";
 
@@ -13,6 +14,7 @@ function flavor() {
     const [valueSearch, setValueSearch] = useState("");
     const [drink, setDrink] = useState([]);
     const [token] = useState(localStorage.getItem('token'));
+    const [user] = useState(JSON.parse(localStorage.getItem('user')))
 
     const handleDrink = async (event) => {
         try {

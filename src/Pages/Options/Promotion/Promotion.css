@@ -101,7 +101,7 @@
 
 .promotion-header, .promotion-item {
     display: grid;
-    grid-template-columns: 2fr 2fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 2fr 1fr;
     width: 100%; 
     gap: 10px;
     align-items: center;
