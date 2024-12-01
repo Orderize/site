@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import 'chart.js/auto';
 
-import "./Report.css";
 import Navbar from "../../Components/Navbar/Navbar";
 import { useMediaQuery } from "react-responsive";
 
@@ -10,6 +9,7 @@ import RenderDoughnutChart from "./RenderDoughnutChart";
 import useAttestations from "../../hooks/useAttestations";
 import { ToastContainer } from "react-toastify";
 import RenderBarChart from "./RenderBarChart";
+import styles from "./Report.module.css";
 
 function Report() {
     const [ token ] = useState(localStorage.getItem('token'));
@@ -21,16 +21,16 @@ function Report() {
         <>
             <Navbar activeButton={"Relatórios"} />
             <ToastContainer />
-            <main className="container-report">
+            <main className={styles["container-report"]}>
                 <h1>Relatórios</h1>
-                <section className="area-kpis">
+                <section className={styles["area-kpis"]}>
                     <RenderKpis info={infoKpi} isDesktop={isDesktop}/>
                 </section>
-                <section className="area-mini-charts">
-                    <div className="chart">
+                <section className={styles["area-mini-charts"]}>
+                    <div className={styles["chart"]}>
                         <RenderDoughnutChart info={infoDoughnutChart}/>
                     </div>
-                    <div className="chart">
+                    <div className={styles["chart"]}>
                         <RenderBarChart info={infoBarChart}/>
                     </div>
                 </section>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./CardTotal.module.css";
 
-function CardTotal({ drinks, pizzas }){
+function CardTotal({ drinks, pizzas, setTotalValue }){
     const [total, setTotal] = useState({
         value: 0,
         pizzas: 0,
@@ -23,6 +23,8 @@ function CardTotal({ drinks, pizzas }){
             drinks: totalDrinks,
             value: totalValue
         }));
+
+        setTotalValue(totalValue);
     }
 
     useEffect(() => {
@@ -51,10 +53,10 @@ function CardTotal({ drinks, pizzas }){
                     <p>R$ { total && total.frete?.toFixed(2) }</p>
                 </div>
 
-                <div className={styles["list-precos__item"]}>
+                {/* <div className={styles["list-precos__item"]}>
                     <p>Promoção</p>
                     <p>-R$ { total && total.promotions?.toFixed(2) }</p>
-                </div>
+                </div> */}
             </div>
         </main>
         </>

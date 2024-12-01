@@ -10,18 +10,41 @@ import { ToastContainer, toast } from 'react-toastify';
 const DrinkModal = ({  close, setListDrinks }) => {
   const [token] = useState(localStorage.getItem('token'));
   const [optionsDrink, setOptionsDrink] = useState([]);
+  const [drinkList, setDrinkList] = useState([]);
   const [drinks, setDrinks] = useState([]);
   const [valueSearch, setValueSearch] = useState("");
 
   const handleDrinks = async (name) => {
-    if (name == "") {
+    try {
+      const params = {
+        name: "",
+        milimeters: ""
+        };
+
+        const data = await getDrinks(token, params);
+        setDrinkList(data);
+    } catch (error) {
+        alert(error.message)
+        console.log(error);
+    }
+  };
+
+ useEffect(() => {
+    handleDrinks();
+  }, []);
+
+  const handleSearch = async (event) => {
+    const value = event.target.value;
+    setValueSearch(value);
+
+    if (value == "") {
       setOptionsDrink([]);
       return;
     }
     
     try {
       const params = {
-        name,
+        name: "",
         milimeters: ""
         };
 
@@ -31,12 +54,6 @@ const DrinkModal = ({  close, setListDrinks }) => {
         alert(error.message)
         console.log(error);
     }
-  };
-
-  const handleSearch = async (event) => {
-    const value = event.target.value;
-    setValueSearch(value);
-    handleDrinks(value);
   }
 
   const handleDrinkSelect = (drink) => {
@@ -64,7 +81,6 @@ const DrinkModal = ({  close, setListDrinks }) => {
     <section className={styles["modal-wrapper-drink"]}>
       <div className={styles['drink-container']}>
 
-        {/* <div className={styles["menu-drinks"]}> */}
           <div className={styles["drink-tabs"]}>
             <button 
               className={styles["drink-tab"]}>
@@ -91,6 +107,8 @@ const DrinkModal = ({  close, setListDrinks }) => {
                 ))}
               </div>
             )}
+
+            
           </div>
 
           <div className={styles["info-drink"]}>
@@ -116,22 +134,19 @@ const DrinkModal = ({  close, setListDrinks }) => {
               </div>
           </div>
 
-          <div className={styles["drink-list"]}>
-          {drinks.length > 0 && drinks.map((drink) => (
-            <div
-              key={drink.id}
-              className={`${styles["drink-item"]} ${
-                drinks.some((selected) => selected.id === drink.id)
-                  ? styles["selected"]
-                  : ""
-              }`}
-              onClick={() => handleDrinkSelect(drink)}
-            >
-              <p>{drink.name}</p>
-              <p>R${drink.price}</p>
-            </div>
-          ))}
-        </div>
+          {drinkList.length > 0 && (
+              <div className={styles["drink-list"]}>
+                {drinkList.map((drink, index) => (
+                  <div 
+                    key={index} 
+                    className={styles["drink-item"]}
+                    onClick={() => handleDrinkSelect(drink)}
+                  >
+                    {drink.name}
+                  </div>
+                ))}
+              </div>
+            )}
 
         <FooterModal handleBack={close} handleNext={handleConfirm}/>
 

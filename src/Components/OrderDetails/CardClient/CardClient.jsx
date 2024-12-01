@@ -3,15 +3,14 @@ import styles from "./CardClient.module.css";
 import FloatingInput from "../../Floatinginput/Floatinginput";
 import { NotePencil } from "@phosphor-icons/react";
 
-function formatAddress(clientData) {
-    // if (!address) return "Endereço não disponível";
-
-    const { cep, number, street, neighborhood, city } = clientData;
+function formatAddress(address) {
+    const { cep, number, street, neighborhood, city } = address;
     return `${street}, ${number}, ${neighborhood} - ${city}, CEP: ${cep}`;
 }
 
 function CardClient(){
-    const clientData = JSON.parse(localStorage.getItem('client'));
+    const address = JSON.parse(localStorage.getItem('address'));
+    const client = JSON.parse(localStorage.getItem('client'));
 
     return (
         <>
@@ -27,10 +26,10 @@ function CardClient(){
                     
                     <div className={styles.list}>
                         <div className={styles["list-superior"]}>
-                            <FloatingInput onValue={clientData.name} label={"Nome"} />
-                            <FloatingInput onValue={clientData.phone} label={"Telefone"} />
+                            <FloatingInput onValue={client.name} label={"Nome"} />
+                            <FloatingInput onValue={client.phone} label={"Telefone"} />
                         </div>
-                        <FloatingInput onValue={formatAddress(clientData)} label={"Endereço"} />
+                        <FloatingInput onValue={formatAddress(address)} label={"Endereço"} />
                     </div>
                 </div>
             </main>

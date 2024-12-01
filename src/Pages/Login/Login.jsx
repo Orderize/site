@@ -1,10 +1,10 @@
 import React,{ useEffect, useState } from 'react';
-import "./Login.css";
 import { useNavigate } from 'react-router-dom';
 import { authApi, userInfo } from '../../api/Auth';
 //import { useAuth } from '../../context/AuthContext';
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import styles from "./Login.module.css";
 
 
 const Login = () => {
@@ -93,21 +93,21 @@ const Login = () => {
         <>
         <ToastContainer
         autoClose={3000} />
-            <main className='banner'>
-                    <section className='container'> 
+            <main className={styles['banner']}>
+                    <section className={styles['container']}> 
                         <form onSubmit={handleSubmit}>
-                            <h1>Login | nomeEmpresa</h1>
-                            <div className="input_field">
+                            <h1>Orderize | Login</h1>
+                            <div className={styles['input_field']}>
                                 <input type="email" placeholder='E-mail' onChange={(e) => setEmail(e.target.value)} />
                             </div>
-                            <div className="input_field">
+                            <div className={styles['input_field']}>
                                 <input type="password" placeholder='Senha' onChange={(e) => setPassword(e.target.value)} />
                             </div>
-                            <div className='recall-connect'>
+                            <div className={styles['recall-connect']}>
                                 <input type="checkbox" id="manterConectado" onChange={() => setIsRemembered(!isRemembered)}/> 
                                 <label htmlFor="manterConectado"> Mantenha-me conectado</label>
                             </div>
-                            <div className='recall-forget'>
+                            <div className={styles['recall-forget']}>
                                 <a href='#'>Esqueceu a senha?</a>
                             </div>
                             <button>Entrar</button>
