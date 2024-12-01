@@ -160,12 +160,13 @@ const FormClient = forwardRef(({ onNovoClientChange, isEditing }, ref) => {
             const telefoneLimpo = telefone.replace(/\D/g, ""); 
             const cepLimpo = cep.replace(/\D/g, "");
     
-            const response = await saveClient(token, {phone: telefoneLimpo, name: nome, address: idAddress, password: "senhapadrao", enterprise: user.enterprise.id, state:"SP" });
+            const response = await saveClient(token, {phone: telefoneLimpo, name: nome, email: telefoneLimpo+"@gmail.com", address: idAddress, password: "senhapadrao", enterprise: user.enterprise.id, state:"SP" });
             console.log("Resposta da API:", response);
 
             localStorage.setItem("client", JSON.stringify({
                 id: response.id,
                 phone: response.phone,
+                email: response.email,
                 name: response.name,
                 address: response.address?.id,
                 cep: response.address?.cep,
@@ -199,7 +200,7 @@ const FormClient = forwardRef(({ onNovoClientChange, isEditing }, ref) => {
             var idClient = localStorage.getItem("client") ? JSON.parse(localStorage.getItem("client")).id : null;
             var idAddress = localStorage.getItem("address") ? JSON.parse(localStorage.getItem("address")).id : null;
     
-            const responseClient = await updateClient(token, {id: idClient, phone: telefoneLimpo, name: nome, address: idAddress, password: "senhapadrao", enterprise: user.enterprise.id });
+            const responseClient = await updateClient(token, {id: idClient, phone: telefoneLimpo, name: nome, email: telefoneLimpo+"@gmail.com",address: idAddress, password: "senhapadrao", enterprise: user.enterprise.id });
             console.log("Resposta da API:", responseClient);
 
             const responseAddress = await updateAddress(token, {id: idAddress, cep: cepLimpo, number: numero, street: rua, neighborhood: bairro, city: cidade, state:"SP" });
@@ -209,6 +210,7 @@ const FormClient = forwardRef(({ onNovoClientChange, isEditing }, ref) => {
                 id: responseClient.id,
                 phone: responseClient.phone,
                 name: responseClient.name,
+                email: responseClient.email,
                 address: responseClient.address?.id,
                 cep: responseClient.address?.cep,
                 number: responseClient.address?.number,   
