@@ -67,11 +67,11 @@ function flavor(isOwner) {
                     </div>
                 </div>
 
-                {isOwner &&
+                {/* {isOwner &&
                     <div className="btn-add-wrapper">
                         <button className="btn-add-promotion" onClick={openModal}>Adicionar sabor +</button>
                     </div>
-                }
+                } */}
 
                 <section className="flavor-list">
                     {

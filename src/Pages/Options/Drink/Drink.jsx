@@ -5,6 +5,7 @@ import Item from "../../../Components/Item/Item";
 import Navbar from "../../../Components/Navbar/Navbar";
 import "./Drink.css"
 import { getDrinks } from "../../../api/services/Drinks";
+import Drink from "../../../Components/Modal/Drink/Drink"
 import InputSearch from "../../../Components/InputSearch/InputSearch";
 import AddNewDrink from "../../../Components/Modal/New_drink/AddNewDrink";
 import { toast } from "react-toastify";
@@ -16,6 +17,7 @@ function flavor(isOwner) {
     const [drink, setDrink] = useState([]);
     const [token] = useState(localStorage.getItem('token'));
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [user] = useState(JSON.parse(localStorage.getItem('user')))
 
     const handleDrink = async (event) => {
         try {
@@ -75,11 +77,11 @@ function flavor(isOwner) {
                     </div>
                 </div>
 
-                {isOwner &&
+                {/* {isOwner &&
                     <div className="btn-add-wrapper">
                         <button className="btn-add-promotion" onClick={openModal}>Adicionar bebida +</button>
                     </div>
-                }
+                } */}
                 
                 <section className="flavor-list">
                     {
