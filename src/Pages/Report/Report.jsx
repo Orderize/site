@@ -32,7 +32,6 @@ function Report() {
                 </section>
                 <section className={styles["area-mini-charts"]}>
                     <div className={styles["chart"]}>
-                        <RenderBarChart info={infoDoughnutChart}/>
                         <RenderDoughnutChart info={infoDoughnutChart}/>
                     </div>
                     <div className={styles["chart"]}>
