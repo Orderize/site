@@ -1,6 +1,49 @@
 import { useEffect, useState } from "react";
 import { json } from "react-router-dom";
 
+// export const doughnutData = (data) => {
+//     return {
+//         data: {
+//             labels: ["Delivery", "Salão"],
+//             datasets: [{
+//                 label: "Faturamento (R$)",
+//                 data: [data.delivery, data.saloon],
+//                 backgroundColor: ["#7B806A", "#B5B9A4"], 
+//                 hoverOffset: 4, 
+//                 borderWidth: 5,
+//                 borderColor: "#EAE5DE",
+//                 borderRadius: 10,
+//             }],
+//         },
+//         options: {
+//             responsive: true,
+//             maintainAspectRatio: false,
+//             plugins: {
+//                 title: {
+//                     display: true,
+//                     text: "Faturamentos por Período Semanal",
+//                     font: {
+//                         size: 20,
+//                     },
+//                 },
+//                 legend: {
+//                     position: "right", 
+//                     labels: {
+//                         font: {
+//                             size: 20,
+//                             weight: "bold",
+//                         },
+//                         usePointStyle: true,
+//                         pointStyle: "circle",
+//                         padding: 20
+//                     },
+//                 },
+//             },
+//             cutout: "42%",
+//         },
+//     }
+// } 
+
 export const doughnutData = (data) => {
     return {
         data: {
@@ -9,9 +52,6 @@ export const doughnutData = (data) => {
                 label: "Faturamento (R$)",
                 data: [data.delivery, data.saloon],
                 backgroundColor: ["#7B806A", "#B5B9A4"], 
-                hoverOffset: 4, 
-                borderWidth: 5,
-                borderColor: "#EAE5DE",
                 borderRadius: 10,
             }],
         },
@@ -31,15 +71,51 @@ export const doughnutData = (data) => {
                     labels: {
                         font: {
                             size: 20,
-                            weight: "bold",
                         },
-                        usePointStyle: true,
-                        pointStyle: "circle",
-                        padding: 20
                     },
+                    align: "center",
                 },
             },
-            cutout: "42%",
+            scales: {
+                x: {
+                    ticks: {
+                        font: {
+                            size: 18,
+                        },
+                    },
+
+                    title: {
+                        display: false,
+                        text: "Tipo de Faturamento",
+                    },
+                    
+                    grid: {
+                        display: false,
+                    },
+
+                },
+                
+                y: {
+                    ticks: {
+                        font: {
+                            size: 20,
+                        },
+                    },
+
+                    title: {
+                        display: true,
+                        text: "Valor (R$)",
+                        font: {
+                            size: 16,
+                            weight: 'bold',
+                        },
+                    },
+                    grid: {
+                        display: false,
+                    },
+                    beginAtZero: true,
+                },
+            },
         },
     }
 } 
@@ -83,7 +159,7 @@ export const barData = (data) => {
                 x: {
                     ticks: {
                         font: {
-                            size: 20,
+                            size: 18,
                         },
                     },
 
