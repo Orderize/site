@@ -18,8 +18,6 @@ const FloatingInput = ({ label, initialValue = '', onSet, onValue, onInput, onEn
     };
 
     const handleKeyDown = (e) => {
-      console.log("Tecla pressionada:", e.key);
-      
       if (onEnterPress) {
         onEnterPress(e);
       }

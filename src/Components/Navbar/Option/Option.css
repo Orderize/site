@@ -48,6 +48,7 @@
     
     .container-option > li > a {
         color: #3A3C16;
+        font-family: var(--fonte);
     }
 
 /* } */

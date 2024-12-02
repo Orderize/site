@@ -4,7 +4,7 @@ import MediaQuery from "react-responsive";
 import styles from "./FormClient.module.css";
 import { inputNumerosCelular, inputCep, inputSomenteTexto, inputSomenteNumero, inputLetrasNumeros } from "../../utils/globals";
 import { getClients, saveClient, updateClient  } from "../../api/services/Clients";
-import { getAddressByCep, saveAddress } from "../../api/services/Address";
+import { getAddressByCep, saveAddress, updateAddress } from "../../api/services/Address";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -86,7 +86,7 @@ const FormClient = forwardRef(({ onNovoClientChange, isEditing }, ref) => {
                toast.success("Cliente encontrado! Clique em 'Próximo' para prosseguir com o pedido.");
             } else {
                 console.log("Resposta da API é vazia.");
-                if (!novoClient) { // Apenas exibe o toast se já não está em modo novo cliente
+                if (!novoClient) { 
                     toast.info("Cliente não encontrado.", {
                         position: "top-right",
                         autoClose: 3000,
@@ -106,7 +106,6 @@ const FormClient = forwardRef(({ onNovoClientChange, isEditing }, ref) => {
     };
     
     const handleAddress = async (event) => {
-        console.log("Executando handleAddress...");
         try {
             const cepLimpo = cep.replace(/\D/g, "");
             const addressData = await getAddressByCep(token, { cep: cepLimpo, number: numero });
@@ -153,19 +152,17 @@ const FormClient = forwardRef(({ onNovoClientChange, isEditing }, ref) => {
     };
 
     const handleSaveClient = async ( idAddress ) => {
-
-        console.log("Executando handleSaveClient com id...", idAddress);
-
         try {
             const telefoneLimpo = telefone.replace(/\D/g, ""); 
             const cepLimpo = cep.replace(/\D/g, "");
     
-            const response = await saveClient(token, {phone: telefoneLimpo, name: nome, address: idAddress, password: "senhapadrao", enterprise: user.enterprise.id, state:"SP" });
+            const response = await saveClient(token, {phone: telefoneLimpo, name: nome, email: telefoneLimpo+"@gmail.com", address: idAddress, password: "senhapadrao", enterprise: user.enterprise.id, state:"SP" });
             console.log("Resposta da API:", response);
 
             localStorage.setItem("client", JSON.stringify({
                 id: response.id,
                 phone: response.phone,
+                email: response.email,
                 name: response.name,
                 address: response.address?.id,
                 cep: response.address?.cep,
@@ -199,26 +196,46 @@ const FormClient = forwardRef(({ onNovoClientChange, isEditing }, ref) => {
             var idClient = localStorage.getItem("client") ? JSON.parse(localStorage.getItem("client")).id : null;
             var idAddress = localStorage.getItem("address") ? JSON.parse(localStorage.getItem("address")).id : null;
     
-            const response = await updateClient(token, {id: idClient, phone: telefoneLimpo, name: nome, address: idAddress, password: "senhapadrao", enterprise: user.enterprise.id });
-            console.log("Resposta da API:", response);
+            const responseClient = await updateClient(token, {id: idClient, phone: telefoneLimpo, name: nome, email: telefoneLimpo+"@gmail.com",address: idAddress, password: "senhapadrao", enterprise: user.enterprise.id });
+            console.log("Resposta da API:", responseClient);
+
+            const responseAddress = await updateAddress(token, {id: idAddress, cep: cepLimpo, number: numero, street: rua, neighborhood: bairro, city: cidade, state:"SP" });
+            console.log("Resposta da API:", responseAddress);
 
             localStorage.setItem("client", JSON.stringify({
-                id: response.id,
-                phone: response.phone,
-                name: response.name,
-                address: response.address?.id,
-                cep: response.address?.cep,
-                number: response.address?.number,
-                street: response.address?.street,
-                neighborhood: response.address?.street,
-                city: response.address?.city
+                id: responseClient.id,
+                phone: responseClient.phone,
+                name: responseClient.name,
+                email: responseClient.email,
+                address: responseClient.address?.id,
+                cep: responseClient.address?.cep,
+                number: responseClient.address?.number,   
+                street: responseClient.address?.street,
+                neighborhood: responseClient.address?.street,
+                city: responseClient.address?.city
             }));
-            
-            if (response) {
-                console.log("Cliente salvo com sucesso:", JSON.stringify(response));
+
+            if (responseClient) {
+                console.log("Cliente salvo com sucesso:", JSON.stringify(responseClient));
             } else {
                 console.log("Erro ao salvar o cliente.");
             }
+
+            localStorage.setItem("address", JSON.stringify({
+                id: responseAddress.id,
+                cep: responseAddress.cep,
+                number: responseAddress.number,
+                street: responseAddress.street,
+                neighborhood: responseAddress.neighborhood,
+                city: responseAddress.city
+            }));
+            
+            if (responseAddress) {
+                console.log("Endereço salvo com sucesso:", JSON.stringify(responseAddress));
+            } else {
+                console.log("Erro ao salvar o endereço.");
+            }
+           
         } catch (error) {
             alert("Erro ao salvar o cliente: " + error.message);
             console.log(error);
@@ -233,13 +250,11 @@ const FormClient = forwardRef(({ onNovoClientChange, isEditing }, ref) => {
     }));
 
     const handleEnterPress = async (e, type) => {
-        console.log("Tecla pressionada:", e.key);
         if (e.key === "Enter" || e.key === "Tab") {
             console.log("Tipo de ação:", type);
             if (type === "telefone") {
                 handleClient();
             } else if (type === "numero") {
-                console.log("Chamando handleAddress...");
                 handleAddress();
             }
         } 
