@@ -22,6 +22,10 @@
     margin: 40px auto;
 }
 
+.search {
+    width: 30%;
+}
+
 .container-promotion > .btn-add-wrapper {
     width: 90%;
     margin: 20px auto;
@@ -39,7 +43,7 @@
 
 .btn-add-promotion {
     padding: 10px 15px;
-    background-color: #3A3C16;
+    background-color: var(--verde);
     color: #FFFFFF;
     border: none;
     border-radius: 5px;

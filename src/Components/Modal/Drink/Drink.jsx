@@ -81,14 +81,6 @@ const DrinkModal = ({  close, setListDrinks }) => {
     <section className={styles["modal-wrapper-drink"]}>
       <div className={styles['drink-container']}>
 
-          <div className={styles["drink-tabs"]}>
-            <button 
-              className={styles["drink-tab"]}>
-              Bebidas
-            </button>
-          </div>
-
-
           <div className={styles["search-bar"]}>
             <p className={styles["drink-title"]}>Selecione a bebida</p>
 

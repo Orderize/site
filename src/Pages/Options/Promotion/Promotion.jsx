@@ -63,7 +63,10 @@ function Promotion() {
                 <h1>Gerenciamento</h1>
                 <div className="breadcrumb-search">
                     <Breadcrumb activeButton={"brindes"} />
-                    <InputSearch valueSearch={valueSearch} handleSearch={handleSearch}/>
+                    
+                    <div className="search">
+                        <InputSearch valueSearch={valueSearch} handleSearch={handleSearch} text="Pesquise pelo nome da promoção"/>
+                    </div>
                 </div>
                 <div className="btn-add-wrapper">
                     <button className="btn-add-promotion" onClick={openSelectPizzaModal}>Adicionar promoção +</button>

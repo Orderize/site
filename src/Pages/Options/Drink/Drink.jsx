@@ -6,13 +6,16 @@ import Navbar from "../../../Components/Navbar/Navbar";
 import "./Drink.css"
 import { getDrinks } from "../../../api/services/Drinks";
 import InputSearch from "../../../Components/InputSearch/InputSearch";
+import AddNewDrink from "../../../Components/Modal/New_drink/AddNewDrink";
 import { toast } from "react-toastify";
 
+export const isUserOwner = (roles) => roles.some(role => role.name == "OWNER");
 
-function flavor() {
+function flavor(isOwner) {
     const [valueSearch, setValueSearch] = useState("");
     const [drink, setDrink] = useState([]);
     const [token] = useState(localStorage.getItem('token'));
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleDrink = async (event) => {
         try {
@@ -46,6 +49,14 @@ function flavor() {
             console.log(error);
         }
     }
+
+    const openModal = () => {
+        setIsModalOpen(true);
+    }
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    }
     
     useEffect(() => {
         handleDrink();
@@ -58,8 +69,18 @@ function flavor() {
                 <h1>Opções</h1>
                 <div className="breadcrumb-search">
                     <Breadcrumb activeButton={"bebidas"} />
-                    <InputSearch valueSearch={valueSearch} handleSearch={handleSearch} />
+
+                    <div className="search">
+                        <InputSearch valueSearch={valueSearch} handleSearch={handleSearch} text="Pesquise pelo nome da bebida"/>
+                    </div>
                 </div>
+
+                {isOwner &&
+                    <div className="btn-add-wrapper">
+                        <button className="btn-add-promotion" onClick={openModal}>Adicionar bebida +</button>
+                    </div>
+                }
+                
                 <section className="flavor-list">
                     {
                             drink.length > 0 && 
@@ -76,6 +97,10 @@ function flavor() {
                     }
                 </section>
             </main>
+
+            {isModalOpen &&
+                <AddNewDrink onClose={closeModal}/>
+            }
         </>
     );
 }

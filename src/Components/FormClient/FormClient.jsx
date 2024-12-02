@@ -106,7 +106,6 @@ const FormClient = forwardRef(({ onNovoClientChange, isEditing }, ref) => {
     };
     
     const handleAddress = async (event) => {
-        console.log("Executando handleAddress...");
         try {
             const cepLimpo = cep.replace(/\D/g, "");
             const addressData = await getAddressByCep(token, { cep: cepLimpo, number: numero });
@@ -153,9 +152,6 @@ const FormClient = forwardRef(({ onNovoClientChange, isEditing }, ref) => {
     };
 
     const handleSaveClient = async ( idAddress ) => {
-
-        console.log("Executando handleSaveClient com id...", idAddress);
-
         try {
             const telefoneLimpo = telefone.replace(/\D/g, ""); 
             const cepLimpo = cep.replace(/\D/g, "");
@@ -254,13 +250,11 @@ const FormClient = forwardRef(({ onNovoClientChange, isEditing }, ref) => {
     }));
 
     const handleEnterPress = async (e, type) => {
-        console.log("Tecla pressionada:", e.key);
         if (e.key === "Enter" || e.key === "Tab") {
             console.log("Tipo de ação:", type);
             if (type === "telefone") {
                 handleClient();
             } else if (type === "numero") {
-                console.log("Chamando handleAddress...");
                 handleAddress();
             }
         } 
