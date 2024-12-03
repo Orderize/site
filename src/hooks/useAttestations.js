@@ -12,9 +12,6 @@ const useAttestations = (token) => {
     const handleAttestations = async () => {
         const data = await fetchAttestations();
 
-        console.log(data);
-        
-
         const quantidadePedidos = data.length;
         const lucro = data.reduce((sum, current) => sum + current.totalValue, 0);
 

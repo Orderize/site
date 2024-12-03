@@ -16,10 +16,9 @@ function Report() {
     const { infoKpi, infoDoughnutChart, infoBarChart } = useAttestations(token);
     
     const isDesktop = useMediaQuery({query: "(min-width: 1200px)"})
-    
+
     useEffect(() => {
-        console.log(infoDoughnutChart);
-    }, [infoDoughnutChart])
+    }, [infoKpi, infoDoughnutChart, infoBarChart]);
 
     return (
         <>

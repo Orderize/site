@@ -98,7 +98,7 @@ export const doughnutData = (data) => {
                 y: {
                     ticks: {
                         font: {
-                            size: 20,
+                            size: 16,
                         },
                     },
 
