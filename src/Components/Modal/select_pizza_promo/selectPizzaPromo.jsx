@@ -3,7 +3,7 @@ import { getFlavorsPop } from '../../../api/services/Flavors';
 import { getDrinks } from '../../../api/services/Drinks';  
 import styles from './selectPizzaPromo.module.css';
 
-const SelectPizzaPromo = () => {
+const SelectPizzaPromo = ({ onClose }) => {
   const [selectedFlavors, setSelectedFlavors] = useState([]); 
   const [selectedBeverages, setSelectedBeverages] = useState([]); 
   const [condition, setCondition] = useState({ field: '', operator: '', value: '' }); 
@@ -96,7 +96,7 @@ const SelectPizzaPromo = () => {
   return (
     <div className={styles["selectPizzaPromo-modal-wrapper"]}>
       <section className={styles["selectPizzaPromo-modal-container"]}>
-        <button className={styles["close-button"]} onClick={() => window.location.reload()}>
+        <button className={styles["close-button"]} onClick={onClose}>
           ✖
         </button>
         <h2>Crie sua promoção</h2>

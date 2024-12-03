@@ -12,17 +12,14 @@ const useAttestations = (token) => {
     const handleAttestations = async () => {
         const data = await fetchAttestations();
 
-        console.log(data);
-        
-
         const quantidadePedidos = data.length;
         const lucro = data.reduce((sum, current) => sum + current.totalValue, 0);
 
         setInfoKpi({ quantidadePedidos, lucro });
 
         const infos = {
-            delivery: data.filter((it) => it.orderType === "delivery").reduce((sum, current) => sum + current.totalValue, 0).toFixed(2),
-            saloon: data.filter((it) => it.orderType === "saloon").reduce((sum, current) => sum + current.totalValue, 0).toFixed(2),
+            delivery: data.filter((it) => it.orderType.toLowerCase() === "delivery").reduce((sum, current) => sum + current.totalValue, 0).toFixed(2),
+            saloon: data.filter((it) => it.orderType.toLowerCase() === "saloon").reduce((sum, current) => sum + current.totalValue, 0).toFixed(2),
         };
         setInfoDoughnutChart(doughnutData(infos));
     }

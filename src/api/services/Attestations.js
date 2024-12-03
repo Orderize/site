@@ -32,3 +32,17 @@ export const getAttestations = async (token) => {
         throw error;
     }
 };
+
+export const saveAttestation = async (token, order) => {
+    try {
+        const response = await api.post('/attestations', order, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error("Erro ao salvar o recibo:", error);
+        throw new Error("Erro ao salvar o recibo. Aguarde um momento e tente novamente.");
+    }
+};

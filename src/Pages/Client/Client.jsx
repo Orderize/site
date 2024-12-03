@@ -28,6 +28,11 @@ import 'react-toastify/dist/ReactToastify.css';
                     console.log("respostaAddress de salvar endereço:", respostaAddress);
 
                     respostaUser = await formClientRef.current.handleSaveClient(respostaAddress);
+                    if (respostaUser){
+                        navigate("/pedidos/novo-pedido");
+                    }
+                } else {
+                    navigate("/pedidos/novo-pedido");
                 }
 
                 if (!formClientRef.current.isValidForm()) {
@@ -37,12 +42,14 @@ import 'react-toastify/dist/ReactToastify.css';
                     });
                     // setIsNovoClient(false);
 
-                    return;
-                } 
-                navigate("/pedidos/novo-pedido");
+                    return; 
+                }
+
             } catch (error) {
-                alert("Erro ao salvar o cliente: " + error.message);
+                // toast.error("Erro ao salvar o cliente: " + error.message);
+                // alert("Erro ao salvar o cliente: " + error.message);
                 console.error(error);
+                return;
             }
         };
 
@@ -63,6 +70,7 @@ import 'react-toastify/dist/ReactToastify.css';
             } catch (error) {
                 alert("Erro ao salvar o cliente: " + error.message);
                 console.error(error);
+                return;
             }
         };
 

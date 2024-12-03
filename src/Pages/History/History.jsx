@@ -6,12 +6,28 @@ import Navbar from "../../Components/Navbar/Navbar";
 import styles from "./History.module.css";
 import { getHistory } from "../../api/services/History";
 
-function History() {
+const formatDateAndTime = (datetime) => {
+    if (!datetime) return { date: "", time: "" };
 
+    const dateObj = new Date(datetime);
+    const date = dateObj.toLocaleDateString("pt-BR", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+    });
+    const time = dateObj.toLocaleTimeString("pt-BR", {
+        hour: "2-digit",
+        minute: "2-digit",
+    });
+
+    return { date, time };
+};
+
+function History() {
+    
     const [history, setHistory] = useState([]);
     const [token] = useState(localStorage.getItem('token'));
     const [isOpen, setIsOpen] = useState(false);
-
     const [selectedOrder, setSelectedOrder] = useState(null);
 
     const handleHistory = async (event) => {
@@ -19,6 +35,7 @@ function History() {
             const data = await getHistory(token);
             console.log("data:", data);
             setHistory(data);
+            // setHistory(data.reverse());
         } catch (error) {
             alert(error.message)
             console.log(error);
@@ -38,7 +55,6 @@ function History() {
     const handleClickOrder = (order) => {
         setSelectedOrder(order);
         setIsOpen(true);
-
     }
 
     const orderClass = `${styles.orderList} ${isOpen ? styles.active : ''}`;
@@ -65,12 +81,12 @@ function History() {
                     <div className={styles['legend']}>
                         <div className={styles['legend-item']}>
                             <div className={styles['color-circle']} style={{ backgroundColor: '#B5B9A4' }}></div>
-                            <span>Delivery</span>
+                            <span className={styles.info}>Delivery</span>
                         </div>
 
                         <div className={styles['legend-item']}>
                             <div className={styles['color-circle']} style={{ backgroundColor: '#7B806A' }}></div>
-                            <span>Salão/Mesa</span>
+                            <span className={styles.info}>Salão/Mesa</span>
                         </div>
                     </div>
 
@@ -78,27 +94,29 @@ function History() {
                         {history.map((order) => {
                             const backgroundColor = order.type === "delivery" ? '#B5B9A4' : '#7B806A';
 
+                            const { date, time } = formatDateAndTime(order.datetime);
+
                             return (
                                 <div key={order.id} className={styles['orderCard']} style={{ backgroundColor }} onClick={() => handleClickOrder(order)}>
                                     <div className={styles['orderInfo']}>
                                         <div className={styles['infoDate']}>
-                                            <span>{order.date}</span>
-                                            <span>{order.time}</span>
+                                            <span className={styles['infoDate-data']}>{date}</span>
+                                            <span className={styles['infoDate-time']}>{time}</span>
                                         </div>
                                         <hr></hr>
                                         <div className={styles['infoCodTotal']}>
                                             <PiPizzaBold className={styles['iconPizzaMoney']}></PiPizzaBold>
                                             <div className={styles['infos2']}>
-                                                <span>Pedido</span>
-                                                <span>Cod: {order.id}</span>
+                                                <span className={styles['infos2-titulo']}>Pedido</span>
+                                                <span className={styles['infos2-subtitulo']}>Cod: {order.id}</span>
                                             </div>
                                         </div>
                                         <hr></hr>
                                         <div className={styles['infoCodTotal']}>
                                             <RiMoneyDollarCircleLine className={styles['iconPizzaMoney']}></RiMoneyDollarCircleLine>
                                             <div className={styles['infos2']}>
-                                                <span>Total: </span>
-                                                <span>R$ {order.price}</span>
+                                                <span className={styles['infos2-titulo']}>Total: </span>
+                                                <span className={styles['infos2-subtitulo']}>R$ {order.price}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -120,7 +138,7 @@ function History() {
                             <div className={styles['detailsOrder']}>
                                 <h2>Detalhes do Pedido</h2>
                                 <div>
-                                    <strong>Data:</strong> {selectedOrder.date}
+                                    <strong className={styles.subtitulo}>Data:</strong> {selectedOrder.date}
                                 </div>
                                 <hr />
                                 <div className="divIconPizzaTitulo">
@@ -128,8 +146,8 @@ function History() {
                                         <PiPizzaBold className={styles['iconPizzaCode']} />
                                     </div>
 
-                                    <div className="divTituloValor">
-                                        <strong>Código do Pedido:</strong>
+                                    <div className={styles["divTituloValor"]}>
+                                        <strong className={styles.subtitulo}>Código do Pedido:</strong>
                                         <ul>{selectedOrder.id}</ul>
                                     </div>
 
@@ -137,19 +155,19 @@ function History() {
 
 
                                 <hr />
-                                <div><strong>Pizzas:</strong></div>
+                                <div><strong className={styles.subtitulo}>Pizzas:</strong></div>
                                 <ul>
                                     {selectedOrder.pizzas.map((pizza) => (
-                                        <li key={pizza.id}>
+                                        <li key={pizza.id} className={styles.info}>
                                             {pizza.name} - R${pizza.price}
                                         </li>
                                     ))}
                                 </ul>
                                 <hr />
-                                <div><strong>Bebidas:</strong></div>
+                                <div><strong className={styles.subtitulo}>Bebidas:</strong></div>
                                 <ul>
                                     {selectedOrder.drinks.map((drink) => (
-                                        <li key={drink.id}>
+                                        <li key={drink.id} className={styles.info}>
                                             {drink.name} - R${drink.price}
                                         </li>
                                     ))}
@@ -160,7 +178,7 @@ function History() {
                                         <RiMoneyDollarCircleLine className={styles['iconMoney']} />
                                     </div>
                                     <div className="divTituloValor">
-                                        <strong>Total:</strong>
+                                        <strong className={styles.subtitulo}>Total:</strong>
                                         <ul>R${selectedOrder.price}</ul>
                                     </div>
                                 </div>

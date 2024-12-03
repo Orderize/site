@@ -103,6 +103,10 @@
         margin: 40px auto;
     }
 
+    .search {
+        width: 30%;
+    }
+
     .container-flavor > .breadcrumb-search > .comp-search {
         display: flex;
         justify-content: flex-end;
@@ -154,6 +158,11 @@
         max-width: 90%;
         height: 65%;
         overflow-y: scroll;
+    }
+
+    .btn-add-wrapper {
+        width: 90%;
+        margin: 20px auto;
     }
 
 }

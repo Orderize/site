@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { MagnifyingGlass } from "@phosphor-icons/react";
 import Breadcrumb from "../../../Components/Breadcrumb/Breadcrumb";
 import Navbar from "../../../Components/Navbar/Navbar";
-import SelectPizzaPromo from "/src/Components/Modal/select_pizza_promo/selectPizzaPromo.jsx"; 
+import SelectPizzaPromo from "../../../Components/Modal/select_pizza_promo/selectPizzaPromo.jsx"; 
 import "./Promotion.css";
 import { getPromotions } from "/src/api/services/Promotion.js";
 import InputSearch from "../../../Components/InputSearch/InputSearch";
@@ -21,6 +21,8 @@ function Promotion() {
         try {
             const data = await getPromotions(token);
             setPromotions(data);
+            console.log(data);
+            
         } catch (error) {
             alert(error.message);
             console.log(error);
@@ -45,7 +47,7 @@ function Promotion() {
     };
     
     const closeSelectPizzaModal = () => {
-        if (isOptionSelected) {  
+        if (isSelectPizzaModalOpen) {  
             setIsSelectPizzaModalOpen(false);
         } else {
             alert("Por favor, selecione pelo menos uma opção antes de continuar.");
@@ -63,7 +65,10 @@ function Promotion() {
                 <h1>Gerenciamento</h1>
                 <div className="breadcrumb-search">
                     <Breadcrumb activeButton={"brindes"} />
-                    <InputSearch valueSearch={valueSearch} handleSearch={handleSearch}/>
+                    
+                    <div className="search">
+                        <InputSearch valueSearch={valueSearch} handleSearch={handleSearch} text="Pesquise pelo nome da promoção"/>
+                    </div>
                 </div>
                 <div className="btn-add-wrapper">
                     <button className="btn-add-promotion" onClick={openSelectPizzaModal}>Adicionar promoção +</button>
@@ -71,9 +76,8 @@ function Promotion() {
                 <div className="promotion-wrapper">
                     <div className="promotion-header">
                         <span>Nome da Promoção</span>
-                        <span>Data Inicial e Final</span>
-                        <span>Status</span>
-                        <span>Itens Incluídos</span>
+                        <span>Data Final</span>
+                        <span>Descrição</span>
                         <span>Possui Alguma Condição?</span>
                     </div>
                     <div className="promotion-list" style={{ overflowY: 'scroll', maxHeight: '500px' }}>
@@ -82,10 +86,9 @@ function Promotion() {
                             promotions.map(promotion => (
                             <div className="promotion-item" key={promotion.id}>
                                 <span>{promotion.name}</span>
-                                <span>{promotion.dates}</span>
-                                <span className={`status ${promotion.status === "Ativa" ? "active" : "inactive"}`}>{promotion.status}</span>
-                                <span>{promotion.icons}</span>
-                                <span>{promotion.available}</span>
+                                <span>{promotion.endDate}</span>
+                                <span>{promotion.description}</span>
+                                <span>{promotion.conditions ? "sim" : "não"}</span>
                             </div>
                         ))}
                     </div>

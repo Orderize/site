@@ -7,7 +7,7 @@ import ButtonPreviousPage from '../../Progress/ButtonPreviousPage/ButtonPrevious
 import ButtonPrevious from '../../Progress/ButtonPrevious/ButtonPrevious';
 import styles from './ModalPagamento.module.css'; 
 
-function ModalPagamento({ totalValue }) {
+function ModalPagamento({ totalValue, handleBack }) {
     const [paymentOption, setPaymentOption] = useState(null); 
     const [receivedValue, setReceivedValue] = useState(0);
     const [change, setChange] = useState(0);
@@ -31,16 +31,14 @@ function ModalPagamento({ totalValue }) {
         setChange(value - totalValue); 
     };
 
-    const handlePreviousPage = () => {
-        navigate("/pedidos/novo-pedido");
-    };
-
     const handleFinalize = () => { 
         toast.info("Pedido finalizado!");
+        localStorage.removeItem("client");
+        localStorage.removeItem("address");
 
         setTimeout(() => {
             navigate("/pedidos");
-        }, "1000");
+        }, "3000");
     };
 
       return (
@@ -50,7 +48,7 @@ function ModalPagamento({ totalValue }) {
                 {paymentOption != "money" ? (
                     <>
                         <div className={styles["btn-voltar"]}>
-                            <ButtonPreviousPage onPreviousPage={handlePreviousPage} />
+                            <ButtonPreviousPage onPreviousPage={handleBack} />
                         </div>
 
                         <h2>Selecione a forma de pagamento</h2>
@@ -108,11 +106,18 @@ function ModalPagamento({ totalValue }) {
                                 <div className={styles["troco-container"]}>
                                     <p className={styles["troco-titulo"]}>Troco</p>
                                     <div className={styles["troco-input"]}>
-                                        <FloatingInput label={"Valor a receber"} value={receivedValue} onChange={handleReceivedValueChange} />
+                                    <FloatingInput 
+                                        label="Valor a receber" 
+                                        onSet={(value) => {
+                                            const numericValue = parseFloat(value) || 0;
+                                            setReceivedValue(numericValue); 
+                                            setChange(numericValue - totalValue); 
+                                        }} 
+                                        onValue={receivedValue} 
+                                    />
                                     </div>
-                                    {change >= 0 && (
-                                        <p className={styles["troco-subtitulo"]}>Troco: R$ {change.toFixed(2)}</p>
-                                    )}
+                                    
+                                    <p className={styles["troco-subtitulo"]}>Troco: R$ {change.toFixed(2)}</p>
 
                                 </div>
                                 
