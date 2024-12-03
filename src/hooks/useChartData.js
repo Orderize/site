@@ -76,40 +76,26 @@ export const doughnutData = (data) => {
                     align: "center",
                 },
             },
-            scales: {
+             scales: {
                 x: {
                     ticks: {
                         font: {
-                            size: 18,
+                            size: 20,
                         },
-                    },
-
-                    title: {
-                        display: false,
-                        text: "Tipo de Faturamento",
-                    },
+                    }, 
                     
                     grid: {
                         display: false,
                     },
-
                 },
                 
                 y: {
                     ticks: {
                         font: {
-                            size: 16,
+                            size: 20,
                         },
                     },
 
-                    title: {
-                        display: true,
-                        text: "Valor (R$)",
-                        font: {
-                            size: 16,
-                            weight: 'bold',
-                        },
-                    },
                     grid: {
                         display: false,
                     },
@@ -159,7 +145,7 @@ export const barData = (data) => {
                 x: {
                     ticks: {
                         font: {
-                            size: 18,
+                            size: 20,
                         },
                     },
 

@@ -18,8 +18,8 @@ const useAttestations = (token) => {
         setInfoKpi({ quantidadePedidos, lucro });
 
         const infos = {
-            delivery: data.filter((it) => it.orderType === "delivery").reduce((sum, current) => sum + current.totalValue, 0).toFixed(2),
-            saloon: data.filter((it) => it.orderType === "saloon").reduce((sum, current) => sum + current.totalValue, 0).toFixed(2),
+            delivery: data.filter((it) => it.orderType.toLowerCase() === "delivery").reduce((sum, current) => sum + current.totalValue, 0).toFixed(2),
+            saloon: data.filter((it) => it.orderType.toLowerCase() === "saloon").reduce((sum, current) => sum + current.totalValue, 0).toFixed(2),
         };
         setInfoDoughnutChart(doughnutData(infos));
     }
