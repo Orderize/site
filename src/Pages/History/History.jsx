@@ -5,6 +5,7 @@ import { IoCloseCircleOutline } from "react-icons/io5";
 import Navbar from "../../Components/Navbar/Navbar";
 import styles from "./History.module.css";
 import { getHistory } from "../../api/services/History";
+import { dowloadAttestation } from "../../api/services/Attestations";
 
 const formatDateAndTime = (datetime) => {
     if (!datetime) return { date: "", time: "" };
@@ -34,8 +35,8 @@ function History() {
         try {
             const data = await getHistory(token);
             console.log("data:", data);
-            setHistory(data);
-            // setHistory(data.reverse());
+            // setHistory(data);
+            setHistory(data.reverse());
         } catch (error) {
             alert(error.message)
             console.log(error);
@@ -65,6 +66,27 @@ function History() {
         setIsOpen(false);
     };
 
+    const handleDownload = async () => {
+        try {
+            const data = await dowloadAttestation(token);
+    
+            const blobUrl = window.URL.createObjectURL(new Blob([data]));
+            const link = document.createElement('a');
+            link.href = blobUrl;
+    
+            link.setAttribute('download', 'relatorio.csv');
+            
+            document.body.appendChild(link);
+            link.click();
+    
+            link.parentNode.removeChild(link);
+            window.URL.revokeObjectURL(blobUrl);
+        } catch (error) {
+            console.error('Erro ao baixar o arquivo:', error);
+            alert('Não foi possível baixar o arquivo. Tente novamente mais tarde.');
+        }
+    };
+
     return (
         <>
             <Navbar roles={"attendant"} activeButton={"Histórico"} />
@@ -73,9 +95,14 @@ function History() {
                     <h1>Histórico de pedidos</h1>
 
                     <div className={styles['filters']}>
+                        <div className={styles['button-csv']}>
+                            <button onClick={handleDownload}>Baixar relatório</button>
+                        </div>
+
                         <div className={styles['dateWrapper']}>
                             <input type="date" className={`${styles['dateInput']} ${isOpen ? styles['dateInputVisible'] : ''}`} />
                         </div>
+
                     </div>
 
                     <div className={styles['legend']}>

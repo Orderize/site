@@ -1,0 +1,11 @@
+.container-kpi {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    border-radius: 15px;
+
+    font-weight: 600;
+
+    padding: 20px;
+}

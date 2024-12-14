@@ -46,3 +46,18 @@ export const saveAttestation = async (token, order) => {
         throw new Error("Erro ao salvar o recibo. Aguarde um momento e tente novamente.");
     }
 };
+
+export const dowloadAttestation = async (token) => {
+    try {
+        const response = await api.get('/attestations/csv/download', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+            responseType: 'blob',
+        });
+        return response.data;
+    } catch (error) {
+        console.error("Erro ao baixar o recibo:", error);
+        throw new Error("Erro ao baixar o recibo. Aguarde um momento e tente novamente.");
+    }
+};
