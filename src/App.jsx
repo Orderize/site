@@ -1,27 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-<<<<<<< HEAD
-import Home from './Pages/Home/Home'
-import ModalDrink from './Components/Modal/Drink/Drink';
-import ModalFlavor from './Components/Modal/Flavor/Flavor';
-import Navbar from './Components/Navbar/Navbar'
-import Report from './Pages/Report/Report'
-import Login from './Pages/Login/Login'
-import Order from './Pages/Order/Order'
-import History from './Pages/History/History'
-import Client from './Pages/Client/Client'
-import Flavor from './Pages/Options/Flavor/Flavor'
-import Drink from './Pages/Options/Drink/Drink'
-import './utils/globals.css'
-import ModalPagamento from './Components/OrderDetails/ModalPagamento/ModalPagamento';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-=======
-import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer } from "react-toastify";
->>>>>>> 5b8c4f3 (arrumando configurações do site)
-
 // Seção das Paginas
 import Client from "@/pages/Client/Client";
 import Login from "@/pages/Login/Index";
@@ -79,12 +58,11 @@ const App = () => {
                     element={ <Order />}
                 ></Route>
 
-<<<<<<< HEAD
-        <Route
-          path='/relatorios'
-          element={ <Report /> }
-        ></Route>
-=======
+                <Route
+                    path='/relatorios'
+                    element={ <Report /> }
+                ></Route>
+        
                 <Route 
                     path='/modal/pagamento' 
                     element={ <ModalPagamento /> }
@@ -94,7 +72,11 @@ const App = () => {
                     path='/sabores'
                     element={ <Flavor /> }
                 ></Route>
->>>>>>> 5b8c4f3 (arrumando configurações do site)
+
+                <Route
+                    path='/relatorios'
+                    element={ <Report /> }
+                ></Route>
 
                 <Route
                     path='/bebidas'
@@ -111,32 +93,21 @@ const App = () => {
                     element={ <Promotion /> }
                 ></Route>
 
-<<<<<<< HEAD
-      </Routes>
-    </BrowserRouter>
-  </StrictMode>,
-)
-=======
-                <Route
-                    path='/relatorios'
-                    element={ <Report /> }
-                ></Route>
-
                 <Route
                     path='/modal/sabores'
                     element={ <ModalFlavor /> }
                 ></Route>
-
+                
                 <Route
                     path='/modal/bebidas'
                     element={ <ModalDrink /> }
                 ></Route>
-
+                
                 <Route
                     path='/modal/revisoes'
                     element={ <ModalReview /> }
                 ></Route>
-
+      
                 <Route 
                     path='/modal/newflavor'
                     element={ <AddNewFlavor /> } 
@@ -174,4 +145,3 @@ const App = () => {
 }
 
 export default App;
->>>>>>> 5b8c4f3 (arrumando configurações do site)
