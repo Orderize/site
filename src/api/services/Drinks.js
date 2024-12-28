@@ -15,3 +15,49 @@ export const getDrinks = async (name = "", milimeters = "") => {
         toast.error("Erro ao fazer requisição. Aguarde um momento e recarregue a página.");        
     }
 };
+
+export const saveDrink = async (token, drink) => {
+    try {
+        console.log('saveDrink '+drink);
+        const response = await api.post('/drinks', drink, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error('[saveDrink] error: ', error);
+        throw new Error('Erro ao fazer requisição. Aguarde um momento e recarregue a página.');
+    }
+};
+
+export const updateDrink = async (token, idDrink, drink) => {
+    try {
+        const response = await api.put(`/drinks/${idDrink}`, drink, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        console.log('updateDrink response '+response.data);
+        return response.data;
+    } catch (error) {
+        console.error('[updateDrink] error: ', error);
+        throw new Error('Erro ao fazer requisição. Aguarde um momento e recarregue a página.');
+    }
+};
+
+export const deleteDrink = async (token, idDrink) => {
+    try {
+        const response = await api.delete(`/drinks/${idDrink}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        console.log('deleteDrink response '+response.data);
+        return response.data;
+    } catch (error) {
+        console.error('[deleteDrink] error: ', error);
+        throw new Error('Erro ao fazer requisição. Aguarde um momento e recarregue a página.');
+    }
+};
+
