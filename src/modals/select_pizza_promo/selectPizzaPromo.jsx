@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { getFlavorsPop } from '../../../api/services/Flavors'; 
-import { getDrinks } from '../../../api/services/Drinks';  
+import { getFlavorsPop } from '@/api/services/Flavors'; 
+import { getDrinks } from '@/api/services/Drinks';  
 import styles from './selectPizzaPromo.module.css';
 
 const SelectPizzaPromo = ({ onClose }) => {

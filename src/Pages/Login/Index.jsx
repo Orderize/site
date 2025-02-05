@@ -1,19 +1,19 @@
-import React,{ useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { authApi, userInfo } from '../../api/Auth';
-//import { useAuth } from '../../context/AuthContext';
+import React,{ useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { authApi } from "@/api/Auth";
+import { useAuth } from "@/context/AuthContext";
 import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import styles from "./Login.module.css";
 
 
 const Login = () => {
-    //const { login, getUser } = useAuth();
+
+    const { login } = useAuth();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isRemembered, setIsRemembered] = useState(false);
-
-    const goTo = useNavigate();
+    const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -27,7 +27,6 @@ const Login = () => {
             const data = await authApi(credentials);
             
             if (data) {
-                // alert("Login realizado com sucesso.");
                 toast.success("Login realizado com sucesso!");
                 
                 localStorage.setItem('token', data.token);

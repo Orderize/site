@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './selectBeveragePromo.css';
-import PromoModal from '/src/Components/Modal/promo_add/PromoModal.jsx'; 
-import InputSearch from '../../InputSearch/InputSearch';
-import { getDrinks } from '../../../api/services/Drinks';
+import PromoModal from '@/modals/promo_add/PromoModal.jsx'; 
+import InputSearch from '@/components/InputSearch/InputSearch';
+import { getDrinks } from '@/api/services/Drinks';
 
 const SelectBeveragePromo = ({ onClose }) => {
   const [valueSearch, setValueSearch] = useState("");

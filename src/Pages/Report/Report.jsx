@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import 'chart.js/auto';
 
-import Navbar from "../../Components/Navbar/Navbar";
+import Navbar from "../../Components/Navbar/Index";
 import { useMediaQuery } from "react-responsive";
 
 import RenderKpis from "./RenderKpis";

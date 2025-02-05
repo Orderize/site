@@ -1,22 +1,22 @@
 import React, { useState, useEffect, useRef } from 'react';
-import FooterModal from '../../footer_modal/FooterModal';
+import FooterModal from '@/components/footer_modal/FooterModal';
 import styles from './Flavor.module.css';
-import InputSearch from '../../InputSearch/InputSearch';
+import InputSearch from '@/components/InputSearch/InputSearch';
 import { XSquare } from '@phosphor-icons/react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { getFlavorsPop } from '../../../api/services/Flavors';
+import { getFlavorsPop } from '@/api/services/Flavors';
 
-import { getPizzaById, savePizza } from '../../../api/services/Pizzas';
+import { getPizzaById, savePizza } from '@/api/services/Pizzas';
 
-import pizza from '../../../utils/assets/pizzas/pizza.svg';
-import pizza1Sabor from '../../../utils/assets/pizzas/pizza-1-sabor.svg';
-import pizza2Sabores from '../../../utils/assets/pizzas/pizza-2-sabores.svg';
-import pizza3Sabores from '../../../utils/assets/pizzas/pizza-3-sabores.svg';
-import pizza4Sabores from '../../../utils/assets/pizzas/pizza-4-sabores.svg';
-import Select from '../../UI/Select/Select';
+import pizza from '@/utils/assets/pizzas/pizza.svg';
+import pizza1Sabor from '@/utils/assets/pizzas/pizza-1-sabor.svg';
+import pizza2Sabores from '@/utils/assets/pizzas/pizza-2-sabores.svg';
+import pizza3Sabores from '@/utils/assets/pizzas/pizza-3-sabores.svg';
+import pizza4Sabores from '@/utils/assets/pizzas/pizza-4-sabores.svg';
+import Select from '@/components/UI/Select/Select';
 import DropdownSelect from './components/DropdownSelect';
-import { handleDataPizza, savePizzas, updatePizzas } from '../../../hooks/usePizzas';
+import { handleDataPizza, savePizzas, updatePizzas } from '@/hooks/usePizzas';
 
 
 const PizzaComponent = ({ close, setListPizzas, selectedPizza }) => {

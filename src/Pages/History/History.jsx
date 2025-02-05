@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { PiPizzaBold } from "react-icons/pi";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { IoCloseCircleOutline } from "react-icons/io5";
-import Navbar from "../../Components/Navbar/Navbar";
+import Navbar from "../../Components/Navbar/Index";
 import styles from "./History.module.css";
 import { getHistory } from "../../api/services/History";
 

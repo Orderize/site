@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { MagnifyingGlass } from "@phosphor-icons/react";
-import Breadcrumb from "../../../Components/Breadcrumb/Breadcrumb";
-import Item from "../../../Components/Item/Item";
-import Navbar from "../../../Components/Navbar/Navbar";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
+import Item from "@/components/Item/Item";
+import Navbar from "@/components/Navbar/Index";
 import "./Drink.css"
-import { getDrinks } from "../../../api/services/Drinks";
-import Drink from "../../../Components/Modal/Drink/Drink"
-import InputSearch from "../../../Components/InputSearch/InputSearch";
-import AddNewDrink from "../../../Components/Modal/New_drink/AddNewDrink";
+import { getDrinks } from "@/api/services/Drinks";
+import Drink from "@/modals/Drink/Drink"
+import InputSearch from "@/components/InputSearch/InputSearch";
+import AddNewDrink from "@/modals/New_drink/AddNewDrink";
 import { toast } from "react-toastify";
 
 export const isUserOwner = (roles) => roles.some(role => role.name == "OWNER");

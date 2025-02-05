@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { MagnifyingGlass } from "@phosphor-icons/react";
-import Breadcrumb from "../../../Components/Breadcrumb/Breadcrumb";
-import Item from "../../../Components/Item/Item";
-import Navbar from "../../../Components/Navbar/Navbar";
-import "./Flavor.css"
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
+import Item from "@/components/Item/Item";
+import Navbar from "@/components/Navbar/Index";
 import { getFlavorsPop } from "/src/api/services/Flavors";
-import AddNewFlavor from "/src/Components/Modal/New_flavor/Add_new_flavor.jsx";
-import InputSearch from "../../../Components/InputSearch/InputSearch";
+import AddNewFlavor from "@/modals/New_flavor/Add_new_flavor.jsx";
+import InputSearch from "@/components/InputSearch/InputSearch";
+import "./Index.css"
 
 export const isUserOwner = (roles) => roles.some(role => role.name == "OWNER");
 
-
 function flavor(isOwner) {
+    
     const [valueSearch, setValueSearch] = useState("");
     const [flavors, setFlavors] = useState([]);
     const [token] = useState(localStorage.getItem('token'));

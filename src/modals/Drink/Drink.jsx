@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import FooterModal from '../../footer_modal/FooterModal';
-import InputSearch from '../../InputSearch/InputSearch';
+import FooterModal from '@/components/footer_modal/FooterModal';
+import InputSearch from '@/components/InputSearch/InputSearch';
 import styles from './Drink.module.css';
-import drink from '../../../utils/assets/drink.svg';
-import { getDrinks } from '../../../api/services/Drinks';
+import drink from '@/utils/assets/drink.svg';
+import { getDrinks } from '@/api/services/Drinks';
 import { XSquare } from '@phosphor-icons/react';
 import { ToastContainer, toast } from 'react-toastify';
 

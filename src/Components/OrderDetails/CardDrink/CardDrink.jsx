@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import AddButton from "../AddButton/AddButton";
 import styles from "./CardDrink.module.css";
-import ModalDrink from "../../Modal/Drink/Drink";
+import ModalDrink from "@/modals/Drink/Drink";
 import { XSquare, NotePencil } from '@phosphor-icons/react';
 
 function CardDrink({ drinks, setDrinks }){

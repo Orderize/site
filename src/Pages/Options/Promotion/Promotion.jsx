@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { MagnifyingGlass } from "@phosphor-icons/react";
-import Breadcrumb from "../../../Components/Breadcrumb/Breadcrumb";
-import Navbar from "../../../Components/Navbar/Navbar";
-import SelectPizzaPromo from "../../../Components/Modal/select_pizza_promo/selectPizzaPromo.jsx"; 
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
+import Navbar from "@/components/Navbar/Index";
+import SelectPizzaPromo from "@/modals/select_pizza_promo/selectPizzaPromo.jsx"; 
 import "./Promotion.css";
-import { getPromotions } from "/src/api/services/Promotion.js";
-import InputSearch from "../../../Components/InputSearch/InputSearch";
+import { getPromotions } from "@/api/services/Promotion.js";
+import InputSearch from "@/components/InputSearch/InputSearch";
 
 function Promotion() {
     const [valueSearch, setValueSearch] = useState("");

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './Home.module.css';
 
-import Beneficio from '../../Components/Benefits/Benefits';
+import Beneficio from '../../Components/Benefits/Benefits.jsx';
 import Formulario from '../../Components/Form/Form.jsx';
 import Funcionalidade from '../../Components/Features/Features.jsx';
 
@@ -18,7 +18,7 @@ import quebraCabeca from "../../utils/assets/quebraCabecaa.png";
 import logo from "../../utils/assets/logo.png";
 import imgForm from "../../utils/assets/imgForm.svg";
 
-import FooterHome from './Components/FooterHome/FooterHome';
+import FooterHome from './Components/FooterHome/FooterHome.jsx';
 import NavbarHome from './Components/NavbarHome/NavbarHome.jsx';
 
 const Home = () => {

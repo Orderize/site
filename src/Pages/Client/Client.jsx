@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import Navbar from "../../Components/Navbar/Navbar";
+import Navbar from "../../Components/Navbar/Index";
 import FormClient from "../../Components/FormClient/FormClient";
 import ButtonNext from "../../Components/Progress/ButtonNext/ButtonNext";
 import Progress from "../../Components/Progress/Progress";

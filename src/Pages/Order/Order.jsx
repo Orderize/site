@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import Navbar from "../../Components/Navbar/Navbar";
+import Navbar from "../../Components/Navbar/Index";
 import ButtonPreviousPage from "../../Components/Progress/ButtonPreviousPage/ButtonPreviousPage";
 import CardPizza from "../../Components/OrderDetails/CardPizza/CardPizza";
 import CardDrink from "../../Components/OrderDetails/CardDrink/CardDrink";

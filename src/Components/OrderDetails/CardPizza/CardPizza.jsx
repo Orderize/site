@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import AddButton from "../AddButton/AddButton";
 import styles from "./CardPizza.module.css";
 // import SelectPizzaPromo from "../../Modal/select_pizza_promo/selectPizzaPromo";
-import Flavor from '../../Modal/Flavor/Flavor';
+import Flavor from '@/modals/Flavor/Flavor';
 import { XSquare, NotePencil } from '@phosphor-icons/react';
 import { Stack } from "../../../utils/stack/Stack.js";
 import savePizzas, { deletePizzas, handleDataPizza } from "../../../hooks/usePizzas.js";
