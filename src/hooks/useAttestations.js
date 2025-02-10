@@ -4,65 +4,46 @@ import { getAttestationsToday } from "../api/services/Attestations";
 import { barData, doughnutData } from "./useChartData";
 import { getReportsMonth, getReportsWeek } from "../api/services/Reports";
 
-const useAttestations = (token) => {
+const useAttestations = () => {
     const [ infoKpi, setInfoKpi ] = useState(null);
     const [ infoDoughnutChart, setInfoDoughnutChart ] = useState(null);
     const [ infoBarChart, setInfoBarChart ] = useState(null);
 
     const handleAttestations = async () => {
         const data = await getAttestationsToday();
+        
+        let lucro = 0; 
+        let quantidadePedidos = 0;
+        const infos = { delivery: 0, saloon: 0, };
+        
         if (data.length > 0) {
-            const quantidadePedidos = data.length;
-            console.log(data);
+            quantidadePedidos = data.length;
+            lucro = data.reduce((sum, current) => sum + current?.totalValue, 0);
             
-            const lucro = data.reduce((sum, current) => sum + current.totalValue, 0);
-    
-            setInfoKpi({ quantidadePedidos, lucro });
-    
-            const infos = {
-                delivery: data.filter((it) => it.orderType.toLowerCase() === "delivery").reduce((sum, current) => sum + current.totalValue, 0).toFixed(2),
-                saloon: data.filter((it) => it.orderType.toLowerCase() === "saloon").reduce((sum, current) => sum + current.totalValue, 0).toFixed(2),
-            };
-            setInfoDoughnutChart(doughnutData(infos));
+            infos.delivery = data.filter((it) => it.orderType.toLowerCase() === "delivery").reduce((sum, current) => sum + current.totalValue, 0).toFixed(2);
+            infos.saloon = data.filter((it) => it.orderType.toLowerCase() === "saloon").reduce((sum, current) => sum + current.totalValue, 0).toFixed(2);     
         }
+        
+        setInfoKpi({ quantidadePedidos, lucro });
+        setInfoDoughnutChart(doughnutData(infos));
     }
 
     const handleReports = async () => {
-        const weekData = await fetchReportsWeek();
-        const monthData = await fetchReportsMonth();
+        const weekData = await getReportsWeek();
+        const monthData = await getReportsMonth();
         
         setInfoKpi(prev => ({
             ...prev,
-            ticket: weekData.averageDailyRevenue,
+            ticket: weekData.averageDailyRevenue ?? 0,
             mostOrdered: weekData.mostOrderedFlavor.name
         }));
                 
         const infosReport = {
-            weekly: weekData.revenue,
-            monthly: monthData.revenue
+            weekly: weekData.revenue ?? 0,
+            monthly: monthData.revenue ?? 0
         };
         
         setInfoBarChart(barData(infosReport));
-    }
-
-    const fetchReportsWeek = async () => {
-        try {
-            const data = await getReportsWeek(token);
-            return data;
-        } catch (error) {
-            toast.error(`Erro ao processar seus gráficos: ${error.message}`);
-            console.error(error);
-        }
-    }
-
-    const fetchReportsMonth = async () => {
-        try {
-            const data = await getReportsMonth(token);
-            return data;
-        } catch (error) {
-            toast.error(`Erro ao processar seus gráficos: ${error.message}`);
-            console.error(error);
-        }
     }
 
     useEffect(() => {

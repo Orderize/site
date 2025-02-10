@@ -13,7 +13,7 @@ import Drink from "@/pages/Options/Drink/Index";
 import Flavor from "@/pages/Options/Flavor/Index";
 import Promotion from "@/pages/Options/Promotion/Promotion";
 import Order from "@/pages/Order/Order";
-import Report from "@/pages/Report/Report";
+import Report from "@/pages/Report/Index";
 
 // Seção dos Modais
 import ModalDrink from "@/modals/Drink/Drink";
