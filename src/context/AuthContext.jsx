@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect } from "react";
+import { setAuthToken } from "../api/Axios";
 
 export const AuthContext = createContext(undefined);   
 
@@ -9,16 +10,18 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         const storedUser = localStorage.getItem("user");
         const storedToken = localStorage.getItem("token");
-        
+
         if (storedUser && storedToken) {
             setUser(JSON.parse(storedUser));
             setToken(storedToken);
+            setAuthToken(storedToken);
         }
     }, []);
 
     const login = (userData, tokenData) => {
         setUser(userData);
         setToken(tokenData);
+        setAuthToken(tokenData);
 
         localStorage.setItem("user", JSON.stringify(userData));
         localStorage.setItem("token", tokenData);
@@ -27,6 +30,7 @@ export const AuthProvider = ({ children }) => {
     const logout = () => {
         setUser(null);
         setToken(null);
+        setAuthToken(null);
 
         localStorage.removeItem("user");
         localStorage.removeItem("token");

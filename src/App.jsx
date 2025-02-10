@@ -9,7 +9,7 @@ import Client from "@/pages/Client/Client";
 import Login from "@/pages/Login/Index";
 import History from "@/pages/History/History";
 import Home from "@/pages/Home/Index";
-import Drink from "@/pages/Options/Drink/Drink";
+import Drink from "@/pages/Options/Drink/Index";
 import Flavor from "@/pages/Options/Flavor/Index";
 import Promotion from "@/pages/Options/Promotion/Promotion";
 import Order from "@/pages/Order/Order";

@@ -1,0 +1,38 @@
+.container-flavor {
+    width: 100vw;
+    height: 90%;
+
+    background-color: #F3EFE9;
+    color: #3A3C16;
+    font-weight: 700;
+}
+
+.container-flavor > h1 {
+    width: 90%;
+    
+    margin: 3vh auto;
+}
+
+.container-flavor > nav {
+    margin-left: 5vh;
+}
+
+@media screen and (min-width: 1200px) {
+
+    .container-flavor {
+        width: 82%;
+        height: 100vh;
+
+        background-color: #F3EFE9;
+        color: #3A3C16;
+        font-weight: 700;
+
+        position: absolute;
+        left: 18%;
+    }
+
+    .container-flavor > nav {
+        margin-left: 10vh;
+    }
+
+}

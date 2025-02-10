@@ -10,18 +10,21 @@ const useAttestations = (token) => {
     const [ infoBarChart, setInfoBarChart ] = useState(null);
 
     const handleAttestations = async () => {
-        const data = await fetchAttestations();
-
-        const quantidadePedidos = data.length;
-        const lucro = data.reduce((sum, current) => sum + current.totalValue, 0);
-
-        setInfoKpi({ quantidadePedidos, lucro });
-
-        const infos = {
-            delivery: data.filter((it) => it.orderType.toLowerCase() === "delivery").reduce((sum, current) => sum + current.totalValue, 0).toFixed(2),
-            saloon: data.filter((it) => it.orderType.toLowerCase() === "saloon").reduce((sum, current) => sum + current.totalValue, 0).toFixed(2),
-        };
-        setInfoDoughnutChart(doughnutData(infos));
+        const data = await getAttestationsToday();
+        if (data.length > 0) {
+            const quantidadePedidos = data.length;
+            console.log(data);
+            
+            const lucro = data.reduce((sum, current) => sum + current.totalValue, 0);
+    
+            setInfoKpi({ quantidadePedidos, lucro });
+    
+            const infos = {
+                delivery: data.filter((it) => it.orderType.toLowerCase() === "delivery").reduce((sum, current) => sum + current.totalValue, 0).toFixed(2),
+                saloon: data.filter((it) => it.orderType.toLowerCase() === "saloon").reduce((sum, current) => sum + current.totalValue, 0).toFixed(2),
+            };
+            setInfoDoughnutChart(doughnutData(infos));
+        }
     }
 
     const handleReports = async () => {
@@ -41,18 +44,6 @@ const useAttestations = (token) => {
         
         setInfoBarChart(barData(infosReport));
     }
-
-    const fetchAttestations = async () => {
-        try {
-            const data = await getAttestationsToday(token);
-            console.log(data);
-            
-            return data;
-        } catch (error) {
-            toast.error(`Erro ao processar seus gráficos: ${error.message}`);
-            console.error(error);
-        }
-    };
 
     const fetchReportsWeek = async () => {
         try {
