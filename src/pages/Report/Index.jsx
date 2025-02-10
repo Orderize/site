@@ -12,7 +12,7 @@ import RenderBarChart from "./RenderBarChart";
 import styles from "./Report.module.css";
 
 function Report() {
-    const { infoKpi, infoDoughnutChart, infoBarChart } = useAttestations(token);
+    const { infoKpi, infoDoughnutChart, infoBarChart } = useAttestations();
     
     const isDesktop = useMediaQuery({query: "(min-width: 1200px)"})
 
