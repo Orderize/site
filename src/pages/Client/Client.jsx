@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
-import Navbar from "../../Components/Navbar/Index";
-import FormClient from "../../Components/FormClient/FormClient";
-import ButtonNext from "../../Components/Progress/ButtonNext/ButtonNext";
-import Progress from "../../Components/Progress/Progress";
+import Navbar from "@/components/Navbar/Index";
+import FormClient from "@/components/FormClient/FormClient";
+import ButtonNext from "@/components/Progress/ButtonNext/ButtonNext";
+import Progress from "@/components/Progress/Progress";
 import styles from "./Client.module.css";
 import MediaQuery from "react-responsive";
 import { useNavigate } from "react-router-dom";

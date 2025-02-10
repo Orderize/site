@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ChartDonut, ClockClockwise, ListMagnifyingGlass, Pizza } from "@phosphor-icons/react";
 import ButtonNavbar from './Button/ButtonNavbar';
-import Option from "./Option/Option";
+import Option from "./Option/Index";
 
 import "./Index.css";
 import ImgLogo from '../../utils/assets/logo.png';

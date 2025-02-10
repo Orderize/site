@@ -1,15 +1,15 @@
 .conteiner-list {
     display: flex;
     flex-wrap: wrap;
-    padding: 15px;
-    gap: 25px;
+    gap: 15px;
 
     justify-content: flex-start;
+    align-items: flex-start;
     align-content: flex-start;
     
 
     margin: auto;
     max-width: 90%;
-    height: 60%;
+    height: 75%;
     overflow-y: scroll;
 }

@@ -1,45 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { MagnifyingGlass } from "@phosphor-icons/react";
-import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
+import Breadcrumb from "@/components/Breadcrumb/Index";
 import Navbar from "@/components/Navbar/Index";
 import SelectPizzaPromo from "@/modals/select_pizza_promo/selectPizzaPromo.jsx"; 
 import "./Promotion.css";
 import { getPromotions } from "@/api/services/Promotion.js";
 import InputSearch from "@/components/InputSearch/InputSearch";
+import WrapBreadcrumbInput from "@/components/WrapBreadcrumbInput/Index";
+import { useAuth } from "../../../hooks/useAuth";
 
 function Promotion() {
-    const [valueSearch, setValueSearch] = useState("");
+    const { token } = useAuth();
     const [promotions, setPromotions] = useState([]);
-    const [token] = useState(localStorage.getItem('token'));
     const [isSelectPizzaModalOpen, setIsSelectPizzaModalOpen] = useState(false);
 
-    const handleSearchChange = (e) => {
-        setValueSearch(e.target.value);
-    };
-
     const handlePromotions = async () => {
-        try {
-            const data = await getPromotions(token);
-            setPromotions(data);
-            console.log(data);
-            
-        } catch (error) {
-            alert(error.message);
-            console.log(error);
-        }
-    };
-
-    const handleSearch = async (event) => {
-        const value = event.target.value;
-        setValueSearch(value);
-        try {
-            const data = await getPromotions(token, value);
-            setPromotions(data);
-            console.log(data);
-        } catch (error) {
-            alert(error.message);
-            console.log(error);
-        }
+        const data = await getPromotions();
+        setPromotions(data);
     };
 
     const openSelectPizzaModal = () => {
@@ -55,21 +32,22 @@ function Promotion() {
     };
 
     useEffect(() => {
-        handlePromotions();
-    }, []);
+        if (token) {
+            handlePromotions();
+        }
+    }, [token]);
 
     return (
         <>
             <Navbar activeButton={"Opções"} subActiveButton={"Promo"} />
             <main className="container-promotion">
                 <h1>Gerenciamento</h1>
-                <div className="breadcrumb-search">
-                    <Breadcrumb activeButton={"brindes"} />
-                    
-                    <div className="search">
-                        <InputSearch valueSearch={valueSearch} handleSearch={handleSearch} text="Pesquise pelo nome da promoção"/>
-                    </div>
-                </div>
+                <WrapBreadcrumbInput 
+                    activeBreadcrumb="brindes" 
+                    inputText="Pesquise pelo nome da promoção"
+                    getDataByInput={getPromotions}
+                    setData={setPromotions}
+                />
                 <div className="btn-add-wrapper">
                     <button className="btn-add-promotion" onClick={openSelectPizzaModal}>Adicionar promoção +</button>
                 </div>
