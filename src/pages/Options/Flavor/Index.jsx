@@ -1,25 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { MagnifyingGlass } from "@phosphor-icons/react";
-import Breadcrumb from "@/components/Breadcrumb/Index";
-import Item from "@/components/Item/Item";
-import Navbar from "@/components/Navbar/Index";
-import { getFlavorsPop } from "/src/api/services/Flavors";
-import AddNewFlavor from "@/modals/New_flavor/Add_new_flavor.jsx";
-import InputSearch from "@/components/InputSearch/InputSearch";
-import "./Index.css"
-import ListItens from "../../../components/ListItens/Index";
-import WrapBreadcrumbInput from "../../../components/WrapBreadcrumbInput/Index";
-import { useAuth } from "../../../hooks/useAuth";
-import { isOwner } from "../../../utils/user/userRoles";
+// pages/options/Flavor/Index.js
 
-export const isUserOwner = (roles) => roles.some(role => role.name == "OWNER");
+import "./Index.css"
+import React, { useEffect, useState } from "react";
+import { getFlavorsPop } from "@/api/services/Flavors";
+import ListItens from "@/components/ListItens/Index";
+import Navbar from "@/components/Navbar/Index";
+import WrapBreadcrumbInput from "@/components/WrapBreadcrumbInput/Index";
+import AddNewFlavor from "@/modals/New_flavor/Add_new_flavor.jsx";
+import { isOwner } from "@/utils/user/userRoles";
 
 function flavor() {
-    const { token, user } = useAuth()
-    
     const [flavors, setFlavors] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
-
 
     const handleFlavors = async () => {
         const data = await getFlavorsPop();
@@ -35,10 +27,8 @@ function flavor() {
     }
 
     useEffect(() => {
-        if (token) {
-            handleFlavors();
-        }
-    }, [token]);
+        handleFlavors();
+    }, []);
 
     return (
         <>
@@ -53,7 +43,7 @@ function flavor() {
                     setData={setFlavors}
                 />
 
-                {isOwner(user) &&
+                {isOwner() &&
                     <div className="btn-add-wrapper">
                         <button className="btn-add-promotion" onClick={openModal}>Adicionar sabor +</button>
                     </div>

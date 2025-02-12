@@ -15,7 +15,7 @@
   position: relative;
   flex-direction: column;
   align-items: center;
-  background-image: url("../../../utils/assets/banner.png");  
+  background-image: url("@/utils/assets/banner.png");  
   background-size: cover;
   padding: 20px; 
   border-radius: 8px;
