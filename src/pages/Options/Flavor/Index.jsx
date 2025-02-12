@@ -1,25 +1,21 @@
-import React, { useEffect, useState } from "react";
-import { MagnifyingGlass } from "@phosphor-icons/react";
-import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
-import Item from "@/components/Item/Item";
-import Navbar from "@/components/Navbar/Index";
-import { getFlavorsPop } from "/src/api/services/Flavors";
-import AddNewFlavor from "@/modals/New_flavor/Add_new_flavor.jsx";
-import InputSearch from "@/components/InputSearch/InputSearch";
+// pages/options/Flavor/Index.js
+
 import "./Index.css"
+import React, { useEffect, useState } from "react";
+import { getFlavorsPop } from "@/api/services/Flavors";
+import ListItens from "@/components/ListItens/Index";
+import Navbar from "@/components/Navbar/Index";
+import WrapBreadcrumbInput from "@/components/WrapBreadcrumbInput/Index";
+import AddNewFlavor from "@/modals/New_flavor/Add_new_flavor.jsx";
+import { isOwner } from "@/utils/user/userRoles";
 
-export const isUserOwner = (roles) => roles.some(role => role.name == "OWNER");
-
-function flavor(isOwner) {
-    
-    const [valueSearch, setValueSearch] = useState("");
+function flavor() {
     const [flavors, setFlavors] = useState([]);
     const [token] = useState(localStorage.getItem('token'));
     const [confirmModal, setConfirmModal] = useState(false);
     const [editModal, setEditModal] = useState(false);
     const [addModal, setAddModal] = useState(false);
     const [selectedProduto, setSelectedProduto] = useState(null);
-
 
     const handleFlavors = async () => {
         try {
@@ -105,6 +101,14 @@ function flavor(isOwner) {
         }
     };
     
+    const openModal = () => {
+        setIsModalOpen(true);
+    }
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    }
+
     useEffect(() => {
         handleFlavors();
     }, []);
