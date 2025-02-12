@@ -26,14 +26,12 @@ const formatDateAndTime = (datetime) => {
 function History() {
     
     const [history, setHistory] = useState([]);
-    const [token] = useState(localStorage.getItem('token'));
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOrder, setSelectedOrder] = useState(null);
 
     const handleHistory = async (event) => {
         try {
-            const data = await getHistory(token);
-            console.log("data:", data);
+            const data = await getHistory();
             setHistory(data);
             // setHistory(data.reverse());
         } catch (error) {
@@ -50,9 +48,10 @@ function History() {
         }, 5000);
 
         return () => clearInterval(interval);
-    }, [token]);
+    }, []);
 
     const handleClickOrder = (order) => {
+        console.log(order);
         setSelectedOrder(order);
         setIsOpen(true);
     }
@@ -138,7 +137,8 @@ function History() {
                             <div className={styles['detailsOrder']}>
                                 <h2>Detalhes do Pedido</h2>
                                 <div>
-                                    <strong className={styles.subtitulo}>Data:</strong> {selectedOrder.date}
+                                    <strong className={styles.subtitulo}>Data:</strong> 
+                                    <p>{formatDateAndTime(selectedOrder.datetime).date}</p>
                                 </div>
                                 <hr />
                                 <div className="divIconPizzaTitulo">
