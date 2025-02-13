@@ -2,11 +2,7 @@ import api from "../Axios";
 
 export const getHistory = async (datetime = "") => {
     try {
-        const response = await api.get('/orders/last', {
-            params: {
-                datetime
-            }
-        });
+        const response = await api.get('/orders/last', {});
         return response.data;
     } catch (error) {
         console.error('[getHistory] error: ', error);
