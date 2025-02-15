@@ -26,6 +26,21 @@ jobs:
           git checkout -b ${{ env.BRANCH_NAME }} origin/${{ github.ref_name }}
           git push origin ${{ env.BRANCH_NAME }} 
 
+      - name: Debug Branch
+        run: |
+          echo "Current branch: $(git branch --show-current)"
+          echo "Branches on remote:"
+          git branch -r
+          git log --oneline -5
+
+      - name: Check if there are changes
+        run: |
+          if git diff --quiet origin/development...${{ env.BRANCH_NAME }}; then
+            echo "No changes detected. Skipping PR creation."
+            exit 0
+          fi
+  
+
       - name: Create Pull Request
         id: create_pr
         uses: peter-evans/create-pull-request@v5
