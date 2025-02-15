@@ -9,9 +9,6 @@ on:
 jobs:
   create-pull-request:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pull-requests: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -20,7 +17,8 @@ jobs:
         id: create_pr
         uses: peter-evans/create-pull-request@v5
         with:
-          branch: development
+          branch: ${{ github.ref_name}}
+          base: development
           title: "${{ github.event.head_commit.title }}"
           body: "Content commit: {{ github.event.head_commit.message}}"
           delete-branch: true
