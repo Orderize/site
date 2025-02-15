@@ -10,7 +10,7 @@ jobs:
   create-pull-request:
     runs-on: ubuntu-latest
     permissions:
-      # contents: write
+      contents: write
       pull-requests: write
     steps:
       - name: Checkout code
