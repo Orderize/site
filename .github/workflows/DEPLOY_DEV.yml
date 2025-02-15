@@ -41,14 +41,9 @@ jobs:
           fi
   
 
-      - name: Create Pull Request
-        id: create_pr
-        uses: peter-evans/create-pull-request@v5
-        with:
-          token: ${{ secrets.TOKEN_PAT }}
-          branch: ${{ env.BRANCH_NAME }}
-          base: development
-          title: "${{ github.event.head_commit.committer.name }} - title "
-          body: "Content commit: ${{ github.event.head_commit.message }}"
+      - name: Create Pull Request using gh CLI
+        run: |
+          gh auth login --with-token < ${{ secrets.TOKEN_PAT }}
+          gh pr create --base development --head ${{ env.BRANCH_NAME }} -- title "${{ github.event.head_commit.committer.name }} - title " --body "Content commit: ${{ github.event.head_commit.message }}"
 
   
