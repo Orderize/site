@@ -1,4 +1,4 @@
-name: Deploy to Development
+name: Create Pull Request to Development
 
 on: 
   push:
@@ -9,66 +9,38 @@ on:
 jobs:
   create-pull-request:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Create Pull Request
-        id: create_pr
-        uses: peter-evans/create-pull-request@v5
-        with:
-          branch: development
-          title: "${{ github.event.head_commit.title }}"
-          body: "Content commit: {{ github.event.head_commit.message}}"
-          delete-branch: true
+      - name: Set PR body template
+        id: set-pr-template
+        run: |
+          COMMIT_MESSAGE="${{ github.event.head_commit.message }}"
 
-  build-and-test:
-    needs: create-pull-request
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+          # Criando o corpo do PR com a mensagem do commit e incluindo as quebras de linha corretamente
+          PR_BODY="## Descrição\nDescreva brevemente o que foi desenvolvido e por que.\n- $COMMIT_MESSAGE\n\n## Observações\nInclua quaisquer outras informações relevantes que possam ser úteis para a revisão do PR.\n-"
+          
+          # Salvando o corpo do PR corretamente como variável de ambiente
+          echo "PR_BODY<<EOF" >> $GITHUB_ENV
+          echo -e "$PR_BODY" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
+      - name: GitHub CLI login
+        run: |
+          echo "${{ secrets.TOKEN_PAT }}" | gh auth login --with-token
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run Build
-        run: npm run build
-
-    merge-if-success:
-      needs: build-and-test
-      runs-on: ubuntu-latest
-      if: success()
-      steps:
-        - name: Merge PR
-          uses: pascalgn/automerge-action@v0.15.5
-          with: 
-            github-token: ${{ secrets.GITHUB_TOKEN }}
-            merge-method: squash
-
-    request-review-if-fail:
-      needs: build-and-test
-      runs-on: ubuntu-latest
-      if: failure()
-      steps:
-        - name: Request Review
-          uses: hmarr/auto-approve-action@v3
-          with:
-            github-token: ${{ secrets.GITHUB_TOKEN }}
-
-        - name: Send Email Notification
-          uses: dawidd6/action-send-mail@v3
-          with:
-            server_address: smtp.gmail.com
-            server_port: 465
-            username: ${{ secrets.EMAIL_USERNAME }}
-            password: ${{ secrets.EMAIL_PASSWORD }}
-            subject: "ORDERIZE - Site | Review Required PULL REQUEST"
-            body: "O Build do site falhou. Por favor faça uma revisão na Pull Request."
-            to: "${{ github.event.pusher.email }}"
-            from: "CI/CD Bot"
+      - name: Edit or Crete Pull Request
+        run: |
+            PR_URL=$(gh pr list --base development --head ${{ github.ref_name }} --json url -q '.[0].url')
+            if [ -n "$PR_URL" ]; then
+              echo "Updating existing PR: $PR_URL"
+              gh pr edit $PR_URL --body "${{ env.PR_BODY }}"
+            else
+              echo "No existing PR found, creating a new one."
+              gh pr create --base development --head ${{ github.ref_name }} --title "Pull Request from ${{ github.ref_name }} to development | ${{ github.event.head_commit.committer.name }}" --body "${{ env.PR_BODY }}"
+            fi
+        
