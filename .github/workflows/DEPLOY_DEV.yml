@@ -33,6 +33,5 @@ jobs:
           base: development
           title: "${{ github.event.head_commit.committer.name }} - title "
           body: "Content commit: ${{ github.event.head_commit.message }}"
-          delete-branch: true
 
   
