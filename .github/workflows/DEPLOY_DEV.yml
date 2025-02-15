@@ -44,6 +44,6 @@ jobs:
       - name: Create Pull Request using gh CLI
         run: |
           echo ${{ secrets.TOKEN_PAT }} | gh auth login --with-token
-          gh pr create --base development --head ${{ env.BRANCH_NAME }} -- title "${{ github.event.head_commit.committer.name }} - title " --body "Content commit: ${{ github.event.head_commit.message }}"
+          gh pr create --base development --head ${{ env.BRANCH_NAME }} --title "${{ github.event.head_commit.committer.name }} - title " --body "Content commit: ${{ github.event.head_commit.message }}"
 
   
