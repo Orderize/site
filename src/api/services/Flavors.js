@@ -1,11 +1,9 @@
+import { toast } from "react-toastify";
 import api from "../Axios";
 
-export const getFlavorsPop = async (token, value = "") => {
+export const getFlavorsPop = async (value = "") => {
     try {
         const response = await api.get('/flavors/pop', {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            },
             params: {
                 value,
             },
@@ -13,6 +11,7 @@ export const getFlavorsPop = async (token, value = "") => {
         return response.data;
     } catch (error) {
         console.error('[getFlavorsPop] error: ', error);
-        throw new Error('Erro ao fazer requisição. Aguarde um momento e recarregue a página.');
+        const message = "Erro ao fazer requisição. Aguarde um momento e recarregue a página.";
+        toast.error(message);
     }
 };
