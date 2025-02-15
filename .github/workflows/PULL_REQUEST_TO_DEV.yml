@@ -22,7 +22,7 @@ jobs:
           COMMIT_MESSAGE="${{ github.event.head_commit.message }}"
 
           # Criando o corpo do PR com a mensagem do commit e incluindo as quebras de linha corretamente
-          PR_BODY="## Descrição\nDescreva brevemente o que foi desenvolvido e por que.\n- $COMMIT_MESSAGE\n\n## Observações\nInclua quaisquer outras informações relevantes que possam ser úteis para a revisão do PR.\n-"
+          PR_BODY="## Descrição\nDescreva brevemente o que foi desenvolvido e por que.\n $COMMIT_MESSAGE\n-\n## Observações\n Inclua quaisquer outras informações relevantes que possam ser úteis para a revisão do PR.\n-"
           
           # Salvando o corpo do PR corretamente como variável de ambiente
           echo "PR_BODY<<EOF" >> $GITHUB_ENV
