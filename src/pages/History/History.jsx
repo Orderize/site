@@ -5,6 +5,7 @@ import { IoCloseCircleOutline } from "react-icons/io5";
 import Navbar from "@/components/Navbar/Index";
 import styles from "./History.module.css";
 import { getHistory } from "../../api/services/History";
+import { toast } from "react-toastify";
 
 const formatDateAndTime = (datetime) => {
     if (!datetime) return { date: "", time: "" };
@@ -29,26 +30,22 @@ function History() {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOrder, setSelectedOrder] = useState(null);
 
-    const handleHistory = async (event) => {
+    const handleHistory = async () => {
         try {
             const data = await getHistory();
             setHistory(data);
-            // setHistory(data.reverse());
         } catch (error) {
-            alert(error.message)
+            toast.error(error.message)
             console.log(error);
         }
     }
 
-    useEffect(() => {
-        handleHistory();
-      
-        const interval = setInterval(() => {
-            handleHistory();
-        }, 5000);
-
-        return () => clearInterval(interval);
-    }, []);
+    const handleFilterDate = async (event) => {
+        const date = event.target.value;
+        
+        const data = await getHistory(date);
+        setHistory(data);
+    }
 
     const handleClickOrder = (order) => {
         console.log(order);
@@ -57,12 +54,15 @@ function History() {
     }
 
     const orderClass = `${styles.orderList} ${isOpen ? styles.active : ''}`;
-    // const dateClass = `${styles.dateInput} ${isOpen ? styles.active : ''}`;
 
     const closeDetails = () => {
         setSelectedOrder(null);
         setIsOpen(false);
     };
+
+    useEffect(() => {
+        handleHistory();
+    }, []);
 
     return (
         <>
@@ -73,7 +73,7 @@ function History() {
 
                     <div className={styles['filters']}>
                         <div className={styles['dateWrapper']}>
-                            <input type="date" className={`${styles['dateInput']} ${isOpen ? styles['dateInputVisible'] : ''}`} />
+                            <input type="date" onChange={handleFilterDate} className={`${styles['dateInput']} ${isOpen ? styles['dateInputVisible'] : ''}`} />
                         </div>
                     </div>
 
