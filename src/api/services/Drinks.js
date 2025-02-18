@@ -12,18 +12,14 @@ export const getDrinks = async (name = "", milimeters = "") => {
         return response.data;
     } catch (error) {
         console.error("[getDrinks] error: ", error);
-        toast.error("Erro ao fazer requisição. Aguarde um momento e recarregue a página.");        
+        toast.error("Erro ao listar os drinks. Por favor, aguarde um momento e recarregue a página.");        
     }
 };
 
-export const saveDrink = async (token, drink) => {
+export const saveDrink = async (drink) => {
     try {
         console.log('saveDrink '+drink);
-        const response = await api.post('/drinks', drink, {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        });
+        const response = await api.post('/drinks', drink);
         return response.data;
     } catch (error) {
         console.error('[saveDrink] error: ', error);
@@ -61,3 +57,18 @@ export const deleteDrink = async (token, idDrink) => {
     }
 };
 
+export const getDrinksPop = async (value = "") => {
+    try {
+        const response = await api.get("/drinks/pop", {
+            params: {
+                value
+            }
+        });
+        return response.data;
+
+    } catch (error) {
+        console.error("[getDrinksPop] error: ", error);
+        toast.error("Erro ao listar os drinks. Por favor, aguarde um momento e recarregue a página.")
+        
+    }
+}
