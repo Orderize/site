@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import styles from "./AddModal.module.css";
-import ActionButton from "../../ActionButton/ActionButton";
-import FloatingInput from "../../Floatinginput/FloatingInput";
-import InputSearch from "../../InputSearch/InputSearch";
-import { getIngredients } from "../../../api/services/Ingredients";
+import ActionButton from "@/components/ActionButton/ActionButton";
+import FloatingInput from "@/components/Floatinginput/Floatinginput";
+import InputSearch from "@/components/InputSearch/InputSearch";
+import { getIngredients } from "../../api/services/Ingredients";
 import { toast } from "react-toastify";
 
 const AddModal = ({ 

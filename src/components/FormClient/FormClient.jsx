@@ -2,7 +2,7 @@ import React, { useState, useEffect, useImperativeHandle, forwardRef } from "rea
 import FloatingInput from "../Floatinginput/Floatinginput";
 import MediaQuery from "react-responsive";
 import styles from "./FormClient.module.css";
-import { inputNumerosCelular, inputCep, inputSomenteTexto, inputSomenteNumero, inputLetrasNumeros } from "../../utils/globals";
+import { inputNumerosCelular, inputCep, inputSomenteTexto, inputSomenteNumero, inputLetrasNumeros } from "@/utils/global";
 import { getClients, saveClient, updateClient  } from "../../api/services/Users";
 import { getAddressByCep, saveAddress, updateAddress } from "../../api/services/Address";
 import { ToastContainer, toast } from "react-toastify";

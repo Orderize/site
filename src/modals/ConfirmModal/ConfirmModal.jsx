@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./ConfirmModal.module.css";
-import ActionButton from "../../ActionButton/ActionButton";
+import ActionButton from "@/components/ActionButton/ActionButton";
 
 const ConfirmModal = ({ 
   isOpen, 

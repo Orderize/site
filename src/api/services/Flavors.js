@@ -16,13 +16,9 @@ export const getFlavorsPop = async (value = "") => {
     }
 };
 
-export const saveFlavor = async (token, flavor) => {
+export const saveFlavor = async (flavor) => {
     try {
-        const response = await api.post('/flavors', flavor, {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        });
+        const response = await api.post('/flavors', flavor);
         return response.data;
     }
     catch (error) {
@@ -31,13 +27,9 @@ export const saveFlavor = async (token, flavor) => {
     }
 };
 
-export const updateFlavor = async (token, idFlavor, flavor) => {
+export const updateFlavor = async (idFlavor, flavor) => {
     try {
-        const response = await api.put(`/flavors/${idFlavor}`, flavor, {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        });
+        const response = await api.put(`/flavors/${idFlavor}`, flavor);
         console.log('updateFlavor response ' + response)
         return response.data;
     }
@@ -47,13 +39,9 @@ export const updateFlavor = async (token, idFlavor, flavor) => {
     }
 };
 
-export const deleteFlavor = async (token, idFlavor) => {
+export const deleteFlavor = async (idFlavor) => {
     try {
-        const response = await api.delete(`/flavors/${idFlavor}`, {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        });
+        const response = await api.delete(`/flavors/${idFlavor}`);
         return response.data;
     }
     catch (error) {

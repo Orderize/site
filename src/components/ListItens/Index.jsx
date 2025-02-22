@@ -1,20 +1,23 @@
 import React from "react";
 import Item from "@/components/Item/Item";
+import CardProduto from "@/components/CardProduto/CardProduto" 
 import "./Index.css";
 
-const ListItens = ({ itens }) => {
+const ListItens = ({ itens, image, functions }) => {
     return (
         <section className="conteiner-list">
             {
                 itens.length > 0 && 
-                itens.map(item => {
-                    return <Item 
-                        type={"drink"}
-                        cod={item.id}
-                        key={item.id}
-                        name={item.name}
-                        price={item.price}
-                        description={item.description}
+                itens.map((item, idx) => {
+                    return <CardProduto 
+                        key={idx}
+                        imagem={image}
+                        titulo={item.name}
+                        subtitulo={item.id}
+                        preco={item.price}
+                        descricao={item.description}
+                        onEdit={() => functions.handleEditClick(item)}
+                        onDelete={() => functions.handleDeleteClick(item)}
                     />
                 })
             }

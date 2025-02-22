@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styles from "./EditModal.module.css";
-import ActionButton from "../../ActionButton/ActionButton";
-import FloatingInput from "../../Floatinginput/FloatingInput";
-import InputSearch from "../../InputSearch/InputSearch";
+import ActionButton from "@/components/ActionButton/ActionButton";
+import FloatingInput from "@/components/Floatinginput/Floatinginput";
+import InputSearch from "@/components/InputSearch/InputSearch";
 import { toast } from "react-toastify";
-import { getIngredients } from "../../../api/services/Ingredients";
+import { getIngredients } from "../../api/services/Ingredients";
 
 const EditModal = ({ 
   isOpen, 
