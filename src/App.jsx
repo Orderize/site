@@ -27,7 +27,8 @@ import SelectPizzaType from "@/modals/Select_pizza_type/Select_pizza_type";
 import Navbar from "@/components/Navbar/Index";
 import ModalPagamento from "@/components/OrderDetails/ModalPagamento/ModalPagamento";
 
-import "./utils/global.css";
+import "@/utils/global.css";
+import { ToastContainer } from "react-toastify";
 
 const App = () => {
     return (
