@@ -108,7 +108,7 @@ const FormClient = forwardRef(({ onNovoClientChange, isEditing }, ref) => {
     const handleAddress = async (event) => {
         try {
             const cepLimpo = cep.replace(/\D/g, "");
-            const addressData = await getAddressByCep(token, { cep: cepLimpo, number: numero });
+            const addressData = await getAddressByCep({ cep: cepLimpo, number: numero });
 
             setRua(addressData.street);
             setBairro(addressData.neighborhood);

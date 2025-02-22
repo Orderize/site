@@ -1,26 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-<<<<<<< HEAD
-import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer } from "react-toastify";
-=======
-import Home from './Pages/Home/Home'
-import ModalDrink from './Components/Modal/Drink/Drink';
-import ModalFlavor from './Components/Modal/Flavor/Flavor';
-import Navbar from './Components/Navbar/Navbar'
-import Report from './Pages/Report/Report'
-import Login from './Pages/Login/Login'
-import Order from './Pages/Order/Order'
-import History from './Pages/History/History'
-import Client from './Pages/Client/Client'
-import Flavor from './Pages/Options/Flavor/Flavor'
-import Drink from './Pages/Options/Drink/Drink'
-import './utils/globals.css'
-import ModalPagamento from './Components/OrderDetails/ModalPagamento/ModalPagamento';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
->>>>>>> 4aeb530 (alterei tela de sabores e bebidas, conectei respectivos cruds)
 
 // Seção das Paginas
 import Client from "@/pages/Client/Client";
@@ -53,6 +35,7 @@ import "./utils/global.css";
 const App = () => {
     return (
         <Router>
+            <ToastContainer />
             <Routes>  
                 <Route
                     path='/'
@@ -79,7 +62,6 @@ const App = () => {
                     element={ <Order />}
                 ></Route>
 
-<<<<<<< HEAD
                 <Route 
                     path='/modal/pagamento' 
                     element={ <ModalPagamento /> }
@@ -89,12 +71,6 @@ const App = () => {
                     path='/sabores'
                     element={ <Flavor /> }
                 ></Route>
-=======
-        <Route
-          path='/relatorios'
-          element={ <Report /> }
-        ></Route>
->>>>>>> 4aeb530 (alterei tela de sabores e bebidas, conectei respectivos cruds)
 
                 <Route
                     path='/bebidas'
@@ -111,7 +87,6 @@ const App = () => {
                     element={ <Promotion /> }
                 ></Route>
 
-<<<<<<< HEAD
                 <Route
                     path='/relatorios'
                     element={ <Report /> }
@@ -162,16 +137,8 @@ const App = () => {
                     element={ <SelectBeveragePromo/> } 
                 ></Route>
             </Routes>
-
-            <ToastContainer />
         </Router>
     );
 }
 
 export default App;
-=======
-      </Routes>
-    </BrowserRouter>
-  </StrictMode>,
-)
->>>>>>> 4aeb530 (alterei tela de sabores e bebidas, conectei respectivos cruds)

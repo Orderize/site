@@ -8,17 +8,21 @@ import ImgLogo from '../../utils/assets/logo.png';
 import { useMediaQuery } from 'react-responsive';
 import { getMainButton, isUserOwner } from './NavbarData';
 import { useNavigate } from 'react-router-dom';
+import { isOwner } from '../../utils/user/userRoles';
+
 
 function navbar({ activeButton, subActiveButton }) {
     const navigate = useNavigate();
     const isDesktop = useMediaQuery({ query: '(min-width: 1200px)' });
 
+    const mainButton = {
+        title: isOwner() ? "Relatórios" : "Pedidos",
+        icon: isOwner() ? <ChartDonut size={37} /> : <Pizza size={37} />,
+        path: isOwner() ? "/relatorios" : "/pedidos",
+    };
 
-    const user = JSON.parse(localStorage.getItem('user'));
-    const isOwner = isUserOwner(user.roles);
-    const mainButton = getMainButton(isOwner);
+    const nameMiddleButton = isOwner() ? "Gestão" : "Opções";
 
-    const nameMiddleButton = isOwner ? "Gestão" : "Opções";
 
     const [indexItem, setIndexItem] = useState({
         idx: activeButton == "Opções" ? 1 : activeButton == "Histórico" ? 2 : 0,

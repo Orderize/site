@@ -28,17 +28,9 @@ function flavor() {
     const [addModal, setAddModal] = useState(false);
     const [selectedProduto, setSelectedProduto] = useState(null);
 
-    const handleSetFlavor = (data) => {
-        const flavors = data.map(flavor => ({
-            ...flavor,
-            image: PizzaImage
-        }));
-        setFlavors(flavors);        
-    }
-
     const handleFlavors = async () => {
         const data = await getFlavorsPop();
-        handleSetFlavor(data);
+        setFlavors(data);        
     };
 
     const openModal = () => {
@@ -118,7 +110,7 @@ function flavor() {
                     activeBreadcrumb="sabores" 
                     inputText="Pesquise pelo nome do sabor"
                     getDataByInput={getFlavorsPop}
-                    setData={handleSetFlavor}
+                    setData={setFlavors}
                 />
 
                 {isOwner() &&
@@ -192,7 +184,7 @@ function flavor() {
                         titulo="Nome do Sabor"
                         subtitulo="0"
                         descricao="exemplo"
-                        preco="0,00"
+                        preco={0}
                     />
 
                 </AddModal>

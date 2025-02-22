@@ -11,7 +11,7 @@ import styles from "./Login.module.css";
 
 const Login = () => {
 
-    const { login, user } = useAuth();
+    const { logout, login, user } = useAuth();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isRemembered, setIsRemembered] = useState(false);
@@ -29,6 +29,8 @@ const Login = () => {
                 toast.success("Login realizado com sucesso!");
                 
                 data.user = await userInfo(data.token);
+                
+                console.log(data);
                 
                 login(data.user, data.token);
                 
@@ -63,6 +65,7 @@ const Login = () => {
     
     useEffect(() => {
         document.title = "Orderize | Login";
+        logout()
         verifyIsRemembered();
     }, []);
 
