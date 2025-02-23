@@ -65,7 +65,6 @@ export const getDrinksPop = async (value = "") => {
             }
         });
         return response.data;
-
     } catch (error) {
         console.error("[getDrinksPop] error: ", error);
         toast.error("Erro ao listar os drinks. Por favor, aguarde um momento e recarregue a página.")

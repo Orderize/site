@@ -3,8 +3,8 @@ import { MagnifyingGlass } from "@phosphor-icons/react";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 import Item from "@/components/Item/Item";
 import Navbar from "@/components/Navbar/Index";
-import "./Drink.css"
-import { getDrinks } from "@/api/services/Drinks";
+import "./Index.css"
+import { getDrinksPop, getDrinks } from "@/api/services/Drinks";
 import Drink from "@/modals/Drink/Drink"
 import InputSearch from "@/components/InputSearch/InputSearch";
 import AddNewDrink from "@/modals/New_drink/AddNewDrink";
@@ -29,19 +29,9 @@ function flavor(isOwner) {
     const [selectedProduto, setSelectedProduto] = useState(null);
     const [user] = useState(JSON.parse(localStorage.getItem('user')))
 
-    const handleDrink = async (event) => {
-        try {
-            const params = {
-                name: "",
-                milimeters: ""
-            };
-            
-            const data = await getDrinks(token, params);
-            setDrink(data);
-        } catch (error) {
-            toast.error(error.message)
-            console.error(error);
-        }
+    const handleDrink = async () => {
+        const data = await getDrinksPop();
+        setDrink(data);
     };
 
     const handleSearch = async (event) => {
