@@ -34,13 +34,13 @@ const useAttestations = () => {
         
         setInfoKpi(prev => ({
             ...prev,
-            ticket: weekData.averageDailyRevenue ?? 0,
-            mostOrdered: weekData.mostOrderedFlavor.name
+            ticket: weekData?.averageDailyRevenue ?? 0,
+            mostOrdered: weekData?.mostOrderedFlavor.name
         }));
                 
         const infosReport = {
-            weekly: weekData.revenue ?? 0,
-            monthly: monthData.revenue ?? 0
+            weekly: weekData?.revenue ?? 0,
+            monthly: monthData?.revenue ?? 0
         };
         
         setInfoBarChart(barData(infosReport));

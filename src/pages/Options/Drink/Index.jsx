@@ -4,7 +4,7 @@ import Breadcrumb from "@/components/Breadcrumb/Index";
 import Item from "@/components/Item/Item";
 import Navbar from "@/components/Navbar/Index";
 import "./Index.css"
-import { getDrinks } from "@/api/services/Drinks";
+import { getDrinksPop, getDrinks } from "@/api/services/Drinks";
 import Drink from "@/modals/Drink/Drink"
 import InputSearch from "@/components/InputSearch/InputSearch";
 import AddNewDrink from "@/modals/New_drink/AddNewDrink";
@@ -19,8 +19,8 @@ function drink() {
     const [drink, setDrink] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const handleDrink = async (event) => {
-        const data = await getDrinks();
+    const handleDrink = async () => {
+        const data = await getDrinksPop();
         setDrink(data);
     };
 
