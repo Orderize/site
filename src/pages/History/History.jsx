@@ -2,10 +2,9 @@ import React, { useEffect, useRef, useState } from "react";
 import { PiPizzaBold } from "react-icons/pi";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { IoCloseCircleOutline } from "react-icons/io5";
-import Navbar from "@/components/Navbar/Index";
+import Navbar from "../../Components/Navbar/Index";
 import styles from "./History.module.css";
 import { getHistory } from "../../api/services/History";
-import { toast } from "react-toastify";
 
 const formatDateAndTime = (datetime) => {
     if (!datetime) return { date: "", time: "" };
@@ -27,47 +26,44 @@ const formatDateAndTime = (datetime) => {
 function History() {
     
     const [history, setHistory] = useState([]);
+    const [token] = useState(localStorage.getItem('token'));
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOrder, setSelectedOrder] = useState(null);
 
-    const handleHistory = async () => {
+    const handleHistory = async (event) => {
         try {
-            const data = await getHistory();
+            const data = await getHistory(token);
+            console.log("data:", data);
             setHistory(data);
+            // setHistory(data.reverse());
         } catch (error) {
-            toast.error(error.message)
+            alert(error.message)
             console.log(error);
         }
     }
 
-    const handleFilterDate = async (event) => {
-        const date = new Date(event.target.value);
-        
-        let data = await getHistory(date);
+    useEffect(() => {
+        handleHistory();
+      
+        const interval = setInterval(() => {
+            handleHistory();
+        }, 5000);
 
-        if (data == "") {
-            toast.info("Nenhum historico encontrado nesse periodo.");
-            data = [];
-        }        
-        setHistory(data);
-    }
+        return () => clearInterval(interval);
+    }, [token]);
 
     const handleClickOrder = (order) => {
-        console.log(order);
         setSelectedOrder(order);
         setIsOpen(true);
     }
 
     const orderClass = `${styles.orderList} ${isOpen ? styles.active : ''}`;
+    // const dateClass = `${styles.dateInput} ${isOpen ? styles.active : ''}`;
 
     const closeDetails = () => {
         setSelectedOrder(null);
         setIsOpen(false);
     };
-
-    useEffect(() => {
-        handleHistory();
-    }, []);
 
     return (
         <>
@@ -78,7 +74,7 @@ function History() {
 
                     <div className={styles['filters']}>
                         <div className={styles['dateWrapper']}>
-                            <input type="date" onChange={handleFilterDate} className={`${styles['dateInput']} ${isOpen ? styles['dateInputVisible'] : ''}`} />
+                            <input type="date" className={`${styles['dateInput']} ${isOpen ? styles['dateInputVisible'] : ''}`} />
                         </div>
                     </div>
 
@@ -142,8 +138,7 @@ function History() {
                             <div className={styles['detailsOrder']}>
                                 <h2>Detalhes do Pedido</h2>
                                 <div>
-                                    <strong className={styles.subtitulo}>Data:</strong> 
-                                    <p>{formatDateAndTime(selectedOrder.datetime).date}</p>
+                                    <strong className={styles.subtitulo}>Data:</strong> {selectedOrder.date}
                                 </div>
                                 <hr />
                                 <div className="divIconPizzaTitulo">

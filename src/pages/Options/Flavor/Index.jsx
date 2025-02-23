@@ -1,46 +1,49 @@
-// pages/options/Flavor/Index.js
-
-import "./Index.css"
 import React, { useEffect, useState } from "react";
-import { getFlavorsPop } from "@/api/services/Flavors";
-
-import ActionButton from '@/components/ActionButton/ActionButton';
-import CardProduto from "@/components/CardProduto/CardProduto" 
-import ListItens from "@/components/ListItens/Index";
+import { MagnifyingGlass } from "@phosphor-icons/react";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
+import Item from "@/components/Item/Item";
 import Navbar from "@/components/Navbar/Index";
-import WrapBreadcrumbInput from "@/components/WrapBreadcrumbInput/Index";
-
-import AddModal from "@/modals/AddModal/AddModal";
-import ConfirmModal from "@/modals/ConfirmModal/ConfirmModal";
-import EditModal from "@/modals/EditModal/EditModal";
+import { getFlavorsPop } from "/src/api/services/Flavors";
 import AddNewFlavor from "@/modals/New_flavor/Add_new_flavor.jsx";
+import InputSearch from "@/components/InputSearch/InputSearch";
+import "./Index.css"
 
-import PizzaImage from "@/utils/assets/pizzas/pizza-1-sabor.svg";
-import { isOwner } from "@/utils/user/userRoles";
-import { toast } from "react-toastify";
-import { saveFlavor } from "../../../api/services/Flavors";
+export const isUserOwner = (roles) => roles.some(role => role.name == "OWNER");
 
-function flavor() {
+function flavor(isOwner) {
+    
+    const [valueSearch, setValueSearch] = useState("");
     const [flavors, setFlavors] = useState([]);
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [token] = useState(localStorage.getItem('token'));
     const [confirmModal, setConfirmModal] = useState(false);
     const [editModal, setEditModal] = useState(false);
     const [addModal, setAddModal] = useState(false);
     const [selectedProduto, setSelectedProduto] = useState(null);
 
+
     const handleFlavors = async () => {
-        const data = await getFlavorsPop();
-        setFlavors(data);        
+        try {
+            const data = await getFlavorsPop(token);
+            setFlavors(data);
+        } catch (error) {
+            // FAZER UM MODAL AQUI PARA FALAR SOBRE O ERRO
+            alert(error.message)
+            console.log(error);
+        }
     };
 
-    const openModal = () => {
-        setIsModalOpen(true);
-    }
-
-    const closeModal = () => {
-        setIsModalOpen(false);
-    }
-
+    const handleSearch = async (event) => {
+        const value = event.target.value;
+        setValueSearch(value);
+        try {
+            const data = await getFlavorsPop(token, value);
+            setFlavors(data);
+            console.log(data);
+        } catch (error) {
+            alert(error.message);
+            console.log(error);
+        }
+    };
 
     const handleAddClick = () => {
         setAddModal(true);
@@ -48,7 +51,8 @@ function flavor() {
 
     const handleAddFlavor = async (newFlavor) => {
         try {
-            await saveFlavor(newFlavor);
+            console.log(newFlavor);
+            await saveFlavor(token, newFlavor);
 
             handleFlavors();
             toast.success("Sabor adicionado com sucesso!");
@@ -58,7 +62,7 @@ function flavor() {
             console.log(error);
         }
     };
-
+    
     const handleEditClick = (flavor) => {
         setSelectedProduto(flavor);
         setEditModal(true);
@@ -66,8 +70,13 @@ function flavor() {
 
     const handleUpdateFlavor = async (idFlavor, flavor) => {
         try {
-            await updateFlavor(idFlavor, flavor);
+            console.log(flavor);
+            console.log(flavor.ingredients);   
+            await updateFlavor(token, idFlavor, flavor);
             handleFlavors();
+
+            console.log(flavor);
+            console.log(flavor.ingredients);
 
             toast.success(`Sabor ${flavor.name} atualizado com sucesso!`);
             setEditModal(false);
@@ -95,7 +104,7 @@ function flavor() {
             console.error(error);
         }
     };
-
+    
     useEffect(() => {
         handleFlavors();
     }, []);
@@ -103,37 +112,46 @@ function flavor() {
     return (
         <>
             <Navbar activeButton={"Opções"} subActiveButton={"Sabores"} />
-            <main className="container-flavor">
+            <main className={styles["container-flavor"]}>
                 <h1>Opções</h1>
 
-                <WrapBreadcrumbInput 
-                    activeBreadcrumb="sabores" 
-                    inputText="Pesquise pelo nome do sabor"
-                    getDataByInput={getFlavorsPop}
-                    setData={setFlavors}
-                />
-
-                {isOwner() &&
-                    <div className="btn-add-wrapper">
-                    <ActionButton 
-                        label="Adicionar sabor" 
-                        onClick={() => handleAddClick()}
-                        action="add" 
-                        width="200px" 
-                        height="30px" 
-                    />
+                <div className={styles["breadcrumb-search"]}>
+                    <Breadcrumb activeButton={"sabores"} />
+                    <div className={styles["search"]}>
+                        <InputSearch valueSearch={valueSearch} handleSearch={handleSearch} text="Pesquise pelo nome do sabor"/>
+                    </div>
                 </div>
+
+                {isOwner &&
+                    <div className={styles["btn-add-wrapper"]}>
+                        <ActionButton 
+                            label="Adicionar sabor" 
+                            onClick={() => handleAddClick()}
+                            action="add" 
+                            width="200px" 
+                            height="30px" 
+                        />
+                    </div>
                 }
 
-                <ListItens 
-                    itens={flavors}
-                    image={PizzaImage}
-                    functions={{
-                        handleEditClick,
-                        handleDeleteClick
-                    }}
+                <section className={styles["flavor-list"]}>
+                    {
+                            flavors.length > 0 && 
+                            flavors.map(flavor => {
 
-                />
+                            return <CardProduto 
+                                key={flavor.id}
+                                imagem={pizzaImage}
+                                titulo={flavor.name}
+                                subtitulo={flavor.id}
+                                preco={flavor.price}
+                                descricao={flavor.description}
+                                onEdit={() => handleEditClick(flavor)}
+                                onDelete={() => handleDeleteClick(flavor)}
+                            />
+                        })
+                    }
+                </section>
 
                 <ConfirmModal
                     isOpen={confirmModal}
@@ -144,7 +162,7 @@ function flavor() {
                 >
                     {selectedProduto && (
                     <CardProduto
-                        imagem={PizzaImage}
+                        imagem={pizzaImage}
                         titulo={selectedProduto.name}
                         subtitulo={selectedProduto.id}
                         descricao={selectedProduto.description}
@@ -163,7 +181,7 @@ function flavor() {
                 >
                     {selectedProduto && (
                     <CardProduto
-                        imagem={PizzaImage}
+                        imagem={pizzaImage}
                         titulo={selectedProduto.name}
                         subtitulo={selectedProduto.id}
                         descricao={selectedProduto.description}
@@ -180,19 +198,15 @@ function flavor() {
                     type={"flavor"}
                 >
                     <CardProduto 
-                        imagem={PizzaImage}
+                        imagem={pizzaImage}
                         titulo="Nome do Sabor"
                         subtitulo="0"
                         descricao="exemplo"
-                        preco={0}
+                        preco="0,00"
                     />
 
                 </AddModal>
             </main>
-
-            {isModalOpen &&
-                <AddNewFlavor onClose={closeModal}/>
-            }
         </>
     );
 }

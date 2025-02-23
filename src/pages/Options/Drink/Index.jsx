@@ -1,46 +1,66 @@
 import React, { useEffect, useState } from "react";
+import { MagnifyingGlass } from "@phosphor-icons/react";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
+import Item from "@/components/Item/Item";
 import Navbar from "@/components/Navbar/Index";
-import "./Index.css"
+import "./Drink.css"
+import { getDrinks } from "@/api/services/Drinks";
+import Drink from "@/modals/Drink/Drink"
+import InputSearch from "@/components/InputSearch/InputSearch";
 import AddNewDrink from "@/modals/New_drink/AddNewDrink";
 import { toast } from "react-toastify";
-import ListItens from "../../../components/ListItens/Index";
-import WrapBreadcrumbInput from "../../../components/WrapBreadcrumbInput/Index";
-import { useAuth } from "../../../hooks/useAuth";
-import { isOwner } from "../../../utils/user/userRoles";
+import CardProduto from "../../../Components/CardProduto/CardProduto";
+import drinkImage from '../../../utils/assets/drinkImage.svg';
+import ConfirmModal from "../../../Components/Modal/ConfirmModal/ConfirmModal";
+import EditModal from "../../../Components/Modal/EditModal/EditModal";
+import AddModal from "../../../Components/Modal/AddModal/AddModal";
+import ActionButton from "../../../Components/ActionButton/ActionButton";
+import { getDrinks, saveDrink, updateDrink, deleteDrink } from "../../../api/services/Drinks";
 
+export const isUserOwner = (roles) => roles.some(role => role.name == "OWNER");
 
-import CardProduto from "@/components/CardProduto/CardProduto";
-import DrinkImage from '@/utils/assets/drinkImage.svg';
-import ConfirmModal from "@/modals/ConfirmModal/ConfirmModal";
-import EditModal from "@/modals/EditModal/EditModal";
-import AddModal from "@/modals/AddModal/AddModal";
-import ActionButton from "@/components/ActionButton/ActionButton";
-import { getDrinks, getDrinksPop, saveDrink, updateDrink, deleteDrink } from "@/api/services/Drinks";
-
-
-function drink() {
-    const { user } = useAuth();
+function flavor(isOwner) {
+    const [valueSearch, setValueSearch] = useState("");
     const [drink, setDrink] = useState([]);
-    const [isModalOpen, setIsModalOpen] = useState(false);
-
+    const [token] = useState(localStorage.getItem('token'));
     const [confirmModal, setConfirmModal] = useState(false);
     const [editModal, setEditModal] = useState(false);
     const [addModal, setAddModal] = useState(false);
     const [selectedProduto, setSelectedProduto] = useState(null);
+    const [user] = useState(JSON.parse(localStorage.getItem('user')))
 
-    const handleDrink = async () => {
-        const data = await getDrinks();
-        setDrink(data);
+    const handleDrink = async (event) => {
+        try {
+            const params = {
+                name: "",
+                milimeters: ""
+            };
+            
+            const data = await getDrinks(token, params);
+            setDrink(data);
+        } catch (error) {
+            toast.error(error.message)
+            console.error(error);
+        }
     };
 
-    const openModal = () => {
-        setIsModalOpen(true);
-    }
+    const handleSearch = async (event) => {
+        const value = event.target.value;
+        setValueSearch(value);
+        try {
+            const params = {
+                name: value,
+                milimeters: ""
+            };
 
-    const closeModal = () => {
-        setIsModalOpen(false);
+            const data = await getDrinks(token, params);
+            setDrink(data);
+            console.log(data);
+        } catch (error) {
+            alert(error.message);
+            console.log(error);
+        }
     }
-    
 
     const handleAddClick = () => {
         setAddModal(true);
@@ -49,7 +69,7 @@ function drink() {
     const handleAddDrink = async (newDrink) => {
         try {
             console.log(newDrink);
-            await saveDrink(newDrink);
+            await saveDrink(token, newDrink);
 
             handleDrink();
             toast.success("Bebida adicionada com sucesso!");
@@ -67,11 +87,10 @@ function drink() {
 
     const handleUpdateDrink = async (idDrink, drink) => {
         try {
-            await updateDrink(idDrink, drink);
+            console.log('handleUpdateDrink '+ idDrink, drink);
+            await updateDrink(token, idDrink, drink);
             handleDrink();
-            
             toast.success(`Bebida ${drink.name} editada com sucesso!`);
-            
             setEditModal(false);
             setSelectedProduto(null);
         } catch (error) {
@@ -87,11 +106,9 @@ function drink() {
 
     const handleDeleteDrink = async (idDrink) => {
         try {
-            await deleteDrink(idDrink);
+            await deleteDrink(token, idDrink);
             handleDrink();
-            
             toast.success(`Bebida ${selectedProduto.name} excluída com sucesso!`);
-            
             setConfirmModal(false);
             setSelectedProduto(null);
         } catch (error) {
@@ -106,7 +123,6 @@ function drink() {
         setSelectedProduto(null);
     };
     
-
     useEffect(() => {
         handleDrink();
     }, []);
@@ -114,16 +130,18 @@ function drink() {
     return (
         <>
             <Navbar activeButton={"Opções"} subActiveButton={"Bebidas"} />
-            <main className="container-drink">
+            <main className={styles["container-flavor"]}>
                 <h1>Opções</h1>
-                <WrapBreadcrumbInput 
-                    activeBreadcrumb="bebidas" 
-                    inputText="Pesquise pelo nome do bebida"
-                    getDataByInput={getDrinks}
-                    setData={setDrink}
-                />
-                {isOwner(user) &&
-                    <div className="btn-add-wrapper">
+                <div className={styles["breadcrumb-search"]}>
+                    <Breadcrumb activeButton={"bebidas"} />
+
+                    <div className={styles["search"]}>
+                        <InputSearch valueSearch={valueSearch} handleSearch={handleSearch} text="Pesquise pelo nome da bebida"/>
+                    </div>
+                </div>
+
+                {isOwner &&
+                    <div className={styles["btn-add-wrapper"]}>
                         <ActionButton 
                             label="Adicionar bebida" 
                             onClick={() => handleAddClick()}
@@ -134,15 +152,24 @@ function drink() {
                     </div>
                 }
                 
-                <ListItens 
-                    itens={drink}
-                    image={DrinkImage}
-                    functions={{
-                        handleEditClick,
-                        handleDeleteClick
-                    }}
+                <section className={styles["flavor-list"]}>
+                    {
+                            drink.length > 0 && 
+                            drink.map(drink => {
 
-                />
+                            return <CardProduto 
+                                key={drink.id}
+                                imagem={drinkImage}
+                                titulo={drink.name + " " + drink.milimeters + "ml" }
+                                subtitulo={drink.id}
+                                preco={drink.price}
+                                descricao={drink.description}
+                                onEdit={() => handleEditClick(drink)}
+                                onDelete={() => handleDeleteClick(drink)}
+                            />
+                        })
+                    }
+                </section>
 
                 <ConfirmModal
                     isOpen={confirmModal}
@@ -153,7 +180,7 @@ function drink() {
                 >
                     {selectedProduto && (
                     <CardProduto
-                        imagem={DrinkImage}
+                        imagem={drinkImage}
                         titulo={selectedProduto.name}
                         subtitulo={selectedProduto.id}
                         descricao={selectedProduto.description}
@@ -172,7 +199,7 @@ function drink() {
                 >
                     {selectedProduto && (
                     <CardProduto
-                        imagem={DrinkImage}
+                        imagem={drinkImage}
                         titulo={selectedProduto.name}
                         subtitulo={selectedProduto.id}
                         descricao={selectedProduto.description}
@@ -189,21 +216,18 @@ function drink() {
                     type={"drink"}
                 >
                     <CardProduto 
-                        imagem={DrinkImage}
+                        imagem={drinkImage}
                         titulo="Nome da Bebida"
                         subtitulo="0"
                         descricao="exemplo"
-                        preco={0}
+                        preco="0,00"
                     />
 
                 </AddModal>
             </main>
-
-            {isModalOpen &&
-                <AddNewDrink onClose={closeModal}/>
-            }
+        
         </>
     );
 }
 
-export default drink;
+export default flavor;

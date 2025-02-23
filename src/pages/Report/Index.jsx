@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import 'chart.js/auto';
 
-import Navbar from "../../components/Navbar/Index";
+import Navbar from "../../Components/Navbar/Index";
 import { useMediaQuery } from "react-responsive";
 
 import RenderKpis from "./RenderKpis";
@@ -12,7 +12,8 @@ import RenderBarChart from "./RenderBarChart";
 import styles from "./Report.module.css";
 
 function Report() {
-    const { infoKpi, infoDoughnutChart, infoBarChart } = useAttestations();
+    const [ token ] = useState(localStorage.getItem('token'));
+    const { infoKpi, infoDoughnutChart, infoBarChart } = useAttestations(token);
     
     const isDesktop = useMediaQuery({query: "(min-width: 1200px)"})
 

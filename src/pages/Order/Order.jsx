@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-import Navbar from "@/components/Navbar/Index";
-import ButtonPreviousPage from "@/components/Progress/ButtonPreviousPage/ButtonPreviousPage";
-import CardPizza from "@/components/OrderDetails/CardPizza/CardPizza";
-import CardDrink from "@/components/OrderDetails/CardDrink/CardDrink";
-import CardClient from "@/components/OrderDetails/CardClient/CardClient";
-import CardTotal from "@/components/OrderDetails/CardTotal/CardTotal";
-import ModalPagamento from "@/components/OrderDetails/ModalPagamento/ModalPagamento";
+import Navbar from "../../Components/Navbar/Index";
+import ButtonPreviousPage from "../../Components/Progress/ButtonPreviousPage/ButtonPreviousPage";
+import CardPizza from "../../Components/OrderDetails/CardPizza/CardPizza";
+import CardDrink from "../../Components/OrderDetails/CardDrink/CardDrink";
+import CardClient from "../../Components/OrderDetails/CardClient/CardClient";
+import CardTotal from "../../Components/OrderDetails/CardTotal/CardTotal";
+import ModalPagamento from "../../Components/OrderDetails/ModalPagamento/ModalPagamento";
 import MediaQuery from "react-responsive";
 import styles from "./Order.module.css";
 import { useNavigate, useLocation } from "react-router-dom";

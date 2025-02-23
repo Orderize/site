@@ -1,19 +1,37 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+<<<<<<< HEAD
+import Home from './Pages/Home/Home'
+import ModalDrink from './Components/Modal/Drink/Drink';
+import ModalFlavor from './Components/Modal/Flavor/Flavor';
+import Navbar from './Components/Navbar/Navbar'
+import Report from './Pages/Report/Report'
+import Login from './Pages/Login/Login'
+import Order from './Pages/Order/Order'
+import History from './Pages/History/History'
+import Client from './Pages/Client/Client'
+import Flavor from './Pages/Options/Flavor/Flavor'
+import Drink from './Pages/Options/Drink/Drink'
+import './utils/globals.css'
+import ModalPagamento from './Components/OrderDetails/ModalPagamento/ModalPagamento';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+=======
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+>>>>>>> 5b8c4f3 (arrumando configurações do site)
 
 // Seção das Paginas
 import Client from "@/pages/Client/Client";
 import Login from "@/pages/Login/Index";
 import History from "@/pages/History/History";
 import Home from "@/pages/Home/Index";
-import Drink from "@/pages/Options/Drink/Index";
+import Drink from "@/pages/Options/Drink/Drink";
 import Flavor from "@/pages/Options/Flavor/Index";
 import Promotion from "@/pages/Options/Promotion/Promotion";
 import Order from "@/pages/Order/Order";
-import Report from "@/pages/Report/Index";
+import Report from "@/pages/Report/Report";
 
 // Seção dos Modais
 import ModalDrink from "@/modals/Drink/Drink";
@@ -35,7 +53,6 @@ import "./utils/global.css";
 const App = () => {
     return (
         <Router>
-            <ToastContainer />
             <Routes>  
                 <Route
                     path='/'
@@ -62,6 +79,12 @@ const App = () => {
                     element={ <Order />}
                 ></Route>
 
+<<<<<<< HEAD
+        <Route
+          path='/relatorios'
+          element={ <Report /> }
+        ></Route>
+=======
                 <Route 
                     path='/modal/pagamento' 
                     element={ <ModalPagamento /> }
@@ -71,6 +94,7 @@ const App = () => {
                     path='/sabores'
                     element={ <Flavor /> }
                 ></Route>
+>>>>>>> 5b8c4f3 (arrumando configurações do site)
 
                 <Route
                     path='/bebidas'
@@ -87,6 +111,12 @@ const App = () => {
                     element={ <Promotion /> }
                 ></Route>
 
+<<<<<<< HEAD
+      </Routes>
+    </BrowserRouter>
+  </StrictMode>,
+)
+=======
                 <Route
                     path='/relatorios'
                     element={ <Report /> }
@@ -137,8 +167,11 @@ const App = () => {
                     element={ <SelectBeveragePromo/> } 
                 ></Route>
             </Routes>
+
+            <ToastContainer />
         </Router>
     );
 }
 
 export default App;
+>>>>>>> 5b8c4f3 (arrumando configurações do site)

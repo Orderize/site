@@ -1,9 +1,7 @@
-import React,{ useContext, useEffect, useState } from "react";
+import React,{ useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { authApi } from "@/api/Auth";
-import { useAuth } from "../../hooks/useAuth";
-import { isOwner } from "../../utils/user/userRoles";
-import { userInfo } from "../../api/Auth";
+import { useAuth } from "@/context/AuthContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import styles from "./Login.module.css";
@@ -11,7 +9,7 @@ import styles from "./Login.module.css";
 
 const Login = () => {
 
-    const { logout, login, user } = useAuth();
+    const { login } = useAuth();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isRemembered, setIsRemembered] = useState(false);
@@ -20,7 +18,10 @@ const Login = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         
-        const credentials = { email, password };
+        const credentials = {
+            email,
+            password
+        };
 
         try {
             const data = await authApi(credentials);
@@ -28,45 +29,63 @@ const Login = () => {
             if (data) {
                 toast.success("Login realizado com sucesso!");
                 
-                data.user = await userInfo(data.token);
-                
-                console.log(data);
-                
-                login(data.user, data.token);
-                
-                if (isRemembered) localStorage.setItem('emailAuth', email);
+                localStorage.setItem('token', data.token);
 
-                redirectUser(data.user);
+                if (isRemembered) localStorage.setItem('emailAuth', email);
+                
+                getUser(data.token);
+                //login(data.user, data.token);
+                
+                const timeoutToNav = setTimeout(() => {
+                    const user = JSON.parse(localStorage.getItem('user'));
+
+                    if (user && user.roles.some(role => role.name == "OWNER")) {
+                        goTo("/relatorios");
+                    } else {
+                        goTo("/pedidos");
+                    }
+                }, 3000);
+                return () => clearTimeout(timeoutToNav);
             } else toast.warning("Erro ao realizar o login, verifique os campos.");
 
         } catch (error) {
+            // FAZER UM MODAL AQUI PARA FALAR SOBRE O ERRO
+
             toast.warning(error.message);
             console.log(error);
         }
     };
 
-    const redirectUser = (user) => {            
-        setTimeout(() => {
-            if (isOwner(user)) {
-                navigate("/relatorios");
-            } else {
-                navigate("/pedidos");
-            }
-        }, 3000);
-    };
+    // formula temporaria para armazenar informações do usuario
+    const getUser = async (token) => {
+        try {
+            const data = await userInfo(token);
 
-    const verifyIsRemembered = () => {
+            if (data) {
+                localStorage.setItem('user', JSON.stringify(data));
+                return data;
+            }
+        } catch (error) {
+            toast.error(error.message);
+            console.log(error);
+            return null;
+        }
+    };
+    
+    const verifyAuth = () => {
         const emailAuth = localStorage.getItem('emailAuth');
         if (emailAuth) {
             toast.success('Redirecionando para o sistema!');
-            redirectUser(user);
+            const timeoutToNav = setTimeout(() => {
+                goTo("/pedidos");
+            }, 3000);
+            return () => clearTimeout(timeoutToNav);
         }
     };
     
     useEffect(() => {
         document.title = "Orderize | Login";
-        logout()
-        verifyIsRemembered();
+        verifyAuth();
     }, []);
 
     return (
