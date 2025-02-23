@@ -2,7 +2,7 @@ name: Building and Testing
 
 on:
   workflow_run:
-    workflows: ["Build and Publish Docker Image"]
+    workflows: ["Create Pull Request to Development"]
     types:
       - completed    
 
