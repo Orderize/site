@@ -43,4 +43,7 @@ jobs:
               echo "No existing PR found, creating a new one."
               gh pr create --base development --head ${{ github.ref_name }} --title "Pull Request from ${{ github.ref_name }} to development | ${{ github.event.head_commit.committer.name }}" --body "${{ env.PR_BODY }}"
             fi
+      
+      - name: Debug workflow event
+        run: echo '${{ toJson(github.event) }}'
         
