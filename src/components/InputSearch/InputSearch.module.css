@@ -1,14 +1,19 @@
+.input-search-container {
+    background-color: var(--cor-fundo-sec);
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    padding: 5px;
+}
+
 .input-search {
-    /* width: 20%; */
     width: 100%;
     padding: 10px;
     display: flex;
     align-items: center;
-
     border-radius: 10px;
     background-color: var(--cor-fundo-sec);
     border: none;
-
     color: rgba(0, 0, 0, 0.70);
     text-align: center;
     font-family: Poppins;
@@ -17,7 +22,7 @@
 }
 
 input:focus {
-    border: 1px solid #ccc;
+    border: 1px solid #fff;
     outline: none;
 }
 

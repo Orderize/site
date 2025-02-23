@@ -1,21 +1,31 @@
-// pages/options/Flavor/Index.js
-
-import "./Index.css"
 import React, { useEffect, useState } from "react";
-import { getFlavorsPop } from "@/api/services/Flavors";
-import ListItens from "@/components/ListItens/Index";
-import Navbar from "@/components/Navbar/Index";
-import WrapBreadcrumbInput from "@/components/WrapBreadcrumbInput/Index";
-import AddNewFlavor from "@/modals/New_flavor/Add_new_flavor.jsx";
-import { isOwner } from "@/utils/user/userRoles";
+import { MagnifyingGlass } from "@phosphor-icons/react";
+import Breadcrumb from "../../../Components/Breadcrumb/Breadcrumb";
+import Item from "../../../Components/Item/Item";
+import Navbar from "../../../Components/Navbar/Navbar";
+import styles from "./Flavor.module.css";
+import { getFlavorsPop, saveFlavor, updateFlavor, deleteFlavor } from "/src/api/services/Flavors";
+import InputSearch from "../../../Components/InputSearch/InputSearch";
+import pizzaImage from '../../../utils/assets/pizzas/pizza-1-sabor.svg';
+import CardProduto from "../../../Components/CardProduto/CardProduto";
+import ActionButton from "../../../Components/ActionButton/ActionButton";
+import ConfirmModal from "../../../Components/Modal/ConfirmModal/ConfirmModal";
+import EditModal from "../../../Components/Modal/EditModal/EditModal";
+import AddModal from "../../../Components/Modal/AddModal/AddModal";
+import { toast } from "react-toastify";
 
-function flavor() {
+export const isUserOwner = (roles) => roles.some(role => role.name == "OWNER");
+
+
+function flavor(isOwner) {
+    const [valueSearch, setValueSearch] = useState("");
     const [flavors, setFlavors] = useState([]);
     const [token] = useState(localStorage.getItem('token'));
     const [confirmModal, setConfirmModal] = useState(false);
     const [editModal, setEditModal] = useState(false);
     const [addModal, setAddModal] = useState(false);
     const [selectedProduto, setSelectedProduto] = useState(null);
+
 
     const handleFlavors = async () => {
         try {
@@ -101,14 +111,6 @@ function flavor() {
         }
     };
     
-    const openModal = () => {
-        setIsModalOpen(true);
-    }
-
-    const closeModal = () => {
-        setIsModalOpen(false);
-    }
-
     useEffect(() => {
         handleFlavors();
     }, []);

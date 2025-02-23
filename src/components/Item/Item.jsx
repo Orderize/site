@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-import "./Item.css";
+import drink from '../../utils/assets/drink.svg';
+import pizza from '../../utils/assets/pizzas/pizza-1-sabor.svg';
+import styles from "./Item.module.css";
 
 function item({ index, type, cod, description, name, price }) {
     const [srcImage, setSrcImage] = useState();
@@ -8,32 +10,28 @@ function item({ index, type, cod, description, name, price }) {
     useEffect(() => {
         switch (type) {
             case "flavor":
-                setSrcImage("https://www.cicis.com/content/images/cicis/Jalapeno%20pizza.png");
+                setSrcImage(pizza);
                 setAltImage("Imagem de Pizza");
                 break;
             case "drink":
-                setSrcImage("https://www.cicis.com/content/images/cicis/Jalapeno%20pizza.png");
+                setSrcImage(drink);
                 setAltImage("Imagem de Bebida");
-                break;
-            case "gift":
-                setSrcImage("https://www.cicis.com/content/images/cicis/Jalapeno%20pizza.png");
-                setAltImage("Imagem de Brinde");
                 break;
             default:
                 break;
         }
-    }, [srcImage])
+    }, [type]);
 
     return (
         <>
-            <div className="component-item" tabIndex={index}>
+            <div className={styles["component-item"]} tabIndex={index}>
+                <img src={srcImage} alt={altImage} />
                 <p>cod : {cod}</p>
-                <h3 className="name center">{name}</h3>
-                {/* <img src={srcImage} alt={altImage} /> */}
+                <h3 className={styles["name center"]}>{name}</h3>
                 <h3>R$ {price.toFixed(2)}</h3>
                 {
                     description ?
-                    <p className="description">{description}</p>
+                    <p className={styles["description"]}>{description}</p>
                     : null
                 }
 

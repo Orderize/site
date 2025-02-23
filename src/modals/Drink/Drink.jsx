@@ -8,7 +8,6 @@ import { XSquare } from '@phosphor-icons/react';
 import { ToastContainer, toast } from 'react-toastify';
 
 const DrinkModal = ({  close, setListDrinks }) => {
-  const [token] = useState(localStorage.getItem('token'));
   const [optionsDrink, setOptionsDrink] = useState([]);
   const [drinkList, setDrinkList] = useState([]);
   const [drinks, setDrinks] = useState([]);
@@ -16,16 +15,11 @@ const DrinkModal = ({  close, setListDrinks }) => {
 
   const handleDrinks = async (name) => {
     try {
-      const params = {
-        name: "",
-        milimeters: ""
-        };
-
-        const data = await getDrinks(token, params);
-        setDrinkList(data);
+      const data = await getDrinks();
+      setDrinkList(data);
     } catch (error) {
-        alert(error.message)
-        console.log(error);
+      alert(error.message)
+      console.log(error);
     }
   };
 
@@ -48,7 +42,7 @@ const DrinkModal = ({  close, setListDrinks }) => {
         milimeters: ""
         };
 
-        const data = await getDrinks(token, params);
+        const data = await getDrinks(params);
         setOptionsDrink(data);
     } catch (error) {
         alert(error.message)
@@ -111,7 +105,7 @@ const DrinkModal = ({  close, setListDrinks }) => {
                     <div key={drink.id} className={styles["drink-information-selected"]}>
                       <div>
                         <p>{drink.name}</p>
-                        <p>R${drink.price}</p>
+                        <p>R${drink.price.toFixed(2)}</p>
                       </div>
                       
                       <div onClick={() => removeDrink(drink)}>

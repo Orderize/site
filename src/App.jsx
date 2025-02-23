@@ -1,9 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer } from "react-toastify";
-
 // Seção das Paginas
 import Client from "@/pages/Client/Client";
 import Login from "@/pages/Login/Index";
@@ -30,7 +27,8 @@ import SelectPizzaType from "@/modals/Select_pizza_type/Select_pizza_type";
 import Navbar from "@/components/Navbar/Index";
 import ModalPagamento from "@/components/OrderDetails/ModalPagamento/ModalPagamento";
 
-import "./utils/global.css";
+import "@/utils/global.css";
+import { ToastContainer } from "react-toastify";
 
 const App = () => {
     return (
@@ -61,6 +59,11 @@ const App = () => {
                     element={ <Order />}
                 ></Route>
 
+                <Route
+                    path='/relatorios'
+                    element={ <Report /> }
+                ></Route>
+        
                 <Route 
                     path='/modal/pagamento' 
                     element={ <ModalPagamento /> }
@@ -69,6 +72,11 @@ const App = () => {
                 <Route
                     path='/sabores'
                     element={ <Flavor /> }
+                ></Route>
+
+                <Route
+                    path='/relatorios'
+                    element={ <Report /> }
                 ></Route>
 
                 <Route
@@ -87,25 +95,20 @@ const App = () => {
                 ></Route>
 
                 <Route
-                    path='/relatorios'
-                    element={ <Report /> }
-                ></Route>
-
-                <Route
                     path='/modal/sabores'
                     element={ <ModalFlavor /> }
                 ></Route>
-
+                
                 <Route
                     path='/modal/bebidas'
                     element={ <ModalDrink /> }
                 ></Route>
-
+                
                 <Route
                     path='/modal/revisoes'
                     element={ <ModalReview /> }
                 ></Route>
-
+      
                 <Route 
                     path='/modal/newflavor'
                     element={ <AddNewFlavor /> } 

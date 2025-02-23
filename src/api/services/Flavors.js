@@ -15,3 +15,37 @@ export const getFlavorsPop = async (value = "") => {
         toast.error(message);
     }
 };
+
+export const saveFlavor = async (flavor) => {
+    try {
+        const response = await api.post('/flavors', flavor);
+        return response.data;
+    }
+    catch (error) {
+        console.error('[saveFlavor] error: ', error);
+        throw new Error('Erro ao fazer requisição. Aguarde um momento e recarregue a página.');
+    }
+};
+
+export const updateFlavor = async (idFlavor, flavor) => {
+    try {
+        const response = await api.put(`/flavors/${idFlavor}`, flavor);
+        console.log('updateFlavor response ' + response)
+        return response.data;
+    }
+    catch (error) {
+        console.error('[updateFlavor] error: ', error);
+        throw new Error('Erro ao fazer requisição. Aguarde um momento e recarregue a página.');
+    }
+};
+
+export const deleteFlavor = async (idFlavor) => {
+    try {
+        const response = await api.delete(`/flavors/${idFlavor}`);
+        return response.data;
+    }
+    catch (error) {
+        console.error('[deleteFlavor] error: ', error);
+        throw new Error('Erro ao fazer requisição. Aguarde um momento e recarregue a página.');
+    }
+};

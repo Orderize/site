@@ -69,7 +69,9 @@ const PizzaComponent = ({ close, setListPizzas, selectedPizza }) => {
     }
 
     try {
-      const data = await getFlavorsPop(token, value);
+      const data = await getFlavorsPop(value);
+      console.log(data);
+      
       setOptionsFlavor(data);
     } catch (error) {
       toast.error(error.message);
@@ -185,8 +187,7 @@ const PizzaComponent = ({ close, setListPizzas, selectedPizza }) => {
   };
 
   const removeFlavor = (flavorToRemove) => {
-    setPizzas(prev => prev.filter((flavor) => flavor.id !== flavorToRemove.id));
-    toast.success(`Sabor ${flavorToRemove.name} removido com sucesso.`);
+    setPizzas(prev => prev.flavors.filter((flavor) => flavor.id !== flavorToRemove.id));
   };
 
   const toggleIngredients = (flavor) => {
