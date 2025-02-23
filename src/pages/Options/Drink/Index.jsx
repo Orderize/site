@@ -11,9 +11,11 @@ import ListItens from "../../../components/ListItens/Index";
 import EditModal from "@/modals/EditModal/EditModal";
 import AddModal from "@/modals/AddModal/AddModal";
 import ActionButton from "@/components/ActionButton/ActionButton";
+import { isOwner } from "@/utils/user/userRoles";
+
 import { getDrinks, getDrinksPop, saveDrink, updateDrink, deleteDrink } from "../../../api/services/Drinks";
 
-function flavor(isOwner) {
+function Drink() {
     const [valueSearch, setValueSearch] = useState("");
     const [drink, setDrink] = useState([]);
     const [token] = useState(localStorage.getItem('token'));
@@ -123,7 +125,7 @@ function flavor(isOwner) {
                     </div>
                 </div>
 
-                {isOwner &&
+                {isOwner() &&
                     <div className="btn-add-wrapper">
                         <ActionButton 
                             label="Adicionar bebida" 
@@ -193,7 +195,7 @@ function flavor(isOwner) {
                         titulo="Nome da Bebida"
                         subtitulo="0"
                         descricao="exemplo"
-                        preco="0,00"
+                        preco={0}
                     />
 
                 </AddModal>
@@ -203,4 +205,4 @@ function flavor(isOwner) {
     );
 }
 
-export default flavor;
+export default Drink;

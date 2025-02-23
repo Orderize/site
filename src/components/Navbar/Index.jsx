@@ -51,15 +51,23 @@ function navbar({ activeButton, subActiveButton }) {
         }
     }
 
+    const hiddenFunction = (event) => {
+    }
+
     useEffect(() => {
         const handleKeyDown = (event) => {
             handleNavIndex(event);
         };
-
         document.addEventListener('keydown', handleKeyDown);
+
+        const handleHiddenFunction = (event) => {
+            hiddenFunction(event);
+        };
+        document.addEventListener('mouseup', handleHiddenFunction);
 
         return () => {
             document.removeEventListener('keydown', handleKeyDown);
+            document.removeEventListener('mouseup', handleHiddenFunction);
         };
     }, []);
 

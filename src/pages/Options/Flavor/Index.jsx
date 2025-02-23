@@ -119,7 +119,7 @@ function flavor() {
                     </div>
                 </div>
 
-                {isOwner &&
+                {isOwner() &&
                     <div className="btn-add-wrapper">
                         <ActionButton 
                             label="Adicionar sabor" 

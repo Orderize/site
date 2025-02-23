@@ -6,6 +6,6 @@ export const hasRole = (user, roleName) => {
 
 export const isOwner = () => {
     const user = JSON.parse(localStorage.getItem("user"));
-    
+
     return hasRole(user, "OWNER");
 };
