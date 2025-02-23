@@ -1,23 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { MagnifyingGlass } from "@phosphor-icons/react";
-import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
-import Item from "@/components/Item/Item";
+import Breadcrumb from "@/components/Breadcrumb/Index";
 import Navbar from "@/components/Navbar/Index";
 import "./Index.css"
-import { getDrinksPop, getDrinks } from "@/api/services/Drinks";
-import Drink from "@/modals/Drink/Drink"
 import InputSearch from "@/components/InputSearch/InputSearch";
-import AddNewDrink from "@/modals/New_drink/AddNewDrink";
 import { toast } from "react-toastify";
-import CardProduto from "../../../Components/CardProduto/CardProduto";
+import CardProduto from "@/components/CardProduto/CardProduto";
 import drinkImage from '../../../utils/assets/drinkImage.svg';
-import ConfirmModal from "../../../Components/Modal/ConfirmModal/ConfirmModal";
-import EditModal from "../../../Components/Modal/EditModal/EditModal";
-import AddModal from "../../../Components/Modal/AddModal/AddModal";
-import ActionButton from "../../../Components/ActionButton/ActionButton";
-import { getDrinks, saveDrink, updateDrink, deleteDrink } from "../../../api/services/Drinks";
-
-export const isUserOwner = (roles) => roles.some(role => role.name == "OWNER");
+import ConfirmModal from "@/modals/ConfirmModal/ConfirmModal";
+import ListItens from "../../../components/ListItens/Index";
+import EditModal from "@/modals/EditModal/EditModal";
+import AddModal from "@/modals/AddModal/AddModal";
+import ActionButton from "@/components/ActionButton/ActionButton";
+import { getDrinks, getDrinksPop, saveDrink, updateDrink, deleteDrink } from "../../../api/services/Drinks";
 
 function flavor(isOwner) {
     const [valueSearch, setValueSearch] = useState("");
@@ -27,7 +21,6 @@ function flavor(isOwner) {
     const [editModal, setEditModal] = useState(false);
     const [addModal, setAddModal] = useState(false);
     const [selectedProduto, setSelectedProduto] = useState(null);
-    const [user] = useState(JSON.parse(localStorage.getItem('user')))
 
     const handleDrink = async () => {
         const data = await getDrinksPop();
@@ -120,18 +113,18 @@ function flavor(isOwner) {
     return (
         <>
             <Navbar activeButton={"Opções"} subActiveButton={"Bebidas"} />
-            <main className={styles["container-flavor"]}>
+            <main className="container-flavor">
                 <h1>Opções</h1>
-                <div className={styles["breadcrumb-search"]}>
+                <div className="breadcrumb-search">
                     <Breadcrumb activeButton={"bebidas"} />
 
-                    <div className={styles["search"]}>
+                    <div className="search">
                         <InputSearch valueSearch={valueSearch} handleSearch={handleSearch} text="Pesquise pelo nome da bebida"/>
                     </div>
                 </div>
 
                 {isOwner &&
-                    <div className={styles["btn-add-wrapper"]}>
+                    <div className="btn-add-wrapper">
                         <ActionButton 
                             label="Adicionar bebida" 
                             onClick={() => handleAddClick()}
@@ -142,24 +135,14 @@ function flavor(isOwner) {
                     </div>
                 }
                 
-                <section className={styles["flavor-list"]}>
-                    {
-                            drink.length > 0 && 
-                            drink.map(drink => {
-
-                            return <CardProduto 
-                                key={drink.id}
-                                imagem={drinkImage}
-                                titulo={drink.name + " " + drink.milimeters + "ml" }
-                                subtitulo={drink.id}
-                                preco={drink.price}
-                                descricao={drink.description}
-                                onEdit={() => handleEditClick(drink)}
-                                onDelete={() => handleDeleteClick(drink)}
-                            />
-                        })
-                    }
-                </section>
+                <ListItens 
+                    itens={drink}
+                    image={drinkImage}
+                    functions={{
+                        handleEditClick,
+                        handleDeleteClick
+                    }}
+                />
 
                 <ConfirmModal
                     isOpen={confirmModal}

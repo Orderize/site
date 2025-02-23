@@ -2,24 +2,31 @@
 
 import "./Index.css"
 import React, { useEffect, useState } from "react";
-import { getFlavorsPop } from "@/api/services/Flavors";
+import { getFlavorsPop, saveFlavor } from "@/api/services/Flavors";
+import Breadcrumb from "@/components/Breadcrumb/Index";
+import InputSearch from "@/components/InputSearch/InputSearch";
+import ActionButton from "@/components/ActionButton/ActionButton";
+import ConfirmModal from "@/modals/ConfirmModal/ConfirmModal";
+import EditModal from "@/modals/EditModal/EditModal";
+import AddModal from "@/modals/AddModal/AddModal";
+import CardProduto from "@/components/CardProduto/CardProduto";
+
+import pizzaImage from "@/utils/assets/pizzas/pizza-1-sabor.svg";
 import ListItens from "@/components/ListItens/Index";
 import Navbar from "@/components/Navbar/Index";
-import WrapBreadcrumbInput from "@/components/WrapBreadcrumbInput/Index";
-import AddNewFlavor from "@/modals/New_flavor/Add_new_flavor.jsx";
 import { isOwner } from "@/utils/user/userRoles";
 
 function flavor() {
     const [flavors, setFlavors] = useState([]);
-    const [token] = useState(localStorage.getItem('token'));
     const [confirmModal, setConfirmModal] = useState(false);
     const [editModal, setEditModal] = useState(false);
     const [addModal, setAddModal] = useState(false);
+    const [valueSearch, setValueSearch] = useState("");
     const [selectedProduto, setSelectedProduto] = useState(null);
 
     const handleFlavors = async () => {
         try {
-            const data = await getFlavorsPop(token);
+            const data = await getFlavorsPop();
             setFlavors(data);
         } catch (error) {
             // FAZER UM MODAL AQUI PARA FALAR SOBRE O ERRO
@@ -32,7 +39,7 @@ function flavor() {
         const value = event.target.value;
         setValueSearch(value);
         try {
-            const data = await getFlavorsPop(token, value);
+            const data = await getFlavorsPop(value);
             setFlavors(data);
             console.log(data);
         } catch (error) {
@@ -48,7 +55,7 @@ function flavor() {
     const handleAddFlavor = async (newFlavor) => {
         try {
             console.log(newFlavor);
-            await saveFlavor(token, newFlavor);
+            await saveFlavor(newFlavor);
 
             handleFlavors();
             toast.success("Sabor adicionado com sucesso!");
@@ -66,13 +73,7 @@ function flavor() {
 
     const handleUpdateFlavor = async (idFlavor, flavor) => {
         try {
-            console.log(flavor);
-            console.log(flavor.ingredients);   
-            await updateFlavor(token, idFlavor, flavor);
-            handleFlavors();
-
-            console.log(flavor);
-            console.log(flavor.ingredients);
+            await updateFlavor(idFlavor, flavor);
 
             toast.success(`Sabor ${flavor.name} atualizado com sucesso!`);
             setEditModal(false);
@@ -90,7 +91,7 @@ function flavor() {
 
     const handleDeleteFlavor = async (idFlavor) => {
         try {
-            await deleteFlavor(token, idFlavor);
+            await deleteFlavor(idFlavor);
             handleFlavors();
             toast.success(`Sabor ${selectedProduto.name} excluído com sucesso!`);
             setConfirmModal(false);
@@ -100,14 +101,6 @@ function flavor() {
             console.error(error);
         }
     };
-    
-    const openModal = () => {
-        setIsModalOpen(true);
-    }
-
-    const closeModal = () => {
-        setIsModalOpen(false);
-    }
 
     useEffect(() => {
         handleFlavors();
@@ -116,18 +109,18 @@ function flavor() {
     return (
         <>
             <Navbar activeButton={"Opções"} subActiveButton={"Sabores"} />
-            <main className={styles["container-flavor"]}>
+            <main className="container-flavor">
                 <h1>Opções</h1>
 
-                <div className={styles["breadcrumb-search"]}>
+                <div className="breadcrumb-search">
                     <Breadcrumb activeButton={"sabores"} />
-                    <div className={styles["search"]}>
+                    <div className="search">
                         <InputSearch valueSearch={valueSearch} handleSearch={handleSearch} text="Pesquise pelo nome do sabor"/>
                     </div>
                 </div>
 
                 {isOwner &&
-                    <div className={styles["btn-add-wrapper"]}>
+                    <div className="btn-add-wrapper">
                         <ActionButton 
                             label="Adicionar sabor" 
                             onClick={() => handleAddClick()}
@@ -138,24 +131,14 @@ function flavor() {
                     </div>
                 }
 
-                <section className={styles["flavor-list"]}>
-                    {
-                            flavors.length > 0 && 
-                            flavors.map(flavor => {
-
-                            return <CardProduto 
-                                key={flavor.id}
-                                imagem={pizzaImage}
-                                titulo={flavor.name}
-                                subtitulo={flavor.id}
-                                preco={flavor.price}
-                                descricao={flavor.description}
-                                onEdit={() => handleEditClick(flavor)}
-                                onDelete={() => handleDeleteClick(flavor)}
-                            />
-                        })
-                    }
-                </section>
+                <ListItens 
+                    itens={flavors}
+                    image={pizzaImage}
+                    functions={{
+                        handleEditClick,
+                        handleDeleteClick
+                    }}
+                />
 
                 <ConfirmModal
                     isOpen={confirmModal}
@@ -206,7 +189,7 @@ function flavor() {
                         titulo="Nome do Sabor"
                         subtitulo="0"
                         descricao="exemplo"
-                        preco="0,00"
+                        preco={0}
                     />
 
                 </AddModal>
