@@ -3,17 +3,6 @@ version: '3'
 services:
   frontend:
     image: santthiago/orderize.frontend:latest
-    volumes:
-      - ./dist:/app/dist
-    restart: always
-
-
-  nginx:
-    image: santthiago/nginx:latest
     ports:
       - "80:80"
-    volumes:
-      - ./dist:/usr/share/nginx/html
-    depends_on:
-      - frontend
     restart: always
