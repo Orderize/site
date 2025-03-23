@@ -1,14 +1,22 @@
-export default {
-    build: {
-      rollupOptions: {
-        output: {
-          manualChunks: {
-            // Separe as bibliotecas de terceiros, como React, em chunks diferentes
-            reactVendor: ['react', 'react-dom'],
-            // Aqui você pode adicionar outros módulos que queira dividir
-          }
-        }
-      }
-    }
-  }
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import path from "path";
+
+export default defineConfig({
+  plugins: [react()],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, "src"),
+    },
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          reactVendor: ['react', 'react-dom'],
+        },
+      },
+    },
+  },
+})
   

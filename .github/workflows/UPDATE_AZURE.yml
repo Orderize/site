@@ -6,11 +6,6 @@ on:
     types:
       - completed
 
-  push:
-    branches:
-      - main
-      - development
-      - feature/infra
 jobs:
   deploy:
     runs-on: ubuntu-latest

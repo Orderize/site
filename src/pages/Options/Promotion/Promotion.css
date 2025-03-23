@@ -1,0 +1,170 @@
+@media screen and (min-width: 1200px) {
+    .container-promotion {
+        background-color: #F3EFE9;
+        color: #3A3C16;
+        font-weight: 700;
+        width: 82%;
+        min-height: 100vh;
+        position: absolute;
+        left: 18%;
+    }
+
+    .btn-add-promotion {
+        padding: 10px 15px;
+        background-color: var(--verde);
+        color: #FFFFFF;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: 600;
+        margin-right: 10px;
+    }
+    
+}
+.container-promotion {
+    background-color: #F3EFE9;
+    color: #3A3C16;
+    font-weight: 700;
+    width: 82%;
+}
+
+.container-promotion > h1 {
+    width: 90%;
+    margin: 3vh auto;
+}
+
+.container-promotion > .btn-add-wrapper {
+    width: 90%;
+    margin: auto;
+}
+
+.container-promotion > nav {
+    margin-left: 10vh;
+}
+
+.container-promotion > .breadcrumb-search > .comp-search {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.btn-add-promotion {
+    padding: 10px 15px;
+    width: 200px;
+    background-color: var(--verde);
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-right: 10px;
+}
+
+
+.btn-add-promotion:hover {
+    background-color: #5A5B3D;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+}
+
+.container-promotion > .breadcrumb-search > .comp-search > label > .icon-search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 40px;
+    height: 40px;
+
+    background-color: #3A3C16;
+    color: #FFFFFF;
+
+    border: none;
+    border-radius: 50%;
+
+    cursor: pointer;
+}
+
+.input-search {
+    margin-left: 10px;
+    padding: 15px 20px;
+    color: #3A3C16;
+    font-weight: 600;
+    font-size: 12px;
+    background-color: #F3EFE9;
+    border: 1px solid #3A3C16;
+    border-radius: 10px;
+    outline: none;
+}
+
+.promotion-list{
+    width: 100%;
+}
+
+.promotion-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: 75%;
+    margin: auto;
+    align-items: center;
+}
+
+.promotion-header, .promotion-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr 1fr;
+    width: 100%; 
+    gap: 10px;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+}
+
+.promotion-header {
+    background-color: transparent;
+    font-weight: bold;
+    width: 100%;
+}
+
+.promotion-item {
+    background-color: #EAE5DE;
+    border: 1px solid #CCC;
+    border-radius: 10px;
+    width: 100%; 
+}
+
+.status.active {
+    color: green;
+    font-weight: bold;
+}
+
+.status.inactive {
+    color: gray;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 1200px) {
+    .container-promotion {
+        width: 100vw;
+        height: 90%;
+    }
+
+    .container-promotion > nav {
+        margin-left: 5vh;
+    }
+
+    .comp-search {
+        margin: 25px 5vh;
+    }
+
+    .promotion-header, .promotion-item {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        padding: 10px;
+    }
+
+    .promotion-wrapper {
+        width: 100%; 
+    }
+}

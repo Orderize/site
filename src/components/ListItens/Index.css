@@ -1,0 +1,15 @@
+.conteiner-list {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 15px;
+    gap: 25px;
+
+    justify-content: flex-start;
+    align-content: flex-start;
+    
+
+    margin: auto;
+    max-width: 90%;
+    height: 75%;
+    overflow-y: scroll;
+}

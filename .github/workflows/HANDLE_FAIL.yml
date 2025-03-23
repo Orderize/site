@@ -1,0 +1,28 @@
+name: Handling fails in build
+
+on:
+  pull_request:
+    types: [opened, synchroniza, reopened]
+
+jobs:
+  request-review-if-fail:
+    runs-on: ubuntu-latest
+    needs: build-and-test
+    if: failure()
+    steps:
+      - name: Request Review
+        uses: hmarr/auto-approve-action@v3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Send Email Notification
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: "ORDERIZE - Site | Review Required PULL REQUEST"
+          body: "O Build do site falhou. Por favor faça uma revisão na Pull Request."
+          to: "${{ github.event.pull_request.user.email }}"
+          from: "CI/CD Bot"

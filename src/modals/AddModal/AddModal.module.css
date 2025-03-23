@@ -1,0 +1,143 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 1000; 
+  }
+  
+  .modal-container {
+    background-color: var(--cor-fundo);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 60%;
+    height: 65%;
+    display: flex;
+    /* flex-direction: column;   */
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+    height: 90%;
+    justify-content: center;
+    align-items: center;
+    /* gap: 10px; */
+  }
+
+  .form-content {
+    display: flex;
+    flex-direction: column;
+    /* height: 70%; */
+    /* gap: 5px; */
+    /* width: 100%; */
+    /* gap: 20px; */
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .form-closed {
+    display: none;
+  }
+
+  .flavor-ingredients {
+    display: none;
+  }
+
+  .flavor-ingredients-open {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    gap: 15px;
+  }
+
+  .flavor-ingredients-open::-webkit-scrollbar-track {
+    background: var(--cor-fundo-sec);
+    border-radius: 10px;
+  }
+
+  .flavor-ingredients-open::-webkit-scrollbar-thumb {
+      background-color: var(--cor-fundo-sec);
+      border: 1px solid var(--verde);
+      border-radius: 10px;
+  }
+
+  .flavor-igredients-list {
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+    gap: 5px;
+    max-height: 150px;
+  }
+
+  .ingredient {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--verde-escuro);
+  }
+
+  .text {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--verde-escuro);
+  }
+  
+  .modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .modal-actions-ingredients {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .cancel-button, .confirm-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .cancel-button {
+    background-color: #ccc;
+    color: #333;
+  }
+  
+  .confirm-button {
+    background-color: #e63946;
+    color: white;
+  }
+
+  .titulo {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--verde-escuro);
+  }
+
+  .texto {
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--verde-escuro);
+  }
+  

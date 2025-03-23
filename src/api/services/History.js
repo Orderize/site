@@ -1,14 +1,11 @@
 import api from "../Axios";
 
-export const getHistory = async (token, value = "") => {
+export const getHistory = async (datetime = "") => {
     try {
-        const response = await api.get('/orders', {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            },
+        const response = await api.get('/orders/last', {
             params: {
-                value,
-            },
+                datetime
+            }
         });
         return response.data;
     } catch (error) {

@@ -1,0 +1,44 @@
+.action-button {
+    all: unset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--cor-fundo);
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    gap: 10px;
+    display: flex;
+    justify-content: center;
+    font-weight: 500;
+    font-family: var(--fonte);
+    font-size: 14px;
+}
+
+.edit {
+    background-color: var(--verde);
+}
+
+.edit:hover {
+    background: #fff;
+    color: var(--verde-escuro);
+}
+
+.delete {
+     background-color: var(--verde); 
+}
+
+.delete:hover {
+    background: #fff;
+    color: var(--verde-escuro);
+}
+
+.add {
+    background-color: var(--verde-escuro);
+}
+
+.add:hover {
+    background: #fff;
+    color: var(--verde-escuro);
+}
+
