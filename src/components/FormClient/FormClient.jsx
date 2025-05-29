@@ -24,6 +24,8 @@ const FormClient = forwardRef(({ onNovoClientChange, isEditing }, ref) => {
     
     const [novoClient, setnovoClient] = useState(false);
     const [token] = useState(localStorage.getItem('token'));
+
+    const [originalClientData, setOriginalClientData] = useState(null);
     
     const [isTelefonePreenchido, setIsTelefonePreenchido] = useState(false); 
     useEffect(() => {
@@ -41,6 +43,16 @@ const FormClient = forwardRef(({ onNovoClientChange, isEditing }, ref) => {
             setRua(clientData.street || "");
             setBairro(clientData.neighborhood || "");
             setCidade(clientData.city || "");
+
+            setOriginalClientData({
+            phone: clientData.phone || "",
+            name: clientData.name || "",
+            cep: clientData.cep || "",
+            number: clientData.number || "",
+            street: clientData.street || "",
+            neighborhood: clientData.neighborhood || "",
+            city: clientData.city || ""
+        });
         }
     }, []);
 
@@ -48,8 +60,7 @@ const FormClient = forwardRef(({ onNovoClientChange, isEditing }, ref) => {
         try {
             const telefoneLimpo = telefone.replace(/\D/g, ""); 
     
-            const response = await getClients(token, telefoneLimpo); 
-            console.log("Resposta da API:", response);
+            const response = await getClients(token, telefoneLimpo);
             
             if (response && response.length > 0) {
                 const data = response[0];
@@ -85,7 +96,9 @@ const FormClient = forwardRef(({ onNovoClientChange, isEditing }, ref) => {
                 }));
                toast.success("Cliente encontrado! Clique em 'Próximo' para prosseguir com o pedido.");
             } else {
-                console.log("Resposta da API é vazia.");
+                setnovoClient(true);
+                onNovoClientChange(true);
+
                 if (!novoClient) { 
                     toast.info("Cliente não encontrado.", {
                         position: "top-right",
@@ -106,6 +119,7 @@ const FormClient = forwardRef(({ onNovoClientChange, isEditing }, ref) => {
     };
     
     const handleAddress = async (event) => {
+        console.log("handleAddress foi chamado");
         try {
             const cepLimpo = cep.replace(/\D/g, "");
             const addressData = await getAddressByCep({ cep: cepLimpo, number: numero });
@@ -137,7 +151,6 @@ const FormClient = forwardRef(({ onNovoClientChange, isEditing }, ref) => {
             const cepLimpo = cep.replace(/\D/g, "");
 
             const response = await saveAddress(token, { cep: cepLimpo, number: numero, street: rua, neighborhood: bairro, city: cidade, state: estado });
-            console.log("Resposta da API:", response);
             
             if (response?.id) {
                 localStorage.setItem("address", JSON.stringify(response));
@@ -157,7 +170,6 @@ const FormClient = forwardRef(({ onNovoClientChange, isEditing }, ref) => {
             const cepLimpo = cep.replace(/\D/g, "");
     
             const response = await saveClient(token, {phone: telefoneLimpo, name: nome, email: telefoneLimpo+"@gmail.com", address: idAddress, password: "senhapadrao", enterprise: user.enterprise.id, state:"SP" });
-            console.log("Resposta da API:", response);
 
             localStorage.setItem("client", JSON.stringify({
                 id: response.id,
@@ -173,7 +185,7 @@ const FormClient = forwardRef(({ onNovoClientChange, isEditing }, ref) => {
             }));
             
             if (response?.id) {
-                console.log("Cliente salvo com sucesso:", JSON.stringify(response));
+                // toast.success("Cliente salvo! Clique em 'Próximo' para prosseguir com o pedido.");
                 return(response.id);
             } else {
                 console.log("Erro ao salvar o cliente.");
@@ -187,57 +199,104 @@ const FormClient = forwardRef(({ onNovoClientChange, isEditing }, ref) => {
     const isValidForm = () => {
         return nome.trim() !== "" || telefone.trim() !== "" || cep.trim() !== "" || numero.trim() !== "" || rua.trim() !== "" || bairro.trim() !== "" || cidade.trim() !== "";
     };
+
+    const hasFormChanged = () => {
+        if (!originalClientData) return false;
+
+        return (
+            telefone !== originalClientData.phone ||
+            nome !== originalClientData.name ||
+            cep !== originalClientData.cep ||
+            numero !== originalClientData.number ||
+            rua !== originalClientData.street ||
+            bairro !== originalClientData.neighborhood ||
+            cidade !== originalClientData.city
+        );
+    };
     
     const handleSaveClick = async () => {
+        if (!hasFormChanged()) {
+            toast.info("Nenhuma alteração detectada.");
+            return;
+        }
+
         try {
             const telefoneLimpo = telefone.replace(/\D/g, ""); 
             const cepLimpo = cep.replace(/\D/g, "");
 
-            var idClient = localStorage.getItem("client") ? JSON.parse(localStorage.getItem("client")).id : null;
-            var idAddress = localStorage.getItem("address") ? JSON.parse(localStorage.getItem("address")).id : null;
-    
-            const responseClient = await updateClient(token, {id: idClient, phone: telefoneLimpo, name: nome, email: telefoneLimpo+"@gmail.com",address: idAddress, password: "senhapadrao", enterprise: user.enterprise.id });
-            console.log("Resposta da API:", responseClient);
+            const storedClient = JSON.parse(localStorage.getItem("client"));
+            const storedAddress = JSON.parse(localStorage.getItem("address"));
+            const idClient = storedClient?.id || null;
+            const idAddress = storedAddress?.id || null;
 
-            const responseAddress = await updateAddress(token, {id: idAddress, cep: cepLimpo, number: numero, street: rua, neighborhood: bairro, city: cidade, state:"SP" });
-            console.log("Resposta da API:", responseAddress);
+            const cepChanged = cep !== originalClientData.cep;
+            const numeroChanged = numero !== originalClientData.number;
 
-            localStorage.setItem("client", JSON.stringify({
-                id: responseClient.id,
-                phone: responseClient.phone,
-                name: responseClient.name,
-                email: responseClient.email,
-                address: responseClient.address?.id,
-                cep: responseClient.address?.cep,
-                number: responseClient.address?.number,   
-                street: responseClient.address?.street,
-                neighborhood: responseClient.address?.street,
-                city: responseClient.address?.city
-            }));
+            let updatedAddressData = {
+                id: idAddress,
+                cep: cepLimpo,
+                number: numero,
+                street: rua,
+                neighborhood: bairro,
+                city: cidade,
+                state: estado || "SP"
+            };
 
-            if (responseClient) {
-                console.log("Cliente salvo com sucesso:", JSON.stringify(responseClient));
-            } else {
-                console.log("Erro ao salvar o cliente.");
+            if (cepChanged || numeroChanged) {
+                const newAddress = await getAddressByCep({ cep: cepLimpo, number: numero });
+
+                if (newAddress) {
+                    setRua(newAddress.street);
+                    setBairro(newAddress.neighborhood);
+                    setCidade(newAddress.city);
+                    setEstado(newAddress.state);
+
+                    updatedAddressData = {
+                        ...updatedAddressData,
+                        street: newAddress.street,
+                        neighborhood: newAddress.neighborhood,
+                        city: newAddress.city,
+                        state: newAddress.state
+                    };
+                }
             }
 
-            localStorage.setItem("address", JSON.stringify({
-                id: responseAddress.id,
+            const updatedClient = {
+                id: idClient,
+                phone: telefoneLimpo,
+                name: nome,
+                email: `${telefoneLimpo}@gmail.com`,
+                address: idAddress,
+                password: "senhapadrao",
+                enterprise: user.enterprise.id
+            };
+
+            const responseClient = await updateClient(token, updatedClient);
+            if (responseClient?.id) {
+                console.log("Cliente atualizado com sucesso:", responseClient);
+            }
+
+            const responseAddress = await updateAddress(token, updatedAddressData);
+            if (responseAddress?.id) {
+                console.log("Endereço atualizado com sucesso:", responseAddress);
+            }
+
+            localStorage.setItem("client", JSON.stringify({
+                ...responseClient,
+                address: responseAddress.id,
                 cep: responseAddress.cep,
                 number: responseAddress.number,
                 street: responseAddress.street,
                 neighborhood: responseAddress.neighborhood,
                 city: responseAddress.city
             }));
-            
-            if (responseAddress) {
-                console.log("Endereço salvo com sucesso:", JSON.stringify(responseAddress));
-            } else {
-                console.log("Erro ao salvar o endereço.");
-            }
-           
+
+            localStorage.setItem("address", JSON.stringify(responseAddress));
+
+            toast.success("Dados atualizados com sucesso!");
+
         } catch (error) {
-            alert("Erro ao salvar o cliente: " + error.message);
+            alert("Erro ao salvar os dados: " + error.message);
             console.log(error);
         }
     };
@@ -246,18 +305,21 @@ const FormClient = forwardRef(({ onNovoClientChange, isEditing }, ref) => {
         isValidForm,
         handleSaveAdress,
         handleSaveClient,
-        handleSaveClick
+        handleSaveClick,
+        hasFormChanged
     }));
 
     const handleEnterPress = async (e, type) => {
+
         if (e.key === "Enter" || e.key === "Tab") {
             console.log("Tipo de ação:", type);
             if (type === "telefone") {
                 handleClient();
             } else if (type === "numero") {
+                console.log("Chamando handleAddress");
                 handleAddress();
-            }
-        } 
+            } 
+        }   
     };
     
     return (
@@ -305,7 +367,7 @@ const FormClient = forwardRef(({ onNovoClientChange, isEditing }, ref) => {
                                     <>
                                         <FloatingInput onValue={nome} onSet={setNome} label={"Nome completo"} disabled={!isEditing} />
                                         <FloatingInput onValue={cep} onSet={setCep} label={"CEP"} disabled={!isEditing} />
-                                        <FloatingInput onValue={numero} onSet={setNumero} label={"Número"} disabled={!isEditing} />
+                                        <FloatingInput onValue={numero} onSet={setNumero} label={"Número"} onEnterPress={(e) => handleEnterPress(e, "numero")}  disabled={!isEditing} />
                                     </>
                                 )}
                             </div>
