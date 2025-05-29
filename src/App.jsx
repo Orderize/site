@@ -6,29 +6,31 @@ import Client from "@/pages/Client/Client";
 import Login from "@/pages/Login/Index";
 import History from "@/pages/History/History";
 import Home from "@/pages/Home/Index";
-import Drink from "@/pages/Options/Drink/Index";
-import Flavor from "@/pages/Options/Flavor/Index";
-import Promotion from "@/pages/Options/Promotion/Promotion";
+import DrinkOption from "@/pages/Options/Drink/DrinkOption";
+import FlavorOption from "@/Pages/Options/Flavor/FlavorOption";
+// import Promotion from "@/pages/Options/Promotion/Promotion";
 import Order from "@/pages/Order/Order";
-import Report from "@/pages/Report/Index";
+import Report from "@/pages/Report/Report";
 
 // Seção dos Modais
-import ModalDrink from "@/modals/Drink/Drink";
-import ModalFlavor from "@/modals/Flavor/Flavor";
-import AddNewDrink from "@/modals/New_drink/AddNewDrink"
-import AddNewFlavor from "@/modals/New_flavor/Add_new_flavor";
-import PromoModal from "@/modals/promo_add/PromoModal";
-import ModalReview from "@/modals/Review/Review";
-import SelectBeveragePromo from "@/modals/select_beverage_promo/SelectBeveragePromo";
-import SelectPizzaPromo from "@/modals/select_pizza_promo/selectPizzaPromo";
-import SelectPizzaType from "@/modals/Select_pizza_type/Select_pizza_type";
+import ModalDrink from "@/components/OrderDetails/Drink/DrinkModal";
+import ModalFlavor from "@/components/OrderDetails/Flavor/FlavorModal";
+// import AddNewDrink from "@/modals/New_drink/AddNewDrink"
+// import AddNewFlavor from "@/modals/New_flavor/Add_new_flavor";
+// import PromoModal from "@/modals/promo_add/PromoModal";
+// import ModalReview from "@/modals/Review/Review";
+// import SelectBeveragePromo from "@/modals/select_beverage_promo/SelectBeveragePromo";
+// import SelectPizzaPromo from "@/modals/select_pizza_promo/selectPizzaPromo";
+// import SelectPizzaType from "@/modals/Select_pizza_type/Select_pizza_type";
 
 // Seção dos Componentes
-import Navbar from "@/components/Navbar/Index";
+import Navbar from "@/components/Navbar/Navbar";
 import ModalPagamento from "@/components/OrderDetails/ModalPagamento/ModalPagamento";
 
 import "@/utils/global.css";
 import { ToastContainer } from "react-toastify";
+import { isOwner } from "@/utils/user/userRoles";
+
 
 const App = () => {
     return (
@@ -71,8 +73,8 @@ const App = () => {
 
                 <Route
                     path='/sabores'
-                    element={ <Flavor /> }
-                ></Route>
+                    element={ <FlavorOption isOwner={isOwner()} /> }
+                />
 
                 <Route
                     path='/relatorios'
@@ -81,7 +83,7 @@ const App = () => {
 
                 <Route
                     path='/bebidas'
-                    element={ <Drink /> }
+                    element={ <DrinkOption isOwner={isOwner()}/> }
                 ></Route>
                 
                 <Route
@@ -89,10 +91,10 @@ const App = () => {
                     element= { <History />}>
                 </Route>
 
-                <Route
+                {/* <Route
                     path='/promotion'
                     element={ <Promotion /> }
-                ></Route>
+                ></Route> */}
 
                 <Route
                     path='/modal/sabores'
@@ -104,22 +106,22 @@ const App = () => {
                     element={ <ModalDrink /> }
                 ></Route>
                 
-                <Route
+                {/* <Route
                     path='/modal/revisoes'
                     element={ <ModalReview /> }
-                ></Route>
+                ></Route> */}
       
-                <Route 
+                {/* <Route 
                     path='/modal/newflavor'
                     element={ <AddNewFlavor /> } 
-                ></Route>
+                ></Route> */}
 
-                <Route 
+                {/* <Route 
                     path='/modal/selectpizzatype'
                     element={ <SelectPizzaType /> } 
-                ></Route>
+                ></Route> */}
 
-                <Route 
+                {/* <Route 
                     path='/modal/addnewdrink'
                     element={ <AddNewDrink /> } 
                 ></Route>
@@ -137,7 +139,7 @@ const App = () => {
                 <Route 
                     path='/modal/selectbeveragepromo'
                     element={ <SelectBeveragePromo/> } 
-                ></Route>
+                ></Route> */}
             </Routes>
 
             <ToastContainer />

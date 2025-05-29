@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import Navbar from "@/components/Navbar/Index";
+import Navbar from "@/components/Navbar/Navbar";
 import ButtonPreviousPage from "@/components/Progress/ButtonPreviousPage/ButtonPreviousPage";
 import CardPizza from "@/components/OrderDetails/CardPizza/CardPizza";
 import CardDrink from "@/components/OrderDetails/CardDrink/CardDrink";
@@ -34,8 +34,8 @@ function Order() {
     const order = {
       client: clientData.id, 
       responsible: userData.id,
-      pizzas: drinkList,
-      drinks: pizzaList,
+      pizzas: pizzaList,
+      drinks: drinkList,
       type: "Delivery",
       freight: 5,
       estimatedTime: 45,
@@ -119,7 +119,11 @@ function Order() {
             </section>
 
             <section>
-              <CardDrink unremovedItens={unremovedItens} drinks={drinks} setDrinks={setDrinks}/>
+            <CardDrink 
+              unremovedItens={unremovedItens} 
+              initialDrinks={drinks} 
+              setDrinks={setDrinks}
+            />
             </section>
 
             <section>

@@ -10,18 +10,21 @@ const CardProduto = ({
     descricao, 
     preco, 
     onEdit, 
-    onDelete
+    onDelete,
+    variant
  }) => {
+    const containerClass = `${styles.cardContainer} ${variant ? styles[variant] : ''}`;
+    const formattedPrice = typeof preco === 'number' ? preco.toFixed(2) : '0.00';
 
     return (
-        <div className={styles.cardContainer}>
+        <div className={containerClass}>
             <div className={styles.cardContent}>
                 <img src={imagem} alt={titulo} className={styles.image} />
 
                 <div className={styles.text}> 
                     <p className={styles.titulo}>{titulo}</p>
-                    <p className={styles.subtitulo}>Código: {subtitulo}</p>
-                    <p className={styles.preco}>R$ {preco.toFixed(2)}</p>
+                    {/* <p className={styles.subtitulo}>Código: {subtitulo}</p> */}
+                    <p className={styles.preco}>R$ {formattedPrice}</p>
                     <p className={styles.descricao}>Descrição: {descricao}</p>
                 </div>
             </div>

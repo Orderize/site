@@ -6,7 +6,20 @@
     padding: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-around; 
+    align-items: center;
+    gap: 5px;
+}
+
+.drinkOption {
+    width: 30%;
+    height: 45%;
+    border-radius: 15px;
+    background: var(--cor-fundo-sec);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around; 
     align-items: center;
     gap: 5px;
 }

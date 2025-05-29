@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import Navbar from "@/components/Navbar/Index";
+import Navbar from "@/components/Navbar/Navbar";
 import FormClient from "@/components/FormClient/FormClient";
 import ButtonNext from "@/components/Progress/ButtonNext/ButtonNext";
 import Progress from "@/components/Progress/Progress";
@@ -14,27 +14,15 @@ import 'react-toastify/dist/ReactToastify.css';
         const navigate = useNavigate();
         const [isNovoClient, setIsNovoClient] = useState(false);
         const [isEditing, setIsEditing] = useState(false);
+        const [hasSelectedClient, setHasSelectedClient] = useState(false);
         const formClientRef = useRef();
 
         var respostaAddress;
         var respostaUser;
     
         const handleNext = async () => {
-            console.log("handleNext foi chamado");
+
             try {
-                if (isNovoClient) {
-                    respostaAddress = await formClientRef.current.handleSaveAdress();
-
-                    console.log("respostaAddress de salvar endereço:", respostaAddress);
-
-                    respostaUser = await formClientRef.current.handleSaveClient(respostaAddress);
-                    if (respostaUser){
-                        navigate("/pedidos/novo-pedido");
-                    }
-                } else {
-                    navigate("/pedidos/novo-pedido");
-                }
-
                 if (!formClientRef.current.isValidForm()) {
                     toast.error("Por favor, preencha todos os campos.", {
                         position: "top-right",
@@ -45,6 +33,21 @@ import 'react-toastify/dist/ReactToastify.css';
                     return; 
                 }
 
+                
+                if (isNovoClient) {
+                    respostaAddress = await formClientRef.current.handleSaveAdress();
+                    respostaUser = await formClientRef.current.handleSaveClient(respostaAddress);
+
+                    if (respostaUser){
+                        setHasSelectedClient(true);
+                        navigate("/pedidos/novo-pedido");
+                    }
+                } else {
+                    setHasSelectedClient(true);
+                    navigate("/pedidos/novo-pedido");
+                }
+
+            
             } catch (error) {
                 // toast.error("Erro ao salvar o cliente: " + error.message);
                 // alert("Erro ao salvar o cliente: " + error.message);
@@ -53,19 +56,16 @@ import 'react-toastify/dist/ReactToastify.css';
             }
         };
 
+
         const handleEdit = () => {
-            console.log("handleEdit foi chamado");
             setIsEditing(true);
         };
 
         const handleSave = async () => {
             try {
-                console.log("handleSave foi chamado");
-                console.log("respostaUser", respostaUser);
-                console.log("respostaAddress", respostaAddress);
                 formClientRef.current.handleSaveClick();
 
-                toast.success('Cliente editado com sucesso!');
+                // toast.success('Cliente editado com sucesso!');
                 setIsEditing(false);
             } catch (error) {
                 alert("Erro ao salvar o cliente: " + error.message);
@@ -75,7 +75,6 @@ import 'react-toastify/dist/ReactToastify.css';
         };
 
         const handleNovoClientChange = (isNovo) => {
-            console.log("Mudando estado de novo cliente para:", isNovo);
             setIsNovoClient(isNovo);
         };
 
@@ -88,39 +87,58 @@ import 'react-toastify/dist/ReactToastify.css';
         <MediaQuery minWidth={769}>
         
             <p className={styles.titulo}>Novo Pedido</p>
+
             <div className={styles["client-modal-card"]}>
-
-            {/* {isNovoClient ? ( */}
-                {isEditing ? (
-                    <button onClick={handleSave} className={styles.save}>Salvar</button>
-                ) : (
-                    <NotePencil 
-                        size={25} 
-                        weight="duotone" 
-                        className={styles.edit} 
-                        onClick={handleEdit}
-                    />  
+                {hasSelectedClient && !isNovoClient && (
+                    isEditing ? (
+                        <button onClick={handleSave} className={styles.save}>Salvar</button>
+                    ) : (
+                        <NotePencil 
+                            size={25} 
+                            weight="duotone" 
+                            className={styles.edit} 
+                            onClick={handleEdit}
+                        />  
+                    )
                 )}
-            {/* ) : (
-                <NotePencil 
-                        size={25} 
-                        weight="duotone" 
-                        className={styles["edit-desativado"]} 
-                />  
-            )} */}
-
-
 
                 <div className={styles["client-info"]}> 
                     <p className={isNovoClient ? styles.novoCliente : styles.subtitulo}>
                         {isNovoClient ? "Novo Cliente" : "Cliente"}
                     </p>
-                        
-                    <FormClient ref={formClientRef} onNovoClientChange={handleNovoClientChange} isEditing={isEditing} />
+                            
+                    <FormClient 
+                        ref={formClientRef} 
+                        onNovoClientChange={(isNovo) => {
+                            setIsNovoClient(isNovo);
+                            if (!isNovo) setHasSelectedClient(true);
+                        }} 
+                        isEditing={isEditing} 
+                        // hasSelectedClient={hasSelectedClient}
+                    />
                 </div>
             </div>
 
+            {/* {!isNovoClient && (
+                isEditing ? (
+                    <div className={styles["card-final"]}>    
+                        <button onClick={handleSave} className={styles["btn-editar"]}>Salvar</button>
+
+                        <button onClick={handleSave} className={styles["btn-editar"]}>Cancelar</button>
+                    </div>
+                ) : ( 
+                    <div className={styles["card-final"]}>   
+                        <button onClick={handleEdit} className={styles["btn-next"]}>Editar</button>
+
+                    </div>
+                )
+            )} */}
             <ButtonNext onNext={handleNext} />
+
+            {/* {isNovoClient && (
+                <ButtonNext onNext={handleNext} />
+            )} */}
+
         </MediaQuery>
         </main>
     </>

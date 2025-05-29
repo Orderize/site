@@ -1,11 +1,11 @@
 import { toast } from "react-toastify";
 import api from "../Axios";
 
-export const getFlavorsPop = async (value = "") => {
+export const getFlavorsPop = async (searchTerm = "") => {
     try {
         const response = await api.get('/flavors/pop', {
             params: {
-                value,
+                value: searchTerm,
             },
         });
         return response.data;
@@ -30,7 +30,6 @@ export const saveFlavor = async (flavor) => {
 export const updateFlavor = async (idFlavor, flavor) => {
     try {
         const response = await api.put(`/flavors/${idFlavor}`, flavor);
-        console.log('updateFlavor response ' + response)
         return response.data;
     }
     catch (error) {

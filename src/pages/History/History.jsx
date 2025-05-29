@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { PiPizzaBold } from "react-icons/pi";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { IoCloseCircleOutline } from "react-icons/io5";
-import Navbar from "@/components/Navbar/Index";
+import Navbar from "@/components/Navbar/Navbar";
 import styles from "./History.module.css";
 import { getHistory } from "../../api/services/History";
 import { toast } from "react-toastify";
@@ -41,16 +41,22 @@ function History() {
     }
 
     const handleFilterDate = async (event) => {
-        const date = new Date(event.target.value);
-        
-        let data = await getHistory(date);
-
-        if (data == "") {
-            toast.info("Nenhum historico encontrado nesse periodo.");
+        const selectedDate = event.target.value;
+        const dateISOString = new Date(selectedDate + "T00:00:00.000Z").toISOString();
+    
+        console.log("selectDate", selectedDate, "| dateISOString", dateISOString);
+    
+        let data = await getHistory(dateISOString);
+        console.log("data handleFilterDate", JSON.stringify(data));
+    
+        if (data.length === 0) {
+            toast.info("Nenhum histórico encontrado nesse período.");
             data = [];
-        }        
+        }
+    
         setHistory(data);
-    }
+    };
+    
 
     const handleClickOrder = (order) => {
         console.log(order);
