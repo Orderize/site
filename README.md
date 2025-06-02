@@ -59,6 +59,31 @@ O backend e o banco de dados necessários para funcionamento do sistema estão c
 
 ---
 
+## 🚀 Deploy da Aplicação Web
+
+A aplicação web do Orderize pode ser implantada em diversos serviços de hospedagem, como *Vercel, **Netlify, **Render*, entre outros. Abaixo, um exemplo de deploy utilizando o Vercel:
+
+### ✅ Deploy via Vercel
+
+1. Acesse [https://vercel.com](https://vercel.com) e faça login (ou crie uma conta gratuita).
+2. Clique em *“New Project”* e importe o repositório Orderize/site do GitHub.
+3. No passo de configurações:
+   - Escolha *framework = Next.js* (caso aplicável).
+   - Confirme ou adicione as variáveis de ambiente se necessário (por exemplo, a URL da API).
+4. Clique em *Deploy*.
+5. Pronto! A aplicação será publicada em uma URL como:  
+   https://orderize-web.vercel.app
+
+### 🌐 Outras opções de deploy
+
+- *Netlify:* Integração direta com GitHub, ideal para apps React.
+- *Render / Railway:* Para apps com back e front.
+- *Hospedagem própria (VPS ou cPanel):* Pode ser feita com build manual via npm run build.
+
+---
+
+> 💡 Lembre-se de que a aplicação depende da API e banco de dados. Em ambiente de produção, eles também devem estar publicados em um servidor acessível.
+
 ## 📄 Licença
 
 Este projeto foi desenvolvido como entrega do Projeto Integrador da São Paulo Tech School (2025).
