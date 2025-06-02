@@ -47,7 +47,7 @@ yarn dev
 ```
 
 4. Acesse no navegador:  
-`http://localhost:3000`
+`http://localhost:5173` ou conforme o terminal indicar.
 
 ---
 
