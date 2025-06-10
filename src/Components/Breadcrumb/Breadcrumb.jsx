@@ -20,8 +20,6 @@ function Breadcrumb({ activeButton }) {
                 idx = (indexItem.idx - 1 + indexItem.limit) % indexItem.limit;
         }
 
-        console.log(indexItem);
-
         if (idx != indexItem.idx) {
             setIndexItem(prev => ({...prev, idx}));
             switch (idx) {
@@ -31,9 +29,9 @@ function Breadcrumb({ activeButton }) {
                 case 1:
                     navigate("/bebidas");
                     break;
-                case 2:
-                    navigate("/promotion");
-                    break;
+                // case 2:
+                //     navigate("/promotion");
+                //     break;
                 default:
                     break;
             }
@@ -66,12 +64,6 @@ function Breadcrumb({ activeButton }) {
                             to={"/bebidas"}
                             className={ activeButton === "bebidas" ? "active": "" }
                         >Bebidas</Link>
-                    </li>
-                    <li>
-                        <Link 
-                            to={"/promotion"}                            
-                            className={ activeButton === "brindes" ? "active": "" }
-                        >Promoções</Link>
                     </li>
                 </ul>
             </nav>

@@ -1,0 +1,51 @@
+.component-item {
+    display: flex;
+    
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    
+    width: 180px;
+    height: 200px;
+
+    padding: 10px;
+    
+    background-color: #EAE5DE;
+    border-radius: 20px;
+
+    box-shadow: rgba(0, 0, 0, 0.541) 0px -2px 7px;
+
+    position: relative;
+    top: 20px;
+
+    overflow: hidden;
+}
+
+.component-item::after {
+    display: block;
+    position: absolute;
+    bottom: 0;
+
+    content: '';
+    background: linear-gradient(to top, #656d4ac0,  #00000000);
+    backdrop-filter: blur(1px);
+    width: 100%;
+    height: 50px;
+}
+
+.component-item > h3.name {
+    width: 100%;
+    text-align: center;
+}
+
+.component-item > .content > img {
+    width: 100px;
+    margin-bottom: 5px;
+}
+
+.component-item > .description {
+    font-size: 14px; 
+    max-width: 90%;
+    height: 50px;
+    overflow: hidden;
+}

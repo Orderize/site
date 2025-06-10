@@ -1,5 +1,5 @@
 .container-breadcrumb {
-    width: 65%;
+    width: 35%;
     border-bottom: 1px solid #656D4A;
 }
 
@@ -9,7 +9,6 @@
 
     width: 55%;
 }
-
 .container-breadcrumb > .organization > li {
     display: flex;
     align-items: center;
@@ -37,3 +36,15 @@
     
     text-decoration: none;
 }
+
+@media screen and (max-width: 1200px) {
+    .container-breadcrumb {
+        margin: auto;
+    }
+
+    .container-breadcrumb > .organization {
+        margin: auto;
+        width: 90%;
+    }
+}
+

@@ -1,0 +1,90 @@
+.cardContainer {
+    width: 30%;
+    height: 55%;
+    border-radius: 15px;
+    background: var(--cor-fundo-sec);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around; 
+    align-items: center;
+    gap: 5px;
+}
+
+.drinkOption {
+    width: 30%;
+    height: 45%;
+    border-radius: 15px;
+    background: var(--cor-fundo-sec);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around; 
+    align-items: center;
+    gap: 5px;
+}
+
+.cardContent {
+    display: flex;
+    width: 90%;
+    height: 80%;
+    justify-content: space-between;
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    max-width: 70%;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.text .titulo {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--verde-escuro);
+} 
+
+.text .subtitulo {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--verde);
+}
+
+.text .preco {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--verde-escuro);
+}
+
+.text .descricao {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--verde-escuro);
+    overflow-y: auto;
+}
+
+.descricao::-webkit-scrollbar-track {
+    background: var(--cor-fundo-sec);
+    border-radius: 10px;
+}
+
+.descricao::-webkit-scrollbar-thumb {
+    background-color: var(--cor-fundo);
+    border-radius: 10px;
+}
+
+.image {
+    width: 80%;
+    height: 80%;
+    margin-right: -40px;
+    margin-left: -45px;
+}
+
+.buttonContainer {
+    display: flex;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}

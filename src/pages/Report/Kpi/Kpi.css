@@ -1,0 +1,17 @@
+.container-kpi {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.tittle {
+    font-family: var(--fonte-titulo);
+    font-weight: 600;
+}
+
+.value {
+    font-family: var(--fonte);
+    font-weight: 500;
+}

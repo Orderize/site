@@ -2,17 +2,16 @@ import React, { useEffect, useRef, useState } from 'react';
 import { ChartDonut, ClockClockwise, ListMagnifyingGlass, Pizza } from "@phosphor-icons/react";
 import ButtonNavbar from './Button/ButtonNavbar';
 import Option from "./Option/Option";
-
-import styles from "./Navbar.module.css";
+import "./Navbar.css";
 import ImgLogo from '../../utils/assets/logo.png';
 import { useMediaQuery } from 'react-responsive';
 import { getMainButton, isUserOwner } from './NavbarData';
 import { useNavigate } from 'react-router-dom';
 
-function navbar({ activeButton, subActiveButton }) {
-    const isDesktop = useMediaQuery({
-        query: '(min-width: 1200px)' 
-    });
+function Navbar({ activeButton, subActiveButton }) {
+    const navigate = useNavigate();
+    const isDesktop = useMediaQuery({ query: '(min-width: 1200px)' });
+
 
     const user = JSON.parse(localStorage.getItem('user'));
     const isOwner = isUserOwner(user.roles);
@@ -24,8 +23,6 @@ function navbar({ activeButton, subActiveButton }) {
         idx: activeButton == "Opções" ? 1 : activeButton == "Histórico" ? 2 : 0,
         limit: 3
     });
-
-    const navigate = useNavigate();
 
     const handleNavIndex = (event) => {
         let idx = indexItem.idx;
@@ -66,13 +63,14 @@ function navbar({ activeButton, subActiveButton }) {
     }, []);
 
     return (
-        <nav className={`${styles.container} ${styles.center}`}>
+        <nav className="container center">
             {isDesktop && (
-                <div className={`${styles.logo} ${styles.center}`}>
+                <div className="logo center">
                     <img src={ImgLogo} alt="Orderize logo" />
                 </div>
             )}
-            <ul className={`${styles.ordenation} ${styles.center}`}>
+            
+            <ul className="ordenation center">
                 <ButtonNavbar
                     icon={mainButton.icon}
                     isActive={activeButton === mainButton.title}
@@ -100,4 +98,4 @@ function navbar({ activeButton, subActiveButton }) {
     )
 }
 
-export default navbar;
+export default Navbar;

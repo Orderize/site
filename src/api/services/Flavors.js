@@ -1,18 +1,50 @@
+import { toast } from "react-toastify";
 import api from "../Axios";
 
-export const getFlavorsPop = async (token, value = "") => {
+export const getFlavorsPop = async (searchTerm = "") => {
     try {
         const response = await api.get('/flavors/pop', {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            },
             params: {
-                value,
+                value: searchTerm,
             },
         });
         return response.data;
     } catch (error) {
         console.error('[getFlavorsPop] error: ', error);
+        const message = "Erro ao fazer requisição. Aguarde um momento e recarregue a página.";
+        toast.error(message);
+    }
+};
+
+export const saveFlavor = async (flavor) => {
+    try {
+        const response = await api.post('/flavors', flavor);
+        return response.data;
+    }
+    catch (error) {
+        console.error('[saveFlavor] error: ', error);
+        throw new Error('Erro ao fazer requisição. Aguarde um momento e recarregue a página.');
+    }
+};
+
+export const updateFlavor = async (idFlavor, flavor) => {
+    try {
+        const response = await api.put(`/flavors/${idFlavor}`, flavor);
+        return response.data;
+    }
+    catch (error) {
+        console.error('[updateFlavor] error: ', error);
+        throw new Error('Erro ao fazer requisição. Aguarde um momento e recarregue a página.');
+    }
+};
+
+export const deleteFlavor = async (idFlavor) => {
+    try {
+        const response = await api.delete(`/flavors/${idFlavor}`);
+        return response.data;
+    }
+    catch (error) {
+        console.error('[deleteFlavor] error: ', error);
         throw new Error('Erro ao fazer requisição. Aguarde um momento e recarregue a página.');
     }
 };

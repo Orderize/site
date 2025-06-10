@@ -1,0 +1,263 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* .client-modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 75vw; */
+    /* width: 80%; */
+    /* height: 75vh; */
+    /* margin-left: 20vw; */
+    /* position: fixed; */
+    /* border: 2px solid violet;
+} */
+
+.container-client {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 76vh;
+    background-color: var(--cor-fundo);
+}
+
+.client-modal-card {
+    /* width: calc(100% + 20px); */
+    width: 75%;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* gap: 15px; */
+    background: var(--cor-fundo-sec);
+    border: 1px solid var(--verde-escuro);
+    border-radius: 25px;
+}
+
+.titulo {
+    font-family: var(--fonte-titulo);
+    font-size: 30px;
+    font-weight: 700;
+    /* align-self: flex-start; */
+    color: var(--verde-escuro);
+    /* margin: 3vh 0; */
+}
+
+.subtitulo {
+    font-family: var(--fonte-titulo);
+    font-size: 25px;
+    font-weight: 600;
+    color: var(--verde-escuro);
+    padding: 2vh;
+}
+
+.progress {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
+    height: 10vh;
+    position: fixed;
+    bottom: 0;
+    padding: 20px;
+    background-color: var(--cor-fundo);
+}
+
+.card-final {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10%;
+}
+
+.btn-next {
+    background-color: var(--verde);
+    color: var(--cor-fundo);
+    align-items: center;
+    height: 4vh;
+    width: 20vw;
+    font-family: var(--fonte);
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+    margin: 0;
+    box-shadow: none;
+    transition: background-color 0.3s;
+    border: none;
+    border-radius: 5px;
+}
+
+.btn-editar {
+    background-color: white;
+    color: var(--verde-escuro);
+    align-items: center;
+    height: 4vh;
+    width: 20vw;
+    font-family: var(--fonte);
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    margin: 0;
+    box-shadow: none;
+    transition: background-color 0.3s;
+    border: none;
+    border-radius: 5px;
+    border: 2px solid var(--verde-escuro);
+}
+
+@media screen and (min-width: 768px) {
+    .container-client {
+        height: 90vh;
+    }
+
+}
+
+@media screen and (min-width: 1200px) {
+
+    .container-client {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around; 
+        align-items: center;
+        /* position: fixed; */
+        width: 82%;
+        height: 100vh;
+        margin-left: 18%;
+        /* background: var(--cor-fundo); */
+        background-image: url(../../utils/assets/novo-pedido.svg);
+        background-size: cover;
+        background-color: var(--cor-fundo);
+    }
+
+    .client-modal-card {
+        width: 55%;
+        height: 65vh;
+        display: flex;
+        flex-direction: column;
+        /* justify-content: center; */
+        justify-content: space-around;
+        align-items: center;
+        /* gap: 15px; */
+        background: var(--cor-fundo-sec);
+        border: 1px solid var(--verde-escuro);
+        border-radius: 25px;
+    }
+
+    .campos-list {
+        /* width: 40vw; */
+        width: 80%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        /* justify-content: center; */
+        align-items: center;
+        /* gap: 20px; */
+      }
+    
+      .campos-left {
+        display: flex;
+        flex-direction: column;
+        /* width: 48%; */
+      }
+    
+      .campos-right {
+        margin-top: 12vh;
+        display: flex;
+        flex-direction: column;
+        /* width: 48%;   */
+      }
+
+    .titulo {
+        font-family: var(--fonte-titulo);
+        font-size: 30px;
+        font-weight: 700;
+        /* align-self: flex-start; */
+        color: var(--verde-escuro);
+        /* margin-top: 10px;     */
+        /* margin: 3vh 0; */
+        
+    }
+
+    .client-nao-encontrado {
+        font-family: var(--fonte-titulo);
+        font-size: 10px;
+        font-weight: 600;
+        color: red;
+        /* padding: 2vh; */
+        margin-bottom: 10px;
+    }
+
+    .subtitulo {
+        font-family: var(--fonte-titulo);
+        font-size: 25px;
+        font-weight: 600;
+        color: var(--verde-escuro);
+        padding: 2vh;
+        margin-bottom: 15px;
+    }
+
+    .novoCliente {
+        font-family: var(--fonte-titulo);
+        font-size: 25px;
+        font-weight: 600;
+        color: var(--verde);
+        padding: 2vh;
+        margin-bottom: 15px;
+    }
+
+    .edit {
+        color: var(--verde-escuro);
+        align-self: end;
+        margin-right: 20px;
+        cursor: pointer;
+    }
+
+    .edit-desativado {
+        color: var(--verde-escuro);
+        opacity: 0.5;
+        align-self: end;
+        margin-right: 20px;
+    }
+
+    .client-info {
+        height: 70%;
+        display: flex;
+        flex-direction: column;
+        /* justify-content: center; */
+        /* justify-content: space-around; */
+        align-items: center;
+    }
+
+    .save {
+        background-color: var(--verde);
+        color: var(--cor-fundo);
+        align-items: center;
+        height: 5%;
+        width: 15%;
+        font-family: var(--fonte);
+        font-size: 14px;
+        font-weight: 400;
+        text-align: center;
+        box-shadow: none;
+        transition: background-color 0.3s;
+        border: none;
+        border-radius: 5px;
+        align-self: end;
+        cursor: pointer;
+        margin-right: 20px;
+    }
+
+    .btn-next, .btn-editar{
+        width: 6vw;
+        height: 6vh;
+        font-size: 15px;
+    }
+
+}

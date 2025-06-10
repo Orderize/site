@@ -24,13 +24,13 @@ function Option({ activeButton }) {
                     link="/bebidas"
                     text="Bebidas"
                 />
-                <ButtonNavbar
+                {/* <ButtonNavbar
                     event={ setActualButton }
                     icon={ <Money size={75} className='money' /> }
                     isActive={actualButton === "Promo"}
                     link="/promotion"
                     text="Promo"
-                />
+                /> */}
             </ul>
         </>
     );
