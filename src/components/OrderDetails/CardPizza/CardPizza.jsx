@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import AddButton from "../AddButton/AddButton";
 import styles from "./CardPizza.module.css";
 // import SelectPizzaPromo from "../../Modal/select_pizza_promo/selectPizzaPromo";
-import Flavor from '@/modals/Flavor/Flavor';
+import FlavorModal from '@/components/OrderDetails/Flavor/FlavorModal';
 import { XSquare, NotePencil } from '@phosphor-icons/react';
 import { Stack } from "../../../utils/stack/Stack.js";
 import savePizzas, { deletePizzas, handleDataPizza } from "../../../hooks/usePizzas.js";
@@ -63,30 +63,34 @@ function CardPizza({ unremovedItem, pizzas, setPizzas }) {
             </div>
 
             <div className={styles["list-pizza"]}>
-                {pizzas.length > 0 && pizzas.map(pizza => (
-                    <div className={styles["content-pizza"]}>
+                {pizzas.map((pizza, index) => (
+                    <div className={styles["content-pizza"]} key={pizza.id || index}>
                         <div className={styles["pizza-information"]}>
-                            <p className={styles["name"]}>{pizza.name}</p>
-                            <p className={styles["name"]}>{pizza.price}</p>
+                            <p className={styles["name"]}>Pizza {index + 1}</p> 
+                            <p className={styles["name"]}>R${pizza.price}</p>
 
                             <div className={styles["edit-cancel"]}>
                                 <XSquare size={25} weight="duotone" onClick={() => removePizza(pizza)}/>
                                 <NotePencil size={25} weight="duotone" onClick={() => editPizza(pizza)}/>
                             </div>
                         </div>
-                        {pizza.flavors.map(flavor => (
-                            <div className={styles["flavor-information"]}>
-                                <p className={styles["flavor"]}>{flavor.name}</p>
-                            </div>
+                        {pizza.flavors?.map(flavor => (
+                        <div className={styles["flavor-information"]} key={flavor.id}>
+                            <p className={styles["flavor"]}>{flavor.name}</p>
+                            {flavor.observations?.length > 0 && (
+                            <p className={styles["observation"]}>sem {flavor.observations.join(', ')}</p>
+                            )}
+                        </div>
                         ))}
                         <p className={styles["observation"]}>{pizza.observations}</p>
                     </div>
                 ))}
             </div>
+
             {
                 isOpenPizzaModal 
                 && 
-                <Flavor 
+                <FlavorModal 
                     setListPizzas={setPizzas} 
                     selectedPizza={selectedPizza}
                     close={close}

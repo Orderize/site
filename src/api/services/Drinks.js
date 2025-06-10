@@ -1,24 +1,31 @@
 import { toast } from "react-toastify";
 import api from "../Axios";
 
-export const getDrinks = async (name = "", milimeters = "") => {
+export const getDrinks = async ({ name = "", milimeters = "" } = {}) => {
     try {
-        const response = await api.get("/drinks", {
-            params: {
-                name,
-                milimeters
-            }
-        });
+        const params = new URLSearchParams();
+
+        if (name) params.append("name", name);
+
+        const milimetersNumber = Number(milimeters);
+        if (milimeters && !isNaN(milimetersNumber) && milimetersNumber > 0) {
+            params.append("milimeters", milimetersNumber);
+        }
+
+        const url = `/drinks${params.toString() ? `?${params.toString()}` : ""}`;
+        const response = await api.get(url);
+
+        console.log('getDrink '+ JSON.stringify(response));
         return response.data;
     } catch (error) {
         console.error("[getDrinks] error: ", error);
-        toast.error("Erro ao listar os drinks. Por favor, aguarde um momento e recarregue a página.");        
+        toast.error("Erro ao listar as bebidas.");
+        return []; 
     }
 };
 
 export const saveDrink = async (drink) => {
     try {
-        console.log('saveDrink '+drink);
         const response = await api.post('/drinks', drink);
         return response.data;
     } catch (error) {
@@ -34,7 +41,6 @@ export const updateDrink = async (token, idDrink, drink) => {
                 'Authorization': `Bearer ${token}`
             }
         });
-        console.log('updateDrink response '+response.data);
         return response.data;
     } catch (error) {
         console.error('[updateDrink] error: ', error);
@@ -49,7 +55,6 @@ export const deleteDrink = async (token, idDrink) => {
                 'Authorization': `Bearer ${token}`
             }
         });
-        console.log('deleteDrink response '+response.data);
         return response.data;
     } catch (error) {
         console.error('[deleteDrink] error: ', error);
